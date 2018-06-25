@@ -32,7 +32,7 @@ public class SumTest extends suite.BaseTest {
         Assert.assertEquals(actualSum, expectedSum);
     }
 
-    @Test(groups = "notBroken")
+    @Test(groups = {"notBroken"})
     @Description("Validate summary with longs, include the test group")
     public void validateCorrectLongSum() {
         long a = 6000L;
@@ -42,7 +42,7 @@ public class SumTest extends suite.BaseTest {
         Assert.assertEquals(actualSum, expectedSum);
     }
 
-    @Test(groups = "broken")
+    @Test(groups = {"broken"})
     @Description("Exclude the test group")
     public void brokenTest() {
         System.out.println("The test is broken. Should be excluded by group");

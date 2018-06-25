@@ -1,37 +1,44 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="suite" verbose="1" thread-count="2" parallel="methods" >
-    <test name="Sum" >
+<suite name="suite" verbose="1" thread-count="2" parallel="methods">
+    <listeners>
+        <listener class-name="listener.ListenerOnTestStart"/>
+        <listener class-name="listener.ListenerOnTestFailure"/>
+    </listeners>
+
+
+    <test name="Sum">
         <classes>
-            <class name="suite.SumTest" />
+            <class name="suite.SumTest"/>
         </classes>
     </test>
-    <test name="Sub" >
+
+    <test name="Sub">
         <groups>
             <run>
-                <include name="notBroken"/>
                 <exclude name="broken"/>
             </run>
         </groups>
         <classes>
-            <class name="suite.SubTest" />
+            <class name="suite.SubTest"/>
         </classes>
     </test>
-    <test name="Mult" >
+    <test name="Mult">
         <parameter name="a" value="5"/>
         <parameter name="b" value="4"/>
         <parameter name="expectedResult" value="20"/>
         <classes>
-            <class name="suite.MultTest" />
+            <class name="suite.MultTest"/>
         </classes>
     </test>
-    <test name="Div" >
+    <test name="Div">
         <classes>
-            <class name="factory.DivTestFactory" />
+            <class name="factory.DivTestFactory"/>
         </classes>
     </test>
-    <test name="Pow" >
+    <test name="Pow">
         <classes>
-            <class name="suite.PowTest" />
+            <class name="suite.PowTest"/>
         </classes>
     </test>
 </suite>
+
