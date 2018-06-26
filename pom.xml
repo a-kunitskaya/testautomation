@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <!-- junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -17,6 +17,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- hamcrest junit matchers -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-junit</artifactId>
+            <version>2.0.0.0</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
