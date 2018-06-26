@@ -9,6 +9,16 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+       <!--Calculator.jar-->
+        <dependency>
+            <groupId>com.epam</groupId>
+            <artifactId>calculator</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/test/resources/calculator-1.0.jar</systemPath>
+        </dependency>
+
+
         <!-- junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
