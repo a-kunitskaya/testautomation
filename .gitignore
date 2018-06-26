@@ -36,3 +36,4 @@ hs_err_pid*
 #exclude from .gitignore
 !testng.xml
 !pom.xml
+!./src
