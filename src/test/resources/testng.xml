@@ -22,7 +22,7 @@
             <class name="suite.SubTest"/>
         </classes>
     </test>
-    
+
     <test name="Mult">
         <parameter name="a" value="5"/>
         <parameter name="b" value="4"/>
@@ -39,6 +39,12 @@
     <test name="Pow">
         <classes>
             <class name="suite.PowTest"/>
+        </classes>
+    </test>
+
+    <test name="IsPosivive">
+        <classes>
+            <class name="suite.IsPositiveTest"/>
         </classes>
     </test>
 </suite>
