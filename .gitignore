@@ -24,9 +24,6 @@ hs_err_pid*
 
 #other
 *.iml
-<<<<<<< HEAD
-.idea/
-=======
 .idea/
 *.png
 *.gif
@@ -40,4 +37,3 @@ hs_err_pid*
 !testng.xml
 !pom.xml
 !./src
->>>>>>> 286ecc84500934502134a78455b0fa0d167371c5
