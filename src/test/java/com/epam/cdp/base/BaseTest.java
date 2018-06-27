@@ -1,5 +1,6 @@
 package com.epam.cdp.base;
 
+import com.epam.tat.module4.Calculator;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
@@ -15,6 +16,8 @@ public class BaseTest {
     public void setUp() {
         System.out.println("Set up from BaseTest, test executed: " + getClass().getName());
     }
+
+    public Calculator calculator = new Calculator();
 
     @AfterClass
     public void tearDown(){

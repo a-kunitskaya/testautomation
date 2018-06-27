@@ -1,8 +1,6 @@
 package com.epam.cdp.tests;
 
 import com.epam.cdp.base.BaseTest;
-import com.epam.tat.module4.Calculator;
-import com.sun.org.glassfish.gmbal.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -22,23 +20,19 @@ public class DivTest extends BaseTest {
         this.expectedResult = expectedResult;
     }
 
-    Calculator calculator = new Calculator();
-
     @BeforeClass
     public void setUp() {
         System.out.println("Override setup from baseTest");
     }
 
-    @Test(priority = 1)
-    @Description("Validate division with doubles")
+    @Test(priority = 1, description = "Validate division with doubles")
     public void validateDoubleDiv() {
         double actualResult = calculator.div(a, b);
         Assert.assertEquals(actualResult, expectedResult);
         System.out.println("data: " + a + " " + b);
     }
 
-    @Test(priority = 1)
-    @Description("Validate division by zero")
+    @Test(priority = 1, description = "Validate division by zero")
     public void validateDivisionByZero() {
         double a = 10;
         double b = 0;

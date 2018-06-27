@@ -1,6 +1,6 @@
 package com.epam.cdp.tests;
 
-import com.epam.tat.module4.Calculator;
+import com.epam.cdp.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -10,8 +10,7 @@ import org.testng.annotations.Test;
  * @Test validateDependencyOnValidateIsPositive() depends on validateIsPositive(),
  * so it won't be executed
  */
-public class IsPositiveTest {
-    Calculator calculator = new Calculator();
+public class IsPositiveTest extends BaseTest {
 
     @Test(dataProvider = "isPositiveDataProvider")
     public void validateIsPositive(long a, boolean expectedResult) {

@@ -1,8 +1,6 @@
 package com.epam.cdp.tests;
 
 import com.epam.cdp.base.BaseTest;
-import com.epam.tat.module4.Calculator;
-import com.sun.org.glassfish.gmbal.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -15,15 +13,13 @@ import java.util.concurrent.TimeUnit;
  * The test is invoked 6 times in 2 parallel threads
  */
 public class PowTest extends BaseTest {
-    Calculator calculator = new Calculator();
 
     @BeforeMethod
     public void setUp() {
         System.out.println("Set up beforeMethod in PowTest");
     }
 
-    @Test(threadPoolSize = 2, invocationCount = 2, timeOut = 5000, dataProvider = "powDataProvider", priority = 0)
-    @Description("Valifate pow with doubles")
+    @Test(threadPoolSize = 2, invocationCount = 2, timeOut = 5000, dataProvider = "powDataProvider", priority = 0, description = "Validate pow with doubles")
     public void testDoublePow(double a, double b, double expectedResult) throws InterruptedException {
         double actualResult = calculator.pow(a, b);
         Assert.assertEquals(actualResult, expectedResult);
