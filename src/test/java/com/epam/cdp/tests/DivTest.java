@@ -34,5 +34,15 @@ public class DivTest extends BaseTest {
     public void validateDoubleDiv() {
         double actualResult = calculator.div(a, b);
         Assert.assertEquals(actualResult, expectedResult);
+        System.out.println("data: " + a + " " + b);
+    }
+
+    @Test(priority = 1)
+    @Description("Validate division by zero")
+    public void validateDivisionByZero() {
+        double a = 10;
+        double b = 0;
+        double actualResult = calculator.div(a, b);
+        Assert.assertEquals(actualResult, new ArithmeticException());
     }
 }

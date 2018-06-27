@@ -32,7 +32,7 @@ hs_err_pid*
 *.properties
 *.css
 *.xml
-.target/
+.target/*
 .test-output/
 *.DS_Store
 
