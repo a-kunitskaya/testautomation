@@ -1,9 +1,10 @@
 package com.epam.cdp.tests;
 
 import com.epam.cdp.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * In this class the test should pass twice
@@ -14,7 +15,7 @@ public class SubTest extends BaseTest {
     @Test(dataProvider = "subDataProvider", priority = 4, description = "Validate substraction with doubles")
     public void validateSub(double a, double b, double expectedResult) {
         double actualResult = calculator.sub(a, b);
-        Assert.assertEquals(actualResult, expectedResult);
+        assertEquals(actualResult, expectedResult);
     }
 
     @DataProvider(name = "subDataProvider")

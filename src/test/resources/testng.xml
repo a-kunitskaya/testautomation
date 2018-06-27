@@ -2,22 +2,21 @@
 <suite name="suite" verbose="1" thread-count="2" parallel="methods">
     <listeners>
         <listener class-name="com.epam.cdp.base.listeners.ListenerOnTestStart"/>
-        <listener class-name="com.epam.cdp.base.listeners.ListenerOnTestFailure"/>
     </listeners>
 
 
     <test name="Sum">
+        <groups>
+            <run>
+                <exclude name="broken"/>
+            </run>
+        </groups>
         <classes>
             <class name="com.epam.cdp.tests.SumTest"/>
         </classes>
     </test>
 
     <test name="Sub">
-        <groups>
-            <run>
-                <exclude name="broken"/>
-            </run>
-        </groups>
         <classes>
             <class name="com.epam.cdp.tests.SubTest"/>
         </classes>
@@ -31,6 +30,7 @@
             <class name="com.epam.cdp.tests.MultTest"/>
         </classes>
     </test>
+
     <test name="Div">
         <classes>
             <class name="com.epam.cdp.tests.factories.DivTestFactory"/>
@@ -45,6 +45,12 @@
     <test name="IsPosivive">
         <classes>
             <class name="com.epam.cdp.tests.IsPositiveTest"/>
+        </classes>
+    </test>
+
+    <test name="Tg">
+        <classes>
+            <class name="com.epam.cdp.tests.TgTest"/>
         </classes>
     </test>
 </suite>

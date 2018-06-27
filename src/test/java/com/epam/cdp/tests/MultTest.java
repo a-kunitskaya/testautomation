@@ -1,10 +1,11 @@
 package com.epam.cdp.tests;
 
 import com.epam.cdp.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * The test should pass
@@ -17,6 +18,6 @@ public class MultTest extends BaseTest {
     @Test(priority = 2, description = "Validate multiplication with doubles")
     public void validateMult(@Optional("3") double a, @Optional("4") double b, @Optional("12") double expectedResult) {
         double actualResult = calculator.mult(a, b);
-        Assert.assertEquals(actualResult, expectedResult);
+        assertEquals(actualResult, expectedResult);
     }
 }

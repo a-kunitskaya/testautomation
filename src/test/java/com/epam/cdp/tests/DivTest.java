@@ -1,9 +1,10 @@
 package com.epam.cdp.tests;
 
 import com.epam.cdp.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * The test should pass
@@ -28,7 +29,7 @@ public class DivTest extends BaseTest {
     @Test(priority = 1, description = "Validate division with doubles")
     public void validateDoubleDiv() {
         double actualResult = calculator.div(a, b);
-        Assert.assertEquals(actualResult, expectedResult);
+        assertEquals(expectedResult, actualResult);
         System.out.println("data: " + a + " " + b);
     }
 
@@ -37,6 +38,6 @@ public class DivTest extends BaseTest {
         double a = 10;
         double b = 0;
         double actualResult = calculator.div(a, b);
-        Assert.assertEquals(actualResult, new ArithmeticException());
+        assertEquals(new ArithmeticException(), actualResult);
     }
 }
