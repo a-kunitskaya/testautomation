@@ -1,5 +1,6 @@
-package suite;
+package com.epam.cdp.tests;
 
+import com.epam.cdp.base.BaseTest;
 import com.epam.tat.module4.Calculator;
 import com.sun.org.glassfish.gmbal.Description;
 import org.testng.Assert;
@@ -10,7 +11,7 @@ import org.testng.annotations.Test;
  * The test should pass
  * Parameters are taken from DivTestFactory
  */
-public class DivTest extends suite.BaseTest {
+public class DivTest extends BaseTest {
     private double a;
     private double b;
     private double expectedResult;

@@ -1,14 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="suite" verbose="1" thread-count="2" parallel="methods">
     <listeners>
-        <listener class-name="listener.ListenerOnTestStart"/>
-        <listener class-name="listener.ListenerOnTestFailure"/>
+        <listener class-name="com.epam.cdp.base.listeners.ListenerOnTestStart"/>
+        <listener class-name="com.epam.cdp.base.listeners.ListenerOnTestFailure"/>
     </listeners>
 
 
     <test name="Sum">
         <classes>
-            <class name="suite.SumTest"/>
+            <class name="com.epam.cdp.tests.SumTest"/>
         </classes>
     </test>
 
@@ -19,7 +19,7 @@
             </run>
         </groups>
         <classes>
-            <class name="suite.SubTest"/>
+            <class name="com.epam.cdp.tests.SubTest"/>
         </classes>
     </test>
 
@@ -28,23 +28,23 @@
         <parameter name="b" value="4"/>
         <parameter name="expectedResult" value="20"/>
         <classes>
-            <class name="suite.MultTest"/>
+            <class name="com.epam.cdp.tests.MultTest"/>
         </classes>
     </test>
     <test name="Div">
         <classes>
-            <class name="factory.DivTestFactory"/>
+            <class name="com.epam.cdp.tests.factories.DivTestFactory"/>
         </classes>
     </test>
     <test name="Pow">
         <classes>
-            <class name="suite.PowTest"/>
+            <class name="com.epam.cdp.tests.PowTest"/>
         </classes>
     </test>
 
     <test name="IsPosivive">
         <classes>
-            <class name="suite.IsPositiveTest"/>
+            <class name="com.epam.cdp.tests.IsPositiveTest"/>
         </classes>
     </test>
 </suite>

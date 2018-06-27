@@ -1,5 +1,6 @@
-package suite;
+package com.epam.cdp.tests;
 
+import com.epam.cdp.base.BaseTest;
 import com.epam.tat.module4.Calculator;
 import com.sun.org.glassfish.gmbal.Description;
 import org.testng.Assert;
@@ -13,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * The test is invoked 6 times in 2 parallel threads
  */
-public class PowTest extends suite.BaseTest {
+public class PowTest extends BaseTest {
     Calculator calculator = new Calculator();
 
     @BeforeMethod

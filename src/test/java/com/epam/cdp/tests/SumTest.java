@@ -1,5 +1,6 @@
-package suite;
+package com.epam.cdp.tests;
 
+import com.epam.cdp.base.BaseTest;
 import com.epam.tat.module4.Calculator;
 import com.sun.org.glassfish.gmbal.Description;
 import org.testng.Assert;
@@ -9,12 +10,12 @@ import org.testng.annotations.*;
  * In this class all tests should pass
  * No parameters
  */
-public class SumTest extends suite.BaseTest {
+public class SumTest extends BaseTest {
     Calculator calculator = new Calculator();
 
     @BeforeClass
     public void setUpBeforeSumTestClass() {
-        System.out.println("Set up before suite.SumTest class");
+        System.out.println("Set up before com.epam.cdp.tests.SumTest class");
     }
 
     @BeforeMethod
@@ -50,6 +51,6 @@ public class SumTest extends suite.BaseTest {
 
     @AfterClass
     public void tearDownAfterSumTestClass() {
-        System.out.println("Tear down after suite.SumTest class");
+        System.out.println("Tear down after com.epam.cdp.tests.SumTest class");
     }
 }

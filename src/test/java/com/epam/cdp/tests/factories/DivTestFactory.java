@@ -1,6 +1,6 @@
-package factory;
+package com.epam.cdp.tests.factories;
 
-import suite.DivTest;
+import com.epam.cdp.tests.DivTest;
 import org.testng.annotations.Factory;
 
 import static jdk.nashorn.internal.objects.Global.Infinity;

@@ -1,9 +1,8 @@
-package runner;
+package com.epam.cdp.base.runners;
 
 import org.testng.TestNG;
-import suite.BaseTest;
-import suite.MultTest;
-import suite.SumTest;
+import com.epam.cdp.tests.MultTest;
+import com.epam.cdp.tests.SumTest;
 
 /**
  * Runs tests from specified classes

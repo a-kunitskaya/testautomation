@@ -1,5 +1,6 @@
-package suite;
+package com.epam.cdp.tests;
 
+import com.epam.cdp.base.BaseTest;
 import com.epam.tat.module4.Calculator;
 import com.sun.org.glassfish.gmbal.Description;
 import org.testng.Assert;
@@ -10,7 +11,7 @@ import org.testng.annotations.Test;
  * In this class the test should pass twice
  * Parameters are taken from dataProvider
  */
-public class SubTest extends suite.BaseTest {
+public class SubTest extends BaseTest {
     Calculator calculator = new Calculator();
 
     @Test(dataProvider = "subDataProvider", priority = 4)

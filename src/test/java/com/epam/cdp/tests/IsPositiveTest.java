@@ -1,4 +1,4 @@
-package suite;
+package com.epam.cdp.tests;
 
 import com.epam.tat.module4.Calculator;
 import org.testng.Assert;

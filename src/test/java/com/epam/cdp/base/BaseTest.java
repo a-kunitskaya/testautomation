@@ -1,4 +1,4 @@
-package suite;
+package com.epam.cdp.base;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
