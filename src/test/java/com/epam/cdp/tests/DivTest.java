@@ -4,6 +4,7 @@ import com.epam.cdp.base.BaseTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static jdk.nashorn.internal.objects.Global.Infinity;
 import static org.testng.AssertJUnit.assertEquals;
 
 /**
@@ -33,11 +34,18 @@ public class DivTest extends BaseTest {
         System.out.println("data: " + a + " " + b);
     }
 
-    @Test(priority = 1, description = "Validate division by zero")
-    public void validateDivisionByZero() {
-        double a = 10;
+    @Test(priority = 1, description = "Validate doubles division by zero")
+    public void validateDoublesDivisionByZero() {
+        double a = 1.0;
         double b = 0;
         double actualResult = calculator.div(a, b);
-        assertEquals(new ArithmeticException(), actualResult);
+        assertEquals(Infinity, actualResult);
+    }
+
+    @Test(priority = 1, expectedExceptions = ArithmeticException.class ,description = "Validate longs division by zero")
+    public void validateLongsDivisionByZero() {
+        double a = 1;
+        double b = 0;
+        calculator.div(a, b);
     }
 }

@@ -4,7 +4,6 @@
         <listener class-name="com.epam.cdp.base.listeners.ListenerOnTestStart"/>
     </listeners>
 
-
     <test name="Sum">
         <groups>
             <run>
