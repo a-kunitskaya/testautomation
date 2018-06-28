@@ -32,8 +32,12 @@ hs_err_pid*
 *.properties
 *.css
 *.xml
+.target/*
+.test-output/
+*.DS_Store
 
 #exclude from .gitignore
 !testng.xml
 !pom.xml
 !./src
+!*.java
