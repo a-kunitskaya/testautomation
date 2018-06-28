@@ -1,6 +1,6 @@
-package suite;
+package com.epam.cdp.tests;
 
-import com.epam.tat.module4.Calculator;
+import com.epam.cdp.base.BaseTest;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -13,8 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * The test fails with @ValueSource -4 (it's a bug)
  * @Rule and @ClassRule no longer exist in junit5, so now it's @ExtendWith
  */
-public class SqrtTest {
-    Calculator calculator = new Calculator();
+public class SqrtTest extends BaseTest{
 
     @ParameterizedTest
     @Tag("pass")

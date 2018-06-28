@@ -1,6 +1,6 @@
-package suite;
+package com.epam.cdp.tests;
 
-import com.epam.tat.module4.Calculator;
+import com.epam.cdp.base.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Group junit5 assertions are used
  */
 public class isNegativeTest extends BaseTest {
-    Calculator calculator = new Calculator();
 
     @BeforeEach
     public void setUpBeforeTests() {
