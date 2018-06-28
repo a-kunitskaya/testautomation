@@ -2,6 +2,7 @@ package com.epam.cdp.tests;
 
 import com.epam.cdp.base.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -25,6 +26,7 @@ public class IsNegativeTest extends BaseTest {
     }
 
     @ParameterizedTest
+    @Tag("pass")
     @ValueSource(longs = {-1, -43654693})
     void validateIsNegativeTrueLong(long a) {
         boolean expectedResult = true;

@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @Tag-s are used (same as @Categories in junit 4)
  * Junit 5 assertions are used
  * The test fails with @ValueSource -4 (it's a bug)
- * @Rule and @ClassRule no longer exist in junit5, so now it's @ExtendWith
  */
 public class SqrtTest extends BaseTest{
 
