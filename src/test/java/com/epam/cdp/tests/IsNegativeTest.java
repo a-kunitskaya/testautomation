@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Jupiter parameters are used,
  * Group junit5 assertions are used
  */
-public class isNegativeTest extends BaseTest {
+public class IsNegativeTest extends BaseTest {
 
     @BeforeEach
     public void setUpBeforeTests() {
