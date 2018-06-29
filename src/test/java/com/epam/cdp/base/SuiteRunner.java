@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 /**
  * Issue with JUnitPlatform in JUnit 5
  * https://github.com/junit-team/junit5/issues/1334
- * tests are not executed
+ * tests are seen but not executed
  * the same for @SelectClasses
  */
 @RunWith(JUnitPlatform.class)

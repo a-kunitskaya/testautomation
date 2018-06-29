@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CosTest extends BaseTest {
 
-
     @ParameterizedTest
     @MethodSource("cosProvider")
     void validateCos(double a){
