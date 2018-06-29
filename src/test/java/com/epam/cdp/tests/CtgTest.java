@@ -13,8 +13,8 @@ public class CtgTest extends BaseTest {
     @ParameterizedTest
     @MethodSource("ctgProvider")
     void validateCos(double a){
-        double expectedResult = Math.cos(a);
-        double actualResult = calculator.cos(a);
+        double expectedResult = 1.0 / Math.tan(a);
+        double actualResult = calculator.ctg(a);
         assertEquals(expectedResult, actualResult);
 
     }
