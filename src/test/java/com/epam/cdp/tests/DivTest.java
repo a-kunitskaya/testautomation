@@ -42,10 +42,17 @@ public class DivTest extends BaseTest {
         assertEquals(Infinity, actualResult);
     }
 
-    @Test(priority = 1, expectedExceptions = ArithmeticException.class ,description = "Validate longs division by zero")
+    @Test(priority = 1, expectedExceptions = NumberFormatException.class ,description = "Validate longs division by zero")
     public void validateLongsDivisionByZero() {
-        double a = 1;
-        double b = 0;
+        long a = 1L;
+        long b = 0L;
+        calculator.div(a, b);
+    }
+
+    @Test(priority = 1, expectedExceptions = NumberFormatException.class ,description = "Validate ints division by zero")
+    public void validateIntsDivisionByZero() {
+        int a = 1;
+        int b = 0;
         calculator.div(a, b);
     }
 }

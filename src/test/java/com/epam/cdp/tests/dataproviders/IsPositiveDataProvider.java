@@ -11,7 +11,7 @@ public class IsPositiveDataProvider {
                 {-10, false},
                 {2, true},
                 {9223372036854775807L, true},
-                {123, false}};
+                {123, true}};
 
 
     }
