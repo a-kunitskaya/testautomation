@@ -1,16 +1,16 @@
 package com.epam.cdp.base;
 
-import com.epam.cdp.tests.*;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
-        CosTest.class,
-        CtgTest.class,
-        IsNegativeTest.class,
-        SinTest.class,
-        SqrtTest.class
-})
+/**
+ * Issue with JUnitPlatform in JUnit 5
+ * https://github.com/junit-team/junit5/issues/1334
+ * tests are not executed
+ * the same for @SelectClasses
+ */
+@RunWith(JUnitPlatform.class)
+@SelectPackages("com.epam.cdp.tests")
 public class SuiteRunner {
 }
