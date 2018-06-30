@@ -22,6 +22,20 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+#Itnellij IDEA
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+/out/
+
 #other
 *.iml
 .idea/
@@ -31,9 +45,5 @@ hs_err_pid*
 *.js
 *.properties
 *.css
-*.xml
-
-#exclude from .gitignore
-!testng.xml
-!pom.xml
-!./src
+/test-output/
+/target/
