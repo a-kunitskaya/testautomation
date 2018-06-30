@@ -35,6 +35,7 @@ hs_err_pid*
 .idea/dynamic.xml
 .idea/uiDesigner.xml
 /out/
+.*DS_Store
 
 #other
 *.iml
