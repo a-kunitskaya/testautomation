@@ -8,8 +8,8 @@ public class BaseTest {
 
     protected WebDriver webDriver = new ChromeDriver();
 
-    @AfterMethod
-    public void tearDown(){
-        webDriver.close();
+        @AfterMethod
+        public void tearDown() {
+            webDriver.close();
+        }
     }
-}
