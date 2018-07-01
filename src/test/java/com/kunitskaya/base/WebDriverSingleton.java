@@ -13,5 +13,4 @@ public class WebDriverSingleton {
         }
         return driver;
     }
-
 }
