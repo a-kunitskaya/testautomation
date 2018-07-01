@@ -1,15 +1,20 @@
 package com.kunitskaya.base;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 
 public class BaseTest {
 
-    protected WebDriver webDriver = new ChromeDriver();
+    protected WebDriver webDriver = WebDriverSingleton.getInstance();
 
-        @AfterMethod
+
+    @AfterMethod
+    public void TakeScreenshot(){
+    }
+
+    @AfterSuite
         public void tearDown() {
             webDriver.close();
         }
-    }
+}

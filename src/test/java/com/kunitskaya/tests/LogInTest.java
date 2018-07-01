@@ -39,7 +39,4 @@ public class LogInTest extends BaseTest {
 
     }
 
-    @AfterMethod
-    public void TakeScreenshot(){
-    }
 }
