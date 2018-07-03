@@ -68,12 +68,12 @@ public class SendEmailTest extends BaseTest {
         WebElement draft = DraftFinderBySubject.findRecentDraftBySubject(webDriver, SUBJECT);
 
         String draftId= draft.getAttribute("id");
+
         draft.click();
 
         webDriver.findElement(By.xpath("//div[text()='Send']")).click();
 
-
-        System.out.println(webDriver.findElement(By.id(draftId)));
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 
     }
