@@ -12,7 +12,7 @@ import static org.testng.Assert.assertEquals;
 /**
  * Aimed to create a gmail account with a script, but google sends an activation code to a phone number,
  * so the script stops on the "Verify your phone number" page
- *
+ * <p>
  * Using the following account in scripts instead:
  * username: aktestautomation@gmail.com
  * password: 123456Ak
@@ -30,8 +30,6 @@ public class CreateGmailAccountTest extends BaseTest {
         webDriver.findElement(By.name("firstName")).sendKeys("ak");
         webDriver.findElement(By.id("lastName")).sendKeys("test");
 
-
-        //get the suggested username from the field
         WebElement username = webDriver.findElement(By.id("username"));
         String usernameValue = stringUtil.getRandomString(7);
         username.sendKeys(usernameValue);

@@ -10,6 +10,7 @@ public class AccountConstants {
     public static final String SUBJECT = "Hello Selenium";
     public static final String BODY = "This email is sent with a test script";
     public static final String DRAFTS_PAGE = "https://mail.google.com/mail/#drafts";
+    public static final String SENT_PAGE = "https://mail.google.com/mail/#sent";
 
 
 }
