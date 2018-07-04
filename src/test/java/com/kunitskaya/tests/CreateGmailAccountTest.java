@@ -21,7 +21,6 @@ public class CreateGmailAccountTest extends BaseTest {
 
     StringUtil stringUtil = new StringUtil();
 
-
     @Test
     public void createAccount() {
         webDriver.get(HOME_PAGE);

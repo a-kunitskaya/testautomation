@@ -14,7 +14,10 @@ public class LogInTest extends BaseTest {
 
     @Test
     public void logIn() throws InterruptedException {
-        webDriver.get(HOME_PAGE);
+        webDriver.get(INBOX);
+
+        waitImplicitly(webDriver, 30);
+
         webDriver.findElement(By.id("identifierId")).sendKeys(USERNAME);
         webDriver.findElement(By.id("identifierNext")).click();
         waitImplicitly(webDriver, 10);
@@ -27,7 +30,8 @@ public class LogInTest extends BaseTest {
         waitForElementExplicitly(webDriver, 40, By.id("passwordNext"));
         webDriver.findElement(By.id("passwordNext")).click();
 
-//      waitImplicitly(webDriver, 40); for some reason does not work here
+//        waitImplicitly(webDriver, 40); for some reason does not work here
+
         Thread.sleep(6000);
         String actualPageAfterLogin = webDriver.getCurrentUrl();
 

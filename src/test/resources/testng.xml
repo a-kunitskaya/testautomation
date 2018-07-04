@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Selenium" verbose="10">
+
+    <test name="LogIn">
+        <classes>
+            <class name="com.kunitskaya.tests.LogInTest"/>
+        </classes>
+    </test>
+
+    <test name="SendEmail">
+        <classes>
+            <class name="com.kunitskaya.tests.SendEmailTest"/>
+        </classes>
+    </test>
+
+    <test name="LogOut">
+        <classes>
+            <class name="com.kunitskaya.tests.LogOutTest"/>
+        </classes>
+    </test>
+
+</suite>

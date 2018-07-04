@@ -19,7 +19,7 @@ public class SendEmailTest extends BaseTest {
         webDriver.get(INBOX);
     }
 
-    @Test(dependsOnMethods = "com.kunitskaya.tests.LogInTest.logIn")
+    @Test
     public void saveDraftEmail() {
         webDriver.findElement(By.xpath("//div[@gh='cm']")).click();
         waitForElementExplicitly(webDriver, 5, By.xpath("//textarea[@name='to']"));
@@ -53,7 +53,7 @@ public class SendEmailTest extends BaseTest {
 
     }
 
-    @Test(dependsOnMethods = "saveDraftEmail")
+    @Test(dependsOnMethods = {"saveDraftEmail"})
     public void sendDraftEmail() {
 
         assertEquals(webDriver.getCurrentUrl(), DRAFTS_PAGE);
