@@ -2,22 +2,9 @@
 
 <suite name="Selenium" verbose="10">
 
-    <test name="LogIn">
-        <classes>
-            <class name="com.kunitskaya.tests.LogInTest"/>
-        </classes>
+    <test name="AllTests">
+        <packages>
+            <package name="com.kunitskaya.tests"/>
+        </packages>
     </test>
-
-    <test name="SendEmail">
-        <classes>
-            <class name="com.kunitskaya.tests.SendEmailTest"/>
-        </classes>
-    </test>
-
-    <test name="LogOut">
-        <classes>
-            <class name="com.kunitskaya.tests.LogOutTest"/>
-        </classes>
-    </test>
-
 </suite>

@@ -10,19 +10,21 @@ import org.openqa.selenium.support.ui.Wait;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 /**
  * Defines the maximum amount of time to wait for a condition,
- * as well as the frequency with which to check the condition,
- * can be configured to ignore specific types of exceptions whilst waiting,
- * such as NoSuchElementExceptions when searching for an element on the page.
- *
- * does not work for now
+ * as well as the frequency with which to check the condition
  */
 public class CustomFluentWait {
 
-    public static WebElement waitForElementFluently(WebDriver webDriver, int timeout, final By locator) {
+    /**
+     * Waits for an element to appear
+     * ignores NoSuchElementException while waiting
+     *
+     * @param webDriver - web driver
+     * @param timeout   - max amount of time to wait in seconds
+     * @param locator   - element locator
+     */
+    public static void waitForElementFluently(WebDriver webDriver, int timeout, final By locator) {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(webDriver)
                 .withTimeout(timeout, TimeUnit.SECONDS)
                 .pollingEvery(3, TimeUnit.SECONDS)
@@ -33,6 +35,5 @@ public class CustomFluentWait {
                 return webDriver.findElement(locator);
             }
         });
-        return null;
     }
 }

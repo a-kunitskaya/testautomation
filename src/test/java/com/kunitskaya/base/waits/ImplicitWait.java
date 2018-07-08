@@ -9,6 +9,13 @@ import java.util.concurrent.TimeUnit;
  * before throwing an exception that it cannot find the element on the page
  */
 public class ImplicitWait {
+
+    /**
+     * Waits for the specified amount of time
+     *
+     * @param webDriver - web driver
+     * @param timeout - the amount of time to wait in seconds
+     */
     public static void waitImplicitly(WebDriver webDriver, int timeout) {
         webDriver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
     }

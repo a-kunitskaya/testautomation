@@ -2,18 +2,15 @@ package com.kunitskaya.base;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-
-import java.util.concurrent.TimeUnit;
+import org.testng.annotations.BeforeClass;
 
 public class BaseTest {
 
-    protected WebDriver webDriver = WebDriverSingleton.getInstance();
+    protected WebDriver webDriver = WebDriverProvider.getInstance();
 
-    @BeforeSuite
-    public void setUp() {
-        webDriver.manage().window().fullscreen();
-        webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    @BeforeClass
+    public void deleteCookies(){
+        webDriver.manage().deleteAllCookies();
     }
 
     @AfterSuite
