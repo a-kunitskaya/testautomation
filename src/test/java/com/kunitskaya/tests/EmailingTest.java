@@ -11,7 +11,7 @@ import static com.kunitskaya.base.utils.DateTimeUtil.getSubjectTimestamp;
 import static com.kunitskaya.base.utils.finders.MailFinderBySubject.findEmailBySubject;
 import static com.kunitskaya.base.waits.CustomFluentWait.waitForElementFluently;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementExplicitly;
-import static com.kunitskaya.base.waits.ImplicitWait.waitImplicitly;
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -20,28 +20,29 @@ public class EmailingTest extends BaseTest {
     String subjectWithTimestamp = SUBJECT.concat(getSubjectTimestamp());
 
     @Test
-    public void logIn() throws InterruptedException {
+    public void logIn() {
         webDriver.get(INBOX);
-
-        waitImplicitly(webDriver, 30);
 
         webDriver.findElement(By.id("identifierId")).sendKeys(USERNAME);
         webDriver.findElement(By.id("identifierNext")).click();
-        waitImplicitly(webDriver, 10);
+
+        // waitImplicitly(webDriver, 10);
+
         WebElement profileIdentifier = webDriver.findElement(By.id("profileIdentifier"));
         String profileIdentifierValue = profileIdentifier.getAttribute("data-email");
 
         assertEquals(profileIdentifierValue, USERNAME);
 
-        waitForElementFluently(webDriver, 30, By.name("password"));
+        waitForElementFluently(webDriver, 300, By.name("password"));
 
         webDriver.findElement(By.name("password")).sendKeys(PASSWORD);
         waitForElementExplicitly(webDriver, 40, By.id("passwordNext"));
+
         webDriver.findElement(By.id("passwordNext")).click();
 
-        Thread.sleep(6000);
-        String actualPageAfterLogin = webDriver.getCurrentUrl();
+        waitForElementVisibility(webDriver, 40, By.xpath("//div[@gh='cm']"));
 
+        String actualPageAfterLogin = webDriver.getCurrentUrl();
         assertEquals(actualPageAfterLogin, INBOX);
 
         //check that the "Compose" button is displayed since only a logged-in user can see it
@@ -53,9 +54,10 @@ public class EmailingTest extends BaseTest {
     @Test(dependsOnMethods = "logIn", expectedExceptions = StaleElementReferenceException.class)
     public void sendDraftEmail() throws InterruptedException {
         webDriver.findElement(By.xpath("//div[@gh='cm']")).click();
+
         waitForElementExplicitly(webDriver, 5, By.xpath("//textarea[@name='to']"));
         WebElement to = webDriver.findElement(By.xpath("//textarea[@name='to']"));
-        waitImplicitly(webDriver, 10);
+
         to.sendKeys(TO);
 
         WebElement subject = webDriver.findElement(By.xpath("//input[@name='subjectbox']"));
@@ -65,27 +67,31 @@ public class EmailingTest extends BaseTest {
         body.click();
         body.sendKeys(BODY);
 
-        //wait for the draft email to be saved automatically
-        waitImplicitly(webDriver, 10);
-
         //close the "New message" popup
         webDriver.findElement(By.xpath("//img[@alt='Close']")).click();
 
-        waitImplicitly(webDriver, 10);
-
         webDriver.get(DRAFTS_PAGE);
 
-        //wait for the page to load
-        waitImplicitly(webDriver, 10);
         WebElement draft = findEmailBySubject(webDriver, subjectWithTimestamp);
-
-        String draftSubject = draft.getText();
-
-        assertEquals(draftSubject, subjectWithTimestamp);
 
         draft.click();
 
+        WebElement draftTo = webDriver.findElement(By.xpath("//span[@class='vN bfK a3q']"));
+        WebElement draftBody = webDriver.findElement(By.xpath("//span[contains(text(),'" + subjectWithTimestamp + "')]/following-sibling::span[1]"));
+
+
+        String draftSubject = draft.getText();
+        String draftToString = draftTo.getAttribute("email");
+        String draftBodyString = draftBody.getText();
+
+
+        assertEquals(draftSubject, subjectWithTimestamp);
+        assertEquals(draftToString, TO);
+        assertEquals(draftBodyString, " - " + BODY);
+
+        //TODO: remove Thread.sleep if there is a better way
         Thread.sleep(2000);
+
         webDriver.findElement(By.xpath("//div[text()='Send']")).click();
         Thread.sleep(2000);
 

@@ -21,4 +21,5 @@ public class MailFinderBySubject {
             throw new ArrayIndexOutOfBoundsException("Subject string is empty. Please specify subject");
         }
     }
+
 }

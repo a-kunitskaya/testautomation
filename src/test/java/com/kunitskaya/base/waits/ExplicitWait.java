@@ -21,4 +21,16 @@ public class ExplicitWait {
         WebDriverWait wait = new WebDriverWait(webDriver, timeout);
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
+
+    /**
+     * Waits for element visibility
+     *
+     * @param webDriver- web driver
+     * @param timeout-   max amount of time to wait in seconds
+     * @param locator    - element locator
+     */
+    public static void waitForElementVisibility(WebDriver webDriver, int timeout, By locator) {
+        WebDriverWait wait = new WebDriverWait(webDriver, timeout);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
 }
