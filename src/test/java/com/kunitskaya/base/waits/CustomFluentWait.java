@@ -1,9 +1,11 @@
 package com.kunitskaya.base.waits;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
@@ -33,17 +35,5 @@ public class CustomFluentWait {
                 return webDriver.findElement(locator);
             }
         });
-    }
-
-    /**
-     * Waits for the page to load
-     *
-     * @param driver - web driver
-     */
-    public static void waitForPageLoadComplete(WebDriver driver) {
-        Wait<WebDriver> wait = new WebDriverWait(driver, 30, 10000L);
-        wait.until(driver1 -> String
-                .valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState"))
-                .equals("complete"));
     }
 }
