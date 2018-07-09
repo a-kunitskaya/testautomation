@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import static com.kunitskaya.base.constants.AccountConstants.*;
 import static com.kunitskaya.base.utils.DateTimeUtil.getSubjectTimestamp;
 import static com.kunitskaya.base.utils.finders.MailFinderBySubject.findEmailBySubject;
+import static com.kunitskaya.base.waits.CustomFluentWait.waitForElementFluently;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementExplicitly;
 import static com.kunitskaya.base.waits.ImplicitWait.waitImplicitly;
 import static org.testng.Assert.assertEquals;
@@ -31,6 +32,8 @@ public class EmailingTest extends BaseTest {
         String profileIdentifierValue = profileIdentifier.getAttribute("data-email");
 
         assertEquals(profileIdentifierValue, USERNAME);
+
+        waitForElementFluently(webDriver, 30, By.name("password"));
 
         webDriver.findElement(By.name("password")).sendKeys(PASSWORD);
         waitForElementExplicitly(webDriver, 40, By.id("passwordNext"));

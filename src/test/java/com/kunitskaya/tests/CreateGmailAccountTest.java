@@ -20,9 +20,9 @@ public class CreateGmailAccountTest extends BaseTest {
     @Test
     public void createAccount() {
         webDriver.get(HOME_PAGE);
-        webDriver.findElement(By.xpath("//span[contains(text()," + "'Create account')]")).click();
+        webDriver.findElement(By.cssSelector("div.daaWTb > div > div > content > span")).click();
         webDriver.findElement(By.name("firstName")).sendKeys(NEW_ACCOUNT_FIRST_NAME);
-        webDriver.findElement(By.id("lastName")).sendKeys(NEW_ACCOUNT_LAST_NAME);
+        webDriver.findElement(By.cssSelector("#lastName")).sendKeys(NEW_ACCOUNT_LAST_NAME);
 
         WebElement username = webDriver.findElement(By.id("username"));
         String usernameValue = StringUtil.getRandomString(7);
