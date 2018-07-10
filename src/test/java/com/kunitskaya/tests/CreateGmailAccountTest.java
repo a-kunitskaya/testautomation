@@ -21,7 +21,6 @@ public class CreateGmailAccountTest extends BaseTest {
 
     @Test
     public void createAccount() {
-
         webDriver.get(HOME_PAGE);
 
         waitForElementVisibility(webDriver, 30, By.cssSelector("div.daaWTb content > span")); //div.daaWTb > div > div > content > span
@@ -45,6 +44,5 @@ public class CreateGmailAccountTest extends BaseTest {
 
         waitForElementVisibility(webDriver, 30, By.id("phoneNumberId"));
         assertTrue(webDriver.findElement(By.id("phoneNumberId")).isDisplayed());
-
     }
 }

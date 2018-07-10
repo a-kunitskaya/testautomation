@@ -9,10 +9,7 @@ import org.testng.annotations.Test;
 import static com.kunitskaya.base.constants.AccountConstants.*;
 import static com.kunitskaya.base.utils.DateTimeUtil.getSubjectTimestamp;
 import static com.kunitskaya.base.utils.finders.MailFinderBySubject.findEmailBySubject;
-import static com.kunitskaya.base.waits.CustomFluentWait.waitForElementFluently;
-import static com.kunitskaya.base.waits.ExplicitWait.waitForElementExplicitly;
-import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
-import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
+import static com.kunitskaya.base.waits.ExplicitWait.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -23,6 +20,7 @@ public class EmailingTest extends BaseTest {
     @Test
     public void logIn() {
         webDriver.get(INBOX);
+        waitForPageLoadComplete(webDriver);
 
         webDriver.findElement(By.id("identifierId")).sendKeys(USERNAME);
         webDriver.findElement(By.id("identifierNext")).click();
@@ -32,7 +30,7 @@ public class EmailingTest extends BaseTest {
 
         assertEquals(profileIdentifierValue, USERNAME);
 
-        waitForElementFluently(webDriver, 300, By.name("password"));
+        waitForElementFluently(webDriver, By.name("password"));
 
         webDriver.findElement(By.name("password")).sendKeys(PASSWORD);
         waitForElementExplicitly(webDriver, 40, By.id("passwordNext"));
@@ -46,7 +44,6 @@ public class EmailingTest extends BaseTest {
 
         WebElement loggedInAccountButton = webDriver.findElement(By.cssSelector(".gb_b.gb_db.gb_R"));
         assertTrue(loggedInAccountButton.isDisplayed());
-
     }
 
     @Test(dependsOnMethods = "logIn", expectedExceptions = StaleElementReferenceException.class)
@@ -68,7 +65,8 @@ public class EmailingTest extends BaseTest {
         //close the "New message" popup
         webDriver.findElement(By.xpath("//img[@alt='Close']")).click();
 
-        webDriver.get(DRAFTS_PAGE);
+        WebElement draftsFolder = webDriver.findElement(By.partialLinkText("Drafts "));
+        draftsFolder.click();
 
         WebElement draft = findEmailBySubject(webDriver, subjectWithTimestamp);
 
@@ -77,37 +75,43 @@ public class EmailingTest extends BaseTest {
         WebElement draftTo = webDriver.findElement(By.xpath("//span[@class='vN bfK a3q']"));
         WebElement draftBody = webDriver.findElement(By.xpath("//span[contains(text(),'" + subjectWithTimestamp + "')]/following-sibling::span[1]"));
 
-
         String draftSubject = draft.getText();
         String draftToString = draftTo.getAttribute("email");
         String draftBodyString = draftBody.getText();
-
 
         assertEquals(draftSubject, subjectWithTimestamp);
         assertEquals(draftToString, TO);
         assertEquals(draftBodyString, " - " + BODY);
 
-        //TODO: remove Thread.sleep if there is a better way
-        Thread.sleep(2000);
-
+        waitForElementVisibility(webDriver, 30, By.xpath("//div[text()='Send']"));
         webDriver.findElement(By.xpath("//div[text()='Send']")).click();
-        Thread.sleep(2000);
 
+        webDriver.findElement(By.cssSelector(".ag.a8k"));
         webDriver.navigate().refresh();
-        Thread.sleep(4000);
 
-        waitForPageLoadComplete(webDriver);
+        waitForElementVisibility(webDriver, 30, By.partialLinkText("Drafts "));
 
         //should throw StaleElementReferenceException
         draft.click();
 
-        webDriver.get(SENT_PAGE);
-        assertTrue(draft.isDisplayed());
+        WebElement sentFolder = webDriver.findElement(By.linkText("Sent Mail"));
+        sentFolder.click();
+
+        WebElement sentDraft = findEmailBySubject(webDriver, subjectWithTimestamp);
+        sentDraft.click();
+
+        String sentSubject = draftSubject;
+        String sentTo = draftToString;
+        String sentBody = draftBodyString;
+
+        assertEquals(sentSubject, subjectWithTimestamp);
+        assertEquals(sentTo, TO);
+        assertEquals(sentBody, " - " + BODY);
     }
 
     @Test(dependsOnMethods = "sendDraftEmail")
     public void logOut() {
-        webDriver.findElement(By.xpath("//span[@class='gb_db gbii']")).click();
+        webDriver.findElement(By.cssSelector(".gb_b.gb_db.gb_R")).click();
         webDriver.findElement(By.id("gb_71")).click();
 
         waitForElementExplicitly(webDriver, 30, By.name("password"));
