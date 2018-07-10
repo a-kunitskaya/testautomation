@@ -13,6 +13,7 @@ import java.util.function.Function;
 /**
  * Defines the maximum amount of time to wait for a condition,
  * as well as the frequency with which to check the condition
+ * = explicit wait
  */
 public class CustomFluentWait {
 

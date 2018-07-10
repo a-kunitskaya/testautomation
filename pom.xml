@@ -37,6 +37,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!--strings-->
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>

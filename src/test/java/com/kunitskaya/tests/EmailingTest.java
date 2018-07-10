@@ -12,6 +12,7 @@ import static com.kunitskaya.base.utils.finders.MailFinderBySubject.findEmailByS
 import static com.kunitskaya.base.waits.CustomFluentWait.waitForElementFluently;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementExplicitly;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
+import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -25,8 +26,6 @@ public class EmailingTest extends BaseTest {
 
         webDriver.findElement(By.id("identifierId")).sendKeys(USERNAME);
         webDriver.findElement(By.id("identifierNext")).click();
-
-        // waitImplicitly(webDriver, 10);
 
         WebElement profileIdentifier = webDriver.findElement(By.id("profileIdentifier"));
         String profileIdentifierValue = profileIdentifier.getAttribute("data-email");
@@ -45,9 +44,8 @@ public class EmailingTest extends BaseTest {
         String actualPageAfterLogin = webDriver.getCurrentUrl();
         assertEquals(actualPageAfterLogin, INBOX);
 
-        //check that the "Compose" button is displayed since only a logged-in user can see it
-        WebElement composeButton = webDriver.findElement(By.xpath("//div[@gh='cm']"));
-        assertTrue(composeButton.isDisplayed());
+        WebElement loggedInAccountButton = webDriver.findElement(By.cssSelector(".gb_b.gb_db.gb_R"));
+        assertTrue(loggedInAccountButton.isDisplayed());
 
     }
 
@@ -97,6 +95,8 @@ public class EmailingTest extends BaseTest {
 
         webDriver.navigate().refresh();
         Thread.sleep(4000);
+
+        waitForPageLoadComplete(webDriver);
 
         //should throw StaleElementReferenceException
         draft.click();
