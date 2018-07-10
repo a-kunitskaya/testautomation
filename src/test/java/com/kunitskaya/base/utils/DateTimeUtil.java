@@ -2,11 +2,10 @@ package com.kunitskaya.base.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 public class DateTimeUtil {
-    private static String SUBJECT_TIMESTAMP_PATTERN = "yyyy.MM.dd HH:mm:ss:SS";
+    public static final String SUBJECT_TIMESTAMP_PATTERN = "yyyy.MM.dd HH:mm:ss:SS";
 
     /**
      * Get a timestemp to use in email subject

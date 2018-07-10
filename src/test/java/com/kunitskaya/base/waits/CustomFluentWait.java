@@ -30,7 +30,7 @@ public class CustomFluentWait {
                 .pollingEvery(3, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
 
-        WebElement webElement = wait.until(new Function<WebDriver, WebElement>() {
+        wait.until(new Function<WebDriver, WebElement>() {
             public WebElement apply(WebDriver webDriver) {
                 return webDriver.findElement(locator);
             }

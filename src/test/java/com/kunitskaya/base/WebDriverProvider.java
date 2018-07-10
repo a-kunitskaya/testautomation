@@ -4,6 +4,8 @@ import org.apache.commons.lang.SystemUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static com.kunitskaya.base.waits.ImplicitWait.waitImplicitly;
+
 public class WebDriverProvider {
 
     private static WebDriver driver;
@@ -19,7 +21,8 @@ public class WebDriverProvider {
                 System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
             }
             driver = new ChromeDriver();
-            driver.manage().window().fullscreen();
+            driver.manage().window().maximize();
+            waitImplicitly(driver, 30);
         }
         return driver;
     }

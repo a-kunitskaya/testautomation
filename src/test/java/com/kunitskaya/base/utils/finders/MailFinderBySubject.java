@@ -14,11 +14,11 @@ public class MailFinderBySubject {
      * @return - the most recent email with the specified subject
      */
     public static WebElement findEmailBySubject(WebDriver webDriver, String subject) {
-        if (!subject.equals("")) {
+        if (!subject.isEmpty()) {
             WebElement mail = webDriver.findElement(By.xpath("//span[contains(text(), '" + subject + "')]"));
             return mail;
         } else {
-            throw new ArrayIndexOutOfBoundsException("Subject string is empty. Please specify subject");
+            throw new IllegalArgumentException("Subject string is empty. Please specify subject");
         }
     }
 

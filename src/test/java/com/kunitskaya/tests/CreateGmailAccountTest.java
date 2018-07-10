@@ -1,12 +1,14 @@
 package com.kunitskaya.tests;
 
 import com.kunitskaya.base.BaseTest;
-import com.kunitskaya.base.utils.StringUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import static com.kunitskaya.base.constants.AccountConstants.*;
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
+import static org.apache.commons.lang.RandomStringUtils.randomAlphanumeric;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Aimed to create a gmail account with a script, but google sends an activation code to a phone number,
@@ -19,13 +21,17 @@ public class CreateGmailAccountTest extends BaseTest {
 
     @Test
     public void createAccount() {
+
         webDriver.get(HOME_PAGE);
+
+        waitForElementVisibility(webDriver, 30, By.cssSelector("div.daaWTb > div > div > content > span"));
+
         webDriver.findElement(By.cssSelector("div.daaWTb > div > div > content > span")).click();
         webDriver.findElement(By.name("firstName")).sendKeys(NEW_ACCOUNT_FIRST_NAME);
         webDriver.findElement(By.cssSelector("#lastName")).sendKeys(NEW_ACCOUNT_LAST_NAME);
 
         WebElement username = webDriver.findElement(By.id("username"));
-        String usernameValue = StringUtil.getRandomString(7);
+        String usernameValue = randomAlphanumeric(7);
         username.sendKeys(usernameValue);
 
         WebElement password = webDriver.findElement(By.name("Passwd"));
@@ -36,5 +42,8 @@ public class CreateGmailAccountTest extends BaseTest {
         confirmPassword.sendKeys(NEW_ACCOUNT_PASSWORD);
 
         webDriver.findElement(By.id("accountDetailsNext")).click();
+
+        waitForElementVisibility(webDriver, 30, By.id("phoneNumberId"));
+        assertTrue(webDriver.findElement(By.id("phoneNumberId")).isDisplayed());
     }
 }
