@@ -2,7 +2,6 @@ package com.kunitskaya.tests;
 
 import com.kunitskaya.base.BaseTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -46,8 +45,8 @@ public class EmailingTest extends BaseTest {
         assertTrue(loggedInAccountButton.isDisplayed());
     }
 
-    @Test(dependsOnMethods = "logIn", expectedExceptions = StaleElementReferenceException.class)
-    public void sendDraftEmail() throws InterruptedException {
+    @Test(dependsOnMethods = "logIn")
+    public void sendDraftEmail() {
         webDriver.findElement(By.xpath("//div[@gh='cm']")).click();
 
         waitForElementExplicitly(webDriver, 5, By.xpath("//textarea[@name='to']"));
@@ -91,8 +90,7 @@ public class EmailingTest extends BaseTest {
 
         waitForElementVisibility(webDriver, 30, By.partialLinkText("Drafts "));
 
-        //should throw StaleElementReferenceException
-        draft.click();
+        assertTrue(webDriver.findElements(By.xpath("//span[contains(text(), '" + subjectWithTimestamp + "')]")).size() < 1);
 
         WebElement sentFolder = webDriver.findElement(By.linkText("Sent Mail"));
         sentFolder.click();
@@ -100,21 +98,19 @@ public class EmailingTest extends BaseTest {
         WebElement sentDraft = findEmailBySubject(webDriver, subjectWithTimestamp);
         sentDraft.click();
 
-        String sentSubject = draftSubject;
-        String sentTo = draftToString;
-        String sentBody = draftBodyString;
-
-        assertEquals(sentSubject, subjectWithTimestamp);
-        assertEquals(sentTo, TO);
-        assertEquals(sentBody, " - " + BODY);
+        assertEquals(draftSubject, subjectWithTimestamp);
+        assertEquals(draftToString, TO);
+        assertEquals(draftBodyString, " - " + BODY);
     }
 
     @Test(dependsOnMethods = "sendDraftEmail")
     public void logOut() {
         webDriver.findElement(By.cssSelector(".gb_b.gb_db.gb_R")).click();
+
+        waitForElementVisibility(webDriver, 10, By.id("gb_71"));
         webDriver.findElement(By.id("gb_71")).click();
 
-        waitForElementExplicitly(webDriver, 30, By.name("password"));
+        waitForPageLoadComplete(webDriver);
 
         WebElement enterPasswordField = webDriver.findElement(By.name("password"));
         assertTrue(enterPasswordField.isDisplayed());

@@ -23,9 +23,9 @@ public class CreateGmailAccountTest extends BaseTest {
     public void createAccount() {
         webDriver.get(HOME_PAGE);
 
-        waitForElementVisibility(webDriver, 30, By.cssSelector("div.daaWTb content > span")); //div.daaWTb > div > div > content > span
+        waitForElementVisibility(webDriver, 30, By.cssSelector("div.daaWTb content>span"));
 
-        webDriver.findElement(By.cssSelector("div.daaWTb > div > div > content > span")).click();
+        webDriver.findElement(By.cssSelector("div.daaWTb content>span")).click();
         webDriver.findElement(By.name("firstName")).sendKeys(NEW_ACCOUNT_FIRST_NAME);
         webDriver.findElement(By.cssSelector("#lastName")).sendKeys(NEW_ACCOUNT_LAST_NAME);
 

@@ -15,8 +15,7 @@ public class MailFinderBySubject {
      */
     public static WebElement findEmailBySubject(WebDriver webDriver, String subject) {
         if (!subject.isEmpty()) {
-            WebElement mail = webDriver.findElement(By.xpath("//span[contains(text(), '" + subject + "')]"));
-            return mail;
+            return webDriver.findElement(By.xpath("//span[contains(text(), '" + subject + "')]"));
         } else {
             throw new IllegalArgumentException("Subject string is empty. Please specify subject");
         }
