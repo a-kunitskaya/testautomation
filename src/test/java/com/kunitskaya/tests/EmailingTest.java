@@ -101,16 +101,16 @@ public class EmailingTest extends BaseTest {
         assertEquals(draftSubject, subjectWithTimestamp);
         assertEquals(draftToString, TO);
         assertEquals(draftBodyString, " - " + BODY);
+
+        webDriver.navigate().back();
     }
 
     @Test(dependsOnMethods = "sendDraftEmail")
     public void logOut() {
-        webDriver.findElement(By.cssSelector(".gb_b.gb_db.gb_R")).click();
+        webDriver.findElement(By.cssSelector(".gb_8a.gbii")).click();
 
-        waitForElementVisibility(webDriver, 10, By.id("gb_71"));
-        webDriver.findElement(By.id("gb_71")).click();
-
-        waitForPageLoadComplete(webDriver);
+        waitForElementVisibility(webDriver, 5, By.linkText("Sign out"));
+        webDriver.findElement(By.linkText("Sign out")).click();
 
         WebElement enterPasswordField = webDriver.findElement(By.name("password"));
         assertTrue(enterPasswordField.isDisplayed());
