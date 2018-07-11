@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import static com.kunitskaya.base.constants.AccountConstants.*;
 import static com.kunitskaya.base.utils.DateTimeUtil.getSubjectTimestamp;
 import static com.kunitskaya.base.utils.finders.MailFinderBySubject.findEmailBySubject;
+import static com.kunitskaya.base.utils.finders.MailFinderBySubject.findEmailsBySubject;
 import static com.kunitskaya.base.waits.ExplicitWait.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -90,7 +91,7 @@ public class EmailingTest extends BaseTest {
 
         waitForElementVisibility(webDriver, 30, By.partialLinkText("Drafts "));
 
-        assertTrue(webDriver.findElements(By.xpath("//span[contains(text(), '" + subjectWithTimestamp + "')]")).size() < 1);
+        assertTrue(findEmailsBySubject(webDriver, subjectWithTimestamp).size() < 1);
 
         WebElement sentFolder = webDriver.findElement(By.linkText("Sent Mail"));
         sentFolder.click();

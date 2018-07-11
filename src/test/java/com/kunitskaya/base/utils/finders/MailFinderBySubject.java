@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class MailFinderBySubject {
 
     /**
@@ -20,5 +22,22 @@ public class MailFinderBySubject {
             throw new IllegalArgumentException("Subject string is empty. Please specify subject");
         }
     }
+
+    /**
+     * Find emails by subject
+     *
+     * @param webDriver - web driver
+     * @param subject   - the email subject or its part
+     * @return - emails with the specified subject
+     */
+    public static List<WebElement> findEmailsBySubject(WebDriver webDriver, String subject) {
+        if (!subject.isEmpty()) {
+            List<WebElement> emails = webDriver.findElements(By.xpath("//span[contains(text(), '" + subject + "')]"));
+            return emails;
+        } else {
+            throw new IllegalArgumentException("Subject string is empty. Please specify subject");
+        }
+    }
+
 
 }
