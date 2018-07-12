@@ -100,12 +100,12 @@ public class EmailingTest extends BaseTest {
         sentDraft.click();
 
         String sentTo = webDriver.findElement(By.xpath("//span[@dir='ltr' and @class='g2']")).getAttribute("email");
-        String sentSubject = webDriver.findElement(By.id(":1v")).getText();
-        String sentBody = webDriver.findElement(By.xpath("//div[@id=\":4l\"]/div[1]")).getText();
+        String sentSubject = webDriver.findElement(By.cssSelector("h2.hP")).getText();
+        String sentBody = webDriver.findElement(By.xpath("//div[contains(text(),'" + BODY +"')]")).getText();
 
-        assertEquals(sentTo, subjectWithTimestamp);
-        assertEquals(sentSubject, TO);
-        assertEquals(sentBody, " - " + BODY);
+        assertEquals(sentTo, draftToString);
+        assertEquals(sentSubject, draftSubject);
+        assertEquals(sentBody, draftBodyString);
 
         webDriver.navigate().back();
     }
