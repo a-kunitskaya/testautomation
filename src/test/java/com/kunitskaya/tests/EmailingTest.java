@@ -99,9 +99,13 @@ public class EmailingTest extends BaseTest {
         WebElement sentDraft = findEmailBySubject(webDriver, subjectWithTimestamp);
         sentDraft.click();
 
-        assertEquals(draftSubject, subjectWithTimestamp);
-        assertEquals(draftToString, TO);
-        assertEquals(draftBodyString, " - " + BODY);
+        String sentTo = webDriver.findElement(By.xpath("//span[@dir='ltr' and @class='g2']")).getAttribute("email");
+        String sentSubject = webDriver.findElement(By.id(":1v")).getText();
+        String sentBody = webDriver.findElement(By.xpath("//div[@id=\":4l\"]/div[1]")).getText();
+
+        assertEquals(sentTo, subjectWithTimestamp);
+        assertEquals(sentSubject, TO);
+        assertEquals(sentBody, " - " + BODY);
 
         webDriver.navigate().back();
     }
