@@ -1,13 +1,12 @@
 package com.kunitskaya.tests;
 
-import com.kunitskaya.base.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import static com.kunitskaya.base.constants.AccountConstants.*;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
-import static org.apache.commons.lang.RandomStringUtils.randomAlphanumeric;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.testng.Assert.assertTrue;
 
 /**
@@ -21,7 +20,7 @@ public class CreateGmailAccountTest extends BaseTest {
 
     @Test
     public void createAccount() {
-        webDriver.get(HOME_PAGE);
+        webDriver.get(LOGIN_PAGE);
 
         waitForElementVisibility(webDriver, 30, By.cssSelector("div.daaWTb content>span"));
 
