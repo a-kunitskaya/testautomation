@@ -1,5 +1,6 @@
 package com.kunitskaya.tests;
 
+import com.kunitskaya.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
