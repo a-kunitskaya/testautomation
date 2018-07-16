@@ -8,6 +8,7 @@ public class BaseLoggedInPage extends AbstractPage {
     private static final By COMPOSE_BUTTON = By.xpath("//div[@gh='cm']");
     private static final By LOGGED_IN_ACCOUNT_ICON = By.cssSelector(".gb_b.gb_db.gb_R");
     private static final By DRAFTS_FOLDER_LINK = By.partialLinkText("Drafts ");
+    private static final By SENT_MAIL_FOLDER_LINK = By.linkText("Sent Mail");
 
 
     public BaseLoggedInPage(WebDriver driver) {
@@ -31,5 +32,11 @@ public class BaseLoggedInPage extends AbstractPage {
         webDriver.findElement(DRAFTS_FOLDER_LINK).click();
         waitForPageLoadComplete();
         return new DraftsPage(webDriver);
+    }
+
+    public SentMailPage clickSentMailLink(){
+        webDriver.findElement(SENT_MAIL_FOLDER_LINK).click();
+        waitForPageLoadComplete();
+        return new SentMailPage(webDriver);
     }
 }

@@ -35,7 +35,7 @@ public class EmailingTest extends BaseTest {
     }
 
     @Test(description = "create an email, save it as a draft and send", dependsOnMethods = "logIn")
-    public void sendDraftEmail() {
+    public void sendDraftEmail() throws InterruptedException {
         BaseLoggedInPage baseLoggedInPage = new BaseLoggedInPage(webDriver);
 
         ComposeEmailPage composeEmailPage = baseLoggedInPage.clickComposeButton();
@@ -56,6 +56,13 @@ public class EmailingTest extends BaseTest {
 
         assertFalse(draftsPage.isDraftPresentOnPage(subjectWithTimestamp));
 
+        SentMailPage sentMailPage = baseLoggedInPage.clickSentMailLink();
+
+        sentMailPage.openSentMailWithSubject(subjectWithTimestamp);
+
+        String sentMailContent = sentMailPage.getSentMailContent(subjectWithTimestamp);
+
+        assertEquals(sentMailContent, subjectWithTimestamp + TO + BODY);
     }
 //
 //
