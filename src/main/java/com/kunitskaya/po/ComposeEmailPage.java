@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class ComposeEmailPage extends BaseLoggedInPage {
     private static final By TO_FIELD = By.xpath("//textarea[@name='to']");
     private static final By SUBJECT_FIELD = By.xpath("//input[@name='subjectbox']");
-    private static final By BODY_TEXTAREA = By.xpath("//div[@aria-label='Message Body']");
+    private static final By BODY_FIELD = By.xpath("//div[@aria-label='Message Body']");
     private static final By CLOSE_BUTTON = By.xpath("//img[@alt='Close']");
 
     public ComposeEmailPage(WebDriver driver) {
@@ -24,8 +24,8 @@ public class ComposeEmailPage extends BaseLoggedInPage {
         return this;
     }
 
-    public ComposeEmailPage fillInBodyTextarea(String body) {
-        webDriver.findElement(BODY_TEXTAREA).sendKeys(body);
+    public ComposeEmailPage fillInBodyField(String body) {
+        webDriver.findElement(BODY_FIELD).sendKeys(body);
         return this;
     }
 

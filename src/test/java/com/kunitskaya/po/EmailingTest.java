@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import static com.kunitskaya.base.constants.AccountConstants.*;
 import static com.kunitskaya.base.utils.DateTimeUtil.getSubjectTimestamp;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class EmailingTest extends BaseTest {
@@ -13,7 +14,7 @@ public class EmailingTest extends BaseTest {
     //TODO:
     // 1. add web driver desired conditions from the book
 
-    String subjectWithTimestamp = SUBJECT.concat(getSubjectTimestamp());
+    private String subjectWithTimestamp = SUBJECT.concat(getSubjectTimestamp());
 
     @Test(description = "log in to Gmail")
     public void logIn() {
@@ -22,61 +23,42 @@ public class EmailingTest extends BaseTest {
 
         loginPage.open();
 
-        loginPage.fillInUsername(USERNAME);
-        loginPage.clickUsernameNextButton();
+        loginPage.fillInUsername(USERNAME)
+                .clickUsernameNextButton();
 
         String usernameForPassword = loginPage.getUsernameValue();
         assertEquals(usernameForPassword, USERNAME);
 
-        loginPage.fillInPassword(PASSWORD);
-
-        InboxPage inboxPage = loginPage.clickPasswordNextButton();
+        InboxPage inboxPage = loginPage.fillInPassword(PASSWORD)
+                .clickPasswordNextButton();
         assertTrue(inboxPage.isLoggedInAccountIconVisible());
     }
 
-    @Test(description = "create an email,save it as a draft and send", dependsOnMethods = "logIn")
+    @Test(description = "create an email, save it as a draft and send", dependsOnMethods = "logIn")
     public void sendDraftEmail() {
         BaseLoggedInPage baseLoggedInPage = new BaseLoggedInPage(webDriver);
 
         ComposeEmailPage composeEmailPage = baseLoggedInPage.clickComposeButton();
-        composeEmailPage.fillInToField(TO);
-        composeEmailPage.fillInSubjectField(subjectWithTimestamp);
-        composeEmailPage.fillInBodyTextarea(BODY);
-        composeEmailPage.clickCloseButton();
+
+        composeEmailPage.fillInToField(TO)
+                .fillInSubjectField(subjectWithTimestamp)
+                .fillInBodyField(BODY)
+                .clickCloseButton();
+
+        DraftsPage draftsPage = baseLoggedInPage.clickDraftsFolderLink();
+        draftsPage.openDraftWithSubject(subjectWithTimestamp);
+
+        String draftContent = draftsPage.getDraftContent(subjectWithTimestamp);
+
+        assertEquals(draftContent, TO + " - " + BODY);
+
+        draftsPage.clickSendButton();
+
+        assertFalse(draftsPage.isDraftPresentOnPage(subjectWithTimestamp));
 
     }
-
 //
-//        WebElement draftsFolder = webDriver.findElement(By.partialLinkText("Drafts "));
-//        draftsFolder.click();
 //
-//        WebElement draft = findEmailBySubject(webDriver, subjectWithTimestamp);
-//
-//        draft.click();
-//
-//        WebElement draftTo = webDriver.findElement(By.xpath("//span[@class='vN bfK a3q']"));
-//        WebElement draftBody = webDriver.findElement(By.xpath("//span[contains(text(),'" + subjectWithTimestamp + "')]/following-sibling::span[1]"));
-//
-//        String draftSubject = draft.getText();
-//        String draftToString = draftTo.getAttribute("email");
-//        String draftBodyString = draftBody.getText();
-//
-//        assertEquals(draftSubject, subjectWithTimestamp);
-//        assertEquals(draftToString, TO);
-//        assertEquals(draftBodyString, " - " + BODY);
-//
-//        waitForElementVisibility(webDriver, 30, By.xpath("//div[text()='Send']"));
-//        webDriver.findElement(By.xpath("//div[text()='Send']")).click();
-//
-//        webDriver.findElement(By.cssSelector(".ag.a8k"));
-//        webDriver.navigate().refresh();
-//
-//        waitForElementVisibility(webDriver, 30, By.partialLinkText("Drafts "));
-//
-//        assertTrue(findEmailsBySubject(webDriver, subjectWithTimestamp).size() < 1);
-//
-//        WebElement sentFolder = webDriver.findElement(By.linkText("Sent Mail"));
-//        sentFolder.click();
 //
 //        WebElement sentDraft = findEmailBySubject(webDriver, subjectWithTimestamp);
 //        sentDraft.click();
