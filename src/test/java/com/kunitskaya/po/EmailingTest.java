@@ -5,16 +5,12 @@ import org.testng.annotations.Test;
 
 import static com.kunitskaya.base.constants.AccountConstants.*;
 import static com.kunitskaya.base.utils.DateTimeUtil.getSubjectTimestamp;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class EmailingTest extends BaseTest {
 
-    //TODO:
-    // 1. add web driver desired conditions from the book
-
     private String subjectWithTimestamp = SUBJECT.concat(getSubjectTimestamp());
+    BaseLoggedInPage baseLoggedInPage = new BaseLoggedInPage(webDriver);
 
     @Test(description = "log in to Gmail")
     public void logIn() {
@@ -35,8 +31,7 @@ public class EmailingTest extends BaseTest {
     }
 
     @Test(description = "create an email, save it as a draft and send", dependsOnMethods = "logIn")
-    public void sendDraftEmail() throws InterruptedException {
-        BaseLoggedInPage baseLoggedInPage = new BaseLoggedInPage(webDriver);
+    public void sendDraftEmail() {
 
         ComposeEmailPage composeEmailPage = baseLoggedInPage.clickComposeButton();
 
@@ -49,39 +44,21 @@ public class EmailingTest extends BaseTest {
         draftsPage.openDraftWithSubject(subjectWithTimestamp);
 
         String draftContent = draftsPage.getDraftContent(subjectWithTimestamp);
-
         assertEquals(draftContent, TO + " - " + BODY);
 
         draftsPage.clickSendButton();
-
         assertFalse(draftsPage.isDraftPresentOnPage(subjectWithTimestamp));
 
         SentMailPage sentMailPage = baseLoggedInPage.clickSentMailLink();
-
         sentMailPage.openSentMailWithSubject(subjectWithTimestamp);
 
         String sentMailContent = sentMailPage.getSentMailContent(subjectWithTimestamp);
-
         assertEquals(sentMailContent, subjectWithTimestamp + TO + BODY);
     }
-//
-//
-//
-//        WebElement sentDraft = findEmailBySubject(webDriver, subjectWithTimestamp);
-//        sentDraft.click();
-//
-//        String sentTo = webDriver.findElement(By.xpath("//span[@dir='ltr' and @class='g2']")).getAttribute("email");
-//        String sentSubject = webDriver.findElement(By.cssSelector("h2.hP")).getText();
-//        //String sentBody = webDriver.findElement(By.xpath("//div[contains(text(),'" + BODY +"')]")).getAttribute("innerText");
-//
-//        // System.out.println(StringUtils.removeAll(sentBody, "[^"+ BODY +"]"));
-//
-//        assertEquals(sentTo, draftToString);
-//        assertEquals(sentSubject, draftSubject);
-//        //assertEquals(sentBody, draftBodyString);
-//
-//        webDriver.navigate().back();
-//    }
 
-
+    @Test(description = "log out from Gmail account", dependsOnMethods = "sendDraftEmail")
+    public void logOut() {
+        LogoutPage logoutPage = baseLoggedInPage.clickLoggedInAccountIcon().clickSignOutButton();
+        assertTrue(logoutPage.isPasswordFieldDislayed());
+    }
 }
