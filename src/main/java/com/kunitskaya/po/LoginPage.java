@@ -41,11 +41,11 @@ public class LoginPage extends AbstractPage {
         return this;
     }
 
-    public InboxPage clickPasswordNextButton() {
+    public BaseLoggedInPage clickPasswordNextButton() {
         waitForElementToBeClickable(PASSWORD_NEXT_BUTTON);
         webDriver.findElement(PASSWORD_NEXT_BUTTON).click();
         waitForPageLoadComplete();
-        return new InboxPage(webDriver);
+        return new BaseLoggedInPage(webDriver);
     }
 
     public LoginPage open() {

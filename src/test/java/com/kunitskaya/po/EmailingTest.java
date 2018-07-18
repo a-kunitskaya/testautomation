@@ -25,9 +25,9 @@ public class EmailingTest extends BaseTest {
         String usernameForPassword = loginPage.getUsernameValue();
         assertEquals(usernameForPassword, USERNAME);
 
-        InboxPage inboxPage = loginPage.fillInPassword(PASSWORD)
+        loginPage.fillInPassword(PASSWORD)
                 .clickPasswordNextButton();
-        assertTrue(inboxPage.isLoggedInAccountIconVisible());
+        assertTrue(baseLoggedInPage.isLoggedInAccountIconVisible());
     }
 
     @Test(description = "create an email, save it as a draft and send", dependsOnMethods = "logIn")

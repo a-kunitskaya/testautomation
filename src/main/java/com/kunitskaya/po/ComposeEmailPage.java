@@ -29,9 +29,9 @@ public class ComposeEmailPage extends BaseLoggedInPage {
         return this;
     }
 
-    public InboxPage clickCloseButton() {
+    public BaseLoggedInPage clickCloseButton() {
         webDriver.findElement(CLOSE_BUTTON).click();
         waitForAjaxExecution();
-        return new InboxPage(webDriver);
+        return new BaseLoggedInPage(webDriver);
     }
 }
