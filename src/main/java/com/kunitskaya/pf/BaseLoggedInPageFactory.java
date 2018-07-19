@@ -12,12 +12,11 @@ public class BaseLoggedInPageFactory extends AbstractPageFactory {
     @FindBy(id = ":28")
     WebElement settingsButton;
 
-    @FindBy(id = ":6x")
+    @FindBy(xpath = "//div[@role='menuitem' and .='Help']")
     WebElement helpSettingsOption;
 
     @FindBy(id = ":6p")
     WebElement settingsDropdown;
-
 
 //    private static final By COMPOSE_BUTTON = By.xpath("//div[@gh='cm']");
 //    private static final By LOGGED_IN_ACCOUNT_ICON = By.cssSelector(".gb_b.gb_db.gb_R");
@@ -43,11 +42,8 @@ public class BaseLoggedInPageFactory extends AbstractPageFactory {
     }
 
     public HelpPopupFactory clickHelpSettingsOption() {
-      ////*[@id=':6p']/*[@class='SK AX']/div[@id=':6x'] //html/body/div[2]/div[1]
-
         helpSettingsOption.click();
-       // waitForAjaxExecution();
-
+        waitForAjaxExecution();
         return new HelpPopupFactory(webDriver);
     }
 
