@@ -27,12 +27,15 @@ public class HelpPopupFactory extends BaseLoggedInPageFactory {
     @FindBy(xpath = "//a[@href='https://productforums.google.com/forum/#!forum/gmail']")
     WebElement visitHelpForumLink;
 
+    @FindBy(css = ".ghp-iconTextComponent.ghpv-block.ng-scope")
+    WebElement sendFeedbackButton;
+
     protected HelpPopupFactory(WebDriver webDriver) {
         super(webDriver);
     }
 
     public boolean isHelpPopupDisplayed() {
-        webDriver.switchTo().frame(helpPopopFrame);
+        switchToHelpPopup();
         if (helpPopup.isDisplayed()) {
             return true;
         } else {
@@ -40,7 +43,12 @@ public class HelpPopupFactory extends BaseLoggedInPageFactory {
         }
     }
 
-    public HelpPopupFactory enterTextToHelpSearchField(String input){
+    public HelpPopupFactory switchToHelpPopup() {
+        webDriver.switchTo().frame(helpPopopFrame);
+        return this;
+    }
+
+    public HelpPopupFactory enterTextToHelpSearchField(String input) {
         waitForElementVisibility(helpSearchField);
         helpSearchField.click();
         helpSearchField.sendKeys(input);
@@ -48,25 +56,34 @@ public class HelpPopupFactory extends BaseLoggedInPageFactory {
         return this;
     }
 
-    public List<WebElement> getSearchResults(){
+    public List<WebElement> getSearchResults() {
         return searchResults;
     }
 
-    public HelpPopupFactory clearSearchField(){
+    public HelpPopupFactory clearSearchField() {
         helpSearchField.clear();
+        helpSearchField.click();
         return this;
     }
 
-    public GmailHelpPageFactory clickBrowseAllArticlesLink(){
+    public GmailHelpPageFactory clickBrowseAllArticlesLink() {
         waitForElementToBeClickable(browseAllArticlesLink);
         browseAllArticlesLink.click();
         waitForPageLoadComplete();
         return new GmailHelpPageFactory(webDriver);
     }
 
-    public GmailHelpForumFactory clickVisitHelpForumLink(){
+    public GmailHelpForumFactory clickVisitHelpForumLink() {
+        waitForElementToBeClickable(visitHelpForumLink);
         visitHelpForumLink.click();
         waitForPageLoadComplete();
         return new GmailHelpForumFactory(webDriver);
+    }
+
+    public FeedbackPopupFactory clickSendFeedBackLink(){
+        waitForElementToBeClickable(sendFeedbackButton);
+        sendFeedbackButton.click();
+        waitForAjaxExecution();
+        return new FeedbackPopupFactory(webDriver);
     }
 }

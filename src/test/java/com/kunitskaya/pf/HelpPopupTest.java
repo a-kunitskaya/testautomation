@@ -17,6 +17,12 @@ public class HelpPopupTest extends BaseTest {
     LoginPageFactory loginPage = new LoginPageFactory(webDriver);
     BaseLoggedInPageFactory baseLoggedInPage = new BaseLoggedInPageFactory(webDriver);
     private static final String SEARCH_INPUT = "Change";
+    private static final String HELP_PAGE_HEADER = "Welcome to the Gmail Help Center";
+    private static final String HELP_PAGE_TITLE = "Gmail Help";
+    private static final String HELP_PAGE_SEARCH_PLACEHOLDER = "Describe your issue";
+    private static final String FORUM_PAGE_TITLE = "Gmail Help Forum";
+    private static final String FORUM_WELCOME_TEXT = "Welcome to the official Gmail Help Forum!";
+    private static final String FORUM_SEARCH_PLACEHOLDER = "Search for messages";
 
     @Test(description = "Log in to Gmail")
     public void logIn() {
@@ -29,23 +35,47 @@ public class HelpPopupTest extends BaseTest {
     }
 
     @Test(description = "CDP-0003 Gmail: Help pop-up", dependsOnMethods = "logIn")
-    public void validateHelpPopup(){
-        HelpPopupFactory helpPopup =  baseLoggedInPage.clickSettingsButton().clickHelpSettingsOption();
+    public void validateHelpPopup() {
+        HelpPopupFactory helpPopup = baseLoggedInPage.clickSettingsButton().clickHelpSettingsOption();
         assertTrue(helpPopup.isHelpPopupDisplayed());
 
         helpPopup.enterTextToHelpSearchField(SEARCH_INPUT);
         List<WebElement> searchResults = helpPopup.getSearchResults();
 
-        for(WebElement searchResult : searchResults){
-           String result =  searchResult.getText();
+        for (WebElement searchResult : searchResults) {
+            String result = searchResult.getText();
             assertTrue(StringUtils.containsIgnoreCase(result, SEARCH_INPUT));
         }
 
         helpPopup.clearSearchField();
 
         GmailHelpPageFactory gmailHelpPage = helpPopup.clickBrowseAllArticlesLink();
-        String w = webDriver.getWindowHandle();
-        webDriver.switchTo().window(w).close();
+
+        String basePage = gmailHelpPage.getCurrentWindowHandle();
+        gmailHelpPage.switchToLastOpenedWindow();
+
+        assertEquals(gmailHelpPage.getHeplPageHeader(), HELP_PAGE_HEADER);
+        assertEquals(gmailHelpPage.getCurrentPageTitle(), HELP_PAGE_TITLE);
+        assertEquals(gmailHelpPage.getSearchFieldPlaceholder(), HELP_PAGE_SEARCH_PLACEHOLDER);
+
+        webDriver.close();
+        gmailHelpPage.switchToWindowHandle(basePage);
+
+        helpPopup.switchToHelpPopup();
+
+        GmailHelpForumFactory forumPage = helpPopup.clickVisitHelpForumLink();
+        forumPage.switchToLastOpenedWindow();
+
+        assertTrue(forumPage.isNewTopickButtonVIsible());
+        assertEquals(forumPage.getSearchFieldPlaceholder(), FORUM_SEARCH_PLACEHOLDER);
+        assertEquals(forumPage.getWelcomeText(), FORUM_WELCOME_TEXT);
+        assertTrue(StringUtils.containsIgnoreCase(forumPage.getCurrentPageTitle(), FORUM_PAGE_TITLE));
+
+        webDriver.close();
+        forumPage.switchToWindowHandle(basePage);
+        helpPopup.switchToHelpPopup();
+
+
     }
 }
 

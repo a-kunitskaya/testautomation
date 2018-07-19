@@ -26,11 +26,32 @@ public class AbstractPageFactory {
     }
 
     protected void waitForAjaxExecution() {
-      ImplicitWait.waitForAjaxExecution(webDriver, DEFAULT_TIMEOUT);
+        ImplicitWait.waitForAjaxExecution(webDriver, DEFAULT_TIMEOUT);
     }
 
     protected void waitForElementToBeClickable(WebElement webElement) {
         new WebDriverWait(webDriver, DEFAULT_TIMEOUT).until(ExpectedConditions.elementToBeClickable(webElement));
 
+    }
+
+    public String getCurrentPageTitle() {
+        waitForPageLoadComplete();
+        return webDriver.getTitle();
+    }
+
+    public AbstractPageFactory switchToLastOpenedWindow() {
+        for (String winHandle : webDriver.getWindowHandles()) {
+            webDriver.switchTo().window(winHandle);
+        }
+        return this;
+    }
+
+    public String getCurrentWindowHandle() {
+        return webDriver.getWindowHandle();
+    }
+
+    public AbstractPageFactory switchToWindowHandle(String windowHandle) {
+        webDriver.switchTo().window(windowHandle);
+        return this;
     }
 }

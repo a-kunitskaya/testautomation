@@ -18,6 +18,7 @@ public class BaseLoggedInPageFactory extends AbstractPageFactory {
     @FindBy(id = ":6p")
     WebElement settingsDropdown;
 
+
 //    private static final By COMPOSE_BUTTON = By.xpath("//div[@gh='cm']");
 //    private static final By LOGGED_IN_ACCOUNT_ICON = By.cssSelector(".gb_b.gb_db.gb_R");
 //    private static final By DRAFTS_FOLDER_LINK = By.partialLinkText("Drafts ");
