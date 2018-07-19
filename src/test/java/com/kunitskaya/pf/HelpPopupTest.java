@@ -24,6 +24,9 @@ public class HelpPopupTest extends BaseTest {
     private static final String FORUM_WELCOME_TEXT = "Welcome to the official Gmail Help Forum!";
     private static final String FORUM_SEARCH_PLACEHOLDER = "Search for messages";
 
+    private static final String FEEDBACK_POPUP_HEADER = "Send feedback";
+    private static final String FEEDBACK_POPUP_INPUT_PLACEHOLDER = "Describe your issue or share your ideas";
+
     @Test(description = "Log in to Gmail")
     public void logIn() {
 
@@ -75,6 +78,18 @@ public class HelpPopupTest extends BaseTest {
         forumPage.switchToWindowHandle(basePage);
         helpPopup.switchToHelpPopup();
 
+        FeedbackPopupFactory feedbackPopup = helpPopup.clickSendFeedBackLink();
+
+        assertTrue(feedbackPopup.isCancelButtonDisplayed());
+       // assertTrue();
+
+
+
+        //10.	‘Send feedback’ pop-up is present:
+        //•	Title is ‘Send feedback’
+        //•	Input field is present with ‘Describe your issue or share your ideas’ text inside
+        //•	‘Include screenshot’ checkbox is checked
+        //•	‘Cancel’ and ‘Send’ buttons are present
 
     }
 }
