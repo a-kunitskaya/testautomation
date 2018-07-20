@@ -80,17 +80,16 @@ public class HelpPopupTest extends BaseTest {
 
         FeedbackPopupFactory feedbackPopup = helpPopup.clickSendFeedBackLink();
 
-        assertTrue(feedbackPopup.isCancelButtonDisplayed());
-       // assertTrue();
+        feedbackPopup.switchToFeedbackFrame();
 
+        assertTrue(feedbackPopup.isSendFeedbackPopupDisplayed());
+        assertTrue(feedbackPopup.isCancelButtonDisplayed() && feedbackPopup.isSendButtonDisplayed());
+        assertEquals(feedbackPopup.getHeader(), FEEDBACK_POPUP_HEADER);
+        assertEquals(feedbackPopup.getInputFieldPlaceholder(), FEEDBACK_POPUP_INPUT_PLACEHOLDER);
+        assertTrue(feedbackPopup.isIncludeScreenshotCheckboxChecked());
 
-
-        //10.	‘Send feedback’ pop-up is present:
-        //•	Title is ‘Send feedback’
-        //•	Input field is present with ‘Describe your issue or share your ideas’ text inside
-        //•	‘Include screenshot’ checkbox is checked
-        //•	‘Cancel’ and ‘Send’ buttons are present
-
+        feedbackPopup.clickCancelButton();
+        assertTrue(baseLoggedInPage.isLoggedInAccountIconVisible());
     }
 }
 
