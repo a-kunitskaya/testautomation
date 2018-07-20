@@ -57,6 +57,7 @@ public class HelpPopupFactory extends BaseLoggedInPageFactory {
     }
 
     public List<WebElement> getSearchResults() {
+        waitForAjaxExecution();
         return searchResults;
     }
 
@@ -80,7 +81,7 @@ public class HelpPopupFactory extends BaseLoggedInPageFactory {
         return new GmailHelpForumFactory(webDriver);
     }
 
-    public FeedbackPopupFactory clickSendFeedBackLink(){
+    public FeedbackPopupFactory clickSendFeedBackLink() {
         waitForElementToBeClickable(sendFeedbackButton);
         sendFeedbackButton.click();
         waitForAjaxExecution();

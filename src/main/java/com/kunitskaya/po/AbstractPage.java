@@ -18,19 +18,18 @@ public class AbstractPage {
     }
 
     protected void waitForElementVisibility(By locator) {
-       ExplicitWait.waitForElementVisibility(webDriver, DEFAULT_TIMEOUT, locator);
+        ExplicitWait.waitForElementVisibility(webDriver, DEFAULT_TIMEOUT, locator);
     }
 
     protected void waitForPageLoadComplete() {
         ExplicitWait.waitForPageLoadComplete(webDriver);
     }
 
-    protected void waitForAjaxExecution(){
+    protected void waitForAjaxExecution() {
         ImplicitWait.waitForAjaxExecution(webDriver, DEFAULT_TIMEOUT);
     }
 
-    protected void waitForElementToBeClickable(By locator){
+    protected void waitForElementToBeClickable(By locator) {
         ExplicitWait.waitForElementToBeClickable(webDriver, DEFAULT_TIMEOUT, locator);
     }
-
 }

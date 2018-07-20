@@ -2,14 +2,10 @@ package com.kunitskaya.base.waits;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 /**
  * Waits for the specified condition
@@ -60,21 +56,5 @@ public class ExplicitWait {
         wait.until(driver1 -> String
                 .valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState"))
                 .equals("complete"));
-    }
-
-    /**
-     * Waits for an element to appear
-     * ignores NoSuchElementException while waiting
-     *
-     * @param webDriver - web driver
-     * @param locator   - element locator
-     */
-    public static void waitForElementFluently(WebDriver webDriver, final By locator) {
-        Wait<WebDriver> wait = new FluentWait<>(webDriver)
-                .withTimeout(Duration.ofSeconds(30))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(NoSuchElementException.class);
-
-        wait.until(webDriver1 -> webDriver1.findElement(locator));
     }
 }

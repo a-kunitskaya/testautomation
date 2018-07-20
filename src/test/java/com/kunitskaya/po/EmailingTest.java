@@ -8,11 +8,11 @@ import static com.kunitskaya.base.utils.DateTimeUtil.getSubjectTimestamp;
 import static org.testng.Assert.*;
 
 public class EmailingTest extends BaseTest {
-
     private String subjectWithTimestamp = SUBJECT.concat(getSubjectTimestamp());
+
     BaseLoggedInPage baseLoggedInPage = new BaseLoggedInPage(webDriver);
 
-    @Test(description = "log in to Gmail")
+    @Test(description = "Log in to Gmail")
     public void logIn() {
 
         LoginPage loginPage = new LoginPage(webDriver);

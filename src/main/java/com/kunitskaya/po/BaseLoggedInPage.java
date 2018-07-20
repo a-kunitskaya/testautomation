@@ -11,7 +11,6 @@ public class BaseLoggedInPage extends AbstractPage {
     private static final By SENT_MAIL_FOLDER_LINK = By.linkText("Sent Mail");
     private static final By SIGN_OUT_BUTTON = By.linkText("Sign out");
 
-
     public BaseLoggedInPage(WebDriver driver) {
         super(driver);
     }

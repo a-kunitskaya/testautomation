@@ -61,15 +61,4 @@ public class DraftsPage extends BaseLoggedInPage {
             return true;
         }
     }
-
-
 }
-
-//
-//
-//        waitForElementVisibility(webDriver, 30, By.partialLinkText("Drafts "));
-//
-//        assertTrue(.size() < 1);
-//
-//        WebElement sentFolder = webDriver.findElement(By.linkText("Sent Mail"));
-//        sentFolder.click();

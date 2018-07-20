@@ -13,9 +13,6 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class HelpPopupTest extends BaseTest {
-
-    LoginPageFactory loginPage = new LoginPageFactory(webDriver);
-    BaseLoggedInPageFactory baseLoggedInPage = new BaseLoggedInPageFactory(webDriver);
     private static final String SEARCH_INPUT = "Change";
     private static final String HELP_PAGE_HEADER = "Welcome to the Gmail Help Center";
     private static final String HELP_PAGE_TITLE = "Gmail Help";
@@ -23,9 +20,11 @@ public class HelpPopupTest extends BaseTest {
     private static final String FORUM_PAGE_TITLE = "Gmail Help Forum";
     private static final String FORUM_WELCOME_TEXT = "Welcome to the official Gmail Help Forum!";
     private static final String FORUM_SEARCH_PLACEHOLDER = "Search for messages";
-
     private static final String FEEDBACK_POPUP_HEADER = "Send feedback";
     private static final String FEEDBACK_POPUP_INPUT_PLACEHOLDER = "Describe your issue or share your ideas";
+
+    LoginPageFactory loginPage = new LoginPageFactory(webDriver);
+    BaseLoggedInPageFactory baseLoggedInPage = new BaseLoggedInPageFactory(webDriver);
 
     @Test(description = "Log in to Gmail")
     public void logIn() {
@@ -92,4 +91,3 @@ public class HelpPopupTest extends BaseTest {
         assertTrue(baseLoggedInPage.isLoggedInAccountIconVisible());
     }
 }
-

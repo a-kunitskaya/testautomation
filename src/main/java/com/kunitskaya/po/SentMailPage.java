@@ -11,7 +11,6 @@ public class SentMailPage extends BaseLoggedInPage {
     private static final By BODY = By.xpath("//div/div[@dir='ltr']");
     private static final By SUBJECT = By.cssSelector("h2.hP");
 
-
     public SentMailPage(WebDriver driver) {
         super(driver);
     }
