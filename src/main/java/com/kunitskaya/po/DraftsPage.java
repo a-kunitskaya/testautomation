@@ -12,14 +12,11 @@ import static com.kunitskaya.base.utils.finders.MailFinderBySubject.findEmailsBy
 public class DraftsPage extends MailPage {
     private static final By TO = By.xpath("//span[@class='vN bfK a3q']");
     private static final By SEND_BUTTON = By.xpath("//div[text()='Send']");
-    private static final By MESSAGE_SENT_LINK = By.cssSelector(".ag.a8k");
+    private static final By MESSAGE_SENT_LINK = By.id("link_vsm"); //By.cssSelector(".ag.a8k");
+    private static final String MESSAGE_ROW_LOCATOR = "//span[contains(text(),'%s')]/following-sibling::span[1]";
 
     public DraftsPage(WebDriver driver) {
         super(driver);
-    }
-
-    public WebElement getDraftWithSubject(String subject) {
-        return findEmailBySubject(webDriver, subject);
     }
 
     public List<WebElement> getDraftsWithSubject(String subject) {
@@ -27,18 +24,16 @@ public class DraftsPage extends MailPage {
     }
 
     public DraftsPage openDraftWithSubject(String subject) {
-        getDraftWithSubject(subject).click();
-        waitForAjaxExecution();
+        getDraftsWithSubject(subject).click();
         return this;
     }
 
-    public String getDraftContent(String subject) {
+        public String getDraftContent(String subject) {
         return getTo() + getBody(subject);
     }
 
     public String getBody(String subject) {
-        return webDriver.findElement(By.xpath("//span[contains(text(),'" + subject + "')]/following-sibling::span[1]")).getText();
-
+        return webDriver.findElement(By.xpath(String.format(MESSAGE_ROW_LOCATOR, subject))).getText();
     }
 
     public String getTo() {
@@ -55,10 +50,6 @@ public class DraftsPage extends MailPage {
     public boolean isDraftPresentOnPage(String subject) {
         webDriver.navigate().refresh();
         waitForPageLoadComplete();
-        if (getDraftsWithSubject(subject).isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return !getDraftsWithSubject(subject).isEmpty();
     }
 }

@@ -26,15 +26,15 @@ public class EmailingTest extends BaseTest {
 
         loginPage.fillInPassword(PASSWORD)
                 .clickPasswordNextButton();
-        assertTrue(mailPage.isLoggedInAccountIconVisible());
+        assertTrue(mailPage.isAccountIconVisible());
     }
 
     @Test(description = "create an email, save it as a draft and send", dependsOnMethods = "logIn")
     public void sendDraftEmail() {
 
-        ComposeEmailPage composeEmailPage = mailPage.clickComposeButton();
+        ComposeEmailPopup composeEmailPopup = mailPage.clickComposeButton();
 
-        composeEmailPage.fillInToField(TO)
+        composeEmailPopup.fillInToField(TO)
                 .fillInSubjectField(subjectWithTimestamp)
                 .fillInBodyField(BODY)
                 .clickCloseButton();
@@ -57,7 +57,7 @@ public class EmailingTest extends BaseTest {
 
     @Test(description = "log out from Gmail account", dependsOnMethods = "sendDraftEmail")
     public void logOut() {
-        LogoutPage logoutPage = mailPage.clickLoggedInAccountIcon().clickSignOutButton();
+        LogoutPage logoutPage = mailPage.clickAccountIcon().clickSignOutButton();
         assertTrue(logoutPage.isPasswordFieldDislayed());
     }
 }

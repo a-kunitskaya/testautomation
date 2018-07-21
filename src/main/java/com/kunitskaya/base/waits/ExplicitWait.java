@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Waits for the specified condition
  */
-public class ExplicitWait extends AbtractWait {
+public class ExplicitWait extends AbstractWait {
     /**
      * Waits for an element to appear on the page
      *
@@ -40,7 +40,7 @@ public class ExplicitWait extends AbtractWait {
      * @param webDriver  web driver
      * @param webElement - web element instance
      */
-    protected void waitForElementVisibility(WebDriver webDriver, WebElement webElement) {
+    public static void waitForElementVisibility(WebDriver webDriver, WebElement webElement) {
         new WebDriverWait(webDriver, DEFAULT_TIMEOUT).until(ExpectedConditions.visibilityOf(webElement));
     }
 
@@ -61,7 +61,7 @@ public class ExplicitWait extends AbtractWait {
      * @param webDriver  web driver
      * @param webElement - web element instance
      */
-    protected void waitForElementToBeClickable(WebDriver webDriver, WebElement webElement) {
+    public static void waitForElementToBeClickable(WebDriver webDriver, WebElement webElement) {
         new WebDriverWait(webDriver, DEFAULT_TIMEOUT).until(ExpectedConditions.elementToBeClickable(webElement));
     }
 

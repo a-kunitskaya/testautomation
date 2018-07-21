@@ -37,7 +37,7 @@ public class HelpPopupTest extends BaseTest {
         assertEquals(loginPage.getUsernameValue(), USERNAME);
 
         loginPage.fillInPassword(PASSWORD).clickPasswordNextButton();
-        assertTrue(baseLoggedInPage.isLoggedInAccountIconVisible());
+        assertTrue(baseLoggedInPage.isAccountIconVisible());
     }
 
     @Test(description = "CDP-0003 Gmail: Help pop-up", dependsOnMethods = "logIn")
@@ -46,7 +46,7 @@ public class HelpPopupTest extends BaseTest {
         assertTrue(helpPopup.isHelpPopupDisplayed());
 
         helpPopup.enterTextToHelpSearchField(SEARCH_INPUT);
-        List<WebElement> searchResults = helpPopup.getSearchResults();
+        List<WebElement> searchResults = helpPopup.getSuggestedSearchResults();
 
         for (WebElement searchResult : searchResults) {
             String result = searchResult.getText();
@@ -60,38 +60,39 @@ public class HelpPopupTest extends BaseTest {
         String basePage = gmailHelpPage.getCurrentWindowHandle();
         gmailHelpPage.switchToLastOpenedWindow();
 
-        assertEquals(gmailHelpPage.getHeplPageHeader(), HELP_PAGE_HEADER);
+        assertEquals(gmailHelpPage.getHelpPageHeader(), HELP_PAGE_HEADER);
         assertEquals(gmailHelpPage.getTitle(), HELP_PAGE_TITLE);
         assertEquals(gmailHelpPage.getSearchFieldPlaceholder(), HELP_PAGE_SEARCH_PLACEHOLDER);
 
         webDriver.close();
         gmailHelpPage.switchToWindowHandle(basePage);
 
-        helpPopup.switchToHelpPopup();
+        helpPopup.switchToHelpPopupFrame();
 
-        GmailHelpForum forumPage = helpPopup.clickVisitHelpForumLink();
+        GmailHelpForumPage forumPage = helpPopup.clickVisitHelpForumLink();
         forumPage.switchToLastOpenedWindow();
 
-        assertTrue(forumPage.isNewTopickButtonVIsible());
+        assertTrue(forumPage.isNewTopicButtonVisible());
         assertEquals(forumPage.getSearchFieldPlaceholder(), FORUM_SEARCH_PLACEHOLDER);
         assertEquals(forumPage.getWelcomeText(), FORUM_WELCOME_TEXT);
         assertTrue(StringUtils.containsIgnoreCase(forumPage.getTitle(), FORUM_PAGE_TITLE));
 
         webDriver.close();
         forumPage.switchToWindowHandle(basePage);
-        helpPopup.switchToHelpPopup();
+        helpPopup.switchToHelpPopupFrame();
 
         FeedbackPopup feedbackPopup = helpPopup.clickSendFeedBackLink();
 
         feedbackPopup.switchToFeedbackFrame();
 
         assertTrue(feedbackPopup.isSendFeedbackPopupDisplayed());
+        assertTrue(feedbackPopup.isInputFieldDIsplayed());
         assertTrue(feedbackPopup.isCancelButtonDisplayed() && feedbackPopup.isSendButtonDisplayed());
         assertEquals(feedbackPopup.getHeader(), FEEDBACK_POPUP_HEADER);
         assertEquals(feedbackPopup.getInputFieldPlaceholder(), FEEDBACK_POPUP_INPUT_PLACEHOLDER);
         assertTrue(feedbackPopup.isIncludeScreenshotCheckboxChecked());
 
         feedbackPopup.clickCancelButton();
-        assertTrue(baseLoggedInPage.isLoggedInAccountIconVisible());
+        assertTrue(baseLoggedInPage.isAccountIconVisible());
     }
 }

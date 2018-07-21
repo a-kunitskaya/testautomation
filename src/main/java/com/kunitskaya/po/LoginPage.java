@@ -13,7 +13,7 @@ public class LoginPage extends AbstractPage {
     private static final By PASSWORD_FIELD = By.name("password");
     private static final By EMAIL_FIELD = By.id("profileIdentifier");
     private static final By PASSWORD_NEXT_BUTTON = By.id("passwordNext");
-    private static final String ENTERED_EMAIL = "data-email";
+    private static final String ENTERED_EMAIL_ATTRIBUTE = "data-email";
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -26,13 +26,12 @@ public class LoginPage extends AbstractPage {
 
     public LoginPage clickUsernameNextButton() {
         webDriver.findElement(USERNAME_NEXT_BUTTON).click();
-        waitForAjaxExecution();
         return this;
     }
 
     public String getUsernameValue() {
         WebElement profileIdentifier = webDriver.findElement(EMAIL_FIELD);
-        return profileIdentifier.getAttribute(ENTERED_EMAIL);
+        return profileIdentifier.getAttribute(ENTERED_EMAIL_ATTRIBUTE);
     }
 
     public LoginPage fillInPassword(String password) {
@@ -44,7 +43,6 @@ public class LoginPage extends AbstractPage {
     public MailPage clickPasswordNextButton() {
         waitForElementToBeClickable(PASSWORD_NEXT_BUTTON);
         webDriver.findElement(PASSWORD_NEXT_BUTTON).click();
-        waitForPageLoadComplete();
         return new MailPage(webDriver);
     }
 
