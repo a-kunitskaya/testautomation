@@ -1,7 +1,8 @@
 package com.kunitskaya.po;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class ComposeEmailPopup extends AbstractPage {
     private static final By TO_FIELD = By.xpath("//textarea[@name='to']");
@@ -9,12 +10,8 @@ public class ComposeEmailPopup extends AbstractPage {
     private static final By BODY_FIELD = By.xpath("//div[@aria-label='Message Body']");
     private static final By CLOSE_BUTTON = By.xpath("//img[@alt='Close']");
 
-    public ComposeEmailPopup(WebDriver driver) {
-        super(driver);
-    }
-
     public ComposeEmailPopup fillInToField(String to) {
-        waitForElementVisibility(TO_FIELD);
+        waitForElementVisibility(webDriver, TO_FIELD);
         webDriver.findElement(TO_FIELD).sendKeys(to);
         return this;
     }
@@ -31,6 +28,6 @@ public class ComposeEmailPopup extends AbstractPage {
 
     public MailPage clickCloseButton() {
         webDriver.findElement(CLOSE_BUTTON).click();
-        return new MailPage(webDriver);
+        return new MailPage();
     }
 }

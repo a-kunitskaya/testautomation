@@ -1,28 +1,17 @@
 package com.kunitskaya.po;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-import static com.kunitskaya.base.utils.finders.MailFinderBySubject.findEmailBySubject;
+import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
 
 public class SentMailPage extends MailPage {
     private static final By TO = By.xpath("//span[@dir='ltr' and @class='g2']");
     private static final By BODY = By.xpath("//div/div[@dir='ltr']");
     private static final By SUBJECT = By.cssSelector("h2.hP");
 
-    public SentMailPage(WebDriver driver) {
-        super(driver);
-    }
-
-
-    public WebElement getSentMailWithSubject(String subject) {
-        return findEmailBySubject(webDriver, subject);
-    }
-
     public SentMailPage openSentMailWithSubject(String subject) {
-        getSentMailWithSubject(subject).click();
-        waitForPageLoadComplete();
+        findEmailBySubject(webDriver, subject).click();
+        waitForPageLoadComplete(webDriver);
         return this;
     }
 

@@ -8,11 +8,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 
 public class BaseTest {
-
     protected WebDriver webDriver = WebDriverProvider.getInstance();
-
-   User user = TestDataProvider.getUser();
-    //email в base test не выносить, тк не отностися ко всем тестам
+    protected User user = TestDataProvider.getUser();
 
     @BeforeClass
     public void deleteCookies() {

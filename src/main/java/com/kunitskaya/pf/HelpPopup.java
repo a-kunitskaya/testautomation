@@ -1,11 +1,14 @@
 package com.kunitskaya.pf;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class HelpPopup extends AbstractPage {
 
@@ -15,26 +18,22 @@ public class HelpPopup extends AbstractPage {
     @FindBy(id = "search-box")
     WebElement helpSearchField;
 
-    @FindAll(@FindBy(css = "li.sbsb_c div[role=option]"))  //(@FindBy(css = ".ghp-iconTextComponent-label.ng-binding"))
+    @FindAll(@FindBy(css = ".ghp-iconTextComponent-label.ng-binding"))
     List<WebElement> suggestedSearchResults;
 
     @FindBy(id = "google-feedback-wizard")
     WebElement helpPopupFrame;
 
-    @FindBy(xpath = "//a[contains(@href, 'https://support.google.com/mail?hl')])") //(xpath = "//a[@href='https://support.google.com/mail?hl=en']")
+    @FindBy(xpath = "//a[contains(@href, 'support') and @ng-click='ctrl.reportOpenedHelpcenter()']")
     WebElement browseAllArticlesLink;
 
-    @FindBy(xpath = "contains(@href, 'productforums')")//(xpath = "//a[@href='https://productforums.google.com/forum/#!forum/gmail']")
+    @FindBy(xpath = "//a[contains(@href, 'productforums')]")
     WebElement visitHelpForumLink;
 
-    @FindBy(xpath = "//button[contains(., 'Send feedback')]")//(css = ".ghp-iconTextComponent.ghpv-block.ng-scope")
+    @FindBy(xpath = "//button[contains(., 'Send feedback')]")
     WebElement sendFeedbackButton;
 
-    protected HelpPopup(WebDriver webDriver) {
-        super(webDriver);
-    }
-
-    public boolean isHelpPopupDisplayed() {
+    public boolean isDisplayed() {
         if(helpPopupFrame.isDisplayed()){
             switchToHelpPopupFrame();
             return helpPopup.isDisplayed();
@@ -50,41 +49,45 @@ public class HelpPopup extends AbstractPage {
         return this;
     }
 
-    public HelpPopup enterTextToHelpSearchField(String input) {
-        waitForElementVisibility(helpSearchField);
-        //helpSearchField.click();
+    public HelpPopup enterSearchCriteria(String input) {
+        waitForElementVisibility(webDriver, helpSearchField);
+        helpSearchField.click();
         helpSearchField.sendKeys(input);
-        //helpSearchField.submit();
+        helpSearchField.submit();
         return this;
     }
 
-    public List<WebElement> getSuggestedSearchResults() {
-        return suggestedSearchResults;
+    public List<String> getSuggestedSearchResults() {
+        List<String> results = new ArrayList<>();
+        for (WebElement suggestedResult : suggestedSearchResults) {
+            waitForElementVisibility(webDriver, suggestedResult);
+            results.add(suggestedResult.getText());
+        }
+        return results;
     }
 
     public HelpPopup clearSearchField() {
         helpSearchField.clear();
-        //helpSearchField.click();
+        helpSearchField.click();
         return this;
     }
 
     public GmailHelpPage clickBrowseAllArticlesLink() {
-        waitForElementToBeClickable(browseAllArticlesLink);
+        waitForElementToBeClickable(webDriver, browseAllArticlesLink);
         browseAllArticlesLink.click();
-       // waitForPageLoadComplete();
-        return new GmailHelpPage(webDriver);
+        return new GmailHelpPage();
     }
 
     public GmailHelpForumPage clickVisitHelpForumLink() {
-        waitForElementToBeClickable(visitHelpForumLink);
+        waitForElementToBeClickable(webDriver, visitHelpForumLink);
         visitHelpForumLink.click();
         //waitForPageLoadComplete();
-        return new GmailHelpForumPage(webDriver);
+        return new GmailHelpForumPage();
     }
 
     public FeedbackPopup clickSendFeedBackLink() {
-        waitForElementToBeClickable(sendFeedbackButton);
+        waitForElementToBeClickable(webDriver, sendFeedbackButton);
         sendFeedbackButton.click();
-        return new FeedbackPopup(webDriver);
+        return new FeedbackPopup();
     }
 }

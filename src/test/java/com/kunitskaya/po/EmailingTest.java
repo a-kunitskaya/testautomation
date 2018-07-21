@@ -1,63 +1,64 @@
 package com.kunitskaya.po;
 
 import com.kunitskaya.BaseTest;
+import com.kunitskaya.test.TestDataProvider;
+import com.kunitskaya.test.entities.Email;
 import org.testng.annotations.Test;
 
-import static com.kunitskaya.base.constants.AccountConstants.*;
 import static org.testng.Assert.*;
 
 public class EmailingTest extends BaseTest {
-   // private String subjectWithTimestamp = SUBJECT.concat(getFormattedTimestamp());
-
-    MailPage mailPage = new MailPage(webDriver);
 
     @Test(description = "Log in to Gmail")
     public void logIn() {
-
-        LoginPage loginPage = new LoginPage(webDriver);
+        MailPage mailPage = new MailPage();
+        LoginPage loginPage = new LoginPage();
 
         loginPage.open();
 
-        loginPage.fillInUsername(USERNAME)
-                .clickUsernameNextButton();
+        loginPage.fillInUsername(user.getUsername())
+                 .clickUsernameNextButton();
 
         String usernameForPassword = loginPage.getUsernameValue();
-        assertEquals(usernameForPassword, USERNAME);
+        assertEquals(usernameForPassword, user.getUsername());
 
-        loginPage.fillInPassword(PASSWORD)
-                .clickPasswordNextButton();
+        loginPage.fillInPassword(user.getPassword())
+                 .clickPasswordNextButton();
         assertTrue(mailPage.isAccountIconVisible());
     }
 
     @Test(description = "create an email, save it as a draft and send", dependsOnMethods = "logIn")
     public void sendDraftEmail() {
+        Email email = TestDataProvider.getEmail();
 
+        MailPage mailPage = new MailPage();
         ComposeEmailPopup composeEmailPopup = mailPage.clickComposeButton();
 
-        composeEmailPopup.fillInToField(TO)
-                .fillInSubjectField(subjectWithTimestamp)
-                .fillInBodyField(BODY)
-                .clickCloseButton();
+        composeEmailPopup.fillInToField(email.getReceiver())
+                         .fillInSubjectField(email.getSubject())
+                         .fillInBodyField(email.getBody())
+                         .clickCloseButton();
 
         DraftsPage draftsPage = mailPage.clickDraftsFolderLink();
-        draftsPage.openDraftWithSubject(subjectWithTimestamp);
+        draftsPage.openDraftWithSubject(email.getSubject());
 
-        String draftContent = draftsPage.getDraftContent(subjectWithTimestamp);
-        assertEquals(draftContent, TO + " - " + BODY);
+        String draftContent = draftsPage.getDraftContent(email.getSubject());
+        assertEquals(draftContent, email.getReceiver() + " - " + email.getBody());
 
         draftsPage.clickSendButton();
-        assertFalse(draftsPage.isDraftPresentOnPage(subjectWithTimestamp));
+        assertFalse(draftsPage.isDraftPresentOnPage(email.getSubject()));
 
         SentMailPage sentMailPage = mailPage.clickSentMailLink();
-        sentMailPage.openSentMailWithSubject(subjectWithTimestamp);
+        sentMailPage.openSentMailWithSubject(email.getSubject());
 
-        String sentMailContent = sentMailPage.getSentMailContent(subjectWithTimestamp);
-        assertEquals(sentMailContent, subjectWithTimestamp + TO + BODY);
+        String sentMailContent = sentMailPage.getSentMailContent(email.getSubject());
+        assertEquals(sentMailContent, email.getSubject() + email.getReceiver() + email.getBody());
     }
 
     @Test(description = "log out from Gmail account", dependsOnMethods = "sendDraftEmail")
     public void logOut() {
+        MailPage mailPage = new MailPage();
         LogoutPage logoutPage = mailPage.clickAccountIcon().clickSignOutButton();
-        assertTrue(logoutPage.isPasswordFieldDislayed());
+        assertTrue(logoutPage.isPasswordFieldDisplayed());
     }
 }

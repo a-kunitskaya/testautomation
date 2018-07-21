@@ -1,6 +1,5 @@
 package com.kunitskaya.pf;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -11,15 +10,11 @@ public class MailPage extends AbstractPage {
     @FindBy(css = ".gb_b.gb_db.gb_R")
     WebElement accountIcon;
 
-    @FindBy(xpath = "//div[@data-tooltip='Settings']")//(id = ":28")
+    @FindBy(id = ":28")
             WebElement settingsButton;
 
     @FindBy(xpath = "//div[@role='menuitem' and .='Help']")
     WebElement helpSettingsOption;
-
-    protected MailPage(WebDriver webDriver) {
-        super(webDriver);
-    }
 
     public boolean isAccountIconVisible() {
         return accountIcon.isDisplayed();
@@ -34,6 +29,6 @@ public class MailPage extends AbstractPage {
     public HelpPopup clickHelpSettingsOption() {
         waitForElementToBeClickable(webDriver, settingsButton);
         helpSettingsOption.click();
-        return new HelpPopup(webDriver);
+        return new HelpPopup();
     }
 }

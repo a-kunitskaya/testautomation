@@ -1,21 +1,22 @@
 package com.kunitskaya.pf;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
-import static com.kunitskaya.base.waits.ExplicitWait.waitForElementPresence;
+import java.util.List;
+
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class FeedbackPopup extends AbstractPage {
-
-    //переименовать на ...page все
+    public static final String FEEDBACK_POPUP_HEADER = "Send feedback";
+    public static final String FEEDBACK_POPUP_INPUT_PLACEHOLDER = "Describe your issue or share your ideas";
 
     @FindBy(id = "google-feedback-wizard")
     WebElement feedbackPopupFrame;
 
-    @FindBy(xpath = "//header//h1")//(xpath = "//h1")
+    @FindBy(xpath = "//header//h1")
             WebElement title;
 
     @FindBy(xpath = "//textarea")
@@ -24,7 +25,7 @@ public class FeedbackPopup extends AbstractPage {
     @FindBy(xpath = "//textarea/preceding-sibling::div/div")
     WebElement inputFieldPlaceholder;
 
-    @FindBy(xpath = "//label[@key='include-screenshot']//input[@type='checkbox']") //(xpath = "//*[@xmlns='https://www.w3.org/2000/svg']")
+    @FindBy(xpath = "//label[@key='include-screenshot']//input[@type='checkbox']")
             WebElement includeScreenshotCheckbox;
 
     @FindBy(xpath = "//uf-material-button[@key='cancel']")
@@ -36,31 +37,22 @@ public class FeedbackPopup extends AbstractPage {
     @FindBy(xpath = "//div[@key='dialog']")
     WebElement sendFeedbackPopup;
 
-    protected FeedbackPopup(WebDriver webDriver) {
-        super(webDriver);
-    }
+    @FindAll(@FindBy(xpath = "//div[@key='dialog']"))
+    List<WebElement> sendFeedbackPopups;
+
 
     public String getHeader() {
         return title.getText();
     }
 
     public String getInputFieldPlaceholder() {
-        waitForElementVisibility(inputFieldPlaceholder);
+        waitForElementVisibility(webDriver, inputFieldPlaceholder);
         return inputFieldPlaceholder.getText();
     }
 
     public boolean isIncludeScreenshotCheckboxChecked() {
-        waitForElementVisibility(includeScreenshotCheckbox);
-//        if (includeScreenshotCheckbox.getAttribute("fill").equals("#4285F4")) {
-//            return true;
-//        } else if (includeScreenshotCheckbox.getAttribute("fill").equals("#757575")) {
-//            return false;
-//        } else {
-//            System.out.println("Unable to get includeScreenshotCheckbox value");
-//            return false;
-//        }
-        includeScreenshotCheckbox.isSelected();
-
+        waitForElementVisibility(webDriver, includeScreenshotCheckbox);
+        return includeScreenshotCheckbox.isSelected();
     }
 
     public boolean isCancelButtonDisplayed() {
@@ -71,9 +63,13 @@ public class FeedbackPopup extends AbstractPage {
         return sendButton.isDisplayed();
     }
 
-
+    //can't simplify to sendFeedbackPopup.isDisplayed(), since it tries to find element and throws exception if it can't
     public boolean isSendFeedbackPopupDisplayed() {
-        return sendFeedbackPopup.isDisplayed();
+        if (sendFeedbackPopups.size() < 1) {
+            return false;
+        } else {
+            return sendFeedbackPopup.isDisplayed();
+        }
     }
 
     public boolean isInputFieldDIsplayed() {
@@ -81,9 +77,9 @@ public class FeedbackPopup extends AbstractPage {
     }
 
     public MailPage clickCancelButton() {
-        waitForElementToBeClickable(cancelButton);
+        waitForElementToBeClickable(webDriver, cancelButton);
         cancelButton.click();
-        return new MailPage(webDriver);
+        return new MailPage();
     }
 
     public FeedbackPopup switchToFeedbackFrame() {

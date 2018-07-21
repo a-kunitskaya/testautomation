@@ -1,12 +1,13 @@
 package com.kunitskaya.pf;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.kunitskaya.base.constants.AccountConstants.LOGIN_PAGE_URL;
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class LoginPage extends AbstractPage {
+    public static final String LOGIN_PAGE_URL = "https://www.gmail.com";
 
     private static final String ENTERED_EMAIL_ATTRIBUTE = "data-email";
 
@@ -25,10 +26,6 @@ public class LoginPage extends AbstractPage {
     @FindBy(id = "passwordNext")
     WebElement passwordNextButton;
 
-    protected LoginPage(WebDriver webDriver) {
-        super(webDriver);
-    }
-
     public LoginPage fillInUsername(String username) {
         usernameField.sendKeys(username);
         return this;
@@ -44,15 +41,15 @@ public class LoginPage extends AbstractPage {
     }
 
     public LoginPage fillInPassword(String password) {
-        waitForElementVisibility(passwordField);
+        waitForElementVisibility(webDriver, passwordField);
         passwordField.sendKeys(password);
         return this;
     }
 
     public MailPage clickPasswordNextButton() {
-        waitForElementToBeClickable(passwordNextButton);
+        waitForElementToBeClickable(webDriver, passwordNextButton);
         passwordNextButton.click();
-        return new MailPage(webDriver);
+        return new MailPage();
     }
 
     public LoginPage open() {

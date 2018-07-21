@@ -4,7 +4,8 @@
 
     <test name="AllTests">
         <packages>
-            <package name="com.kunitskaya.tests"/>
+            <package name="com.kunitskaya.pf"/>
+            <package name="com.kunitskaya.po"/>
         </packages>
     </test>
 </suite>

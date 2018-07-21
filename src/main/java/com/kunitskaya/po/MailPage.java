@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
+import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
+
 public class MailPage extends AbstractPage {
 
     private static final By COMPOSE_BUTTON = By.xpath("//div[@gh='cm']");
@@ -14,41 +17,37 @@ public class MailPage extends AbstractPage {
     private static final By SENT_MAIL_FOLDER_LINK = By.linkText("Sent Mail");
     private static final By SIGN_OUT_BUTTON = By.linkText("Sign out");
 
-    public MailPage(WebDriver driver) {
-        super(driver);
-    }
-
     public boolean isAccountIconVisible() {
         return webDriver.findElement(ACCOUNT_ICON).isDisplayed();
     }
 
     public MailPage clickAccountIcon() {
         webDriver.findElement(ACCOUNT_ICON).click();
-        waitForElementToBeClickable(SIGN_OUT_BUTTON);
+        waitForElementToBeClickable(webDriver, SIGN_OUT_BUTTON);
         return this;
     }
 
     public LogoutPage clickSignOutButton() {
         webDriver.findElement(SIGN_OUT_BUTTON).click();
-        waitForPageLoadComplete();
-        return new LogoutPage(webDriver);
+        waitForPageLoadComplete(webDriver);
+        return new LogoutPage();
     }
 
     public ComposeEmailPopup clickComposeButton() {
         webDriver.findElement(COMPOSE_BUTTON).click();
-        return new ComposeEmailPopup(webDriver);
+        return new ComposeEmailPopup();
     }
 
     public DraftsPage clickDraftsFolderLink() {
         webDriver.findElement(DRAFTS_FOLDER_LINK).click();
-        waitForPageLoadComplete();
-        return new DraftsPage(webDriver);
+        waitForPageLoadComplete(webDriver);
+        return new DraftsPage();
     }
 
     public SentMailPage clickSentMailLink() {
         webDriver.findElement(SENT_MAIL_FOLDER_LINK).click();
-        waitForPageLoadComplete();
-        return new SentMailPage(webDriver);
+        waitForPageLoadComplete(webDriver);
+        return new SentMailPage();
     }
 
     public static WebElement findEmailBySubject(WebDriver webDriver, String subject) {

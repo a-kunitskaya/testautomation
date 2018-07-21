@@ -1,20 +1,18 @@
 package com.kunitskaya.pf;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class GmailHelpPage extends AbstractPage {
+    public static final String HELP_PAGE_HEADER = "Welcome to the Gmail Help Center";
+    public static final String HELP_PAGE_TITLE = "Gmail Help";
+    public static final String HELP_PAGE_SEARCH_PLACEHOLDER = "Describe your issue";
 
-    @FindBy(css = "nav.accordion-homepage h1")//(xpath = "//h1")
+    @FindBy(css = "nav.accordion-homepage h1")
     WebElement helpPageHeader;
 
-    @FindBy(xpath = "//*[@class = 'gb_5e' and @name='q']") //(xpath = "//*[@class = 'gb_5e' and @name='q']")
+    @FindBy(xpath = "//*[@class = 'gb_5e' and @name='q']")
     WebElement searchField;
-
-    protected GmailHelpPage(WebDriver webDriver) {
-        super(webDriver);
-    }
 
     public String getHelpPageHeader() {
         return helpPageHeader.getText();

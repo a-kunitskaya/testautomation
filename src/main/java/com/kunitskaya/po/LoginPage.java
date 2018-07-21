@@ -1,8 +1,10 @@
 package com.kunitskaya.po;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementPresence;
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
 
 public class LoginPage extends AbstractPage {
 
@@ -15,9 +17,6 @@ public class LoginPage extends AbstractPage {
     private static final By PASSWORD_NEXT_BUTTON = By.id("passwordNext");
     private static final String ENTERED_EMAIL_ATTRIBUTE = "data-email";
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
 
     public LoginPage fillInUsername(String username) {
         webDriver.findElement(USERNAME_FIELD).sendKeys(username);
@@ -35,20 +34,19 @@ public class LoginPage extends AbstractPage {
     }
 
     public LoginPage fillInPassword(String password) {
-        waitForElementPresence(PASSWORD_FIELD);
+        waitForElementPresence(webDriver, PASSWORD_FIELD);
         webDriver.findElement(PASSWORD_FIELD).sendKeys(password);
         return this;
     }
 
     public MailPage clickPasswordNextButton() {
-        waitForElementToBeClickable(PASSWORD_NEXT_BUTTON);
+        waitForElementToBeClickable(webDriver, PASSWORD_NEXT_BUTTON);
         webDriver.findElement(PASSWORD_NEXT_BUTTON).click();
-        return new MailPage(webDriver);
+        return new MailPage();
     }
 
     public LoginPage open() {
         webDriver.get(LOGIN_PAGE_URL);
-        waitForPageLoadComplete();
         return this;
     }
 }

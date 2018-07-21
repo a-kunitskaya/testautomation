@@ -3,6 +3,7 @@ package com.kunitskaya.test;
 import com.kunitskaya.test.entities.Email;
 import com.kunitskaya.test.entities.User;
 
+import static com.kunitskaya.base.utils.DateTimeUtil.SUBJECT_TIMESTAMP_PATTERN;
 import static com.kunitskaya.base.utils.DateTimeUtil.getFormattedTimestamp;
 
 public class TestDataProvider {
@@ -22,7 +23,7 @@ public class TestDataProvider {
 
     public static Email getEmail() {
         Email email = new Email();
-        email.setSubject(SUBJECT.concat(getFormattedTimestamp()));
+        email.setSubject(SUBJECT.concat(getFormattedTimestamp(SUBJECT_TIMESTAMP_PATTERN)));
         email.setReceiver(RECEIVER);
         email.setBody(BODY);
         return email;

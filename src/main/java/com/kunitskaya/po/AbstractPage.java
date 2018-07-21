@@ -1,12 +1,9 @@
 package com.kunitskaya.po;
 
 import com.kunitskaya.base.Browser;
-import org.openqa.selenium.WebDriver;
 
 public class AbstractPage extends Browser {
-    protected WebDriver webDriver;
-
-    public AbstractPage(WebDriver webDriver) {
-        super(webDriver);
-    }
+    // I guess I don't need this page since it's empty,
+    // but I'm leaving it because in real life it's impossible
+    //to have pages that have nothing in common
 }

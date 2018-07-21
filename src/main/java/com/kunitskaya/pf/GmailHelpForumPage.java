@@ -1,10 +1,14 @@
 package com.kunitskaya.pf;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
+
 public class GmailHelpForumPage extends AbstractPage {
+    public static final String FORUM_PAGE_TITLE = "Gmail Help Forum";
+    public static final String FORUM_WELCOME_TEXT = "Welcome to the official Gmail Help Forum!";
+    public static final String FORUM_SEARCH_PLACEHOLDER = "Search for messages";
 
     @FindBy(xpath = "//span[contains(text(),'Welcome')]")
     WebElement welcomeText;
@@ -15,17 +19,13 @@ public class GmailHelpForumPage extends AbstractPage {
     @FindBy(id = "gbqfq")
     WebElement searchField;
 
-    protected GmailHelpForumPage(WebDriver webDriver) {
-        super(webDriver);
-    }
-
     public String getSearchFieldPlaceholder() {
-        waitForElementVisibility(searchField);
+        waitForElementVisibility(webDriver, searchField);
         return searchField.getAttribute("placeholder");
     }
 
     public String getWelcomeText() {
-        waitForElementVisibility(welcomeText);
+        waitForElementVisibility(webDriver, welcomeText);
         return welcomeText.getText();
     }
 

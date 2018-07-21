@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver;
 public class Browser {
     protected WebDriver webDriver;
 
-
+    public Browser() {
+        this.webDriver = WebDriverProvider.getInstance();
+    }
 
     public void switchToLastOpenedWindow() {
         for (String winHandle : webDriver.getWindowHandles()) {
@@ -20,7 +22,7 @@ public class Browser {
         webDriver.switchTo().window(windowHandle);
     }
 
-    public void close(){
+    public void closeCurrentWindow(){
      webDriver.close();
     }
 }
