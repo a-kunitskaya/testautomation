@@ -9,7 +9,7 @@ import java.util.List;
 import static com.kunitskaya.base.utils.finders.MailFinderBySubject.findEmailBySubject;
 import static com.kunitskaya.base.utils.finders.MailFinderBySubject.findEmailsBySubject;
 
-public class DraftsPage extends BaseLoggedInPage {
+public class DraftsPage extends MailPage {
     private static final By TO = By.xpath("//span[@class='vN bfK a3q']");
     private static final By SEND_BUTTON = By.xpath("//div[text()='Send']");
     private static final By MESSAGE_SENT_LINK = By.cssSelector(".ag.a8k");

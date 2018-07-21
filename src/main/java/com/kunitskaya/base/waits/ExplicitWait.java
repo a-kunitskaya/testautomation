@@ -3,6 +3,7 @@ package com.kunitskaya.base.waits;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,17 +11,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Waits for the specified condition
  */
-public class ExplicitWait {
-
+public class ExplicitWait extends AbtractWait {
     /**
      * Waits for an element to appear on the page
      *
      * @param webDriver - web driver
-     * @param timeout   - max amount of time to wait in seconds
      * @param locator   - element locator
      */
-    public static void waitForElementPresence(WebDriver webDriver, int timeout, By locator) {
-        WebDriverWait wait = new WebDriverWait(webDriver, timeout);
+    public static void waitForElementPresence(WebDriver webDriver, By locator) {
+        WebDriverWait wait = new WebDriverWait(webDriver, DEFAULT_TIMEOUT);
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
@@ -28,22 +27,42 @@ public class ExplicitWait {
      * Waits for element visibility
      *
      * @param webDriver - web driver
-     * @param timeout   -  max amount of time to wait in seconds
      * @param locator   - element locator
      */
-    public static void waitForElementVisibility(WebDriver webDriver, int timeout, By locator) {
-        WebDriverWait wait = new WebDriverWait(webDriver, timeout);
+    public static void waitForElementVisibility(WebDriver webDriver, By locator) {
+        WebDriverWait wait = new WebDriverWait(webDriver, DEFAULT_TIMEOUT);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     /**
+     * Waits for element visibility
+     *
+     * @param webDriver  web driver
+     * @param webElement - web element instance
+     */
+    protected void waitForElementVisibility(WebDriver webDriver, WebElement webElement) {
+        new WebDriverWait(webDriver, DEFAULT_TIMEOUT).until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    /**
+     * Waits for element to be clickable
+     *
      * @param webDriver - web driver
-     * @param timeout   - max amount of time to wait in seconds
      * @param locator   - element locator
      */
-    public static void waitForElementToBeClickable(WebDriver webDriver, int timeout, By locator) {
-        WebDriverWait wait = new WebDriverWait(webDriver, timeout);
+    public static void waitForElementToBeClickable(WebDriver webDriver, By locator) {
+        WebDriverWait wait = new WebDriverWait(webDriver, DEFAULT_TIMEOUT);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    /**
+     * Waits for element to be clickable
+     *
+     * @param webDriver  web driver
+     * @param webElement - web element instance
+     */
+    protected void waitForElementToBeClickable(WebDriver webDriver, WebElement webElement) {
+        new WebDriverWait(webDriver, DEFAULT_TIMEOUT).until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     /**
@@ -57,4 +76,6 @@ public class ExplicitWait {
                 .valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState"))
                 .equals("complete"));
     }
+
+
 }

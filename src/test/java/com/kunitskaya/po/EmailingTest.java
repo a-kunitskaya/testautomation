@@ -4,13 +4,12 @@ import com.kunitskaya.BaseTest;
 import org.testng.annotations.Test;
 
 import static com.kunitskaya.base.constants.AccountConstants.*;
-import static com.kunitskaya.base.utils.DateTimeUtil.getSubjectTimestamp;
 import static org.testng.Assert.*;
 
 public class EmailingTest extends BaseTest {
-    private String subjectWithTimestamp = SUBJECT.concat(getSubjectTimestamp());
+   // private String subjectWithTimestamp = SUBJECT.concat(getFormattedTimestamp());
 
-    BaseLoggedInPage baseLoggedInPage = new BaseLoggedInPage(webDriver);
+    MailPage mailPage = new MailPage(webDriver);
 
     @Test(description = "Log in to Gmail")
     public void logIn() {
@@ -27,20 +26,20 @@ public class EmailingTest extends BaseTest {
 
         loginPage.fillInPassword(PASSWORD)
                 .clickPasswordNextButton();
-        assertTrue(baseLoggedInPage.isLoggedInAccountIconVisible());
+        assertTrue(mailPage.isLoggedInAccountIconVisible());
     }
 
     @Test(description = "create an email, save it as a draft and send", dependsOnMethods = "logIn")
     public void sendDraftEmail() {
 
-        ComposeEmailPage composeEmailPage = baseLoggedInPage.clickComposeButton();
+        ComposeEmailPage composeEmailPage = mailPage.clickComposeButton();
 
         composeEmailPage.fillInToField(TO)
                 .fillInSubjectField(subjectWithTimestamp)
                 .fillInBodyField(BODY)
                 .clickCloseButton();
 
-        DraftsPage draftsPage = baseLoggedInPage.clickDraftsFolderLink();
+        DraftsPage draftsPage = mailPage.clickDraftsFolderLink();
         draftsPage.openDraftWithSubject(subjectWithTimestamp);
 
         String draftContent = draftsPage.getDraftContent(subjectWithTimestamp);
@@ -49,7 +48,7 @@ public class EmailingTest extends BaseTest {
         draftsPage.clickSendButton();
         assertFalse(draftsPage.isDraftPresentOnPage(subjectWithTimestamp));
 
-        SentMailPage sentMailPage = baseLoggedInPage.clickSentMailLink();
+        SentMailPage sentMailPage = mailPage.clickSentMailLink();
         sentMailPage.openSentMailWithSubject(subjectWithTimestamp);
 
         String sentMailContent = sentMailPage.getSentMailContent(subjectWithTimestamp);
@@ -58,7 +57,7 @@ public class EmailingTest extends BaseTest {
 
     @Test(description = "log out from Gmail account", dependsOnMethods = "sendDraftEmail")
     public void logOut() {
-        LogoutPage logoutPage = baseLoggedInPage.clickLoggedInAccountIcon().clickSignOutButton();
+        LogoutPage logoutPage = mailPage.clickLoggedInAccountIcon().clickSignOutButton();
         assertTrue(logoutPage.isPasswordFieldDislayed());
     }
 }

@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static com.kunitskaya.base.constants.AccountConstants.LOGIN_PAGE;
-
 public class LoginPage extends AbstractPage {
+
+    public static final String LOGIN_PAGE_URL = "https://www.gmail.com";
 
     private static final By USERNAME_FIELD = By.id("identifierId");
     private static final By USERNAME_NEXT_BUTTON = By.id("identifierNext");
@@ -41,15 +41,15 @@ public class LoginPage extends AbstractPage {
         return this;
     }
 
-    public BaseLoggedInPage clickPasswordNextButton() {
+    public MailPage clickPasswordNextButton() {
         waitForElementToBeClickable(PASSWORD_NEXT_BUTTON);
         webDriver.findElement(PASSWORD_NEXT_BUTTON).click();
         waitForPageLoadComplete();
-        return new BaseLoggedInPage(webDriver);
+        return new MailPage(webDriver);
     }
 
     public LoginPage open() {
-        webDriver.get(LOGIN_PAGE);
+        webDriver.get(LOGIN_PAGE_URL);
         waitForPageLoadComplete();
         return this;
     }

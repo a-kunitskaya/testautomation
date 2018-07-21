@@ -13,7 +13,10 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class HelpPopupTest extends BaseTest {
-    private static final String SEARCH_INPUT = "Change";
+
+    //перенести констрантами в PO
+    private static final String SEARCH_INPUT = "Change"; //сделать локальной переменной тестового метода
+
     private static final String HELP_PAGE_HEADER = "Welcome to the Gmail Help Center";
     private static final String HELP_PAGE_TITLE = "Gmail Help";
     private static final String HELP_PAGE_SEARCH_PLACEHOLDER = "Describe your issue";
@@ -23,8 +26,9 @@ public class HelpPopupTest extends BaseTest {
     private static final String FEEDBACK_POPUP_HEADER = "Send feedback";
     private static final String FEEDBACK_POPUP_INPUT_PLACEHOLDER = "Describe your issue or share your ideas";
 
-    LoginPageFactory loginPage = new LoginPageFactory(webDriver);
-    BaseLoggedInPageFactory baseLoggedInPage = new BaseLoggedInPageFactory(webDriver);
+    //не выносить глобально страницы
+    LoginPage loginPage = new LoginPage(webDriver);
+    MailPage baseLoggedInPage = new MailPage(webDriver);
 
     @Test(description = "Log in to Gmail")
     public void logIn() {
@@ -38,7 +42,7 @@ public class HelpPopupTest extends BaseTest {
 
     @Test(description = "CDP-0003 Gmail: Help pop-up", dependsOnMethods = "logIn")
     public void validateHelpPopup() {
-        HelpPopupFactory helpPopup = baseLoggedInPage.clickSettingsButton().clickHelpSettingsOption();
+        HelpPopup helpPopup = baseLoggedInPage.clickSettingsButton().clickHelpSettingsOption();
         assertTrue(helpPopup.isHelpPopupDisplayed());
 
         helpPopup.enterTextToHelpSearchField(SEARCH_INPUT);
@@ -51,13 +55,13 @@ public class HelpPopupTest extends BaseTest {
 
         helpPopup.clearSearchField();
 
-        GmailHelpPageFactory gmailHelpPage = helpPopup.clickBrowseAllArticlesLink();
+        GmailHelpPage gmailHelpPage = helpPopup.clickBrowseAllArticlesLink();
 
         String basePage = gmailHelpPage.getCurrentWindowHandle();
         gmailHelpPage.switchToLastOpenedWindow();
 
         assertEquals(gmailHelpPage.getHeplPageHeader(), HELP_PAGE_HEADER);
-        assertEquals(gmailHelpPage.getCurrentPageTitle(), HELP_PAGE_TITLE);
+        assertEquals(gmailHelpPage.getTitle(), HELP_PAGE_TITLE);
         assertEquals(gmailHelpPage.getSearchFieldPlaceholder(), HELP_PAGE_SEARCH_PLACEHOLDER);
 
         webDriver.close();
@@ -65,19 +69,19 @@ public class HelpPopupTest extends BaseTest {
 
         helpPopup.switchToHelpPopup();
 
-        GmailHelpForumFactory forumPage = helpPopup.clickVisitHelpForumLink();
+        GmailHelpForum forumPage = helpPopup.clickVisitHelpForumLink();
         forumPage.switchToLastOpenedWindow();
 
         assertTrue(forumPage.isNewTopickButtonVIsible());
         assertEquals(forumPage.getSearchFieldPlaceholder(), FORUM_SEARCH_PLACEHOLDER);
         assertEquals(forumPage.getWelcomeText(), FORUM_WELCOME_TEXT);
-        assertTrue(StringUtils.containsIgnoreCase(forumPage.getCurrentPageTitle(), FORUM_PAGE_TITLE));
+        assertTrue(StringUtils.containsIgnoreCase(forumPage.getTitle(), FORUM_PAGE_TITLE));
 
         webDriver.close();
         forumPage.switchToWindowHandle(basePage);
         helpPopup.switchToHelpPopup();
 
-        FeedbackPopupFactory feedbackPopup = helpPopup.clickSendFeedBackLink();
+        FeedbackPopup feedbackPopup = helpPopup.clickSendFeedBackLink();
 
         feedbackPopup.switchToFeedbackFrame();
 

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import static com.kunitskaya.base.utils.finders.MailFinderBySubject.findEmailBySubject;
 
-public class SentMailPage extends BaseLoggedInPage {
+public class SentMailPage extends MailPage {
     private static final By TO = By.xpath("//span[@dir='ltr' and @class='g2']");
     private static final By BODY = By.xpath("//div/div[@dir='ltr']");
     private static final By SUBJECT = By.cssSelector("h2.hP");

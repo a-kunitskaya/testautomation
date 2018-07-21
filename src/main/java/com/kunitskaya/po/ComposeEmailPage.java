@@ -3,7 +3,7 @@ package com.kunitskaya.po;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ComposeEmailPage extends BaseLoggedInPage {
+public class ComposeEmailPage extends MailPage {
     private static final By TO_FIELD = By.xpath("//textarea[@name='to']");
     private static final By SUBJECT_FIELD = By.xpath("//input[@name='subjectbox']");
     private static final By BODY_FIELD = By.xpath("//div[@aria-label='Message Body']");
@@ -29,9 +29,9 @@ public class ComposeEmailPage extends BaseLoggedInPage {
         return this;
     }
 
-    public BaseLoggedInPage clickCloseButton() {
+    public MailPage clickCloseButton() {
         webDriver.findElement(CLOSE_BUTTON).click();
         waitForAjaxExecution();
-        return new BaseLoggedInPage(webDriver);
+        return new MailPage(webDriver);
     }
 }

@@ -18,14 +18,14 @@ public class WebDriverProvider {
         if (webDriver == null) {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (SystemUtils.IS_OS_MAC) {
-                System.setProperty("webdriver.chrome.webDriver", "src/test/resources/chromedriver");
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
                 chromeOptions.addArguments("--kiosk");
             } else {
-                System.setProperty("webdriver.chrome.webDriver", "src/test/resources/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
                 chromeOptions.addArguments("--start-maximized");
             }
             webDriver = new ChromeDriver(chromeOptions);
-            waitImplicitly(webDriver, 30);
+            waitImplicitly(webDriver);
         }
         return webDriver;
     }
