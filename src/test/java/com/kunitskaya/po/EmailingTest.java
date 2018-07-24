@@ -14,12 +14,11 @@ public class EmailingTest extends BaseTest {
         MailPage mailPage = new MailPage();
         LoginPage loginPage = new LoginPage();
 
-        loginPage.open();
+        String usernameForPassword = loginPage.open()
+                                              .fillInUsername(user.getUsername())
+                                              .clickUsernameNextButton()
+                                              .getUsernameValue();
 
-        loginPage.fillInUsername(user.getUsername())
-                 .clickUsernameNextButton();
-
-        String usernameForPassword = loginPage.getUsernameValue();
         assertEquals(usernameForPassword, user.getUsername());
 
         loginPage.fillInPassword(user.getPassword())
@@ -34,22 +33,23 @@ public class EmailingTest extends BaseTest {
         MailPage mailPage = new MailPage();
         ComposeEmailPopup composeEmailPopup = mailPage.clickComposeButton();
 
-        composeEmailPopup.fillInToField(email.getReceiver())
-                         .fillInSubjectField(email.getSubject())
-                         .fillInBodyField(email.getBody())
-                         .clickCloseButton();
+        DraftsPage draftsPage = mailPage.clickComposeButton()
+                                        .fillInToField(email.getReceiver())
+                                        .fillInSubjectField(email.getSubject())
+                                        .fillInBodyField(email.getBody())
+                                        .clickCloseButton()
+                                        .clickDraftsFolderLink();
 
-        DraftsPage draftsPage = mailPage.clickDraftsFolderLink();
-        draftsPage.openDraftWithSubject(email.getSubject());
+        draftsPage.openEmailWithSubject(email.getSubject());
 
         String draftContent = draftsPage.getDraftContent(email.getSubject());
         assertEquals(draftContent, email.getReceiver() + " - " + email.getBody());
 
         draftsPage.clickSendButton();
-        assertFalse(draftsPage.isDraftPresentOnPage(email.getSubject()));
+        assertFalse(draftsPage.isEmailPresentOnPage(email.getSubject()));
 
         SentMailPage sentMailPage = mailPage.clickSentMailLink();
-        sentMailPage.openSentMailWithSubject(email.getSubject());
+        sentMailPage.openEmailWithSubject(email.getSubject());
 
         String sentMailContent = sentMailPage.getSentMailContent(email.getSubject());
         assertEquals(sentMailContent, email.getSubject() + email.getReceiver() + email.getBody());
@@ -58,7 +58,7 @@ public class EmailingTest extends BaseTest {
     @Test(description = "log out from Gmail account", dependsOnMethods = "sendDraftEmail")
     public void logOut() {
         MailPage mailPage = new MailPage();
-        LogoutPage logoutPage = mailPage.clickAccountIcon().clickSignOutButton();
-        assertTrue(logoutPage.isPasswordFieldDisplayed());
+        LoginPage loginPage = mailPage.clickAccountIcon().clickSignOutButton();
+        assertTrue(loginPage.isPasswordFieldDisplayed());
     }
 }

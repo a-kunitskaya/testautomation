@@ -7,13 +7,15 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 
+import static com.kunitskaya.base.Browser.clearCookies;
+
 public class BaseTest {
     protected WebDriver webDriver = WebDriverProvider.getInstance();
     protected User user = TestDataProvider.getUser();
 
     @BeforeClass
     public void deleteCookies() {
-        webDriver.manage().deleteAllCookies();
+        clearCookies(webDriver);
     }
 
     @AfterSuite

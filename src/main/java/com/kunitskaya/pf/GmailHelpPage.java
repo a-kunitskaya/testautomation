@@ -9,13 +9,13 @@ public class GmailHelpPage extends AbstractPage {
     public static final String HELP_PAGE_SEARCH_PLACEHOLDER = "Describe your issue";
 
     @FindBy(css = "nav.accordion-homepage h1")
-    WebElement helpPageHeader;
+    WebElement header;
 
-    @FindBy(xpath = "//*[@class = 'gb_5e' and @name='q']")
+    @FindBy(xpath = "//input[@class = 'gb_5e' and @name='q']")
     WebElement searchField;
 
-    public String getHelpPageHeader() {
-        return helpPageHeader.getText();
+    public String getHeader() {
+        return header.getText();
     }
 
     public String getSearchFieldPlaceholder() {

@@ -36,7 +36,7 @@ public class HelpPopupTest extends BaseTest {
         assertTrue(helpPopup.isDisplayed());
 
         helpPopup.enterSearchCriteria(searchInput);
-        List<String> searchResults = helpPopup.getSuggestedSearchResults();
+        List<String> searchResults = helpPopup.getSearchResults();
 
         for (String searchResult : searchResults) {
             System.out.println(searchResult);
@@ -49,7 +49,7 @@ public class HelpPopupTest extends BaseTest {
         String basePage = helpPage.getCurrentWindowHandle();
         helpPage.switchToLastOpenedWindow();
 
-        assertEquals(helpPage.getHelpPageHeader(), HELP_PAGE_HEADER);
+        assertEquals(helpPage.getHeader(), HELP_PAGE_HEADER);
         assertEquals(helpPage.getTitle(), HELP_PAGE_TITLE);
         assertEquals(helpPage.getSearchFieldPlaceholder(), HELP_PAGE_SEARCH_PLACEHOLDER);
 
@@ -72,12 +72,12 @@ public class HelpPopupTest extends BaseTest {
         forumPage.switchToWindowHandle(basePage);
         helpPopup.switchToHelpPopupFrame();
 
-        FeedbackPopup feedbackPopup = helpPopup.clickSendFeedBackLink();
+        FeedbackPopup feedbackPopup = helpPopup.clickSendFeedBackButton();
 
         feedbackPopup.switchToFeedbackFrame();
 
         assertTrue(feedbackPopup.isSendFeedbackPopupDisplayed());
-        assertTrue(feedbackPopup.isInputFieldDIsplayed());
+        assertTrue(feedbackPopup.isInputFieldDisplayed());
         assertTrue(feedbackPopup.isCancelButtonDisplayed() && feedbackPopup.isSendButtonDisplayed());
         assertEquals(feedbackPopup.getHeader(), FEEDBACK_POPUP_HEADER);
         assertEquals(feedbackPopup.getInputFieldPlaceholder(), FEEDBACK_POPUP_INPUT_PLACEHOLDER);

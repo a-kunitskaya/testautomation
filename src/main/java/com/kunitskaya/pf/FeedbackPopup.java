@@ -17,7 +17,7 @@ public class FeedbackPopup extends AbstractPage {
     WebElement feedbackPopupFrame;
 
     @FindBy(xpath = "//header//h1")
-            WebElement title;
+    WebElement title;
 
     @FindBy(xpath = "//textarea")
     WebElement inputField;
@@ -26,7 +26,7 @@ public class FeedbackPopup extends AbstractPage {
     WebElement inputFieldPlaceholder;
 
     @FindBy(xpath = "//label[@key='include-screenshot']//input[@type='checkbox']")
-            WebElement includeScreenshotCheckbox;
+    WebElement includeScreenshotCheckbox;
 
     @FindBy(xpath = "//uf-material-button[@key='cancel']")
     WebElement cancelButton;
@@ -64,14 +64,15 @@ public class FeedbackPopup extends AbstractPage {
 
     //can't simplify to sendFeedbackPopup.isDisplayed(), since it tries to find element and throws exception if it can't
     public boolean isSendFeedbackPopupDisplayed() {
-        if (sendFeedbackPopups.size() < 1) {
-            return false;
-        } else {
-            return sendFeedbackPopup.isDisplayed();
-        }
+//        if (sendFeedbackPopups.size() < 1) {
+//            return false;
+//        } else {
+//            return sendFeedbackPopup.isDisplayed();
+//        }
+        return !sendFeedbackPopups.isEmpty() && sendFeedbackPopup.isDisplayed();
     }
 
-    public boolean isInputFieldDIsplayed() {
+    public boolean isInputFieldDisplayed() {
         return inputField.isDisplayed();
     }
 

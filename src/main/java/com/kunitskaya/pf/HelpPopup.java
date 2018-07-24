@@ -19,12 +19,12 @@ public class HelpPopup extends AbstractPage {
     WebElement helpSearchField;
 
     @FindAll(@FindBy(css = ".ghp-iconTextComponent-label.ng-binding"))
-    List<WebElement> suggestedSearchResults;
+    List<WebElement> searchResults;
 
     @FindBy(id = "google-feedback-wizard")
     WebElement helpPopupFrame;
 
-    @FindBy(xpath = "//a[contains(@href, 'support') and @ng-click='ctrl.reportOpenedHelpcenter()']")
+    @FindBy(xpath = "//li[contains(., 'Browse All Articles')]/a")//(xpath = "//a[contains(@href, 'support') and @ng-click='ctrl.reportOpenedHelpcenter()']")
     WebElement browseAllArticlesLink;
 
     @FindBy(xpath = "//a[contains(@href, 'productforums')]")
@@ -51,18 +51,17 @@ public class HelpPopup extends AbstractPage {
 
     public HelpPopup enterSearchCriteria(String input) {
         waitForElementVisibility(webDriver, helpSearchField);
-        helpSearchField.click();
+        //helpSearchField.click();
         helpSearchField.sendKeys(input);
-        //new Actions(webDriver).sendKeys(helpSearchField, Keys.ENTER);
         helpSearchField.submit();
         return this;
     }
 
-    public List<String> getSuggestedSearchResults() {
+    public List<String> getSearchResults() {
         List<String> results = new ArrayList<>();
-        for (WebElement suggestedResult : suggestedSearchResults) {
-            waitForElementVisibility(webDriver, suggestedResult);
-            results.add(suggestedResult.getText());
+        for (WebElement result : searchResults) {
+            waitForElementVisibility(webDriver, result);
+            results.add(result.getText());
         }
         return results;
     }
@@ -86,7 +85,7 @@ public class HelpPopup extends AbstractPage {
         return new GmailHelpForumPage();
     }
 
-    public FeedbackPopup clickSendFeedBackLink() {
+    public FeedbackPopup clickSendFeedBackButton() {
         waitForElementToBeClickable(webDriver, sendFeedbackButton);
         sendFeedbackButton.click();
         return new FeedbackPopup();

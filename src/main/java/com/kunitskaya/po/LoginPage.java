@@ -49,4 +49,8 @@ public class LoginPage extends AbstractPage {
         webDriver.get(LOGIN_PAGE_URL);
         return this;
     }
+
+    public boolean isPasswordFieldDisplayed(){
+        return webDriver.findElement(PASSWORD_FIELD).isDisplayed();
+    }
 }
