@@ -1,6 +1,7 @@
 package com.kunitskaya.pf;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
@@ -11,10 +12,16 @@ public class MailPage extends AbstractPage {
     WebElement accountIcon;
 
     @FindBy(id = ":28")
-            WebElement settingsButton;
+    WebElement settingsButton;
 
     @FindBy(xpath = "//div[@role='menuitem' and .='Help']")
     WebElement helpSettingsOption;
+
+    @FindBy(xpath = "//div[@gh='cm']")
+    WebElement composeButton;
+
+    @FindBy(linkText = "Sent Mail")
+    WebElement sentMailFolder;
 
     public boolean isAccountIconVisible() {
         return accountIcon.isDisplayed();
@@ -30,5 +37,15 @@ public class MailPage extends AbstractPage {
         waitForElementToBeClickable(webDriver, settingsButton);
         helpSettingsOption.click();
         return new HelpPopup();
+    }
+
+    public ComposeEmailPopup clickComposeButton() {
+        new Actions(webDriver).click(composeButton).build().perform();
+        return new ComposeEmailPopup();
+    }
+
+    public SentMailPage clickSentMailLink() {
+        new Actions(webDriver).click(sentMailFolder).build().perform();
+        return new SentMailPage();
     }
 }

@@ -40,7 +40,6 @@ public class FeedbackPopup extends AbstractPage {
     @FindAll(@FindBy(xpath = "//div[@key='dialog']"))
     List<WebElement> sendFeedbackPopups;
 
-
     public String getHeader() {
         return title.getText();
     }

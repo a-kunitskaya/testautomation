@@ -53,6 +53,7 @@ public class HelpPopup extends AbstractPage {
         waitForElementVisibility(webDriver, helpSearchField);
         helpSearchField.click();
         helpSearchField.sendKeys(input);
+        //new Actions(webDriver).sendKeys(helpSearchField, Keys.ENTER);
         helpSearchField.submit();
         return this;
     }
@@ -67,8 +68,9 @@ public class HelpPopup extends AbstractPage {
     }
 
     public HelpPopup clearSearchField() {
-        helpSearchField.clear();
         helpSearchField.click();
+        helpSearchField.clear();
+        helpPopup.click();
         return this;
     }
 
@@ -81,7 +83,6 @@ public class HelpPopup extends AbstractPage {
     public GmailHelpForumPage clickVisitHelpForumLink() {
         waitForElementToBeClickable(webDriver, visitHelpForumLink);
         visitHelpForumLink.click();
-        //waitForPageLoadComplete();
         return new GmailHelpForumPage();
     }
 

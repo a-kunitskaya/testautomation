@@ -18,17 +18,17 @@ public class HelpPopupTest extends BaseTest {
     public void logIn() {
 
         LoginPage loginPage = new LoginPage();
-        MailPage baseLoggedInPage = new MailPage();
+        MailPage mailPage = new MailPage();
 
         loginPage.open().fillInUsername(user.getUsername()).clickUsernameNextButton();
         assertEquals(loginPage.getUsernameValue(), user.getUsername());
 
         loginPage.fillInPassword(user.getPassword()).clickPasswordNextButton();
-        assertTrue(baseLoggedInPage.isAccountIconVisible());
+        assertTrue(mailPage.isAccountIconVisible());
     }
 
     @Test(description = "CDP-0003 Gmail: Help pop-up", dependsOnMethods = "logIn")
-    public void validateHelpPopup() {
+    public void validateHelpPopup() throws InterruptedException {
         String searchInput = "Change";
         MailPage mailPage = new MailPage();
 
@@ -39,6 +39,7 @@ public class HelpPopupTest extends BaseTest {
         List<String> searchResults = helpPopup.getSuggestedSearchResults();
 
         for (String searchResult : searchResults) {
+            System.out.println(searchResult);
             assertTrue(StringUtils.containsIgnoreCase(searchResult, searchInput));
         }
 
