@@ -1,6 +1,8 @@
 package com.kunitskaya.pf;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
@@ -54,6 +56,7 @@ public class HelpPopup extends AbstractPage {
         //helpSearchField.click();
         helpSearchField.sendKeys(input);
         helpSearchField.submit();
+        waitForElementVisibility(webDriver, searchResults.get(0));
         return this;
     }
 
@@ -69,7 +72,7 @@ public class HelpPopup extends AbstractPage {
     public HelpPopup clearSearchField() {
         helpSearchField.click();
         helpSearchField.clear();
-        helpPopup.click();
+        new Actions(webDriver).sendKeys(Keys.ENTER).build().perform();
         return this;
     }
 

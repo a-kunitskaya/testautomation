@@ -26,7 +26,7 @@ public class EmailingTest extends BaseTest {
         assertTrue(mailPage.isAccountIconVisible());
     }
 
-    @Test(description = "create an email, save it as a draft and send", dependsOnMethods = "logIn")
+    @Test(description = "Create an email, save it as a draft and send", dependsOnMethods = "logIn")
     public void sendDraftEmail() {
         Email email = TestDataProvider.getEmail();
 
@@ -52,6 +52,7 @@ public class EmailingTest extends BaseTest {
         sentMailPage.openEmailWithSubject(email.getSubject());
 
         String sentMailContent = sentMailPage.getSentMailContent(email.getSubject());
+
         assertEquals(sentMailContent, email.getSubject() + email.getReceiver() + email.getBody());
     }
 
