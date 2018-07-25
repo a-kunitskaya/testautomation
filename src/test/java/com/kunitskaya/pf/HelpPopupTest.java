@@ -32,7 +32,8 @@ public class HelpPopupTest extends BaseTest {
         String searchInput = "Change";
         MailPage mailPage = new MailPage();
 
-        HelpPopup helpPopup = mailPage.clickSettingsButton().clickHelpSettingsOption();
+        HelpPopup helpPopup = mailPage.clickSettingsButton()
+                                      .clickHelpSettingsOption();
         assertTrue(helpPopup.isDisplayed());
 
         helpPopup.enterSearchCriteria(searchInput);
@@ -72,9 +73,8 @@ public class HelpPopupTest extends BaseTest {
         forumPage.switchToWindowHandle(basePage);
         helpPopup.switchToHelpPopupFrame();
 
-        FeedbackPopup feedbackPopup = helpPopup.clickSendFeedBackButton();
-
-        feedbackPopup.switchToFeedbackFrame();
+        FeedbackPopup feedbackPopup = helpPopup.clickSendFeedBackButton()
+                                               .switchToFeedbackFrame();
 
         assertTrue(feedbackPopup.isSendFeedbackPopupDisplayed());
         assertTrue(feedbackPopup.isInputFieldDisplayed());

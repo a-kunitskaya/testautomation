@@ -29,31 +29,34 @@ public class EmailingTest extends BaseTest {
     @Test(description = "Create an email, save it as a draft and send", dependsOnMethods = "logIn")
     public void sendDraftEmail() {
         Email email = TestDataProvider.getEmail();
+        String subject = email.getSubject();
+        String to = email.getReceiver();
+        String body = email.getBody();
 
         MailPage mailPage = new MailPage();
-        ComposeEmailPopup composeEmailPopup = mailPage.clickComposeButton();
+        mailPage.clickComposeButton();
 
         DraftsPage draftsPage = mailPage.clickComposeButton()
-                                        .fillInToField(email.getReceiver())
-                                        .fillInSubjectField(email.getSubject())
-                                        .fillInBodyField(email.getBody())
+                                        .fillInToField(to)
+                                        .fillInSubjectField(subject)
+                                        .fillInBodyField(body)
                                         .clickCloseButton()
                                         .clickDraftsFolderLink();
 
-        draftsPage.openEmailWithSubject(email.getSubject());
+        draftsPage.openEmailWithSubject(subject);
 
-        String draftContent = draftsPage.getDraftContent(email.getSubject());
-        assertEquals(draftContent, email.getReceiver() + " - " + email.getBody());
+        String draftContent = draftsPage.getDraftContent(subject);
+        assertEquals(draftContent, to + " - " + body);
 
         draftsPage.clickSendButton();
-        assertFalse(draftsPage.isEmailPresentOnPage(email.getSubject()));
+        assertFalse(draftsPage.isEmailPresentOnPage(subject));
 
-        SentMailPage sentMailPage = mailPage.clickSentMailLink();
-        sentMailPage.openEmailWithSubject(email.getSubject());
 
-        String sentMailContent = sentMailPage.getSentMailContent(email.getSubject());
+        String sentMailContent = mailPage.clickSentMailLink()
+                                         .openEmailWithSubject(subject)
+                                         .getSentMailContent(subject);
 
-        assertEquals(sentMailContent, email.getSubject() + email.getReceiver() + email.getBody());
+        assertEquals(sentMailContent, subject + to + body);
     }
 
     @Test(description = "log out from Gmail account", dependsOnMethods = "sendDraftEmail")

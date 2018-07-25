@@ -31,7 +31,7 @@ public class MailPage extends AbstractPage {
 
     public LoginPage clickSignOutButton() {
         webDriver.findElement(SIGN_OUT_BUTTON).click();
-     //   waitForPageLoadComplete(webDriver);
+        //   waitForPageLoadComplete(webDriver);
         return new LoginPage();
     }
 
@@ -42,13 +42,13 @@ public class MailPage extends AbstractPage {
 
     public DraftsPage clickDraftsFolderLink() {
         webDriver.findElement(DRAFTS_FOLDER_LINK).click();
-       // waitForPageLoadComplete(webDriver);
+        // waitForPageLoadComplete(webDriver);
         return new DraftsPage();
     }
 
     public SentMailPage clickSentMailLink() {
         webDriver.findElement(SENT_MAIL_FOLDER_LINK).click();
-       // waitForPageLoadComplete(webDriver);
+        // waitForPageLoadComplete(webDriver);
         return new SentMailPage();
     }
 
@@ -69,17 +69,14 @@ public class MailPage extends AbstractPage {
         }
     }
 
-
     public MailPage openEmailWithSubject(String subject) {
         findEmailBySubject(webDriver, subject).click();
-       // waitForPageLoadComplete(webDriver);
         return this;
     }
-
 
     public boolean isEmailPresentOnPage(String subject) {
         webDriver.navigate().refresh();
         waitForPageLoadComplete(webDriver);
-        return !findEmailsBySubject(webDriver,subject).isEmpty();
+        return !findEmailsBySubject(webDriver, subject).isEmpty();
     }
 }

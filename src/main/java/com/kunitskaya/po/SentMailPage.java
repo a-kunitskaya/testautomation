@@ -24,4 +24,10 @@ public class SentMailPage extends MailPage {
     public String getSubject() {
         return webDriver.findElement(SUBJECT).getText();
     }
+
+    @Override
+    public SentMailPage openEmailWithSubject(String subject) {
+        findEmailBySubject(webDriver, subject).click();
+        return this;
+    }
 }

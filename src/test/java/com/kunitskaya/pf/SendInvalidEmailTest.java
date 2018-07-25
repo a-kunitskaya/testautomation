@@ -29,19 +29,19 @@ public class SendInvalidEmailTest extends BaseTest {
         String noSubject = "(no subject)";
         String to = email.getReceiver();
 
-        ComposeEmailPopup composeEmailPopup = mailPage.clickComposeButton();
-
         //create email without subject, body and send it
-        composeEmailPopup.fillInToField(to)
-                         .sendEmailWithHotkeys();
+        ComposeEmailPopup composeEmailPopup = mailPage.clickComposeButton()
+                                                      .fillInToField(to)
+                                                      .sendEmailWithHotkeys();
 
         assertTrue(composeEmailPopup.isAlertDisplayed());
+
         composeEmailPopup.acceptAlert();
 
         //verify that email is in the sent folder
-        SentMailPage sentMailPage = mailPage.clickSentMailLink();
-        sentMailPage.openSentMailWithSubject(noSubject);
-        String sentMailContent = sentMailPage.getSentMailContent(noSubject);
+        String sentMailContent = mailPage.clickSentMailLink()
+                                         .openSentMailWithSubject(noSubject)
+                                         .getSentMailContent(noSubject);
 
         assertEquals(sentMailContent, noSubject + to);
     }

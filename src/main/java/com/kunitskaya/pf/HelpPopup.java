@@ -26,7 +26,7 @@ public class HelpPopup extends AbstractPage {
     @FindBy(id = "google-feedback-wizard")
     WebElement helpPopupFrame;
 
-    @FindBy(xpath = "//li[contains(., 'Browse All Articles')]/a")//(xpath = "//a[contains(@href, 'support') and @ng-click='ctrl.reportOpenedHelpcenter()']")
+    @FindBy(xpath = "//li[contains(., 'Browse All Articles')]/a")
     WebElement browseAllArticlesLink;
 
     @FindBy(xpath = "//a[contains(@href, 'productforums')]")
@@ -53,7 +53,6 @@ public class HelpPopup extends AbstractPage {
 
     public HelpPopup enterSearchCriteria(String input) {
         waitForElementVisibility(webDriver, helpSearchField);
-        //helpSearchField.click();
         helpSearchField.sendKeys(input);
         helpSearchField.submit();
         waitForElementVisibility(webDriver, searchResults.get(0));
@@ -73,6 +72,7 @@ public class HelpPopup extends AbstractPage {
         helpSearchField.click();
         helpSearchField.clear();
         new Actions(webDriver).sendKeys(Keys.ENTER).build().perform();
+        waitForElementVisibility(webDriver, browseAllArticlesLink);
         return this;
     }
 

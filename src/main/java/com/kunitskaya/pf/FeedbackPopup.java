@@ -62,13 +62,7 @@ public class FeedbackPopup extends AbstractPage {
         return sendButton.isDisplayed();
     }
 
-    //can't simplify to sendFeedbackPopup.isDisplayed(), since it tries to find element and throws exception if it can't
     public boolean isSendFeedbackPopupDisplayed() {
-//        if (sendFeedbackPopups.size() < 1) {
-//            return false;
-//        } else {
-//            return sendFeedbackPopup.isDisplayed();
-//        }
         return !sendFeedbackPopups.isEmpty() && sendFeedbackPopup.isDisplayed();
     }
 

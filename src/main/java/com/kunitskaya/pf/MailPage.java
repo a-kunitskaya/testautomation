@@ -11,7 +11,7 @@ public class MailPage extends AbstractPage {
     @FindBy(css = ".gb_b.gb_db.gb_R")
     WebElement accountIcon;
 
-    @FindBy(xpath = "//div[@data-tooltip='Settings' or @title='Settings']")//(id = ":28")
+    @FindBy(xpath = "//div[@data-tooltip='Settings' or @title='Settings']")
     WebElement settingsButton;
 
     @FindBy(xpath = "//div[@role='menuitem' and .='Help']")

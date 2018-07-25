@@ -4,7 +4,7 @@ import com.kunitskaya.base.WebDriverProvider;
 import com.kunitskaya.test.TestDataProvider;
 import com.kunitskaya.test.entities.User;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import static com.kunitskaya.base.Browser.clearCookies;
@@ -18,7 +18,7 @@ public class BaseTest {
         clearCookies(webDriver);
     }
 
-    @AfterSuite
+    @AfterClass
     public void tearDown() {
         webDriver.quit();
     }

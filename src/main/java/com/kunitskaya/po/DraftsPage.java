@@ -8,7 +8,7 @@ import static com.kunitskaya.base.waits.ExplicitWait.*;
 public class DraftsPage extends MailPage {
     private static final By TO = By.xpath("//span[@class='vN bfK a3q']");
     private static final By SEND_BUTTON = By.xpath("//div[text()='Send']");
-    private static final By MESSAGE_SENT_LINK = By.id("link_vsm"); //By.cssSelector(".ag.a8k");
+    private static final By MESSAGE_SENT_LINK = By.id("link_vsm");
     private static final String TO_VALUE_ATTRIBUTE = "email";
 
     public String getDraftContent(String subject) {
