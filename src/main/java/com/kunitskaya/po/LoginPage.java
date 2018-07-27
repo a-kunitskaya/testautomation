@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementPresence;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
+import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class LoginPage extends AbstractPage {
 
@@ -15,8 +16,6 @@ public class LoginPage extends AbstractPage {
     private static final By PASSWORD_FIELD = By.name("password");
     private static final By EMAIL_FIELD = By.id("profileIdentifier");
     private static final By PASSWORD_NEXT_BUTTON = By.id("passwordNext");
-    private static final String ENTERED_EMAIL_ATTRIBUTE = "data-email";
-
 
     public LoginPage fillInUsername(String username) {
         webDriver.findElement(USERNAME_FIELD).sendKeys(username);
@@ -24,13 +23,15 @@ public class LoginPage extends AbstractPage {
     }
 
     public LoginPage clickUsernameNextButton() {
+        waitForElementToBeClickable(webDriver, USERNAME_NEXT_BUTTON);
         webDriver.findElement(USERNAME_NEXT_BUTTON).click();
         return this;
     }
 
     public String getUsernameValue() {
+        waitForElementVisibility(webDriver, EMAIL_FIELD);
         WebElement profileIdentifier = webDriver.findElement(EMAIL_FIELD);
-        return profileIdentifier.getAttribute(ENTERED_EMAIL_ATTRIBUTE);
+        return profileIdentifier.getText();
     }
 
     public LoginPage fillInPassword(String password) {

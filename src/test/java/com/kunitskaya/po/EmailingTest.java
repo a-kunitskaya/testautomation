@@ -36,25 +36,26 @@ public class EmailingTest extends BaseTest {
         MailPage mailPage = new MailPage();
         mailPage.clickComposeButton();
 
-        DraftsPage draftsPage = mailPage.clickComposeButton()
-                                        .fillInToField(to)
-                                        .fillInSubjectField(subject)
-                                        .fillInBodyField(body)
-                                        .clickCloseButton()
-                                        .clickDraftsFolderLink();
+        ComposeEmailPopup draft = mailPage.clickComposeButton()
+                                             .fillInToField(to)
+                                             .fillInSubjectField(subject)
+                                             .fillInBodyField(body)
+                                             .clickCloseButton()
+                                             .clickDraftsFolderLink()
+                                             .openDraftWithSubject(subject);
 
-        draftsPage.openEmailWithSubject(subject);
 
-        String draftContent = draftsPage.getDraftContent(subject);
+        String draftContent = draft.getEmailContent(subject);
         assertEquals(draftContent, to + " - " + body);
 
-        draftsPage.clickSendButton();
+        MailListingPage draftsPage = draft.clickSendButton();
+
         assertFalse(draftsPage.isEmailPresentOnPage(subject));
 
 
         String sentMailContent = mailPage.clickSentMailLink()
                                          .openEmailWithSubject(subject)
-                                         .getSentMailContent(subject);
+                                         .getSentMailContent();
 
         assertEquals(sentMailContent, subject + to + body);
     }

@@ -41,7 +41,7 @@ public class SendInvalidEmailTest extends BaseTest {
         //verify that email is in the sent folder
         String sentMailContent = mailPage.clickSentMailLink()
                                          .openSentMailWithSubject(noSubject)
-                                         .getSentMailContent(noSubject);
+                                         .getMailContent();
 
         assertEquals(sentMailContent, noSubject + to);
     }

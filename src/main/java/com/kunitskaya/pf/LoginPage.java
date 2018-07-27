@@ -13,8 +13,6 @@ public class LoginPage extends AbstractPage {
     public static final String LOGIN_PAGE_URL = "https://mail.google.com/mail/";
     public static final String ERROR_MESSAGE = "Wrong password. Try again or click Forgot password to reset it.";
 
-    private static final String ENTERED_EMAIL_ATTRIBUTE = "data-email";
-
     @FindBy(id = "identifierId")
     WebElement usernameField;
 
@@ -45,7 +43,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public String getUsernameValue() {
-        return emailField.getAttribute(ENTERED_EMAIL_ATTRIBUTE);
+        return emailField.getText();
     }
 
     public LoginPage fillInPassword(String password) {

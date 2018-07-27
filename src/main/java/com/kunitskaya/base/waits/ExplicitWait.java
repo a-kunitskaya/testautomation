@@ -19,7 +19,7 @@ public class ExplicitWait extends AbstractWait {
      * @param locator   - element locator
      */
     public static void waitForElementPresence(WebDriver webDriver, By locator) {
-        WebDriverWait wait = new WebDriverWait(webDriver, DEFAULT_TIMEOUT);
+        WebDriverWait wait = new WebDriverWait(webDriver, DEFAULT_TIMEOUT); //configProvider.getDefaultTimeout instead of DEFAULT_TIMEOUT
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 

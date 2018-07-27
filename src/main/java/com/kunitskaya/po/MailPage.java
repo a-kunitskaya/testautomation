@@ -1,18 +1,10 @@
 package com.kunitskaya.po;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
-import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
 
 public class MailPage extends AbstractPage {
-
-    protected static final String MESSAGE_ROW_LOCATOR = "//span[contains(text(),'%s')]/following-sibling::span[1]";
-
     private static final By COMPOSE_BUTTON = By.xpath("//div[@gh='cm']");
     private static final By ACCOUNT_ICON = By.cssSelector(".gb_b.gb_db.gb_R");
     private static final By DRAFTS_FOLDER_LINK = By.partialLinkText("Drafts ");
@@ -31,7 +23,6 @@ public class MailPage extends AbstractPage {
 
     public LoginPage clickSignOutButton() {
         webDriver.findElement(SIGN_OUT_BUTTON).click();
-        //   waitForPageLoadComplete(webDriver);
         return new LoginPage();
     }
 
@@ -40,43 +31,15 @@ public class MailPage extends AbstractPage {
         return new ComposeEmailPopup();
     }
 
-    public DraftsPage clickDraftsFolderLink() {
+    public MailListingPage clickDraftsFolderLink() {
         webDriver.findElement(DRAFTS_FOLDER_LINK).click();
-        // waitForPageLoadComplete(webDriver);
-        return new DraftsPage();
+        return new MailListingPage();
     }
 
-    public SentMailPage clickSentMailLink() {
+    public MailListingPage clickSentMailLink() {
         webDriver.findElement(SENT_MAIL_FOLDER_LINK).click();
-        // waitForPageLoadComplete(webDriver);
-        return new SentMailPage();
+        return new MailListingPage();
     }
 
-    protected static WebElement findEmailBySubject(WebDriver webDriver, String subject) {
-        if (!subject.isEmpty()) {
-            return webDriver.findElement(By.xpath("//span[contains(text(), '" + subject + "')]"));
-        } else {
-            throw new IllegalArgumentException("Subject string is empty. Please specify subject");
-        }
-    }
 
-    protected static List<WebElement> findEmailsBySubject(WebDriver webDriver, String subject) {
-        if (!subject.isEmpty()) {
-            List<WebElement> emails = webDriver.findElements(By.xpath("//span[contains(text(), '" + subject + "')]"));
-            return emails;
-        } else {
-            throw new IllegalArgumentException("Subject string is empty. Please specify subject");
-        }
-    }
-
-    public MailPage openEmailWithSubject(String subject) {
-        findEmailBySubject(webDriver, subject).click();
-        return this;
-    }
-
-    public boolean isEmailPresentOnPage(String subject) {
-        webDriver.navigate().refresh();
-        waitForPageLoadComplete(webDriver);
-        return !findEmailsBySubject(webDriver, subject).isEmpty();
-    }
 }

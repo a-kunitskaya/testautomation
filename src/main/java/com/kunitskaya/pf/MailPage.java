@@ -44,8 +44,8 @@ public class MailPage extends AbstractPage {
         return new ComposeEmailPopup();
     }
 
-    public SentMailPage clickSentMailLink() {
+    public MailListingPage clickSentMailLink() {
         new Actions(webDriver).click(sentMailFolder).build().perform();
-        return new SentMailPage();
+        return new MailListingPage();
     }
 }

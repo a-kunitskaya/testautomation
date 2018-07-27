@@ -1,5 +1,6 @@
 package com.kunitskaya.base;
 
+import com.google.common.collect.Iterables;
 import org.openqa.selenium.WebDriver;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
@@ -13,10 +14,14 @@ public class Browser {
     }
 
     public void switchToLastOpenedWindow() {
-        for (String winHandle : webDriver.getWindowHandles()) {
-            webDriver.switchTo().window(winHandle);
-        }
+        String windowHandle = Iterables.getLast(webDriver.getWindowHandles());
+        webDriver.switchTo().window(windowHandle);
+//        for (String winHandle : webDriver.getWindowHandles()) {
+//            webDriver.switchTo().window(winHandle);
+//        }
     }
+
+
     public String getCurrentWindowHandle() {
         return webDriver.getWindowHandle();
     }
@@ -29,7 +34,7 @@ public class Browser {
      webDriver.close();
     }
 
-    public static void clearCookies(WebDriver webDriver){
+    public static void clearCookies(WebDriver webDriver){ //не статический должен быть, т к буду объект создавать
         webDriver.manage().deleteAllCookies();
     }
 }
