@@ -3,24 +3,28 @@ package com.kunitskaya.base;
 import com.google.common.collect.Iterables;
 import org.openqa.selenium.WebDriver;
 
-import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
-
 public class Browser {
-    protected WebDriver webDriver;
+    private static Browser instance;
+    WebDriver webDriver;
 
-    public Browser() {
-        this.webDriver = WebDriverProvider.getInstance();
-        waitForPageLoadComplete(webDriver);
+    private Browser(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
+
+    public static Browser getInstance(WebDriver webDriver) {
+        if (instance == null) {
+            instance = new Browser(webDriver);
+        }
+        return instance;
     }
 
     public void switchToLastOpenedWindow() {
         String windowHandle = Iterables.getLast(webDriver.getWindowHandles());
         webDriver.switchTo().window(windowHandle);
-//        for (String winHandle : webDriver.getWindowHandles()) {
-//            webDriver.switchTo().window(winHandle);
-//        }
+        for (String winHandle : webDriver.getWindowHandles()) {
+            webDriver.switchTo().window(winHandle);
+        }
     }
-
 
     public String getCurrentWindowHandle() {
         return webDriver.getWindowHandle();
@@ -30,11 +34,11 @@ public class Browser {
         webDriver.switchTo().window(windowHandle);
     }
 
-    public void closeCurrentWindow(){
-     webDriver.close();
+    public void closeCurrentWindow() {
+        webDriver.close();
     }
 
-    public static void clearCookies(WebDriver webDriver){ //не статический должен быть, т к буду объект создавать
+    public void clearCookies(WebDriver webDriver) {
         webDriver.manage().deleteAllCookies();
     }
 }

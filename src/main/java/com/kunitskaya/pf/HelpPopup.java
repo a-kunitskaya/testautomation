@@ -1,11 +1,13 @@
 package com.kunitskaya.pf;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,10 @@ public class HelpPopup extends AbstractPage {
     @FindBy(xpath = "//button[contains(., 'Send feedback')]")
     WebElement sendFeedbackButton;
 
+    public HelpPopup(WebDriver webDriver) {
+        super(webDriver);
+    }
+
     public boolean isDisplayed() {
         if(helpPopupFrame.isDisplayed()){
             switchToHelpPopupFrame();
@@ -51,7 +57,7 @@ public class HelpPopup extends AbstractPage {
         return this;
     }
 
-    public HelpPopup enterSearchCriteria(String input) {
+    public HelpPopup enterSearchCriteria(String input) throws IOException {
         waitForElementVisibility(webDriver, helpSearchField);
         helpSearchField.sendKeys(input);
         helpSearchField.submit();
@@ -59,7 +65,7 @@ public class HelpPopup extends AbstractPage {
         return this;
     }
 
-    public List<String> getSearchResults() {
+    public List<String> getSearchResults() throws IOException {
         List<String> results = new ArrayList<>();
         for (WebElement result : searchResults) {
             waitForElementVisibility(webDriver, result);
@@ -68,7 +74,7 @@ public class HelpPopup extends AbstractPage {
         return results;
     }
 
-    public HelpPopup clearSearchField() {
+    public HelpPopup clearSearchField() throws IOException {
         helpSearchField.click();
         helpSearchField.clear();
         new Actions(webDriver).sendKeys(Keys.ENTER).build().perform();
@@ -76,21 +82,21 @@ public class HelpPopup extends AbstractPage {
         return this;
     }
 
-    public GmailHelpPage clickBrowseAllArticlesLink() {
+    public GmailHelpPage clickBrowseAllArticlesLink() throws IOException {
         waitForElementToBeClickable(webDriver, browseAllArticlesLink);
         browseAllArticlesLink.click();
-        return new GmailHelpPage();
+        return new GmailHelpPage(webDriver);
     }
 
-    public GmailHelpForumPage clickVisitHelpForumLink() {
+    public GmailHelpForumPage clickVisitHelpForumLink() throws IOException {
         waitForElementToBeClickable(webDriver, visitHelpForumLink);
         visitHelpForumLink.click();
-        return new GmailHelpForumPage();
+        return new GmailHelpForumPage(webDriver);
     }
 
-    public FeedbackPopup clickSendFeedBackButton() {
+    public FeedbackPopup clickSendFeedBackButton() throws IOException {
         waitForElementToBeClickable(webDriver, sendFeedbackButton);
         sendFeedbackButton.click();
-        return new FeedbackPopup();
+        return new FeedbackPopup(webDriver);
     }
 }

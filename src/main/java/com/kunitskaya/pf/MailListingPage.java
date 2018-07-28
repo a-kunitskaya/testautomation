@@ -9,11 +9,15 @@ import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
 public class MailListingPage extends MailPage {
     protected static final String MESSAGE_ROW_LOCATOR = "//span[contains(text(),'%s')]";
 
+    public MailListingPage(WebDriver webDriver) {
+        super(webDriver);
+    }
+
 
     protected MailDetailsPage openSentMailWithSubject(String subject) {
         findEmailBySubject(webDriver, subject).click();
         waitForPageLoadComplete(webDriver);
-        return new MailDetailsPage();
+        return new MailDetailsPage(webDriver);
     }
 
     protected static WebElement findEmailBySubject(WebDriver webDriver, String subject) {

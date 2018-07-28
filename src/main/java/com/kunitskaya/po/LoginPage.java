@@ -1,7 +1,10 @@
 package com.kunitskaya.po;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.io.IOException;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementPresence;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
@@ -17,33 +20,37 @@ public class LoginPage extends AbstractPage {
     private static final By EMAIL_FIELD = By.id("profileIdentifier");
     private static final By PASSWORD_NEXT_BUTTON = By.id("passwordNext");
 
+    public LoginPage(WebDriver webDriver) {
+        super(webDriver);
+    }
+
     public LoginPage fillInUsername(String username) {
         webDriver.findElement(USERNAME_FIELD).sendKeys(username);
         return this;
     }
 
-    public LoginPage clickUsernameNextButton() {
+    public LoginPage clickUsernameNextButton() throws IOException {
         waitForElementToBeClickable(webDriver, USERNAME_NEXT_BUTTON);
-        webDriver.findElement(USERNAME_NEXT_BUTTON).click();
+        USERNAME_NEXT_BUTTON.findElement(webDriver).click();
         return this;
     }
 
-    public String getUsernameValue() {
+    public String getUsernameValue() throws IOException {
         waitForElementVisibility(webDriver, EMAIL_FIELD);
         WebElement profileIdentifier = webDriver.findElement(EMAIL_FIELD);
         return profileIdentifier.getText();
     }
 
-    public LoginPage fillInPassword(String password) {
+    public LoginPage fillInPassword(String password) throws IOException {
         waitForElementPresence(webDriver, PASSWORD_FIELD);
         webDriver.findElement(PASSWORD_FIELD).sendKeys(password);
         return this;
     }
 
-    public MailPage clickPasswordNextButton() {
+    public MailPage clickPasswordNextButton() throws IOException {
         waitForElementToBeClickable(webDriver, PASSWORD_NEXT_BUTTON);
         webDriver.findElement(PASSWORD_NEXT_BUTTON).click();
-        return new MailPage();
+        return new MailPage(webDriver);
     }
 
     public LoginPage open() {

@@ -1,9 +1,11 @@
 package com.kunitskaya.pf;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.IOException;
 import java.util.List;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
@@ -40,16 +42,20 @@ public class FeedbackPopup extends AbstractPage {
     @FindAll(@FindBy(xpath = "//div[@key='dialog']"))
     List<WebElement> sendFeedbackPopups;
 
+    public FeedbackPopup(WebDriver webDriver) {
+        super(webDriver);
+    }
+
     public String getHeader() {
         return title.getText();
     }
 
-    public String getInputFieldPlaceholder() {
+    public String getInputFieldPlaceholder() throws IOException {
         waitForElementVisibility(webDriver, inputFieldPlaceholder);
         return inputFieldPlaceholder.getText();
     }
 
-    public boolean isIncludeScreenshotCheckboxChecked() {
+    public boolean isIncludeScreenshotCheckboxChecked() throws IOException {
         waitForElementVisibility(webDriver, includeScreenshotCheckbox);
         return includeScreenshotCheckbox.isSelected();
     }
@@ -70,10 +76,10 @@ public class FeedbackPopup extends AbstractPage {
         return inputField.isDisplayed();
     }
 
-    public MailPage clickCancelButton() {
+    public MailPage clickCancelButton() throws IOException {
         waitForElementToBeClickable(webDriver, cancelButton);
         cancelButton.click();
-        return new MailPage();
+        return new MailPage(webDriver);
     }
 
     public FeedbackPopup switchToFeedbackFrame() {

@@ -1,9 +1,14 @@
 package com.kunitskaya.po;
 
-import com.kunitskaya.base.Browser;
+import org.openqa.selenium.WebDriver;
 
-public class AbstractPage extends Browser {
-    // I guess I don't need this page since it's empty,
-    // but I'm leaving it because in real life it's impossible
-    //to have pages that have nothing in common
+import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
+
+public class AbstractPage {
+    WebDriver webDriver;
+
+    public AbstractPage(WebDriver webDriver) {
+        this.webDriver = webDriver;
+        waitForPageLoadComplete(webDriver);
+    }
 }

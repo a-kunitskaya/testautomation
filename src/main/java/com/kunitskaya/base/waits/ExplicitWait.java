@@ -1,5 +1,6 @@
 package com.kunitskaya.base.waits;
 
+import com.kunitskaya.test.ConfigProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -8,18 +9,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
+
 /**
  * Waits for the specified condition
  */
-public class ExplicitWait extends AbstractWait {
+public class ExplicitWait {
+
+    static ConfigProvider configProvider = ConfigProvider.getInstance();
+
     /**
      * Waits for an element to appear on the page
      *
      * @param webDriver - web driver
      * @param locator   - element locator
      */
-    public static void waitForElementPresence(WebDriver webDriver, By locator) {
-        WebDriverWait wait = new WebDriverWait(webDriver, DEFAULT_TIMEOUT); //configProvider.getDefaultTimeout instead of DEFAULT_TIMEOUT
+    public static void waitForElementPresence(WebDriver webDriver, By locator) throws IOException {
+        WebDriverWait wait = new WebDriverWait(webDriver, configProvider.getDefaultTimeout());
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
@@ -29,8 +35,8 @@ public class ExplicitWait extends AbstractWait {
      * @param webDriver - web driver
      * @param locator   - element locator
      */
-    public static void waitForElementVisibility(WebDriver webDriver, By locator) {
-        WebDriverWait wait = new WebDriverWait(webDriver, DEFAULT_TIMEOUT);
+    public static void waitForElementVisibility(WebDriver webDriver, By locator) throws IOException {
+        WebDriverWait wait = new WebDriverWait(webDriver, configProvider.getDefaultTimeout());
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
@@ -40,8 +46,8 @@ public class ExplicitWait extends AbstractWait {
      * @param webDriver  web driver
      * @param webElement - web element instance
      */
-    public static void waitForElementVisibility(WebDriver webDriver, WebElement webElement) {
-        new WebDriverWait(webDriver, DEFAULT_TIMEOUT).until(ExpectedConditions.visibilityOf(webElement));
+    public static void waitForElementVisibility(WebDriver webDriver, WebElement webElement) throws IOException {
+        new WebDriverWait(webDriver, configProvider.getDefaultTimeout()).until(ExpectedConditions.visibilityOf(webElement));
     }
 
     /**
@@ -50,8 +56,8 @@ public class ExplicitWait extends AbstractWait {
      * @param webDriver - web driver
      * @param locator   - element locator
      */
-    public static void waitForElementToBeClickable(WebDriver webDriver, By locator) {
-        WebDriverWait wait = new WebDriverWait(webDriver, DEFAULT_TIMEOUT);
+    public static void waitForElementToBeClickable(WebDriver webDriver, By locator) throws IOException {
+        WebDriverWait wait = new WebDriverWait(webDriver, configProvider.getDefaultTimeout());
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
@@ -61,8 +67,8 @@ public class ExplicitWait extends AbstractWait {
      * @param webDriver  web driver
      * @param webElement - web element instance
      */
-    public static void waitForElementToBeClickable(WebDriver webDriver, WebElement webElement) {
-        new WebDriverWait(webDriver, DEFAULT_TIMEOUT).until(ExpectedConditions.elementToBeClickable(webElement));
+    public static void waitForElementToBeClickable(WebDriver webDriver, WebElement webElement) throws IOException {
+        new WebDriverWait(webDriver, configProvider.getDefaultTimeout()).until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     /**

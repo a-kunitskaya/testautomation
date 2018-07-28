@@ -1,7 +1,10 @@
 package com.kunitskaya.pf;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.io.IOException;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
@@ -19,12 +22,16 @@ public class GmailHelpForumPage extends AbstractPage {
     @FindBy(id = "gbqfq")
     WebElement searchField;
 
-    public String getSearchFieldPlaceholder() {
+    public GmailHelpForumPage(WebDriver webDriver) {
+        super(webDriver);
+    }
+
+    public String getSearchFieldPlaceholder() throws IOException {
         waitForElementVisibility(webDriver, searchField);
         return searchField.getAttribute("placeholder");
     }
 
-    public String getWelcomeText() {
+    public String getWelcomeText() throws IOException {
         waitForElementVisibility(webDriver, welcomeText);
         return welcomeText.getText();
     }

@@ -1,9 +1,12 @@
 package com.kunitskaya.pf;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
+import java.io.IOException;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
@@ -15,13 +18,17 @@ public class ComposeEmailPopup extends AbstractPage {
     @FindBy(xpath = "//input[@name='subjectbox']")
     WebElement subjectField;
 
-    @FindBy(xpath = "//div[@role='alertdialog']")
-    WebElement errorPopup;
+    public ComposeEmailPopup(WebDriver webDriver) {
+        super(webDriver);
+    }
 
-    @FindBy(name = "ok")
-    WebElement okButton;
+//    @FindBy(xpath = "//div[@role='alertdialog']")
+//    WebElement errorPopup;
+//
+//    @FindBy(name = "ok")
+//    WebElement okButton;
 
-    public ComposeEmailPopup fillInToField(String to) {
+    public ComposeEmailPopup fillInToField(String to) throws IOException {
         waitForElementVisibility(webDriver, toField);
         new Actions(webDriver).click(toField).sendKeys(to).build().perform();
         new Actions(webDriver).sendKeys(Keys.TAB).build().perform();
@@ -38,13 +45,13 @@ public class ComposeEmailPopup extends AbstractPage {
         new Actions(webDriver).sendKeys(Keys.chord(Keys.COMMAND, Keys.ENTER)).build().perform();
         return this;
     }
-
-    public boolean isErrorPopupDisplayed() {
-        return errorPopup.isDisplayed();
-    }
-
-    public ComposeEmailPopup clickOkButton() {
-        new Actions(webDriver).click(okButton).build().perform();
-        return this;
-    }
+//
+//    public boolean isErrorPopupDisplayed() {
+//        return errorPopup.isDisplayed();
+//    }
+//
+//    public ComposeEmailPopup clickOkButton() {
+//        new Actions(webDriver).click(okButton).build().perform();
+//        return this;
+//    }
 }

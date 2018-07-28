@@ -1,5 +1,6 @@
 package com.kunitskaya.pf;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -10,6 +11,10 @@ public class MailDetailsPage extends MailPage {
 
     @FindBy(css = "h2.hP")
     WebElement subject;
+
+    public MailDetailsPage(WebDriver webDriver) {
+        super(webDriver);
+    }
 
     public String getMailContent() {
         return getSubject() + getTo();

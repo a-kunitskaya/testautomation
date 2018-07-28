@@ -6,13 +6,15 @@ import com.kunitskaya.test.entities.Email;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class SendInvalidEmailTest extends BaseTest {
     @BeforeClass
-    public void logIn() {
-        LoginPage loginPage = new LoginPage();
+    public void logIn() throws IOException {
+        LoginPage loginPage = new LoginPage(webDriver);
         loginPage.open()
                  .fillInUsername(user.getUsername())
                  .clickUsernameNextButton()
@@ -22,8 +24,8 @@ public class SendInvalidEmailTest extends BaseTest {
     }
 
     @Test
-    public void sendInvalidEmail() {
-        MailPage mailPage = new MailPage();
+    public void sendInvalidEmail() throws IOException {
+        MailPage mailPage = new MailPage(webDriver);
         Email email = TestDataProvider.getEmail();
 
         String noSubject = "(no subject)";

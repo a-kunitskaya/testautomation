@@ -1,8 +1,11 @@
 package com.kunitskaya.pf;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
+import java.io.IOException;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
 
@@ -23,29 +26,33 @@ public class MailPage extends AbstractPage {
     @FindBy(linkText = "Sent Mail")
     WebElement sentMailFolder;
 
+    public MailPage(WebDriver webDriver) {
+        super(webDriver);
+    }
+
     public boolean isAccountIconVisible() {
         return accountIcon.isDisplayed();
     }
 
-    public MailPage clickSettingsButton() {
+    public MailPage clickSettingsButton() throws IOException {
         waitForElementToBeClickable(webDriver, settingsButton);
         settingsButton.click();
         return this;
     }
 
-    public HelpPopup clickHelpSettingsOption() {
+    public HelpPopup clickHelpSettingsOption() throws IOException {
         waitForElementToBeClickable(webDriver, settingsButton);
         helpSettingsOption.click();
-        return new HelpPopup();
+        return new HelpPopup(webDriver);
     }
 
     public ComposeEmailPopup clickComposeButton() {
         new Actions(webDriver).click(composeButton).build().perform();
-        return new ComposeEmailPopup();
+        return new ComposeEmailPopup(webDriver);
     }
 
     public MailListingPage clickSentMailLink() {
         new Actions(webDriver).click(sentMailFolder).build().perform();
-        return new MailListingPage();
+        return new MailListingPage(webDriver);
     }
 }

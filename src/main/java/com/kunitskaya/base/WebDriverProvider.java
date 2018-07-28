@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.io.IOException;
+
 import static com.kunitskaya.base.waits.ImplicitWait.waitImplicitly;
 
 public class WebDriverProvider {
@@ -14,7 +16,7 @@ public class WebDriverProvider {
     private WebDriverProvider() {
     }
 
-    public static WebDriver getInstance() {
+    public static WebDriver getInstance() throws IOException {
         if (webDriver == null) {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (SystemUtils.IS_OS_MAC) {
@@ -28,5 +30,10 @@ public class WebDriverProvider {
             waitImplicitly(webDriver);
         }
         return webDriver;
+    }
+
+    public static void webDriverQuit(){
+        webDriver.quit();
+        webDriver = null;
     }
 }

@@ -1,6 +1,9 @@
 package com.kunitskaya.po;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import java.io.IOException;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
@@ -16,7 +19,11 @@ public class ComposeEmailPopup extends AbstractPage {
     private static final By MESSAGE_SENT_LINK = By.id("link_vsm");
     private static final String TO_VALUE_ATTRIBUTE = "email";
 
-    public ComposeEmailPopup fillInToField(String to) {
+    public ComposeEmailPopup(WebDriver webDriver) {
+        super(webDriver);
+    }
+
+    public ComposeEmailPopup fillInToField(String to) throws IOException {
         waitForElementVisibility(webDriver, TO_FIELD);
         webDriver.findElement(TO_FIELD).sendKeys(to);
         return this;
@@ -34,7 +41,7 @@ public class ComposeEmailPopup extends AbstractPage {
 
     public MailPage clickCloseButton() {
         webDriver.findElement(CLOSE_BUTTON).click();
-        return new MailPage();
+        return new MailPage(webDriver);
     }
 
     public String getEmailContent(String subject) {
@@ -49,10 +56,10 @@ public class ComposeEmailPopup extends AbstractPage {
         return webDriver.findElement(TO_VALUE).getAttribute(TO_VALUE_ATTRIBUTE);
     }
 
-    public MailListingPage clickSendButton() {
+    public MailListingPage clickSendButton() throws IOException {
         waitForElementToBeClickable(webDriver, SEND_BUTTON);
         webDriver.findElement(SEND_BUTTON).click();
         waitForElementVisibility(webDriver, MESSAGE_SENT_LINK);
-        return new MailListingPage();
+        return new MailListingPage(webDriver);
     }
 }

@@ -4,6 +4,7 @@ import com.kunitskaya.BaseTest;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static com.kunitskaya.pf.FeedbackPopup.FEEDBACK_POPUP_HEADER;
@@ -15,8 +16,8 @@ import static org.testng.Assert.*;
 public class HelpPopupTest extends BaseTest {
 
     @Test(description = "Log in to Gmail")
-    public void logIn() {
-        LoginPage loginPage = new LoginPage();
+    public void logIn() throws IOException {
+        LoginPage loginPage = new LoginPage(webDriver);
 
         loginPage.open().fillInUsername(user.getUsername())
                  .clickUsernameNextButton();
@@ -30,9 +31,9 @@ public class HelpPopupTest extends BaseTest {
     }
 
     @Test(description = "CDP-0003 Gmail: Help pop-up", dependsOnMethods = "logIn")
-    public void validateHelpPopup() {
+    public void validateHelpPopup() throws IOException {
         String searchInput = "Change";
-        MailPage mailPage = new MailPage();
+        MailPage mailPage = new MailPage(webDriver);
 
         HelpPopup helpPopup = mailPage.clickSettingsButton()
                                       .clickHelpSettingsOption();
@@ -49,30 +50,30 @@ public class HelpPopupTest extends BaseTest {
         GmailHelpPage helpPage = helpPopup.clearSearchField()
                                           .clickBrowseAllArticlesLink();
 
-        String basePage = helpPage.getCurrentWindowHandle();
-        helpPage.switchToLastOpenedWindow();
+        String basePage = browser.getCurrentWindowHandle();
+        browser.switchToLastOpenedWindow();
 
         assertEquals(helpPage.getHeader(), HELP_PAGE_HEADER);
         assertEquals(helpPage.getTitle(), HELP_PAGE_TITLE);
         assertEquals(helpPage.getSearchFieldPlaceholder(), HELP_PAGE_SEARCH_PLACEHOLDER);
 
-        helpPage.closeCurrentWindow();
+        browser.closeCurrentWindow();
 
-        helpPage.switchToWindowHandle(basePage);
+        browser.switchToWindowHandle(basePage);
 
         helpPopup.switchToHelpPopupFrame();
 
         GmailHelpForumPage forumPage = helpPopup.clickVisitHelpForumLink();
-        forumPage.switchToLastOpenedWindow();
+        browser.switchToLastOpenedWindow();
 
         assertTrue(forumPage.isNewTopicButtonVisible());
         assertEquals(forumPage.getSearchFieldPlaceholder(), FORUM_SEARCH_PLACEHOLDER);
         assertEquals(forumPage.getWelcomeText(), FORUM_WELCOME_TEXT);
         assertTrue(StringUtils.containsIgnoreCase(forumPage.getTitle(), FORUM_PAGE_TITLE));
 
-        forumPage.closeCurrentWindow();
+        browser.closeCurrentWindow();
 
-        forumPage.switchToWindowHandle(basePage);
+        browser.switchToWindowHandle(basePage);
         helpPopup.switchToHelpPopupFrame();
 
         FeedbackPopup feedbackPopup = helpPopup.clickSendFeedBackButton()
