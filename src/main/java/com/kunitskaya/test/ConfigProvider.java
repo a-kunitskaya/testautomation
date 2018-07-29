@@ -1,6 +1,5 @@
 package com.kunitskaya.test;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -18,34 +17,30 @@ public class ConfigProvider {
         return instance;
     }
 
-    private String getProperty(String property) throws IOException {
+    private String getProperty(String property) {
         Properties properties = new Properties();
         String propertiesFile = "test.properties";
-        InputStream inputStream = null;
         String value = "";
-
         try {
-            inputStream = getClass().getClassLoader().getResourceAsStream(propertiesFile);
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertiesFile);
             properties.load(inputStream);
             value = properties.getProperty(property);
+            inputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            if (inputStream != null)
-                inputStream.close();
         }
-        return value;
+            return value;
     }
 
-    public int getDefaultTimeout() throws IOException {
+    public int getDefaultTimeout() {
         return Integer.parseInt(getProperty("default.timeout.seconds"));
     }
 
-    public String getBrowser() throws IOException {
+    public String getBrowser() {
         return getProperty("browser");
     }
 
-    public boolean getIsRemoteDriver() throws IOException {
+    public boolean getIsRemoteDriver() {
         return Boolean.parseBoolean(getProperty("is.remote.driver"));
     }
 }

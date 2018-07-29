@@ -22,21 +22,10 @@ public class ComposeEmailPopup extends AbstractPage {
         super(webDriver);
     }
 
-//    @FindBy(xpath = "//div[@role='alertdialog']")
-//    WebElement errorPopup;
-//
-//    @FindBy(name = "ok")
-//    WebElement okButton;
-
     public ComposeEmailPopup fillInToField(String to) throws IOException {
         waitForElementVisibility(webDriver, toField);
         new Actions(webDriver).click(toField).sendKeys(to).build().perform();
         new Actions(webDriver).sendKeys(Keys.TAB).build().perform();
-        return this;
-    }
-
-    public ComposeEmailPopup fillInSubjectField(String subject) {
-        new Actions(webDriver).sendKeys(subject).build().perform();
         return this;
     }
 
@@ -45,13 +34,4 @@ public class ComposeEmailPopup extends AbstractPage {
         new Actions(webDriver).sendKeys(Keys.chord(Keys.COMMAND, Keys.ENTER)).build().perform();
         return this;
     }
-//
-//    public boolean isErrorPopupDisplayed() {
-//        return errorPopup.isDisplayed();
-//    }
-//
-//    public ComposeEmailPopup clickOkButton() {
-//        new Actions(webDriver).click(okButton).build().perform();
-//        return this;
-//    }
 }

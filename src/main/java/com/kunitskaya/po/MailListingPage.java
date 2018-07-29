@@ -17,7 +17,7 @@ public class MailListingPage extends MailPage {
 
     protected WebElement findEmailBySubject(WebDriver webDriver, String subject) {
         if (!subject.isEmpty()) {
-            return webDriver.findElement(By.xpath((String.format(MESSAGE_ROW_LOCATOR, subject)))); //(By.xpath("//span[contains(text(), '" + subject + "')]"));
+            return webDriver.findElement(By.xpath((String.format(MESSAGE_ROW_LOCATOR, subject))));
         } else {
             throw new IllegalArgumentException("Subject string is empty. Please specify subject");
         }
@@ -26,7 +26,7 @@ public class MailListingPage extends MailPage {
 
     protected List<WebElement> findEmailsBySubject(WebDriver webDriver, String subject) {
         if (!subject.isEmpty()) {
-            List<WebElement> emails = webDriver.findElements(By.xpath((String.format(MESSAGE_ROW_LOCATOR, subject)))); //(By.xpath("//span[contains(text(), '" + subject + "')]"));
+            List<WebElement> emails = webDriver.findElements(By.xpath((String.format(MESSAGE_ROW_LOCATOR, subject))));
             return emails;
         } else {
             throw new IllegalArgumentException("Subject string is empty. Please specify subject");
