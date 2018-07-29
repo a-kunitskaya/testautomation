@@ -39,7 +39,9 @@ public class LoginPage extends AbstractPage {
     }
 
     public LoginPage fillInUsername(String username) {
+        highlightElement(usernameField);
         usernameField.sendKeys(username);
+        unHighlightElement(usernameField);
         return this;
     }
 
@@ -55,7 +57,9 @@ public class LoginPage extends AbstractPage {
 
     public LoginPage fillInPassword(String password) throws IOException {
         waitForElementVisibility(webDriver, passwordField);
+        highlightElement(passwordField);
         passwordField.sendKeys(password);
+        unHighlightElement(passwordField);
         return this;
     }
 
