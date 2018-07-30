@@ -25,7 +25,7 @@ public class BaseTest {
     @BeforeClass
     public void setUp() throws IOException {
         webDriver = WebDriverProvider.getInstance();
-        browser = getInstance(webDriver);
+        browser = getInstance();
         browser.clearCookies(webDriver);
     }
 

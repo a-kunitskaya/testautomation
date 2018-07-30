@@ -23,7 +23,7 @@ public class SendInvalidEmailTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(description = "CDP-0001 Gmail: Sending invalid email")
     public void sendInvalidEmail() throws IOException {
         MailPage mailPage = new MailPage(webDriver);
         Email email = TestDataProvider.getEmail();

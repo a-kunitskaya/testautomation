@@ -14,7 +14,7 @@ import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class LoginPage extends AbstractPage {
     public static final String LOGIN_PAGE_URL = "https://mail.google.com/mail/";
-    public static final String ERROR_MESSAGE = "Wrong password. Try again or click Forgot password to reset it.";
+    public static final String WRONG_PASSWORD_ERROR_MESSAGE = "Wrong password. Try again or click Forgot password to reset it.";
 
     @FindBy(id = "identifierId")
     WebElement usernameField;
@@ -74,7 +74,7 @@ public class LoginPage extends AbstractPage {
         return this;
     }
 
-    public boolean isErrorMessageDisplayed() {
-        return StringUtils.containsIgnoreCase(errorMessage.getText(), ERROR_MESSAGE);
+    public boolean isErrorMessageDisplayed(String expectedErrorMessage) {
+        return StringUtils.containsIgnoreCase(errorMessage.getText(), expectedErrorMessage);
     }
 }

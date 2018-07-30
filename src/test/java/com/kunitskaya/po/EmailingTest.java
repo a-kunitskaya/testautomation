@@ -36,7 +36,6 @@ public class EmailingTest extends BaseTest {
         String body = email.getBody();
 
         MailPage mailPage = new MailPage(webDriver);
-        mailPage.clickComposeButton();
 
         ComposeEmailPopup draft = mailPage.clickComposeButton()
                                              .fillInToField(to)

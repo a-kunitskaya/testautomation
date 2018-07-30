@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class ExplicitWait {
 
-    static ConfigProvider configProvider = ConfigProvider.getInstance();
+    private static ConfigProvider configProvider = ConfigProvider.getInstance();
 
     /**
      * Waits for an element to appear on the page

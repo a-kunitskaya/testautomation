@@ -3,9 +3,11 @@
 <suite name="Selenium" verbose="10">
 
     <test name="AllTests">
-        <packages>
-            <package name="com.kunitskaya.pf"/>
-            <package name="com.kunitskaya.po"/>
-        </packages>
+        <classes>
+            <class name="com.kunitskaya.pf.HelpPopupTest"/>
+            <class name="com.kunitskaya.pf.SendInvalidEmailTest"/>
+            <class name="com.kunitskaya.pf.InvalidLoginTest"/>
+            <class name="com.kunitskaya.po.EmailingTest"/>
+        </classes>
     </test>
 </suite>

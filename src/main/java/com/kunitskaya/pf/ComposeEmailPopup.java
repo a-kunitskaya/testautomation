@@ -1,5 +1,6 @@
 package com.kunitskaya.pf;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,7 +32,11 @@ public class ComposeEmailPopup extends AbstractPage {
 
     public ComposeEmailPopup sendEmailWithHotkeys() {
         new Actions(webDriver).click(subjectField).build().perform();
-        new Actions(webDriver).sendKeys(Keys.chord(Keys.COMMAND, Keys.ENTER)).build().perform();
+        if (SystemUtils.IS_OS_MAC) {
+            new Actions(webDriver).sendKeys(Keys.chord(Keys.COMMAND, Keys.ENTER)).build().perform();
+        } else {
+            new Actions(webDriver).sendKeys(Keys.chord(Keys.CONTROL, Keys.ENTER)).build().perform();
+        }
         return this;
     }
 }

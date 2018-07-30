@@ -6,6 +6,8 @@ import java.util.Properties;
 public class ConfigProvider {
     private static ConfigProvider instance;
 
+    private static final String PROPERTIES_FILE = "test.properties";
+
     private ConfigProvider() {
 
     }
@@ -19,17 +21,16 @@ public class ConfigProvider {
 
     private String getProperty(String property) {
         Properties properties = new Properties();
-        String propertiesFile = "test.properties";
         String value = "";
         try {
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertiesFile);
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE);
             properties.load(inputStream);
             value = properties.getProperty(property);
             inputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-            return value;
+        return value;
     }
 
     public int getDefaultTimeout() {

@@ -3,27 +3,29 @@ package com.kunitskaya.base;
 import com.google.common.collect.Iterables;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
+
 public class Browser {
     private static Browser instance;
-    WebDriver webDriver;
+    private WebDriver webDriver;
 
-    private Browser(WebDriver webDriver) {
-        this.webDriver = webDriver;
+    private Browser() {
+        try {
+            this.webDriver = WebDriverProvider.getInstance();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static Browser getInstance(WebDriver webDriver) {
+    public static Browser getInstance() {
         if (instance == null) {
-            instance = new Browser(webDriver);
+            instance = new Browser();
         }
         return instance;
     }
 
     public void switchToLastOpenedWindow() {
-        String windowHandle = Iterables.getLast(webDriver.getWindowHandles());
-        webDriver.switchTo().window(windowHandle);
-        for (String winHandle : webDriver.getWindowHandles()) {
-            webDriver.switchTo().window(winHandle);
-        }
+        Iterables.getLast(webDriver.getWindowHandles());
     }
 
     public String getCurrentWindowHandle() {

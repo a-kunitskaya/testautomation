@@ -20,7 +20,7 @@ public class MailListingPage extends MailPage {
         return new MailDetailsPage(webDriver);
     }
 
-    protected static WebElement findEmailBySubject(WebDriver webDriver, String subject) {
+    protected WebElement findEmailBySubject(WebDriver webDriver, String subject) {
         if (!subject.isEmpty()) {
             return webDriver.findElement(By.xpath(String.format(MESSAGE_ROW_LOCATOR, subject)));
         } else {
