@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo “Starting...node with command line settings”
+
+cd Documents/Projects/cdp/src/test/resources/
+
+#Нода с настройками, переданными как парамерты командной строки
+java -Dwebdriver.gecko.driver=geckodriver -jar selenium-server-standalone-3.13.0.jar -role node -hub http://localhost:4444/grid/register -browser "browserName=firefox,maxInstances=2,platform=MAC" -port 5556
+
+echo "Done."

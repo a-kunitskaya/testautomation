@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo “Starting...node with default settings”
+
+cd Documents/Projects/cdp/src/test/resources/
+
+java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-3.13.0.jar -role node -hub http://localhost:4444/grid/register
+
+echo "Done."
