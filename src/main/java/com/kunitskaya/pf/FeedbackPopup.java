@@ -1,6 +1,5 @@
 package com.kunitskaya.pf;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -42,8 +41,8 @@ public class FeedbackPopup extends AbstractPage {
     @FindAll(@FindBy(xpath = "//div[@key='dialog']"))
     List<WebElement> sendFeedbackPopups;
 
-    public FeedbackPopup(WebDriver webDriver) {
-        super(webDriver);
+    public FeedbackPopup() {
+        super();
     }
 
     public String getHeader() {
@@ -79,7 +78,7 @@ public class FeedbackPopup extends AbstractPage {
     public MailPage clickCancelButton() throws IOException {
         waitForElementToBeClickable(webDriver, cancelButton);
         cancelButton.click();
-        return new MailPage(webDriver);
+        return new MailPage();
     }
 
     public FeedbackPopup switchToFeedbackFrame() {

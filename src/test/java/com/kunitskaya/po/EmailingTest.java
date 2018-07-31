@@ -13,8 +13,8 @@ public class EmailingTest extends BaseTest {
 
     @Test(description = "Log in to Gmail")
     public void logIn() throws IOException {
-        MailPage mailPage = new MailPage(webDriver);
-        LoginPage loginPage = new LoginPage(webDriver);
+        MailPage mailPage = new MailPage();
+        LoginPage loginPage = new LoginPage();
 
         String usernameForPassword = loginPage.open()
                                               .fillInUsername(user.getUsername())
@@ -35,7 +35,7 @@ public class EmailingTest extends BaseTest {
         String to = email.getReceiver();
         String body = email.getBody();
 
-        MailPage mailPage = new MailPage(webDriver);
+        MailPage mailPage = new MailPage();
 
         ComposeEmailPopup draft = mailPage.clickComposeButton()
                                              .fillInToField(to)
@@ -63,7 +63,7 @@ public class EmailingTest extends BaseTest {
 
     @Test(description = "Log out from Gmail account", dependsOnMethods = "sendDraftEmail")
     public void logOut() throws IOException {
-        MailPage mailPage = new MailPage(webDriver);
+        MailPage mailPage = new MailPage();
         LoginPage loginPage = mailPage.clickAccountIcon().clickSignOutButton();
         assertTrue(loginPage.isPasswordFieldDisplayed());
     }

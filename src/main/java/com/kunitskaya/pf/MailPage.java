@@ -1,6 +1,5 @@
 package com.kunitskaya.pf;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -26,8 +25,8 @@ public class MailPage extends AbstractPage {
     @FindBy(linkText = "Sent Mail")
     WebElement sentMailFolder;
 
-    public MailPage(WebDriver webDriver) {
-        super(webDriver);
+    public MailPage() {
+        super();
     }
 
     public boolean isAccountIconVisible() {
@@ -43,16 +42,16 @@ public class MailPage extends AbstractPage {
     public HelpPopup clickHelpSettingsOption() throws IOException {
         waitForElementToBeClickable(webDriver, settingsButton);
         helpSettingsOption.click();
-        return new HelpPopup(webDriver);
+        return new HelpPopup();
     }
 
     public ComposeEmailPopup clickComposeButton() {
         new Actions(webDriver).click(composeButton).build().perform();
-        return new ComposeEmailPopup(webDriver);
+        return new ComposeEmailPopup();
     }
 
     public MailListingPage clickSentMailLink() {
         new Actions(webDriver).click(sentMailFolder).build().perform();
-        return new MailListingPage(webDriver);
+        return new MailListingPage();
     }
 }

@@ -1,6 +1,5 @@
 package com.kunitskaya.pf;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,8 +14,8 @@ public class GmailHelpPage extends AbstractPage {
     @FindBy(xpath = "//input[@class = 'promoted-search__input' and @name='q']")
     WebElement searchField;
 
-    public GmailHelpPage(WebDriver webDriver) {
-        super(webDriver);
+    public GmailHelpPage() {
+        super();
     }
 
     public String getHeader() {
@@ -26,5 +25,4 @@ public class GmailHelpPage extends AbstractPage {
     public String getSearchFieldPlaceholder() {
         return searchField.getAttribute("placeholder");
     }
-
 }

@@ -10,7 +10,6 @@ import org.testng.annotations.BeforeClass;
 
 import java.io.IOException;
 
-import static com.kunitskaya.base.Browser.getInstance;
 import static com.kunitskaya.base.WebDriverProvider.webDriverQuit;
 
 //TODO: from test.properties - default timeout, browser,
@@ -25,7 +24,7 @@ public class BaseTest {
     @BeforeClass
     public void setUp() throws IOException {
         webDriver = WebDriverProvider.getInstance();
-        browser = getInstance();
+        browser = Browser.getInstance();
         browser.clearCookies(webDriver);
     }
 

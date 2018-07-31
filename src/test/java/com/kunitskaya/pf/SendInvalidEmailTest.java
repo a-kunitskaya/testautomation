@@ -14,7 +14,7 @@ import static org.testng.Assert.assertTrue;
 public class SendInvalidEmailTest extends BaseTest {
     @BeforeClass
     public void logIn() throws IOException {
-        LoginPage loginPage = new LoginPage(webDriver);
+        LoginPage loginPage = new LoginPage();
         loginPage.open()
                  .fillInUsername(user.getUsername())
                  .clickUsernameNextButton()
@@ -25,7 +25,7 @@ public class SendInvalidEmailTest extends BaseTest {
 
     @Test(description = "CDP-0001 Gmail: Sending invalid email")
     public void sendInvalidEmail() throws IOException {
-        MailPage mailPage = new MailPage(webDriver);
+        MailPage mailPage = new MailPage();
         Email email = TestDataProvider.getEmail();
 
         String noSubject = "(no subject)";

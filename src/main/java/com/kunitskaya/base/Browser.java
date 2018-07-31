@@ -25,7 +25,9 @@ public class Browser {
     }
 
     public void switchToLastOpenedWindow() {
-        Iterables.getLast(webDriver.getWindowHandles());
+       String winHandle = Iterables.getLast(webDriver.getWindowHandles());
+       webDriver.switchTo().window(winHandle);
+
     }
 
     public String getCurrentWindowHandle() {

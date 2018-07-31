@@ -4,20 +4,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
-
 public class MailListingPage extends MailPage {
     protected static final String MESSAGE_ROW_LOCATOR = "//span[contains(text(),'%s')]";
 
-    public MailListingPage(WebDriver webDriver) {
-        super(webDriver);
+    public MailListingPage() {
+        super();
     }
 
 
     protected MailDetailsPage openSentMailWithSubject(String subject) {
         findEmailBySubject(webDriver, subject).click();
-        waitForPageLoadComplete(webDriver);
-        return new MailDetailsPage(webDriver);
+        return new MailDetailsPage();
     }
 
     protected WebElement findEmailBySubject(WebDriver webDriver, String subject) {

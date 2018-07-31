@@ -1,7 +1,6 @@
 package com.kunitskaya.pf;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
@@ -37,8 +36,8 @@ public class HelpPopup extends AbstractPage {
     @FindBy(xpath = "//button[contains(., 'Send feedback')]")
     WebElement sendFeedbackButton;
 
-    public HelpPopup(WebDriver webDriver) {
-        super(webDriver);
+    public HelpPopup() {
+        super();
     }
 
     public boolean isDisplayed() {
@@ -85,18 +84,18 @@ public class HelpPopup extends AbstractPage {
     public GmailHelpPage clickBrowseAllArticlesLink() throws IOException {
         waitForElementToBeClickable(webDriver, browseAllArticlesLink);
         browseAllArticlesLink.click();
-        return new GmailHelpPage(webDriver);
+        return new GmailHelpPage();
     }
 
     public GmailHelpForumPage clickVisitHelpForumLink() throws IOException {
         waitForElementToBeClickable(webDriver, visitHelpForumLink);
         visitHelpForumLink.click();
-        return new GmailHelpForumPage(webDriver);
+        return new GmailHelpForumPage();
     }
 
     public FeedbackPopup clickSendFeedBackButton() throws IOException {
         waitForElementToBeClickable(webDriver, sendFeedbackButton);
         sendFeedbackButton.click();
-        return new FeedbackPopup(webDriver);
+        return new FeedbackPopup();
     }
 }

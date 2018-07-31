@@ -1,18 +1,25 @@
 package com.kunitskaya.pf;
 
+import com.kunitskaya.base.WebDriverProvider;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
+
 import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
 
 public class AbstractPage {
     WebDriver webDriver;
 
-    public AbstractPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
+    public AbstractPage(){
+        try {
+            this.webDriver = WebDriverProvider.getInstance();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         waitForPageLoadComplete(webDriver);
         PageFactory.initElements(webDriver, this);
 

@@ -1,7 +1,6 @@
 package com.kunitskaya.po;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
@@ -19,8 +18,8 @@ public class ComposeEmailPopup extends AbstractPage {
     private static final By MESSAGE_SENT_LINK = By.id("link_vsm");
     private static final String TO_VALUE_ATTRIBUTE = "email";
 
-    public ComposeEmailPopup(WebDriver webDriver) {
-        super(webDriver);
+    public ComposeEmailPopup() {
+        super();
     }
 
     public ComposeEmailPopup fillInToField(String to) throws IOException {
@@ -41,7 +40,7 @@ public class ComposeEmailPopup extends AbstractPage {
 
     public MailPage clickCloseButton() {
         webDriver.findElement(CLOSE_BUTTON).click();
-        return new MailPage(webDriver);
+        return new MailPage();
     }
 
     public String getEmailContent(String subject) {
@@ -60,6 +59,6 @@ public class ComposeEmailPopup extends AbstractPage {
         waitForElementToBeClickable(webDriver, SEND_BUTTON);
         webDriver.findElement(SEND_BUTTON).click();
         waitForElementVisibility(webDriver, MESSAGE_SENT_LINK);
-        return new MailListingPage(webDriver);
+        return new MailListingPage();
     }
 }

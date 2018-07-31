@@ -17,7 +17,7 @@ public class HelpPopupTest extends BaseTest {
 
     @Test(description = "Log in to Gmail")
     public void logIn() throws IOException {
-        LoginPage loginPage = new LoginPage(webDriver);
+        LoginPage loginPage = new LoginPage();
 
         loginPage.open().fillInUsername(user.getUsername())
                  .clickUsernameNextButton();
@@ -33,7 +33,7 @@ public class HelpPopupTest extends BaseTest {
     @Test(description = "CDP-0003 Gmail: Help pop-up", dependsOnMethods = "logIn")
     public void validateHelpPopup() throws IOException {
         String searchInput = "Change";
-        MailPage mailPage = new MailPage(webDriver);
+        MailPage mailPage = new MailPage();
 
         HelpPopup helpPopup = mailPage.clickSettingsButton()
                                       .clickHelpSettingsOption();
@@ -43,7 +43,6 @@ public class HelpPopupTest extends BaseTest {
                                               .getSearchResults();
 
         for (String searchResult : searchResults) {
-            System.out.println(searchResult);
             assertTrue(StringUtils.containsIgnoreCase(searchResult, searchInput));
         }
 

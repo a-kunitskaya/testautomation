@@ -1,7 +1,6 @@
 package com.kunitskaya.po;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
@@ -14,8 +13,8 @@ public class MailPage extends AbstractPage {
     private static final By SENT_MAIL_FOLDER_LINK = By.linkText("Sent Mail");
     private static final By SIGN_OUT_BUTTON = By.linkText("Sign out");
 
-    public MailPage(WebDriver webDriver) {
-        super(webDriver);
+    public MailPage() {
+        super();
     }
 
     public boolean isAccountIconVisible() {
@@ -30,22 +29,22 @@ public class MailPage extends AbstractPage {
 
     public LoginPage clickSignOutButton() {
         webDriver.findElement(SIGN_OUT_BUTTON).click();
-        return new LoginPage(webDriver);
+        return new LoginPage();
     }
 
     public ComposeEmailPopup clickComposeButton() {
         webDriver.findElement(COMPOSE_BUTTON).click();
-        return new ComposeEmailPopup(webDriver);
+        return new ComposeEmailPopup();
     }
 
     public MailListingPage clickDraftsFolderLink() {
         webDriver.findElement(DRAFTS_FOLDER_LINK).click();
-        return new MailListingPage(webDriver);
+        return new MailListingPage();
     }
 
     public MailListingPage clickSentMailLink() {
         webDriver.findElement(SENT_MAIL_FOLDER_LINK).click();
-        return new MailListingPage(webDriver);
+        return new MailListingPage();
     }
 
 

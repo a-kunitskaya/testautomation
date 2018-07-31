@@ -1,6 +1,5 @@
 package com.kunitskaya.pf;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,8 +21,8 @@ public class GmailHelpForumPage extends AbstractPage {
     @FindBy(id = "gbqfq")
     WebElement searchField;
 
-    public GmailHelpForumPage(WebDriver webDriver) {
-        super(webDriver);
+    public GmailHelpForumPage() {
+        super();
     }
 
     public String getSearchFieldPlaceholder() throws IOException {

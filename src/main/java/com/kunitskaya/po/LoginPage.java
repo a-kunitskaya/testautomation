@@ -1,14 +1,11 @@
 package com.kunitskaya.po;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
 
-import static com.kunitskaya.base.waits.ExplicitWait.waitForElementPresence;
-import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
-import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
+import static com.kunitskaya.base.waits.ExplicitWait.*;
 
 public class LoginPage extends AbstractPage {
 
@@ -20,8 +17,8 @@ public class LoginPage extends AbstractPage {
     private static final By EMAIL_FIELD = By.id("profileIdentifier");
     private static final By PASSWORD_NEXT_BUTTON = By.id("passwordNext");
 
-    public LoginPage(WebDriver webDriver) {
-        super(webDriver);
+    public LoginPage() {
+        super();
     }
 
     public LoginPage fillInUsername(String username) {
@@ -50,7 +47,7 @@ public class LoginPage extends AbstractPage {
     public MailPage clickPasswordNextButton() throws IOException {
         waitForElementToBeClickable(webDriver, PASSWORD_NEXT_BUTTON);
         webDriver.findElement(PASSWORD_NEXT_BUTTON).click();
-        return new MailPage(webDriver);
+        return new MailPage();
     }
 
     public LoginPage open() {

@@ -2,7 +2,6 @@ package com.kunitskaya.pf;
 
 import com.kunitskaya.base.waits.ExplicitWait;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -34,8 +33,8 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//div[contains(text(), 'Wrong password')]")
     WebElement errorMessage;
 
-    public LoginPage(WebDriver webDriver) {
-        super(webDriver);
+    public LoginPage() {
+        super();
     }
 
     public LoginPage fillInUsername(String username) {
@@ -66,7 +65,7 @@ public class LoginPage extends AbstractPage {
     public MailPage clickPasswordNextButton() throws IOException {
         waitForElementToBeClickable(webDriver, passwordNextButton);
         passwordNextButton.click();
-        return new MailPage(webDriver);
+        return new MailPage();
     }
 
     public LoginPage open() {

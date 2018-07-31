@@ -1,15 +1,17 @@
 package com.kunitskaya.test;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigProvider {
     private static ConfigProvider instance;
 
-    private static final String PROPERTIES_FILE = "test.properties";
+    private static final String TEST_PROPERTIES_FILE = "test.properties";
+    Properties properties = new Properties();
 
     private ConfigProvider() {
-
+        loadProperties();
     }
 
     public static ConfigProvider getInstance() {
@@ -19,18 +21,19 @@ public class ConfigProvider {
         return instance;
     }
 
-    private String getProperty(String property) {
-        Properties properties = new Properties();
-        String value = "";
+    private void loadProperties(){
         try {
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE);
-            properties.load(inputStream);
-            value = properties.getProperty(property);
-            inputStream.close();
-        } catch (Exception e) {
+            //passing input stream in constructor to get it closed automatically
+            try(InputStream inputStream = getClass().getClassLoader().getResourceAsStream(TEST_PROPERTIES_FILE)){
+                properties.load(inputStream);
+            }
+        }catch (IOException e){
             e.printStackTrace();
         }
-        return value;
+    }
+
+    private String getProperty(String property) {
+        return properties.getProperty(property);
     }
 
     public int getDefaultTimeout() {
