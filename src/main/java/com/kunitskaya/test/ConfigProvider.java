@@ -21,13 +21,13 @@ public class ConfigProvider {
         return instance;
     }
 
-    private void loadProperties(){
+    private void loadProperties() {
         try {
-            //passing input stream in constructor to get it closed automatically
-            try(InputStream inputStream = getClass().getClassLoader().getResourceAsStream(TEST_PROPERTIES_FILE)){
+            //passing input stream as a parameter to get it closed automatically
+            try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(TEST_PROPERTIES_FILE)) {
                 properties.load(inputStream);
             }
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -46,5 +46,13 @@ public class ConfigProvider {
 
     public boolean getIsRemoteDriver() {
         return Boolean.parseBoolean(getProperty("is.remote.driver"));
+    }
+
+    public String getPlatform() {
+        return getProperty("platform");
+    }
+
+    public String getHubUrl() {
+        return getProperty("selenium.hub.url");
     }
 }

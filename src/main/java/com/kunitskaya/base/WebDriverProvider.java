@@ -25,7 +25,7 @@ public class WebDriverProvider {
     public static WebDriver getInstance() throws IOException {
         if (webDriver == null) {
             if (configProvider.getIsRemoteDriver()) {
-                initializeRemoteWebDriver();
+                initializeRemoteDriver();
             } else {
                 initializeChromeDriver();
             }
@@ -46,11 +46,52 @@ public class WebDriverProvider {
         webDriver = new ChromeDriver(chromeOptions);
     }
 
-    public static void initializeRemoteWebDriver() {
+    public static void initializeRemoteDriver() {
+        DesiredCapabilities capabilities = null;
+        String browser = configProvider.getBrowser();
+        String platform = configProvider.getPlatform();
+
+        //getting the url from properties file since it changes every time I start the hub
+        URL hubUrl = null;
         try {
-            webDriver = new RemoteWebDriver(new URL("http:localhost:4444/wd/hub"), DesiredCapabilities.chrome());
+            hubUrl = new URL(configProvider.getHubUrl());
         } catch (MalformedURLException e) {
             e.printStackTrace();
+        }
+
+        if (platform.equals("MAC")) {
+            switch (browser) {
+                case "chrome":
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--kiosk");
+                    capabilities = DesiredCapabilities.chrome();
+                    capabilities.merge(chromeOptions);
+                    break;
+
+                case "firefox":
+                    //TODO: add ff options (profile?)
+                    //FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    //firefoxOptions.addArguments();
+                    capabilities = DesiredCapabilities.firefox();
+                    //capabilities.merge(firefoxOptions);
+                    break;
+            }
+            webDriver = new RemoteWebDriver(hubUrl, capabilities);
+
+        } else {
+            switch (browser) {
+                case "chrome":
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--start-maximized");
+                    capabilities = DesiredCapabilities.chrome();
+                    capabilities.merge(options);
+                    webDriver = new RemoteWebDriver(hubUrl, capabilities);
+                    break;
+
+                case "firefox":
+                    //TODO
+            }
+
         }
     }
 
