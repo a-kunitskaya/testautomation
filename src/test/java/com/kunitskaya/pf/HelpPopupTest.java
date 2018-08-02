@@ -85,7 +85,8 @@ public class HelpPopupTest extends BaseTest {
         assertEquals(feedbackPopup.getInputFieldPlaceholder(), FEEDBACK_POPUP_INPUT_PLACEHOLDER);
         assertTrue(feedbackPopup.isIncludeScreenshotCheckboxChecked());
 
-        feedbackPopup.clickCancelButton();
+        feedbackPopup.makeScreenshot()
+                     .clickCancelButton();
 
         assertTrue(mailPage.isAccountIconVisible());
         assertFalse(feedbackPopup.isSendFeedbackPopupDisplayed());

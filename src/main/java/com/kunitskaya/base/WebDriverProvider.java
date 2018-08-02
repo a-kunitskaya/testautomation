@@ -5,6 +5,8 @@ import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -13,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.kunitskaya.base.waits.ImplicitWait.waitImplicitly;
+import static com.kunitskaya.pf.LoginPage.LOGIN_PAGE_URL;
 
 public class WebDriverProvider {
 
@@ -44,6 +47,7 @@ public class WebDriverProvider {
             chromeOptions.addArguments("--start-maximized");
         }
         webDriver = new ChromeDriver(chromeOptions);
+
     }
 
     public static void initializeRemoteDriver() {
@@ -51,7 +55,7 @@ public class WebDriverProvider {
         String browser = configProvider.getBrowser();
         String platform = configProvider.getPlatform();
 
-        //getting the url from properties file since it changes every time I start the hub
+        //getting the url from properties file since it changes depending on the network
         URL hubUrl = null;
         try {
             hubUrl = new URL(configProvider.getHubUrl());
@@ -69,11 +73,13 @@ public class WebDriverProvider {
                     break;
 
                 case "firefox":
-                    //TODO: add ff options (profile?)
-                    //FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    //firefoxOptions.addArguments();
+                    FirefoxProfile firefoxProfile = new FirefoxProfile();
+                    firefoxProfile.setPreference("browser.startup.homepage", LOGIN_PAGE_URL);
+                    firefoxProfile.setPreference("intl.accept_languages", "en-US");
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.setProfile(firefoxProfile);
                     capabilities = DesiredCapabilities.firefox();
-                    //capabilities.merge(firefoxOptions);
+                    capabilities.merge(firefoxOptions);
                     break;
             }
             webDriver = new RemoteWebDriver(hubUrl, capabilities);
@@ -89,7 +95,14 @@ public class WebDriverProvider {
                     break;
 
                 case "firefox":
-                    //TODO
+                    FirefoxProfile firefoxProfile = new FirefoxProfile();
+                    firefoxProfile.setPreference("browser.startup.homepage", LOGIN_PAGE_URL);
+                    firefoxProfile.setPreference("intl.accept_languages", "en-US");
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.setProfile(firefoxProfile);
+                    capabilities = DesiredCapabilities.firefox();
+                    capabilities.merge(firefoxOptions);
+                    break;
             }
 
         }

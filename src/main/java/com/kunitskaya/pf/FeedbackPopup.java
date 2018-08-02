@@ -1,6 +1,7 @@
 package com.kunitskaya.pf;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
@@ -40,6 +41,12 @@ public class FeedbackPopup extends AbstractPage {
 
     @FindAll(@FindBy(xpath = "//div[@key='dialog']"))
     List<WebElement> sendFeedbackPopups;
+
+    @FindBy(xpath = "//button[@key='annotate']")
+    WebElement screenshotButton;
+
+    @FindBy(xpath = "//button[@key='done']")
+    WebElement screenshotDoneButton;
 
     public FeedbackPopup() {
         super();
@@ -83,6 +90,17 @@ public class FeedbackPopup extends AbstractPage {
 
     public FeedbackPopup switchToFeedbackFrame() {
         webDriver.switchTo().frame(feedbackPopupFrame);
+        return this;
+    }
+
+    public FeedbackPopup makeScreenshot() {
+        new Actions(webDriver).click(screenshotButton)
+                              .clickAndHold()
+                              .moveByOffset(300, 300)
+                              .release()
+                              .click(screenshotDoneButton)
+                              .build()
+                              .perform();
         return this;
     }
 }
