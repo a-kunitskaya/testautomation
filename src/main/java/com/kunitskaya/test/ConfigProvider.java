@@ -8,7 +8,7 @@ public class ConfigProvider {
     private static ConfigProvider instance;
 
     private static final String TEST_PROPERTIES_FILE = "test.properties";
-    Properties properties = new Properties();
+    private Properties properties = new Properties();
 
     private ConfigProvider() {
         loadProperties();
@@ -44,7 +44,7 @@ public class ConfigProvider {
         return getProperty("browser");
     }
 
-    public boolean getIsRemoteDriver() {
+    public boolean isRemoteDriver() {
         return Boolean.parseBoolean(getProperty("is.remote.driver"));
     }
 

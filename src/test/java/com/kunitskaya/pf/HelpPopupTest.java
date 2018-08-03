@@ -30,7 +30,7 @@ public class HelpPopupTest extends BaseTest {
     }
 
     @Test(description = "CDP-0003 Gmail: Help pop-up", dependsOnMethods = "logIn")
-    public void validateHelpPopup() {
+    public void validateHelpPopup() throws InterruptedException {
         String searchInput = "Change";
         MailPage mailPage = new MailPage();
 

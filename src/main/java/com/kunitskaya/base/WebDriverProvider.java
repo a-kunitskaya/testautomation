@@ -33,7 +33,7 @@ public class WebDriverProvider {
         ChromeOptions chromeOptions = null;
         String browser = configProvider.getBrowser();
         String platform = configProvider.getPlatform();
-        boolean isRemoteDriver = configProvider.getIsRemoteDriver();
+        boolean isRemoteDriver = configProvider.isRemoteDriver();
 
         //getting the url from properties file since it changes every time I start the grid
         URL hubUrl = null;
@@ -51,7 +51,6 @@ public class WebDriverProvider {
                     capabilities = DesiredCapabilities.chrome();
                     capabilities.merge(chromeOptions);
                     break;
-
             }
         } else {
             switch (browser) {

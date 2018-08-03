@@ -1,12 +1,12 @@
 package com.kunitskaya.pf;
 
-import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
+import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 
 public class ComposeEmailPopup extends AbstractPage {
 
@@ -27,11 +27,10 @@ public class ComposeEmailPopup extends AbstractPage {
     }
 
     public ComposeEmailPopup sendEmailWithHotkeys() {
-        if (SystemUtils.IS_OS_MAC) {
-            new Actions(webDriver).click(subjectField).sendKeys(Keys.chord(Keys.COMMAND, Keys.ENTER)).build().perform();
-        } else {
-            new Actions(webDriver).click(subjectField).sendKeys(Keys.chord(Keys.CONTROL, Keys.ENTER)).build().perform();
-        }
+        new Actions(webDriver).click(subjectField)
+                              .sendKeys(Keys.chord(IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL, Keys.ENTER))
+                              .build()
+                              .perform();
         return this;
     }
 }

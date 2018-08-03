@@ -11,6 +11,7 @@ import java.util.List;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
+import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 
 public class HelpPopup extends AbstractPage {
 
@@ -40,11 +41,10 @@ public class HelpPopup extends AbstractPage {
     }
 
     public boolean isDisplayed() {
-        if(helpPopupFrame.isDisplayed()){
+        if (helpPopupFrame.isDisplayed()) {
             switchToHelpPopupFrame();
             return helpPopup.isDisplayed();
-        }
-        else{
+        } else {
             return false;
         }
 
@@ -73,9 +73,11 @@ public class HelpPopup extends AbstractPage {
     }
 
     public HelpPopup clearSearchField() {
-        helpSearchField.click();
-        helpSearchField.clear();
-        new Actions(webDriver).sendKeys(Keys.ENTER).build().perform();
+        new Actions(webDriver).click(helpSearchField)
+                              .sendKeys(Keys.chord(IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL, "a", Keys.DELETE), Keys.ENTER)
+                              .sendKeys(Keys.ENTER)
+                              .build()
+                              .perform();
         waitForElementVisibility(webDriver, browseAllArticlesLink);
         return this;
     }
