@@ -64,12 +64,14 @@ public class WebDriverProvider {
         }
         if (isRemoteDriver) {
             webDriver = new RemoteWebDriver(hubUrl, capabilities);
-        } else if (platform.equals("MAC")) {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         } else {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+            if (platform.equals("MAC")) {
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
+            } else {
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+            }
+            webDriver = new ChromeDriver(chromeOptions);
         }
-        webDriver = new ChromeDriver(chromeOptions);
     }
 
     public static void webDriverQuit() {
