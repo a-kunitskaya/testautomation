@@ -5,7 +5,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
-import java.io.IOException;
 import java.util.List;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
@@ -56,12 +55,12 @@ public class FeedbackPopup extends AbstractPage {
         return title.getText();
     }
 
-    public String getInputFieldPlaceholder() throws IOException {
+    public String getInputFieldPlaceholder() {
         waitForElementVisibility(webDriver, inputFieldPlaceholder);
         return inputFieldPlaceholder.getText();
     }
 
-    public boolean isIncludeScreenshotCheckboxChecked() throws IOException {
+    public boolean isIncludeScreenshotCheckboxChecked() {
         waitForElementVisibility(webDriver, includeScreenshotCheckbox);
         return includeScreenshotCheckbox.isSelected();
     }
@@ -82,7 +81,7 @@ public class FeedbackPopup extends AbstractPage {
         return inputField.isDisplayed();
     }
 
-    public MailPage clickCancelButton() throws IOException {
+    public MailPage clickCancelButton() {
         waitForElementToBeClickable(webDriver, cancelButton);
         cancelButton.click();
         return new MailPage();

@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import java.io.IOException;
-
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class ComposeEmailPopup extends AbstractPage {
@@ -22,7 +20,7 @@ public class ComposeEmailPopup extends AbstractPage {
         super();
     }
 
-    public ComposeEmailPopup fillInToField(String to) throws IOException {
+    public ComposeEmailPopup fillInToField(String to) {
         waitForElementVisibility(webDriver, toField);
         new Actions(webDriver).click(toField).sendKeys(to).sendKeys(Keys.TAB).build().perform();
         return this;

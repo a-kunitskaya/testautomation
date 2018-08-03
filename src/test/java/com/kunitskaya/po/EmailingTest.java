@@ -5,14 +5,12 @@ import com.kunitskaya.test.TestDataProvider;
 import com.kunitskaya.test.entities.Email;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 import static org.testng.Assert.*;
 
 public class EmailingTest extends BaseTest {
 
     @Test(description = "Log in to Gmail")
-    public void logIn() throws IOException {
+    public void logIn() {
         MailPage mailPage = new MailPage();
         LoginPage loginPage = new LoginPage();
 
@@ -29,7 +27,7 @@ public class EmailingTest extends BaseTest {
     }
 
     @Test(description = "Create an email, save it as a draft and send", dependsOnMethods = "logIn")
-    public void sendDraftEmail() throws IOException {
+    public void sendDraftEmail() {
         Email email = TestDataProvider.getEmail();
         String subject = email.getSubject();
         String to = email.getReceiver();
@@ -60,7 +58,7 @@ public class EmailingTest extends BaseTest {
     }
 
     @Test(description = "Log out from Gmail account", dependsOnMethods = "sendDraftEmail")
-    public void logOut() throws IOException {
+    public void logOut() {
         MailPage mailPage = new MailPage();
         LoginPage loginPage = mailPage.clickAccountIcon().clickSignOutButton();
         assertTrue(loginPage.isPasswordFieldDisplayed());

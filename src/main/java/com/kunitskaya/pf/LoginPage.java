@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import java.io.IOException;
-
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
@@ -44,7 +42,7 @@ public class LoginPage extends AbstractPage {
         return this;
     }
 
-    public LoginPage clickUsernameNextButton() throws IOException {
+    public LoginPage clickUsernameNextButton() {
         new Actions(webDriver).click(usernameNextButton).build().perform();
         ExplicitWait.waitForElementVisibility(webDriver, passwordField);
         return this;
@@ -54,7 +52,7 @@ public class LoginPage extends AbstractPage {
         return emailField.getText();
     }
 
-    public LoginPage fillInPassword(String password) throws IOException {
+    public LoginPage fillInPassword(String password) {
         waitForElementVisibility(webDriver, passwordField);
         highlightElement(passwordField);
         passwordField.sendKeys(password);
@@ -62,7 +60,7 @@ public class LoginPage extends AbstractPage {
         return this;
     }
 
-    public MailPage clickPasswordNextButton() throws IOException {
+    public MailPage clickPasswordNextButton() {
         waitForElementToBeClickable(webDriver, passwordNextButton);
         passwordNextButton.click();
         return new MailPage();

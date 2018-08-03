@@ -2,8 +2,6 @@ package com.kunitskaya.po;
 
 import org.openqa.selenium.By;
 
-import java.io.IOException;
-
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 import static com.kunitskaya.po.MailListingPage.MESSAGE_ROW_LOCATOR;
@@ -22,7 +20,7 @@ public class ComposeEmailPopup extends AbstractPage {
         super();
     }
 
-    public ComposeEmailPopup fillInToField(String to) throws IOException {
+    public ComposeEmailPopup fillInToField(String to) {
         waitForElementVisibility(webDriver, TO_FIELD);
         webDriver.findElement(TO_FIELD).sendKeys(to);
         return this;
@@ -55,7 +53,7 @@ public class ComposeEmailPopup extends AbstractPage {
         return webDriver.findElement(TO_VALUE).getAttribute(TO_VALUE_ATTRIBUTE);
     }
 
-    public MailListingPage clickSendButton() throws IOException {
+    public MailListingPage clickSendButton() {
         waitForElementToBeClickable(webDriver, SEND_BUTTON);
         webDriver.findElement(SEND_BUTTON).click();
         waitForElementVisibility(webDriver, MESSAGE_SENT_LINK);

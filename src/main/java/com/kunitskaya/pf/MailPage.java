@@ -4,8 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import java.io.IOException;
-
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
 
 public class MailPage extends AbstractPage {
@@ -33,13 +31,13 @@ public class MailPage extends AbstractPage {
         return accountIcon.isDisplayed();
     }
 
-    public MailPage clickSettingsButton() throws IOException {
+    public MailPage clickSettingsButton() {
         waitForElementToBeClickable(webDriver, settingsButton);
         settingsButton.click();
         return this;
     }
 
-    public HelpPopup clickHelpSettingsOption() throws IOException {
+    public HelpPopup clickHelpSettingsOption() {
         waitForElementToBeClickable(webDriver, settingsButton);
         helpSettingsOption.click();
         return new HelpPopup();

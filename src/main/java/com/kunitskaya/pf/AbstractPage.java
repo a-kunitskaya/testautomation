@@ -7,19 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import java.io.IOException;
-
 import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
 
 public class AbstractPage {
     WebDriver webDriver;
 
     public AbstractPage(){
-        try {
             this.webDriver = WebDriverProvider.getInstance();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         waitForPageLoadComplete(webDriver);
         PageFactory.initElements(webDriver, this);
 

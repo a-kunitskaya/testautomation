@@ -6,14 +6,12 @@ import com.kunitskaya.test.entities.Email;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class SendInvalidEmailTest extends BaseTest {
     @BeforeClass
-    public void logIn() throws IOException {
+    public void logIn() {
         LoginPage loginPage = new LoginPage();
         loginPage.open()
                  .fillInUsername(user.getUsername())
@@ -24,7 +22,7 @@ public class SendInvalidEmailTest extends BaseTest {
     }
 
     @Test(description = "CDP-0001 Gmail: Sending invalid email")
-    public void sendInvalidEmail() throws IOException {
+    public void sendInvalidEmail() {
         MailPage mailPage = new MailPage();
         Email email = TestDataProvider.getEmail();
 

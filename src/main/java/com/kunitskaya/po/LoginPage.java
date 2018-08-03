@@ -3,8 +3,6 @@ package com.kunitskaya.po;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.io.IOException;
-
 import static com.kunitskaya.base.waits.ExplicitWait.*;
 
 public class LoginPage extends AbstractPage {
@@ -26,25 +24,25 @@ public class LoginPage extends AbstractPage {
         return this;
     }
 
-    public LoginPage clickUsernameNextButton() throws IOException {
+    public LoginPage clickUsernameNextButton() {
         waitForElementToBeClickable(webDriver, USERNAME_NEXT_BUTTON);
         USERNAME_NEXT_BUTTON.findElement(webDriver).click();
         return this;
     }
 
-    public String getUsernameValue() throws IOException {
+    public String getUsernameValue() {
         waitForElementVisibility(webDriver, EMAIL_FIELD);
         WebElement profileIdentifier = webDriver.findElement(EMAIL_FIELD);
         return profileIdentifier.getText();
     }
 
-    public LoginPage fillInPassword(String password) throws IOException {
+    public LoginPage fillInPassword(String password) {
         waitForElementPresence(webDriver, PASSWORD_FIELD);
         webDriver.findElement(PASSWORD_FIELD).sendKeys(password);
         return this;
     }
 
-    public MailPage clickPasswordNextButton() throws IOException {
+    public MailPage clickPasswordNextButton() {
         waitForElementToBeClickable(webDriver, PASSWORD_NEXT_BUTTON);
         webDriver.findElement(PASSWORD_NEXT_BUTTON).click();
         return new MailPage();

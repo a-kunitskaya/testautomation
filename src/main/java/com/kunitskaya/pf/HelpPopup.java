@@ -6,7 +6,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +55,7 @@ public class HelpPopup extends AbstractPage {
         return this;
     }
 
-    public HelpPopup enterSearchCriteria(String input) throws IOException {
+    public HelpPopup enterSearchCriteria(String input) {
         waitForElementVisibility(webDriver, helpSearchField);
         helpSearchField.sendKeys(input);
         helpSearchField.submit();
@@ -64,7 +63,7 @@ public class HelpPopup extends AbstractPage {
         return this;
     }
 
-    public List<String> getSearchResults() throws IOException {
+    public List<String> getSearchResults() {
         List<String> results = new ArrayList<>();
         for (WebElement result : searchResults) {
             waitForElementVisibility(webDriver, result);
@@ -73,7 +72,7 @@ public class HelpPopup extends AbstractPage {
         return results;
     }
 
-    public HelpPopup clearSearchField() throws IOException {
+    public HelpPopup clearSearchField() {
         helpSearchField.click();
         helpSearchField.clear();
         new Actions(webDriver).sendKeys(Keys.ENTER).build().perform();
@@ -81,19 +80,19 @@ public class HelpPopup extends AbstractPage {
         return this;
     }
 
-    public GmailHelpPage clickBrowseAllArticlesLink() throws IOException {
+    public GmailHelpPage clickBrowseAllArticlesLink() {
         waitForElementToBeClickable(webDriver, browseAllArticlesLink);
         browseAllArticlesLink.click();
         return new GmailHelpPage();
     }
 
-    public GmailHelpForumPage clickVisitHelpForumLink() throws IOException {
+    public GmailHelpForumPage clickVisitHelpForumLink() {
         waitForElementToBeClickable(webDriver, visitHelpForumLink);
         visitHelpForumLink.click();
         return new GmailHelpForumPage();
     }
 
-    public FeedbackPopup clickSendFeedBackButton() throws IOException {
+    public FeedbackPopup clickSendFeedBackButton() {
         waitForElementToBeClickable(webDriver, sendFeedbackButton);
         sendFeedbackButton.click();
         return new FeedbackPopup();

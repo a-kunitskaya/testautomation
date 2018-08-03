@@ -9,8 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.IOException;
-
 /**
  * Waits for the specified condition
  */
@@ -24,7 +22,7 @@ public class ExplicitWait {
      * @param webDriver - web driver
      * @param locator   - element locator
      */
-    public static void waitForElementPresence(WebDriver webDriver, By locator) throws IOException {
+    public static void waitForElementPresence(WebDriver webDriver, By locator) {
         WebDriverWait wait = new WebDriverWait(webDriver, configProvider.getDefaultTimeout());
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
@@ -35,7 +33,7 @@ public class ExplicitWait {
      * @param webDriver - web driver
      * @param locator   - element locator
      */
-    public static void waitForElementVisibility(WebDriver webDriver, By locator) throws IOException {
+    public static void waitForElementVisibility(WebDriver webDriver, By locator) {
         WebDriverWait wait = new WebDriverWait(webDriver, configProvider.getDefaultTimeout());
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
@@ -46,7 +44,7 @@ public class ExplicitWait {
      * @param webDriver  web driver
      * @param webElement - web element instance
      */
-    public static void waitForElementVisibility(WebDriver webDriver, WebElement webElement) throws IOException {
+    public static void waitForElementVisibility(WebDriver webDriver, WebElement webElement) {
         new WebDriverWait(webDriver, configProvider.getDefaultTimeout()).until(ExpectedConditions.visibilityOf(webElement));
     }
 
@@ -56,7 +54,7 @@ public class ExplicitWait {
      * @param webDriver - web driver
      * @param locator   - element locator
      */
-    public static void waitForElementToBeClickable(WebDriver webDriver, By locator) throws IOException {
+    public static void waitForElementToBeClickable(WebDriver webDriver, By locator) {
         WebDriverWait wait = new WebDriverWait(webDriver, configProvider.getDefaultTimeout());
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
@@ -67,7 +65,7 @@ public class ExplicitWait {
      * @param webDriver  web driver
      * @param webElement - web element instance
      */
-    public static void waitForElementToBeClickable(WebDriver webDriver, WebElement webElement) throws IOException {
+    public static void waitForElementToBeClickable(WebDriver webDriver, WebElement webElement) {
         new WebDriverWait(webDriver, configProvider.getDefaultTimeout()).until(ExpectedConditions.elementToBeClickable(webElement));
     }
 

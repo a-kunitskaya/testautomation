@@ -8,13 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import java.io.IOException;
-
 import static com.kunitskaya.base.WebDriverProvider.webDriverQuit;
-
-//TODO: from test.properties - default timeout, browser,
-// isRemoteDriver (эту переменную использовать в wd provider
-// - если фолс, то драйвер - хром драйвер, если тру - то ремоут драйвер)
 
 public class BaseTest {
     protected WebDriver webDriver;
@@ -22,10 +16,10 @@ public class BaseTest {
     protected User user = TestDataProvider.getUser();
 
     @BeforeClass
-    public void setUp() throws IOException {
+    public void setUp() {
         webDriver = WebDriverProvider.getInstance();
         browser = Browser.getInstance();
-        browser.clearCookies(webDriver);
+        browser.clearCookies();
     }
 
     @AfterClass

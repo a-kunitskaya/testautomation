@@ -3,18 +3,12 @@ package com.kunitskaya.base;
 import com.google.common.collect.Iterables;
 import org.openqa.selenium.WebDriver;
 
-import java.io.IOException;
-
 public class Browser {
     private static Browser instance;
     private WebDriver webDriver;
 
     private Browser() {
-        try {
             this.webDriver = WebDriverProvider.getInstance();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static Browser getInstance() {
@@ -42,7 +36,7 @@ public class Browser {
         webDriver.close();
     }
 
-    public void clearCookies(WebDriver webDriver) {
+    public void clearCookies() {
         webDriver.manage().deleteAllCookies();
     }
 }

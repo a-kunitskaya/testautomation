@@ -53,6 +53,6 @@ public class ConfigProvider {
     }
 
     public String getHubUrl() {
-        return getProperty("selenium.hub.url");
+        return getProperty("selenium.grid.hub.url");
     }
 }

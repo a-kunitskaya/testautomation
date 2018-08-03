@@ -3,8 +3,6 @@ package com.kunitskaya.pf;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.io.IOException;
-
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class GmailHelpForumPage extends AbstractPage {
@@ -25,12 +23,12 @@ public class GmailHelpForumPage extends AbstractPage {
         super();
     }
 
-    public String getSearchFieldPlaceholder() throws IOException {
+    public String getSearchFieldPlaceholder() {
         waitForElementVisibility(webDriver, searchField);
         return searchField.getAttribute("placeholder");
     }
 
-    public String getWelcomeText() throws IOException {
+    public String getWelcomeText() {
         waitForElementVisibility(webDriver, welcomeText);
         return welcomeText.getText();
     }

@@ -2,8 +2,6 @@ package com.kunitskaya.po;
 
 import org.openqa.selenium.By;
 
-import java.io.IOException;
-
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
 
 public class MailPage extends AbstractPage {
@@ -21,7 +19,7 @@ public class MailPage extends AbstractPage {
         return webDriver.findElement(ACCOUNT_ICON).isDisplayed();
     }
 
-    public MailPage clickAccountIcon() throws IOException {
+    public MailPage clickAccountIcon() {
         webDriver.findElement(ACCOUNT_ICON).click();
         waitForElementToBeClickable(webDriver, SIGN_OUT_BUTTON);
         return this;

@@ -3,7 +3,6 @@ package com.kunitskaya.base.waits;
 import com.kunitskaya.test.ConfigProvider;
 import org.openqa.selenium.WebDriver;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -18,7 +17,7 @@ public class ImplicitWait {
      *
      * @param webDriver - web driver
      */
-    public static void waitImplicitly(WebDriver webDriver) throws IOException {
+    public static void waitImplicitly(WebDriver webDriver) {
         webDriver.manage().timeouts().implicitlyWait(configProvider.getDefaultTimeout(), TimeUnit.SECONDS);
     }
 }

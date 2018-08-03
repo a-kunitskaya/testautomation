@@ -4,7 +4,6 @@ import com.kunitskaya.BaseTest;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
 import java.util.List;
 
 import static com.kunitskaya.pf.FeedbackPopup.FEEDBACK_POPUP_HEADER;
@@ -16,7 +15,7 @@ import static org.testng.Assert.*;
 public class HelpPopupTest extends BaseTest {
 
     @Test(description = "Log in to Gmail")
-    public void logIn() throws IOException {
+    public void logIn() {
         LoginPage loginPage = new LoginPage();
 
         loginPage.open().fillInUsername(user.getUsername())
@@ -31,7 +30,7 @@ public class HelpPopupTest extends BaseTest {
     }
 
     @Test(description = "CDP-0003 Gmail: Help pop-up", dependsOnMethods = "logIn")
-    public void validateHelpPopup() throws IOException {
+    public void validateHelpPopup() {
         String searchInput = "Change";
         MailPage mailPage = new MailPage();
 
