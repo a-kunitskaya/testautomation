@@ -12,8 +12,8 @@ import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
 public class AbstractPage {
     WebDriver webDriver;
 
-    public AbstractPage(){
-            this.webDriver = WebDriverProvider.getInstance();
+    public AbstractPage() {
+        this.webDriver = WebDriverProvider.getInstance();
         waitForPageLoadComplete(webDriver);
         PageFactory.initElements(webDriver, this);
 

@@ -39,4 +39,9 @@ public class Browser {
     public void clearCookies() {
         webDriver.manage().deleteAllCookies();
     }
+
+    public void quit(){
+        webDriver.quit();
+        instance = null;
+    }
 }

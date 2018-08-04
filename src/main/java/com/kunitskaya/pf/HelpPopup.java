@@ -75,7 +75,6 @@ public class HelpPopup extends AbstractPage {
     public HelpPopup clearSearchField() {
         new Actions(webDriver).click(helpSearchField)
                               .sendKeys(Keys.chord(IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL, "a", Keys.DELETE), Keys.ENTER)
-                              .sendKeys(Keys.ENTER)
                               .build()
                               .perform();
         waitForElementVisibility(webDriver, browseAllArticlesLink);

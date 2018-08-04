@@ -16,6 +16,7 @@ public class WebDriverProvider {
 
     private static WebDriver webDriver;
     private static ConfigProvider configProvider = ConfigProvider.getInstance();
+    private static final String BROWSER_CHROME = "chrome";
 
     private WebDriverProvider() {
     }
@@ -45,24 +46,27 @@ public class WebDriverProvider {
 
         if (platform.equals("MAC")) {
             switch (browser) {
-                case "chrome":
+                case BROWSER_CHROME:
                     chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--kiosk");
-                    capabilities = DesiredCapabilities.chrome();
-                    capabilities.merge(chromeOptions);
                     break;
             }
         } else {
             switch (browser) {
-                case "chrome":
+                case BROWSER_CHROME:
                     chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--start-maximized");
-                    capabilities = DesiredCapabilities.chrome();
-                    capabilities.merge(chromeOptions);
                     break;
             }
         }
         if (isRemoteDriver) {
+            switch (browser) {
+                case BROWSER_CHROME:
+                    capabilities = DesiredCapabilities.chrome();
+                    capabilities.merge(chromeOptions);
+                    break;
+            }
+
             webDriver = new RemoteWebDriver(hubUrl, capabilities);
         } else {
             if (platform.equals("MAC")) {
@@ -72,10 +76,5 @@ public class WebDriverProvider {
             }
             webDriver = new ChromeDriver(chromeOptions);
         }
-    }
-
-    public static void webDriverQuit() {
-        webDriver.quit();
-        webDriver = null;
     }
 }
