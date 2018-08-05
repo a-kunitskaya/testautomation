@@ -6,12 +6,18 @@ import com.kunitskaya.pages.MailPage;
 
 public class UserOperations {
 
-    public static MailPage logIn(User user){
-        LoginPage loginPage = new LoginPage();
-        return loginPage.open()
-                 .fillInUsername(user.getUsername())
-                 .clickUsernameNextButton()
-                 .fillInPassword(user.getPassword())
-                 .clickPasswordNextButton();
+    public static MailPage logIn(User user) {
+        return new LoginPage()
+                .open()
+                .fillInUsername(user.getUsername())
+                .clickUsernameNextButton()
+                .fillInPassword(user.getPassword())
+                .clickPasswordNextButton();
+    }
+
+    public static LoginPage logOut() {
+        return new MailPage()
+                .clickAccountIcon()
+                .clickSignOutButton();
     }
 }
