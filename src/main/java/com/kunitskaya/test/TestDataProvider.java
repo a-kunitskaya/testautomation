@@ -1,7 +1,7 @@
 package com.kunitskaya.test;
 
-import com.kunitskaya.test.entities.Email;
-import com.kunitskaya.test.entities.User;
+import com.kunitskaya.business.objects.Email;
+import com.kunitskaya.business.objects.User;
 
 import static com.kunitskaya.base.utils.DateTimeUtil.SUBJECT_TIMESTAMP_PATTERN;
 import static com.kunitskaya.base.utils.DateTimeUtil.getFormattedTimestamp;

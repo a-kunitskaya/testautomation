@@ -7,7 +7,7 @@
             <class name="com.kunitskaya.pf.HelpPopupTest"/>
             <class name="com.kunitskaya.pf.SendInvalidEmailTest"/>
             <class name="com.kunitskaya.pf.InvalidLoginTest"/>
-            <class name="com.kunitskaya.po.EmailingTest"/>
+            <class name="com.kunitskaya.pages.EmailingTest"/>
         </classes>
     </test>
 </suite>
