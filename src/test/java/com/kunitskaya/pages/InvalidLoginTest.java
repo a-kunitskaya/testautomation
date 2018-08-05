@@ -1,7 +1,6 @@
 package com.kunitskaya.pages;
 
 import com.kunitskaya.BaseTest;
-import com.kunitskaya.business.operations.UserOperations;
 import org.testng.annotations.Test;
 
 import static com.kunitskaya.pages.LoginPage.WRONG_PASSWORD_ERROR_MESSAGE;
@@ -25,7 +24,10 @@ public class InvalidLoginTest extends BaseTest {
 
         assertTrue(loginPage.isErrorMessageDisplayed(WRONG_PASSWORD_ERROR_MESSAGE));
 
-        MailPage mailPage = UserOperations.logIn(user);
+        MailPage mailPage = loginPage
+                .fillInPassword(user.getPassword())
+                .clickPasswordNextButton();
+
         assertTrue(mailPage.isAccountIconVisible());
     }
 }
