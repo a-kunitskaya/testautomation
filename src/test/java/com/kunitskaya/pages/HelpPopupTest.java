@@ -1,8 +1,10 @@
 package com.kunitskaya.pages;
 
 import com.kunitskaya.BaseTest;
+import com.kunitskaya.business.operations.UserOperations;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -14,24 +16,15 @@ import static org.testng.Assert.*;
 
 public class HelpPopupTest extends BaseTest {
 
-    @Test(description = "Log in to Gmail")
+    @BeforeClass
     public void logIn() {
-        LoginPage loginPage = new LoginPage();
-
-        loginPage.open().fillInUsername(user.getUsername())
-                 .clickUsernameNextButton();
-
-        assertEquals(loginPage.getUsernameValue(), user.getUsername());
-
-        MailPage mailPage = loginPage.fillInPassword(user.getPassword())
-                                     .clickPasswordNextButton();
-
-        assertTrue(mailPage.isAccountIconVisible());
+        UserOperations.logIn(user);
     }
 
-    @Test(description = "CDP-0003 Gmail: Help pop-up", dependsOnMethods = "logIn")
+    @Test(description = "CDP-0003 Gmail: Help pop-up")
     public void validateHelpPopup() {
         String searchInput = "Change";
+
         MailPage mailPage = new MailPage();
 
         HelpPopup helpPopup = mailPage.clickSettingsButton()

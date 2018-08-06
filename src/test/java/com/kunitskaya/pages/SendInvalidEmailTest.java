@@ -2,6 +2,7 @@ package com.kunitskaya.pages;
 
 import com.kunitskaya.BaseTest;
 import com.kunitskaya.business.objects.Email;
+import com.kunitskaya.business.operations.EmailOperations;
 import com.kunitskaya.business.operations.UserOperations;
 import com.kunitskaya.test.TestDataProvider;
 import org.testng.annotations.BeforeClass;
@@ -20,7 +21,6 @@ public class SendInvalidEmailTest extends BaseTest {
     public void sendInvalidEmail() {
         MailPage mailPage = new MailPage();
         Email email = TestDataProvider.getEmail();
-
         String noSubject = "(no subject)";
         String to = email.getReceiver();
 
@@ -34,10 +34,11 @@ public class SendInvalidEmailTest extends BaseTest {
         composeEmailPopup.acceptAlert();
 
         //verify that email is in the sent folder
-        String sentMailContent = mailPage.clickSentMailLink()
-                                         .openEmailWithSubject(noSubject)
-                                         .getMailContent();
+//        String sentMailContent = mailPage.clickSentMailLink()
+//                                         .openEmailWithSubject(noSubject)
+//                                         .getMailContent();
 
+        String sentMailContent = EmailOperations.getSentMailPartialContent(email);
         assertEquals(sentMailContent, noSubject + to);
     }
 }

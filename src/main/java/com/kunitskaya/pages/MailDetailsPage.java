@@ -29,7 +29,7 @@ public class MailDetailsPage extends MailPage {
         return subject.getText();
     }
 
-    public String getSentMailFullContent() {
+    public String getMailFullContent() {
         return getSubject() + getTo() + getBody();
     }
 

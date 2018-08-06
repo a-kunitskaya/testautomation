@@ -16,7 +16,7 @@ public class WebDriverProvider {
 
     private static WebDriver webDriver;
     private static ConfigProvider configProvider = ConfigProvider.getInstance();
-    private static final String BROWSER_CHROME = "chrome";
+   // private static final String BROWSER_CHROME = "chrome";
 
     private WebDriverProvider() {
     }
@@ -32,9 +32,10 @@ public class WebDriverProvider {
     public static void initializeDriver() {
         DesiredCapabilities capabilities = null;
         ChromeOptions chromeOptions = null;
-        String browser = configProvider.getBrowser();
+        String currentBrowser = configProvider.getBrowser();
         String platform = configProvider.getPlatform();
         boolean isRemoteDriver = configProvider.isRemoteDriver();
+        Browsers browser = Browsers.getBrowser(currentBrowser);
 
         //getting the url from properties file since it changes every time I start the grid
         URL hubUrl = null;
@@ -46,14 +47,14 @@ public class WebDriverProvider {
 
         if (platform.equals("MAC")) {
             switch (browser) {
-                case BROWSER_CHROME:
+                case CHROME:
                     chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--kiosk");
                     break;
             }
         } else {
             switch (browser) {
-                case BROWSER_CHROME:
+                case CHROME:
                     chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--start-maximized");
                     break;
@@ -61,7 +62,7 @@ public class WebDriverProvider {
         }
         if (isRemoteDriver) {
             switch (browser) {
-                case BROWSER_CHROME:
+                case CHROME:
                     capabilities = DesiredCapabilities.chrome();
                     capabilities.merge(chromeOptions);
                     break;

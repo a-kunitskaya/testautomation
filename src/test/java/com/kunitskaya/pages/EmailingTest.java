@@ -35,7 +35,7 @@ public class EmailingTest extends BaseTest {
         MailListingPage mailListingPage = EmailOperations.sendEmail();
         assertFalse(mailListingPage.isEmailPresentOnPage(subject));
 
-        String sentEmailContent = EmailOperations.getSentMailContent(email);
+        String sentEmailContent = EmailOperations.getSentMailFullContent(email);
         assertEquals(sentEmailContent, subject + to + body);
 
     }

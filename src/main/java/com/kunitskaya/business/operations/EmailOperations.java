@@ -19,10 +19,6 @@ public class EmailOperations {
         return emailContent.clickCloseButton();
     }
 
-    public static void openEmail(Email email) {
-
-
-    }
 
     public static ComposeEmailPopup openDraft(Email email) {
         return new MailPage()
@@ -34,15 +30,21 @@ public class EmailOperations {
         return new ComposeEmailPopup().clickSendButton();
     }
 
-    public static String getSentMailContent(Email email) {
+    public static String getSentMailFullContent(Email email) {
         return new MailPage()
                 .clickSentMailLink()
                 .openEmailWithSubject(email.getSubject())
-                .getSentMailFullContent();
+                .getMailFullContent();
+    }
+
+    public static String getSentMailPartialContent(Email email) {
+        return new MailPage()
+                .clickSentMailLink()
+                .openEmailWithSubject(email.getSubject())
+                .getMailContent();
     }
 
 
-    //
 
 
 }
