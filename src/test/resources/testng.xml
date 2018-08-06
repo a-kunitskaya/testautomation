@@ -4,9 +4,9 @@
 
     <test name="AllTests">
         <classes>
-            <class name="com.kunitskaya.pf.HelpPopupTest"/>
-            <class name="com.kunitskaya.pf.SendInvalidEmailTest"/>
-            <class name="com.kunitskaya.pf.InvalidLoginTest"/>
+            <class name="com.kunitskaya.pages.HelpPopupTest"/>
+            <class name="com.kunitskaya.pages.SendInvalidEmailTest"/>
+            <class name="com.kunitskaya.pages.InvalidLoginTest"/>
             <class name="com.kunitskaya.pages.EmailingTest"/>
         </classes>
     </test>

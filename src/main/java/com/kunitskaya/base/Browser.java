@@ -42,6 +42,7 @@ public class Browser {
 
     public void quit(){
         webDriver.quit();
+        webDriver = null;
         instance = null;
     }
 }

@@ -3,7 +3,6 @@ package com.kunitskaya.pages;
 import com.kunitskaya.BaseTest;
 import com.kunitskaya.business.operations.UserOperations;
 import org.apache.commons.lang3.StringUtils;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -24,11 +23,10 @@ public class HelpPopupTest extends BaseTest {
     @Test(description = "CDP-0003 Gmail: Help pop-up")
     public void validateHelpPopup() {
         String searchInput = "Change";
-
         MailPage mailPage = new MailPage();
-
         HelpPopup helpPopup = mailPage.clickSettingsButton()
                                       .clickHelpSettingsOption();
+
         assertTrue(helpPopup.isDisplayed());
 
         List<String> searchResults = helpPopup.enterSearchCriteria(searchInput)
@@ -44,14 +42,12 @@ public class HelpPopupTest extends BaseTest {
         String basePage = browser.getCurrentWindowHandle();
         browser.switchToLastOpenedWindow();
 
-        Assert.assertEquals(helpPage.getHeader(), GmailHelpPage.HELP_PAGE_HEADER);
+        assertEquals(helpPage.getHeader(), GmailHelpPage.HELP_PAGE_HEADER);
         assertEquals(helpPage.getTitle(), GmailHelpPage.HELP_PAGE_TITLE);
-        Assert.assertEquals(helpPage.getSearchFieldPlaceholder(), GmailHelpPage.HELP_PAGE_SEARCH_PLACEHOLDER);
+        assertEquals(helpPage.getSearchFieldPlaceholder(), GmailHelpPage.HELP_PAGE_SEARCH_PLACEHOLDER);
 
         browser.closeCurrentWindow();
-
         browser.switchToWindowHandle(basePage);
-
         helpPopup.switchToHelpPopupFrame();
 
         GmailHelpForumPage forumPage = helpPopup.clickVisitHelpForumLink();
@@ -63,7 +59,6 @@ public class HelpPopupTest extends BaseTest {
         assertTrue(StringUtils.containsIgnoreCase(forumPage.getTitle(), FORUM_PAGE_TITLE));
 
         browser.closeCurrentWindow();
-
         browser.switchToWindowHandle(basePage);
         helpPopup.switchToHelpPopupFrame();
 

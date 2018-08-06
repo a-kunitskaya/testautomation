@@ -21,7 +21,6 @@ public class SendInvalidEmailTest extends BaseTest {
     public void sendInvalidEmail() {
         MailPage mailPage = new MailPage();
         Email email = TestDataProvider.getEmail();
-        String noSubject = "(no subject)";
         String to = email.getReceiver();
 
         //create email without subject, body and send it
@@ -30,13 +29,10 @@ public class SendInvalidEmailTest extends BaseTest {
                                                       .sendEmailWithHotKeys();
 
         assertTrue(composeEmailPopup.isAlertDisplayed());
-
         composeEmailPopup.acceptAlert();
 
-        //verify that email is in the sent folder
-//        String sentMailContent = mailPage.clickSentMailLink()
-//                                         .openEmailWithSubject(noSubject)
-//                                         .getMailContent();
+        String noSubject = "(no subject)";
+        email.setSubject(noSubject);
 
         String sentMailContent = EmailOperations.getSentMailPartialContent(email);
         assertEquals(sentMailContent, noSubject + to);
