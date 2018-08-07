@@ -8,18 +8,24 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.kunitskaya.pages.LoginPage.LOGIN_PAGE_URL;
 
 public class SelenideTest {
+    private static final By USERNAME_FIELD = By.id("identifierId");
+    private static final By USERNAME_VALUE = By.id("profileIdentifier");
+    private static final By PASSWORD_FIELD = By.name("password");
+    private static final By ACCOUNT_ICON = By.cssSelector(".gb_b.gb_eb.gb_R");
+
     @BeforeClass
     public void setUp() {
         Configuration.browser = "chrome";
     }
 
     @Test
-    public void logIn() {
+    public void logInTest() {
         User user = TestDataProvider.getUser();
         String username = user.getUsername();
         String password = user.getPassword();
@@ -27,24 +33,17 @@ public class SelenideTest {
         open(LOGIN_PAGE_URL);
 
         //enter username, proceed
-        $(By.id("identifierId")).setValue(username)
+        $(USERNAME_FIELD).setValue(username)
                                 .pressEnter();
 
         //assert that the entered username == user username
-        $(By.id("profileIdentifier")).shouldHave(text(username));
+        $(USERNAME_VALUE).shouldHave(text(username));
 
         //enter password, proceed
-        $(By.name("password")).setValue(password)
+        $(PASSWORD_FIELD).setValue(password)
                               .pressEnter();
 
-        //assert that the entered password == user password
-
+        //assert that account icon is displayed
+        $(ACCOUNT_ICON).shouldBe(visible);
     }
 }
-
-
-//        String actualPageAfterLogin = webDriver.getCurrentUrl();
-//        assertEquals(actualPageAfterLogin, INBOX);
-//
-//        WebElement loggedInAccountButton = webDriver.findElement(By.cssSelector(".gb_b.gb_db.gb_R"));
-//        assertTrue(loggedInAccountButton.isDisplayed());
