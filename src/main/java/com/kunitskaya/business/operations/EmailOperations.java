@@ -43,8 +43,4 @@ public class EmailOperations {
                 .openEmailWithSubject(email.getSubject())
                 .getMailContent();
     }
-
-
-
-
 }

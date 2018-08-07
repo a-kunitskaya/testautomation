@@ -5,7 +5,6 @@ public enum Browsers {
 
     private String type;
 
-
     Browsers(String type) {
         this.type = type;
     }

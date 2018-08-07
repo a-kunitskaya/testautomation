@@ -3,6 +3,8 @@ package com.kunitskaya.base;
 import com.google.common.collect.Iterables;
 import org.openqa.selenium.WebDriver;
 
+import static com.kunitskaya.base.WebDriverProvider.destroyDriver;
+
 public class Browser {
     private static Browser instance;
     private WebDriver webDriver;
@@ -41,8 +43,8 @@ public class Browser {
     }
 
     public void quit(){
+        destroyDriver();
         webDriver.quit();
-        webDriver = null;
         instance = null;
     }
 }

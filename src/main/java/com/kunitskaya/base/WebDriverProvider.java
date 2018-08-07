@@ -16,7 +16,6 @@ public class WebDriverProvider {
 
     private static WebDriver webDriver;
     private static ConfigProvider configProvider = ConfigProvider.getInstance();
-   // private static final String BROWSER_CHROME = "chrome";
 
     private WebDriverProvider() {
     }
@@ -77,5 +76,9 @@ public class WebDriverProvider {
             }
             webDriver = new ChromeDriver(chromeOptions);
         }
+    }
+
+    public static void destroyDriver(){
+        webDriver = null;
     }
 }

@@ -1,8 +1,6 @@
 package com.kunitskaya.pages;
 
 import com.kunitskaya.BaseTest;
-import com.kunitskaya.business.operations.UserOperations;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import static com.kunitskaya.pages.LoginPage.WRONG_PASSWORD_ERROR_MESSAGE;
@@ -31,10 +29,5 @@ public class InvalidLoginTest extends BaseTest {
                 .clickPasswordNextButton();
 
         assertTrue(mailPage.isAccountIconVisible());
-    }
-
-    @AfterClass
-    public void logOut(){
-        UserOperations.logOut();
     }
 }

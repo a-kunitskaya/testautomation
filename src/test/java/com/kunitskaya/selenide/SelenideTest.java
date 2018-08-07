@@ -30,24 +30,3 @@ public class SelenideTest {
                 .pressEnter();
     }
 }
-
-//
-//        webDriver.findElement(By.id("identifierId")).sendKeys(USERNAME);
-//        webDriver.findElement(By.id("identifierNext")).click();
-//
-//        WebElement profileIdentifier = webDriver.findElement(By.id("profileIdentifier"));
-//        String profileIdentifierValue = profileIdentifier.getAttribute("data-email");
-//
-//        assertEquals(profileIdentifierValue, USERNAME);
-//
-//
-//        webDriver.findElement(By.name("password")).sendKeys(PASSWORD);
-//
-//        webDriver.findElement(By.id("passwordNext")).click();
-//
-//
-//        String actualPageAfterLogin = webDriver.getCurrentUrl();
-//        assertEquals(actualPageAfterLogin, INBOX);
-//
-//        WebElement loggedInAccountButton = webDriver.findElement(By.cssSelector(".gb_b.gb_db.gb_R"));
-//        assertTrue(loggedInAccountButton.isDisplayed());

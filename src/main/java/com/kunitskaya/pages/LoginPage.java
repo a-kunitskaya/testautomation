@@ -13,7 +13,6 @@ public class LoginPage extends AbstractPage {
     public static final String LOGIN_PAGE_URL = "https://mail.google.com/mail/";
     public static final String WRONG_PASSWORD_ERROR_MESSAGE = "Wrong password. Try again or click Forgot password to reset it.";
 
-
     @FindBy(id = "identifierId")
     WebElement usernameField;
 
