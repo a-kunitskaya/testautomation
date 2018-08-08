@@ -3,14 +3,14 @@ package com.kunitskaya.base;
 import com.google.common.collect.Iterables;
 import org.openqa.selenium.WebDriver;
 
-import static com.kunitskaya.base.WebDriverProvider.destroyDriver;
+import static com.kunitskaya.base.WebDriverProvider.resetDriver;
 
 public class Browser {
     private static Browser instance;
     private WebDriver webDriver;
 
     private Browser() {
-            this.webDriver = WebDriverProvider.getInstance();
+        this.webDriver = WebDriverProvider.getInstance();
     }
 
     public static Browser getInstance() {
@@ -21,8 +21,8 @@ public class Browser {
     }
 
     public void switchToLastOpenedWindow() {
-       String winHandle = Iterables.getLast(webDriver.getWindowHandles());
-       webDriver.switchTo().window(winHandle);
+        String winHandle = Iterables.getLast(webDriver.getWindowHandles());
+        webDriver.switchTo().window(winHandle);
 
     }
 
@@ -42,9 +42,8 @@ public class Browser {
         webDriver.manage().deleteAllCookies();
     }
 
-    public void quit(){
-        destroyDriver();
-        webDriver.quit();
+    public void quit() {
+        resetDriver();
         instance = null;
     }
 }

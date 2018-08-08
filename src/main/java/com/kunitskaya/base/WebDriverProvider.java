@@ -10,6 +10,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.kunitskaya.base.Browsers.getBrowser;
+import static com.kunitskaya.base.Platforms.MAC;
+import static com.kunitskaya.base.Platforms.getPlatform;
 import static com.kunitskaya.base.waits.ImplicitWait.waitImplicitly;
 
 public class WebDriverProvider {
@@ -28,13 +31,14 @@ public class WebDriverProvider {
         return webDriver;
     }
 
-    public static void initializeDriver() {
-        DesiredCapabilities capabilities = null;
-        ChromeOptions chromeOptions = null;
+    private static void initializeDriver() {
+        DesiredCapabilities capabilities;
+        ChromeOptions chromeOptions = new ChromeOptions();
         String currentBrowser = configProvider.getBrowser();
-        String platform = configProvider.getPlatform();
+        String currentPlatform = configProvider.getPlatform();
         boolean isRemoteDriver = configProvider.isRemoteDriver();
-        Browsers browser = Browsers.getBrowser(currentBrowser);
+        Browsers browser = getBrowser(currentBrowser);
+        Platforms platform = getPlatform(currentPlatform);
 
         //getting the url from properties file since it changes every time I start the grid
         URL hubUrl = null;
@@ -43,42 +47,27 @@ public class WebDriverProvider {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        switch (browser) {
+            case CHROME:
+                chromeOptions = platform.equals(MAC) ? chromeOptions.addArguments("--kiosk") : chromeOptions.addArguments("--start-maximized");
 
-        if (platform.equals("MAC")) {
-            switch (browser) {
-                case CHROME:
-                    chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--kiosk");
-                    break;
-            }
-        } else {
-            switch (browser) {
-                case CHROME:
-                    chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--start-maximized");
-                    break;
-            }
-        }
-        if (isRemoteDriver) {
-            switch (browser) {
-                case CHROME:
-                    capabilities = DesiredCapabilities.chrome();
-                    capabilities.merge(chromeOptions);
-                    break;
-            }
-
-            webDriver = new RemoteWebDriver(hubUrl, capabilities);
-        } else {
-            if (platform.equals("MAC")) {
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
-            } else {
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-            }
-            webDriver = new ChromeDriver(chromeOptions);
+                if (isRemoteDriver) {
+                    capabilities = DesiredCapabilities.chrome().merge(chromeOptions);
+                    webDriver = new RemoteWebDriver(hubUrl, capabilities);
+                } else {
+                    if (platform.equals(MAC)) {
+                        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
+                    } else {
+                        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+                    }
+                    webDriver = new ChromeDriver(chromeOptions);
+                }
+                break;
         }
     }
 
-    public static void destroyDriver(){
+    public static void resetDriver() {
+        webDriver.quit();
         webDriver = null;
     }
 }

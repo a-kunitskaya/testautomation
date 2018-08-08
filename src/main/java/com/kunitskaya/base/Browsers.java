@@ -3,21 +3,21 @@ package com.kunitskaya.base;
 public enum Browsers {
     CHROME("chrome");
 
-    private String type;
+    private String name;
 
-    Browsers(String type) {
-        this.type = type;
+    Browsers(String name) {
+        this.name = name;
     }
 
-    public static Browsers getBrowser(String type) {
-        if (type.equals(CHROME.getType())) {
+    public static Browsers getBrowser(String name) {
+        if (name.equals(CHROME.getName())) {
             return CHROME;
         } else {
-            return null;
+            throw new NullPointerException("No such browser is found");
         }
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 }
