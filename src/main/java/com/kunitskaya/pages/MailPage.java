@@ -18,16 +18,13 @@ public class MailPage extends AbstractPage {
     WebElement helpSettingsOption;
 
     @FindBy(xpath = "//div[@gh='cm']")
-    WebElement composeButton;
+    public WebElement composeButton;
 
     @FindBy(linkText = "Sent Mail")
     WebElement sentMailFolder;
 
     @FindBy(partialLinkText = "Drafts ")
     WebElement draftsForlderLink;
-
-    @FindBy(linkText = "Sent Mail")
-    WebElement getSentMailFolder;
 
     @FindBy(linkText = "Sign out")
     WebElement signOutButton;

@@ -1,23 +1,26 @@
 package com.kunitskaya.selenide;
 
 import com.codeborne.selenide.Configuration;
+import com.kunitskaya.business.objects.Email;
 import com.kunitskaya.business.objects.User;
 import com.kunitskaya.test.TestDataProvider;
-import org.openqa.selenium.By;
+import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.*;
 import static com.kunitskaya.pages.LoginPage.LOGIN_PAGE_URL;
+import static com.kunitskaya.pages.selenide.ComposeEmailPopup.*;
+import static com.kunitskaya.pages.selenide.LoginPage.*;
+import static com.kunitskaya.pages.selenide.MailDetailsPage.*;
+import static com.kunitskaya.pages.selenide.MailListingPage.DEFAULT_SUBJECT;
+import static com.kunitskaya.pages.selenide.MailListingPage.openEmailBySubject;
+import static com.kunitskaya.pages.selenide.MailPage.*;
+
 
 public class SelenideTest {
-    private static final By USERNAME_FIELD = By.id("identifierId");
-    private static final By USERNAME_VALUE = By.id("profileIdentifier");
-    private static final By PASSWORD_FIELD = By.name("password");
-    private static final By ACCOUNT_ICON = By.cssSelector(".gb_b.gb_eb.gb_R");
 
     @BeforeClass
     public void setUp() {
@@ -27,23 +30,40 @@ public class SelenideTest {
     @Test
     public void logInTest() {
         User user = TestDataProvider.getUser();
-        String username = user.getUsername();
-        String password = user.getPassword();
 
         open(LOGIN_PAGE_URL);
-
-        //enter username, proceed
-        $(USERNAME_FIELD).setValue(username)
-                                .pressEnter();
+        enterUsername(user.getUsername());
 
         //assert that the entered username == user username
-        $(USERNAME_VALUE).shouldHave(text(username));
+        $(USERNAME_VALUE).shouldHave(text(user.getUsername()));
 
-        //enter password, proceed
-        $(PASSWORD_FIELD).setValue(password)
-                              .pressEnter();
+        enterPassword(user.getPassword());
 
         //assert that account icon is displayed
         $(ACCOUNT_ICON).shouldBe(visible);
+    }
+
+    @Test(dependsOnMethods = "logInTest")
+    public void sendInvalidEmailTest() {
+        Email email = TestDataProvider.getEmail();
+
+        clickComposeButton();
+        enterTo(email.getReceiver());
+        clickSendButton();
+
+        //find alert by text, accept it
+        $(confirm(ALERT_TEXT));
+
+        clickSentFolderLink();
+
+        //find email by subject, assert it's visible in the Sent folder
+        $(byText(DEFAULT_SUBJECT)).shouldBe(visible);
+
+        openEmailBySubject(DEFAULT_SUBJECT);
+
+        //assert the opened email is the one I actually sent
+        $(TO_VALUE).shouldHave(attribute(TO_ATTRIBUTE, email.getReceiver()));
+        $(SUBJECT_VALUE).shouldHave(text(DEFAULT_SUBJECT));
+        $(BODY_VALUE).shouldHave(text(StringUtils.EMPTY));
     }
 }
