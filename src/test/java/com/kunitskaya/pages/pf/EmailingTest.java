@@ -1,4 +1,4 @@
-package com.kunitskaya.pages;
+package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.BaseTest;
 import com.kunitskaya.business.objects.Email;

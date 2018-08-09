@@ -1,9 +1,9 @@
-package com.kunitskaya.pages;
+package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.BaseTest;
 import org.testng.annotations.Test;
 
-import static com.kunitskaya.pages.LoginPage.WRONG_PASSWORD_ERROR_MESSAGE;
+import static com.kunitskaya.pages.pf.LoginPage.WRONG_PASSWORD_ERROR_MESSAGE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 

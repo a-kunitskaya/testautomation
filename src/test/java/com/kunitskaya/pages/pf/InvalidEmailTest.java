@@ -1,4 +1,4 @@
-package com.kunitskaya.pages;
+package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.BaseTest;
 import com.kunitskaya.business.objects.Email;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class SendInvalidEmailTest extends BaseTest {
+public class InvalidEmailTest extends BaseTest {
     @BeforeClass
     public void logIn() {
         UserOperations.logIn(user);

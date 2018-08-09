@@ -1,8 +1,8 @@
 package com.kunitskaya.business.operations;
 
 import com.kunitskaya.business.objects.User;
-import com.kunitskaya.pages.LoginPage;
-import com.kunitskaya.pages.MailPage;
+import com.kunitskaya.pages.pf.LoginPage;
+import com.kunitskaya.pages.pf.MailPage;
 
 public class UserOperations {
 

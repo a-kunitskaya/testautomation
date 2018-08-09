@@ -1,4 +1,4 @@
-package com.kunitskaya.pages;
+package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.base.waits.ExplicitWait;
 import org.apache.commons.lang3.StringUtils;

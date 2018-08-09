@@ -4,10 +4,11 @@
 
     <test name="AllTests">
         <classes>
-            <class name="com.kunitskaya.pages.HelpPopupTest"/>
-            <class name="com.kunitskaya.pages.SendInvalidEmailTest"/>
-            <class name="com.kunitskaya.pages.InvalidLoginTest"/>
-            <class name="com.kunitskaya.pages.EmailingTest"/>
+            <class name="com.kunitskaya.pages.pf.HelpPopupTest"/>
+            <class name="com.kunitskaya.pages.pf.InvalidEmailTest"/>
+            <class name="com.kunitskaya.pages.pf.InvalidLoginTest"/>
+            <class name="com.kunitskaya.pages.pf.EmailingTest"/>
+            <class name="com.kunitskaya.pages.selenide.InvalidEmailingTest"/>
         </classes>
     </test>
 </suite>

@@ -1,9 +1,9 @@
 package com.kunitskaya.business.operations;
 
 import com.kunitskaya.business.objects.Email;
-import com.kunitskaya.pages.ComposeEmailPopup;
-import com.kunitskaya.pages.MailListingPage;
-import com.kunitskaya.pages.MailPage;
+import com.kunitskaya.pages.pf.ComposeEmailPopup;
+import com.kunitskaya.pages.pf.MailListingPage;
+import com.kunitskaya.pages.pf.MailPage;
 
 public class EmailOperations {
 
@@ -30,6 +30,7 @@ public class EmailOperations {
         return new ComposeEmailPopup().clickSendButton();
     }
 
+  ///////
     public static String getSentMailFullContent(Email email) {
         return new MailPage()
                 .clickSentMailLink()
@@ -42,5 +43,13 @@ public class EmailOperations {
                 .clickSentMailLink()
                 .openEmailWithSubject(email.getSubject())
                 .getMailContent();
+    }
+    /////
+
+    public static String getMail(Email email){
+       new  MailPage()
+               .clickSentMailLink()
+               .openEmailWithSubject(email.getSubject());
+       if(email.getClass().equals())
     }
 }

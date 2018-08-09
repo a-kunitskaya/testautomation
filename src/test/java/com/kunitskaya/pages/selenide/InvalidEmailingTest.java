@@ -1,4 +1,4 @@
-package com.kunitskaya.selenide;
+package com.kunitskaya.pages.selenide;
 
 import com.codeborne.selenide.Configuration;
 import com.kunitskaya.business.objects.Email;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.kunitskaya.pages.LoginPage.LOGIN_PAGE_URL;
+import static com.kunitskaya.pages.pf.LoginPage.LOGIN_PAGE_URL;
 import static com.kunitskaya.pages.selenide.ComposeEmailPopup.*;
 import static com.kunitskaya.pages.selenide.LoginPage.*;
 import static com.kunitskaya.pages.selenide.MailDetailsPage.*;
@@ -20,7 +20,7 @@ import static com.kunitskaya.pages.selenide.MailListingPage.openEmailBySubject;
 import static com.kunitskaya.pages.selenide.MailPage.*;
 
 
-public class SelenideTest {
+public class InvalidEmailingTest {
 
     @BeforeClass
     public void setUp() {
@@ -28,7 +28,7 @@ public class SelenideTest {
     }
 
     @Test
-    public void logInTest() {
+    public void logIn() {
         User user = TestDataProvider.getUser();
 
         open(LOGIN_PAGE_URL);
@@ -43,8 +43,8 @@ public class SelenideTest {
         $(ACCOUNT_ICON).shouldBe(visible);
     }
 
-    @Test(dependsOnMethods = "logInTest")
-    public void sendInvalidEmailTest() {
+    @Test(dependsOnMethods = "logIn")
+    public void sendInvalidEmail() {
         Email email = TestDataProvider.getEmail();
 
         clickComposeButton();

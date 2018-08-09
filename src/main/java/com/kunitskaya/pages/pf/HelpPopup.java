@@ -1,4 +1,4 @@
-package com.kunitskaya.pages;
+package com.kunitskaya.pages.pf;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
