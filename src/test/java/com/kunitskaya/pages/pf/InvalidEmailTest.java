@@ -3,6 +3,7 @@ package com.kunitskaya.pages.pf;
 import com.kunitskaya.BaseTest;
 import com.kunitskaya.business.objects.Email;
 import com.kunitskaya.business.operations.EmailOperations;
+import com.kunitskaya.business.operations.NavigaionOperations;
 import com.kunitskaya.business.operations.UserOperations;
 import com.kunitskaya.test.TestDataProvider;
 import org.testng.annotations.BeforeClass;
@@ -24,9 +25,13 @@ public class InvalidEmailTest extends BaseTest {
         String to = email.getReceiver();
 
         //create email without subject, body and send it
-        ComposeEmailPopup composeEmailPopup = mailPage.clickComposeButton()
-                                                      .fillInToField(to)
-                                                      .sendEmailWithHotKeys();
+//        ComposeEmailPopup composeEmailPopup = mailPage.clickComposeButton()
+//                                                      .fillInToField(to)
+//                                                      .sendEmailWithHotKeys();
+
+        EmailOperations.sendEmptyEmail(to);
+
+        ComposeEmailPopup composeEmailPopup = new ComposeEmailPopup();
 
         assertTrue(composeEmailPopup.isAlertDisplayed());
         composeEmailPopup.acceptAlert();
@@ -34,7 +39,9 @@ public class InvalidEmailTest extends BaseTest {
         String noSubject = "(no subject)";
         email.setSubject(noSubject);
 
-        String sentMailContent = EmailOperations.getSentMailPartialContent(email);
+        NavigaionOperations.goToSentMailFolder();
+
+        String sentMailContent = EmailOperations.getMailContent(email);
         assertEquals(sentMailContent, noSubject + to);
     }
 }

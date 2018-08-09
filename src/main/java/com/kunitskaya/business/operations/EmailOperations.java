@@ -2,17 +2,17 @@ package com.kunitskaya.business.operations;
 
 import com.kunitskaya.business.objects.Email;
 import com.kunitskaya.pages.pf.ComposeEmailPopup;
+import com.kunitskaya.pages.pf.MailDetailsPage;
 import com.kunitskaya.pages.pf.MailListingPage;
 import com.kunitskaya.pages.pf.MailPage;
 
 public class EmailOperations {
 
-    public static ComposeEmailPopup createEmail(Email email) {
-        return new MailPage()
-                .clickComposeButton()
-                .fillInToField(email.getReceiver())
-                .fillInSubjectField(email.getSubject())
-                .fillInBodyField(email.getBody());
+    public static void createEmail(Email email) {
+        new MailPage().clickComposeButton()
+                      .fillInToField(email.getReceiver())
+                      .fillInSubjectField(email.getSubject())
+                      .fillInBodyField(email.getBody());
     }
 
     public static MailPage saveEmailAsDraft(ComposeEmailPopup emailContent) {
@@ -30,26 +30,19 @@ public class EmailOperations {
         return new ComposeEmailPopup().clickSendButton();
     }
 
-  ///////
-    public static String getSentMailFullContent(Email email) {
-        return new MailPage()
-                .clickSentMailLink()
-                .openEmailWithSubject(email.getSubject())
-                .getMailFullContent();
+    public static String getMailContent(Email email) {
+        new MailListingPage().openEmailWithSubject(email.getSubject());
+
+        if (email.getReceiver().isEmpty() || email.getSubject().isEmpty() || email.getBody().isEmpty()) {
+            return new MailDetailsPage().getMailContent();
+        } else {
+            return new MailDetailsPage().getMailFullContent();
+        }
     }
 
-    public static String getSentMailPartialContent(Email email) {
-        return new MailPage()
-                .clickSentMailLink()
-                .openEmailWithSubject(email.getSubject())
-                .getMailContent();
-    }
-    /////
-
-    public static String getMail(Email email){
-       new  MailPage()
-               .clickSentMailLink()
-               .openEmailWithSubject(email.getSubject());
-       if(email.getClass().equals())
+    public static void sendEmptyEmail(String to) {
+        new MailPage().clickComposeButton()
+                      .fillInToField(to)
+                      .sendEmailWithHotKeys();
     }
 }
