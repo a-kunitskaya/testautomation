@@ -18,6 +18,7 @@ public class HelpPopupTest extends BaseTest {
 
     @BeforeClass
     public void logIn() {
+        NavigaionOperations.goToLoginPage();
         UserOperations.logIn(user);
     }
 
