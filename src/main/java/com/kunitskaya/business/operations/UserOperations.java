@@ -1,6 +1,7 @@
 package com.kunitskaya.business.operations;
 
 import com.kunitskaya.business.objects.User;
+import com.kunitskaya.pages.pf.AbstractPage;
 import com.kunitskaya.pages.pf.LoginPage;
 import com.kunitskaya.pages.pf.MailPage;
 
@@ -19,5 +20,9 @@ public class UserOperations {
         return new MailPage()
                 .clickAccountIcon()
                 .clickSignOutButton();
+    }
+
+    public static void acceptAlert(){
+        new AbstractPage().acceptAlert();
     }
 }

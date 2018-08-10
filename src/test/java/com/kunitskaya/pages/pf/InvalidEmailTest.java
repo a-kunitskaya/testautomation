@@ -20,21 +20,13 @@ public class InvalidEmailTest extends BaseTest {
 
     @Test(description = "CDP-0001 Gmail: Sending invalid email")
     public void sendInvalidEmail() {
-        MailPage mailPage = new MailPage();
         Email email = TestDataProvider.getEmail();
         String to = email.getReceiver();
 
-        //create email without subject, body and send it
-//        ComposeEmailPopup composeEmailPopup = mailPage.clickComposeButton()
-//                                                      .fillInToField(to)
-//                                                      .sendEmailWithHotKeys();
-
         EmailOperations.sendEmptyEmail(to);
+        assertTrue(new ComposeEmailPopup().isAlertDisplayed());
 
-        ComposeEmailPopup composeEmailPopup = new ComposeEmailPopup();
-
-        assertTrue(composeEmailPopup.isAlertDisplayed());
-        composeEmailPopup.acceptAlert();
+        UserOperations.acceptAlert();
 
         String noSubject = "(no subject)";
         email.setSubject(noSubject);
