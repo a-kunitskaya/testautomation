@@ -1,6 +1,5 @@
 {
-  "capabilities":
-  [
+  "capabilities": [
     {
       "browserName": "firefox",
       "maxInstances": 1,
@@ -24,7 +23,7 @@
   "unregisterIfStillDownAfter": 60000,
   "downPollingLimit": 2,
   "debug": false,
-  "servlets" : [],
+  "servlets": [],
   "withoutServlets": [],
   "custom": {}
 }

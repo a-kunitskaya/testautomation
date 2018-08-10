@@ -13,7 +13,7 @@ public class MailPage {
         $(COMPOSE_BUTTON).click();
     }
 
-    public static void clickSentFolderLink(){
+    public static void clickSentFolderLink() {
         $(SENT_FOLDER).click();
     }
 }

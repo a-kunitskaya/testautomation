@@ -17,20 +17,12 @@ public class MailDetailsPage extends MailPage {
         super();
     }
 
-    public String getMailContent() {
-        return getSubject() + getTo();
-    }
-
     public String getTo() {
         return to.getAttribute("email");
     }
 
     public String getSubject() {
         return subject.getText();
-    }
-
-    public String getMailFullContent() {
-        return getSubject() + getTo() + getBody();
     }
 
     public String getBody() {

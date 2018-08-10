@@ -60,6 +60,7 @@ public class WebDriverProvider {
                     } else {
                         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
                     }
+                    System.setProperty("selenide.browser", currentBrowser);
                     webDriver = new ChromeDriver(chromeOptions);
                 }
                 break;

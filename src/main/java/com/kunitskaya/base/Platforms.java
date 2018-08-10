@@ -4,7 +4,6 @@ public enum Platforms {
     MAC("MAC"),
     WINDOWS("WINDOWS");
 
-
     private String name;
 
     Platforms(String name) {

@@ -92,10 +92,10 @@ public class FeedbackPopup extends AbstractPage {
         return this;
     }
 
-    public FeedbackPopup makeScreenshot() {
+    public FeedbackPopup makeScreenshot(int xOffset, int yOffset) {
         new Actions(webDriver).click(screenshotButton)
                               .clickAndHold()
-                              .moveByOffset(300, 300)
+                              .moveByOffset(xOffset, yOffset)
                               .release()
                               .click(screenshotDoneButton)
                               .build()

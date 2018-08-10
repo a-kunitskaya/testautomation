@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class ImplicitWait {
 
     private static ConfigProvider configProvider = ConfigProvider.getInstance();
+
     /**
      * Waits for the specified amount of time
      *

@@ -2,9 +2,10 @@ package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.BaseTest;
 import com.kunitskaya.business.objects.Email;
-import com.kunitskaya.business.operations.EmailOperations;
-import com.kunitskaya.business.operations.NavigaionOperations;
-import com.kunitskaya.business.operations.UserOperations;
+import com.kunitskaya.business.operations.pf.EmailOperations;
+import com.kunitskaya.business.operations.pf.NavigaionOperations;
+import com.kunitskaya.business.operations.pf.UserOperations;
+import com.kunitskaya.test.Folders;
 import com.kunitskaya.test.TestDataProvider;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,6 +14,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class InvalidEmailTest extends BaseTest {
+
     @BeforeClass
     public void logIn() {
         UserOperations.logIn(user);
@@ -33,7 +35,7 @@ public class InvalidEmailTest extends BaseTest {
 
         NavigaionOperations.goToSentMailFolder();
 
-        String sentMailContent = EmailOperations.getMailContent(email);
+        String sentMailContent = EmailOperations.getMailContent(email, Folders.SENT);
         assertEquals(sentMailContent, noSubject + to);
     }
 }

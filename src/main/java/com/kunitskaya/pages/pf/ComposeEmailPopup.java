@@ -12,7 +12,6 @@ import static com.kunitskaya.pages.pf.MailListingPage.SUBJECT_LOCATOR;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 
 public class ComposeEmailPopup extends AbstractPage {
-
     private static final String TO_VALUE_ATTRIBUTE = "email";
 
     @FindBy(xpath = "//textarea[@name='to']")
@@ -68,10 +67,6 @@ public class ComposeEmailPopup extends AbstractPage {
     public MailPage clickCloseButton() {
         closeButton.click();
         return new MailPage();
-    }
-
-    public String getEmailContent(String subject) {
-        return getTo() + getBody(subject);
     }
 
     public String getBody(String subject) {
