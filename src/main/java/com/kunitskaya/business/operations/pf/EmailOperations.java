@@ -1,6 +1,6 @@
 package com.kunitskaya.business.operations.pf;
 
-import com.kunitskaya.business.objects.Email;
+import com.kunitskaya.business.objects.email.Email;
 import com.kunitskaya.pages.pf.ComposeEmailPopup;
 import com.kunitskaya.pages.pf.MailDetailsPage;
 import com.kunitskaya.pages.pf.MailListingPage;

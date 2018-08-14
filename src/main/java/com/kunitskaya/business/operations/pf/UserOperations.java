@@ -1,6 +1,6 @@
 package com.kunitskaya.business.operations.pf;
 
-import com.kunitskaya.business.objects.User;
+import com.kunitskaya.business.objects.user.User;
 import com.kunitskaya.pages.pf.*;
 
 import java.util.List;

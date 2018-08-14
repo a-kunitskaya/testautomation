@@ -1,12 +1,13 @@
 package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.BaseTest;
-import com.kunitskaya.business.objects.Email;
+import com.kunitskaya.business.objects.email.Email;
+import com.kunitskaya.business.objects.email.EmailCreator;
+import com.kunitskaya.business.objects.email.GmailEmailCreator;
 import com.kunitskaya.business.operations.pf.EmailOperations;
 import com.kunitskaya.business.operations.pf.NavigaionOperations;
 import com.kunitskaya.business.operations.pf.UserOperations;
 import com.kunitskaya.test.Folders;
-import com.kunitskaya.test.TestDataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -22,7 +23,8 @@ public class EmailingTest extends BaseTest {
 
     @Test(description = "Create an email, save it as a draft and send", dependsOnMethods = "logIn")
     public void sendDraftEmail() {
-        Email email = TestDataProvider.getEmail();
+        EmailCreator creator = new GmailEmailCreator();
+        Email email = creator.createEmail();
 
         EmailOperations.createEmail(email);
         EmailOperations.saveEmailAsDraft();

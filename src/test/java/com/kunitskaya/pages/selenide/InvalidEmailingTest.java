@@ -1,7 +1,7 @@
 package com.kunitskaya.pages.selenide;
 
 import com.kunitskaya.BaseTest;
-import com.kunitskaya.business.objects.Email;
+import com.kunitskaya.business.objects.email.Email;
 import com.kunitskaya.business.operations.selenide.EmailOperations;
 import com.kunitskaya.business.operations.selenide.NavigationOperations;
 import com.kunitskaya.business.operations.selenide.UserOperations;
@@ -36,7 +36,7 @@ public class InvalidEmailingTest extends BaseTest {
 
     @Test(dependsOnMethods = "logIn")
     public void sendInvalidEmail() {
-        Email email = TestDataProvider.getEmail();
+        Email email = TestDataProvider.getDefaultGmailEmail();
         EmailOperations.sendEmptyEmail(email.getReceiver());
         UserOperations.acceptAlert(ALERT_TEXT);
         NavigationOperations.goToSentFolder();

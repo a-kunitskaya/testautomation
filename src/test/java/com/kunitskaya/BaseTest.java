@@ -1,7 +1,7 @@
 package com.kunitskaya;
 
 import com.kunitskaya.base.Browser;
-import com.kunitskaya.business.objects.User;
+import com.kunitskaya.business.objects.user.User;
 import com.kunitskaya.test.TestDataProvider;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
