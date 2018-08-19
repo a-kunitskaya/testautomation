@@ -52,14 +52,12 @@ public class WebDriverDecorator implements WebDriver {
     public void close() {
         Reporter.log("Closing the browser...");
         webDriver.close();
-
     }
 
     @Override
     public void quit() {
         Reporter.log("Qutting webdriver... ");
         webDriver.quit();
-
     }
 
     @Override

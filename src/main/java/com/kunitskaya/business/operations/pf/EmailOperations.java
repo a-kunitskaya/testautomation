@@ -8,6 +8,7 @@ import com.kunitskaya.pages.pf.MailPage;
 import com.kunitskaya.test.Folders;
 
 public class EmailOperations {
+
     /**
      * Creates email
      *
@@ -56,7 +57,6 @@ public class EmailOperations {
         switch (folder) {
             case DRAFT:
                 ComposeEmailPopup emailPopup = new ComposeEmailPopup();
-                // emailContent = new ComposeEmailPopup().getTo() + new ComposeEmailPopup().getBody(email.getSubject());
                 actualEmail.setReceiver(emailPopup.getTo());
                 actualEmail.setBody(emailPopup.getBody(email.getSubject()));
                 actualEmail.setSubject(emailPopup.getSubject());
@@ -65,11 +65,9 @@ public class EmailOperations {
                 MailDetailsPage mailDetails = new MailDetailsPage();
                 new MailListingPage().openEmailWithSubject(email.getSubject());
                 if (email.getBody() == null) {
-                    // emailContent = mailDetails.getSubject() + mailDetails.getTo();
                     actualEmail.setSubject(mailDetails.getSubject());
                     actualEmail.setReceiver(mailDetails.getTo());
                 } else {
-                    // emailContent = mailDetails.getSubject() + mailDetails.getTo() + mailDetails.getBody();
                     actualEmail.setSubject(mailDetails.getSubject());
                     actualEmail.setBody(mailDetails.getBody());
                     actualEmail.setReceiver(mailDetails.getTo());

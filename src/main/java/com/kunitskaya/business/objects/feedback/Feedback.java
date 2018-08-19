@@ -6,6 +6,7 @@ public class Feedback {
     String header;
     String input;
     String inputFieldPlaceholder;
+
     boolean isIncludeScreenshotChecked;
 
     public String getHeader() {

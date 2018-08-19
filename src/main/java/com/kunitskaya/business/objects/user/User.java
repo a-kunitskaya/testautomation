@@ -17,7 +17,7 @@ public class User {
         return password;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String username;
         private String password;
 
@@ -31,7 +31,7 @@ public class User {
             return this;
         }
 
-        public User build(){
+        public User build() {
             return new User(this);
         }
     }

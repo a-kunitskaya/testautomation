@@ -10,6 +10,7 @@ import com.kunitskaya.pages.pf.MailPage;
 import java.util.List;
 
 public class UserOperations {
+
     /**
      * Logs in to Gmail
      *

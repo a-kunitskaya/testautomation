@@ -8,7 +8,6 @@ import static com.kunitskaya.pages.pf.LoginPage.LOGIN_PAGE_URL;
 
 public class LoginPage {
     public static final By USERNAME_FIELD = By.id("identifierId");
-    public static final By USERNAME_VALUE = By.id("profileIdentifier");
     public static final By PASSWORD_FIELD = By.name("password");
 
     public static void enterUsername(String username) {

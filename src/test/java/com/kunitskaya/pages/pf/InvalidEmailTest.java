@@ -22,7 +22,7 @@ public class InvalidEmailTest extends BaseTest {
     }
 
     @Test(description = "CDP-0001 Gmail: Sending invalid email")
-    public void sendInvalidEmail() throws InterruptedException {
+    public void sendInvalidEmail() {
         Email expectedEmail = TestDataProvider.getEmailWithoutBody();
         EmailOperations.sendEmail(expectedEmail.getReceiver());
 

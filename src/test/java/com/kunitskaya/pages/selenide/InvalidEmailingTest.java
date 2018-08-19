@@ -30,7 +30,7 @@ public class InvalidEmailingTest extends BaseTest {
     }
 
     @Test(dependsOnMethods = "logIn")
-    public void sendInvalidEmail() throws InterruptedException {
+    public void sendInvalidEmail() {
         Email email = TestDataProvider.getDefaultEmail();
         EmailOperations.sendEmail(email.getReceiver());
         $(confirm(ALERT_TEXT));

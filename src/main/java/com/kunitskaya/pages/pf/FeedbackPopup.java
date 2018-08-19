@@ -11,6 +11,7 @@ import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class FeedbackPopup extends AbstractPage {
+
     @FindBy(id = "google-feedback-wizard")
     WebElement feedbackPopupFrame;
 

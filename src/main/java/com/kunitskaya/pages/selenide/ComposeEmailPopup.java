@@ -18,5 +18,4 @@ public class ComposeEmailPopup {
     public static void clickSendButton() {
         $(SEND_BUTTON).click();
     }
-
 }

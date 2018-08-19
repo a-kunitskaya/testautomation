@@ -37,7 +37,6 @@ public class ComposeEmailPopup extends AbstractPage {
     @FindBy(id = "link_vsm")
     WebElement messageSentLink;
 
-
     public ComposeEmailPopup() {
         super();
     }

@@ -37,7 +37,7 @@ public class WebDriverProvider {
     }
 
     private static void initializeDriver() {
-        DesiredCapabilities capabilities= new DesiredCapabilities();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
         ChromeOptions chromeOptions = new ChromeOptions();
         webDriver = new WebDriverDecorator(webDriver);
         String currentBrowser = configProvider.getBrowser();

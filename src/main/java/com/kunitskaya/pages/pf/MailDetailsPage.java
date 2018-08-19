@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MailDetailsPage extends MailPage {
+
     @FindBy(xpath = "//span[@dir='ltr' and @class='g2']")
     WebElement to;
 

@@ -27,7 +27,7 @@ public class TestDataProvider {
                 .build();
     }
 
-    public static User getInvalidPasswordGmailUser(){
+    public static User getInvalidPasswordGmailUser() {
         return new User.Builder()
                 .withUsername(USERNAME)
                 .withPassword(INVALID_PASSWORD)
