@@ -1,7 +1,7 @@
 package com.kunitskaya.base.webdriver;
 
-import com.kunitskaya.base.Browsers;
-import com.kunitskaya.base.Platforms;
+import com.kunitskaya.test.Browsers;
+import com.kunitskaya.test.Platforms;
 import com.kunitskaya.test.ConfigProvider;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
@@ -15,9 +15,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
-import static com.kunitskaya.base.Browsers.getBrowser;
-import static com.kunitskaya.base.Platforms.MAC;
-import static com.kunitskaya.base.Platforms.getPlatform;
+import static com.kunitskaya.test.Browsers.getBrowser;
+import static com.kunitskaya.test.Platforms.MAC;
+import static com.kunitskaya.test.Platforms.getPlatform;
 import static com.kunitskaya.base.waits.ImplicitWait.waitImplicitly;
 
 public class WebDriverProvider {

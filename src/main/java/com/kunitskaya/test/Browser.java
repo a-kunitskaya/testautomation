@@ -1,4 +1,4 @@
-package com.kunitskaya.base;
+package com.kunitskaya.test;
 
 import com.google.common.collect.Iterables;
 import com.kunitskaya.base.webdriver.WebDriverProvider;

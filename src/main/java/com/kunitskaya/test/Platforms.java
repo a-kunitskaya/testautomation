@@ -1,4 +1,4 @@
-package com.kunitskaya.base;
+package com.kunitskaya.test;
 
 import java.util.stream.Stream;
 

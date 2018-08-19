@@ -1,6 +1,6 @@
 package com.kunitskaya.business.operations.pf;
 
-import com.kunitskaya.base.Browser;
+import com.kunitskaya.test.Browser;
 import com.kunitskaya.pages.pf.HelpPopup;
 import com.kunitskaya.pages.pf.LoginPage;
 import com.kunitskaya.pages.pf.MailPage;
