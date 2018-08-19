@@ -38,9 +38,9 @@ public class EmailOperations {
     }
 
     /**
-     * Sends the opened email
+     * Sends the opened draft email
      */
-    public static void sendEmail() {
+    public static void sendDraftEmail() {
         new ComposeEmailPopup().clickSendButton();
     }
 
@@ -82,11 +82,11 @@ public class EmailOperations {
     }
 
     /**
-     * Sends empty email
+     * Creates and sends email with filled in "to"
      *
      * @param to - email receiver
      */
-    public static void sendEmptyEmail(String to) {
+    public static void sendEmail(String to) {
         new MailPage().clickComposeButton()
                       .fillInToField(to)
                       .sendEmailWithHotKeys();

@@ -3,7 +3,7 @@ package com.kunitskaya.pages.pf;
 import com.kunitskaya.BaseTest;
 import com.kunitskaya.business.objects.email.Email;
 import com.kunitskaya.business.operations.pf.EmailOperations;
-import com.kunitskaya.business.operations.pf.NavigaionOperations;
+import com.kunitskaya.business.operations.pf.NavigationOperations;
 import com.kunitskaya.business.operations.pf.UserOperations;
 import com.kunitskaya.test.Folders;
 import com.kunitskaya.test.TestDataProvider;
@@ -17,19 +17,19 @@ public class InvalidEmailTest extends BaseTest {
 
     @BeforeClass
     public void logIn() {
-        NavigaionOperations.goToLoginPage();
+        NavigationOperations.goToLoginPage();
         UserOperations.logIn(user);
     }
 
     @Test(description = "CDP-0001 Gmail: Sending invalid email")
     public void sendInvalidEmail() throws InterruptedException {
         Email expectedEmail = TestDataProvider.getEmailWithoutBody();
-        EmailOperations.sendEmptyEmail(expectedEmail.getReceiver());
+        EmailOperations.sendEmail(expectedEmail.getReceiver());
 
-        assertTrue(new AbstractPage().isAlertDisplayed());
+        assertTrue(browser.isAlertDisplayed());
 
-        UserOperations.acceptAlert();
-        NavigaionOperations.goToSentMailFolder();
+        browser.acceptAlert();
+        NavigationOperations.goToSentMailFolder();
 
         String noSubject = "(no subject)";
         expectedEmail.setSubject(noSubject);

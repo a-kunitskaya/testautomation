@@ -24,7 +24,7 @@ public class MailPage extends AbstractPage {
     WebElement sentMailFolder;
 
     @FindBy(partialLinkText = "Drafts ")
-    WebElement draftsForlderLink;
+    WebElement draftsFolderLink;
 
     @FindBy(linkText = "Sign out")
     WebElement signOutButton;
@@ -72,7 +72,7 @@ public class MailPage extends AbstractPage {
     }
 
     public MailListingPage clickDraftsFolderLink() {
-        draftsForlderLink.click();
+        draftsFolderLink.click();
         return new MailListingPage();
     }
 }

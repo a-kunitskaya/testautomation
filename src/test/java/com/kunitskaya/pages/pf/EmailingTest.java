@@ -3,7 +3,7 @@ package com.kunitskaya.pages.pf;
 import com.kunitskaya.BaseTest;
 import com.kunitskaya.business.objects.email.Email;
 import com.kunitskaya.business.operations.pf.EmailOperations;
-import com.kunitskaya.business.operations.pf.NavigaionOperations;
+import com.kunitskaya.business.operations.pf.NavigationOperations;
 import com.kunitskaya.business.operations.pf.UserOperations;
 import com.kunitskaya.test.Folders;
 import com.kunitskaya.test.TestDataProvider;
@@ -15,7 +15,7 @@ public class EmailingTest extends BaseTest {
 
     @Test(description = "Log in to Gmail")
     public void logIn() {
-        NavigaionOperations.goToLoginPage();
+        NavigationOperations.goToLoginPage();
         UserOperations.logIn(user);
         assertTrue(new MailPage().isAccountIconVisible());
     }
@@ -31,10 +31,10 @@ public class EmailingTest extends BaseTest {
         Email actualDraft = EmailOperations.getActualEmail(expectedEmail, Folders.DRAFT);
         assertEquals(actualDraft, expectedEmail);
 
-        EmailOperations.sendEmail();
+        EmailOperations.sendDraftEmail();
         assertFalse(new MailListingPage().isEmailPresentOnPage(expectedEmail.getSubject()));
 
-        NavigaionOperations.goToSentMailFolder();
+        NavigationOperations.goToSentMailFolder();
 
         Email actualEmail = EmailOperations.getActualEmail(expectedEmail, Folders.SENT);
         assertEquals(actualEmail, expectedEmail);

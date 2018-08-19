@@ -11,9 +11,6 @@ import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class FeedbackPopup extends AbstractPage {
-    public static final String FEEDBACK_POPUP_HEADER = "Send feedback";
-    public static final String FEEDBACK_POPUP_INPUT_PLACEHOLDER = "Describe your issue or share your ideas";
-
     @FindBy(id = "google-feedback-wizard")
     WebElement feedbackPopupFrame;
 
@@ -87,6 +84,12 @@ public class FeedbackPopup extends AbstractPage {
         return new MailPage();
     }
 
+    public MailPage clickSendButton() {
+        waitForElementToBeClickable(webDriver, sendButton);
+        sendButton.click();
+        return new MailPage();
+    }
+
     public FeedbackPopup switchToFeedbackFrame() {
         webDriver.switchTo().frame(feedbackPopupFrame);
         return this;
@@ -100,6 +103,11 @@ public class FeedbackPopup extends AbstractPage {
                               .click(screenshotDoneButton)
                               .build()
                               .perform();
+        return this;
+    }
+
+    public FeedbackPopup fillInInputField(String input) {
+        inputField.sendKeys(input);
         return this;
     }
 }

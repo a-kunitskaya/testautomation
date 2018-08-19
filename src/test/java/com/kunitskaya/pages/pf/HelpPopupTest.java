@@ -1,16 +1,16 @@
 package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.BaseTest;
-import com.kunitskaya.business.operations.pf.NavigaionOperations;
+import com.kunitskaya.business.objects.feedback.Feedback;
+import com.kunitskaya.business.operations.pf.NavigationOperations;
 import com.kunitskaya.business.operations.pf.UserOperations;
+import com.kunitskaya.test.TestDataProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.kunitskaya.pages.pf.FeedbackPopup.FEEDBACK_POPUP_HEADER;
-import static com.kunitskaya.pages.pf.FeedbackPopup.FEEDBACK_POPUP_INPUT_PLACEHOLDER;
 import static com.kunitskaya.pages.pf.GmailHelpForumPage.*;
 import static org.testng.Assert.*;
 
@@ -18,13 +18,13 @@ public class HelpPopupTest extends BaseTest {
 
     @BeforeClass
     public void logIn() {
-        NavigaionOperations.goToLoginPage();
+        NavigationOperations.goToLoginPage();
         UserOperations.logIn(user);
     }
 
     @Test(description = "CDP-0003 Gmail: Help pop-up")
     public void validateHelpPopup() {
-        NavigaionOperations.goToHelpPopup();
+        NavigationOperations.goToHelpPopup();
         HelpPopup helpPopup = new HelpPopup();
         assertTrue(helpPopup.isDisplayed());
 
@@ -36,8 +36,8 @@ public class HelpPopupTest extends BaseTest {
             assertTrue(StringUtils.containsIgnoreCase(searchResult, searchInput));
         }
 
-        UserOperations.clearSearchField();
-        NavigaionOperations.goToHelpPage();
+        helpPopup.clearSearchField();
+        NavigationOperations.goToHelpPage();
         GmailHelpPage helpPage = new GmailHelpPage();
 
         String basePage = browser.getCurrentWindowHandle();
@@ -51,7 +51,7 @@ public class HelpPopupTest extends BaseTest {
         browser.switchToWindowHandle(basePage);
         helpPopup.switchToHelpPopupFrame();
 
-        NavigaionOperations.goToHelpForum();
+        NavigationOperations.goToHelpForum();
         GmailHelpForumPage forumPage = new GmailHelpForumPage();
 
         assertTrue(forumPage.isNewTopicButtonVisible());
@@ -63,18 +63,18 @@ public class HelpPopupTest extends BaseTest {
         browser.switchToWindowHandle(basePage);
         helpPopup.switchToHelpPopupFrame();
 
-        NavigaionOperations.goToFeedbackPopup();
+        NavigationOperations.goToFeedbackPopup();
+        Feedback feedback = TestDataProvider.getDefaultFeedback();
         FeedbackPopup feedbackPopup = new FeedbackPopup();
 
         assertTrue(feedbackPopup.isSendFeedbackPopupDisplayed());
         assertTrue(feedbackPopup.isInputFieldDisplayed());
         assertTrue(feedbackPopup.isCancelButtonDisplayed() && feedbackPopup.isSendButtonDisplayed());
-        assertEquals(feedbackPopup.getHeader(), FEEDBACK_POPUP_HEADER);
-        assertEquals(feedbackPopup.getInputFieldPlaceholder(), FEEDBACK_POPUP_INPUT_PLACEHOLDER);
-        assertTrue(feedbackPopup.isIncludeScreenshotCheckboxChecked());
+        assertEquals(feedbackPopup.getHeader(), feedback.getHeader());
+        assertEquals(feedbackPopup.getInputFieldPlaceholder(), feedback.getInputFieldPlaceholder());
+        assertEquals(feedbackPopup.isIncludeScreenshotCheckboxChecked(), feedback.isIncludeScreenshotChecked());
 
-        UserOperations.makeFeedbackScreenshot(300, 300);
-        UserOperations.cancelFeedback();
+        UserOperations.leaveFeedback(feedback, true);
 
         assertTrue(new MailPage().isAccountIconVisible());
         assertFalse(feedbackPopup.isSendFeedbackPopupDisplayed());

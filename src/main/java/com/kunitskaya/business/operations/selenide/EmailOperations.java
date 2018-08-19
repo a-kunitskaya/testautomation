@@ -7,11 +7,11 @@ import static com.kunitskaya.pages.selenide.MailPage.clickComposeButton;
 
 public class EmailOperations {
     /**
-     * Sends empty email
+     * Creates and sends email with filled in "to"
      *
      * @param to - email receiver
      */
-    public static void sendEmptyEmail(String to) {
+    public static void sendEmail(String to) {
         clickComposeButton();
         enterTo(to);
         clickSendButton();

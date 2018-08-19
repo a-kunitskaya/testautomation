@@ -1,26 +1,15 @@
 package com.kunitskaya.base;
 
+import java.util.stream.Stream;
+
 public enum Platforms {
-    MAC("MAC"),
-    WINDOWS("WINDOWS");
-
-    private String name;
-
-    Platforms(String name) {
-        this.name = name;
-    }
+    MAC,
+    WINDOWS;
 
     public static Platforms getPlatform(String name) {
-        if (name.equals(MAC.getName())) {
-            return MAC;
-        } else if (name.equals(WINDOWS.getName())) {
-            return WINDOWS;
-        } else {
-            throw new NullPointerException("No such platform is found");
-        }
-    }
-
-    public String getName() {
-        return name;
+        return Stream.of(values())
+                     .filter(platform -> platform.name().equals(name))
+                     .findFirst()
+                     .orElseThrow(() -> new IllegalArgumentException("No such platform is found: " + name));
     }
 }

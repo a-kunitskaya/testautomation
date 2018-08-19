@@ -1,5 +1,7 @@
 package com.kunitskaya.base;
 
+import java.util.stream.Stream;
+
 public enum Browsers {
     CHROME("chrome");
 
@@ -10,11 +12,10 @@ public enum Browsers {
     }
 
     public static Browsers getBrowser(String name) {
-        if (name.equals(CHROME.getName())) {
-            return CHROME;
-        } else {
-            throw new NullPointerException("No such browser is found");
-        }
+        return Stream.of(values())
+                     .filter(browser -> browser.getName().equals(name))
+                     .findFirst()
+                     .orElseThrow(() -> new IllegalArgumentException("No such browser is found: " + name));
     }
 
     public String getName() {

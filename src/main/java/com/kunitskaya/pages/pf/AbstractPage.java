@@ -2,7 +2,6 @@ package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.base.webdriver.WebDriverProvider;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -22,19 +21,6 @@ public class AbstractPage {
     public String getTitle() {
         waitForPageLoadComplete(webDriver);
         return webDriver.getTitle();
-    }
-
-    public boolean isAlertDisplayed() {
-        try {
-            webDriver.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
-
-    public void acceptAlert() {
-        webDriver.switchTo().alert().accept();
     }
 
     public void highlightElement(WebElement webElement) {

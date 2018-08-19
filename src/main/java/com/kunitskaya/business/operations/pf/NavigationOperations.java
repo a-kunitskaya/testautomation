@@ -5,7 +5,7 @@ import com.kunitskaya.pages.pf.HelpPopup;
 import com.kunitskaya.pages.pf.LoginPage;
 import com.kunitskaya.pages.pf.MailPage;
 
-public class NavigaionOperations {
+public class NavigationOperations {
     /**
      * Opens Sent Mail folder
      */

@@ -14,6 +14,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 import static com.kunitskaya.base.Browsers.getBrowser;
 import static com.kunitskaya.base.Platforms.MAC;
 import static com.kunitskaya.base.Platforms.getPlatform;
@@ -55,6 +56,7 @@ public class WebDriverProvider {
         switch (browser) {
             case CHROME:
                 chromeOptions = platform.equals(MAC) ? chromeOptions.addArguments("--kiosk") : chromeOptions.addArguments("--start-maximized");
+                chromeOptions.addArguments("--lang=en");
                 capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
                 if (isRemoteDriver) {
                     capabilities = DesiredCapabilities.chrome().merge(chromeOptions);
@@ -65,8 +67,10 @@ public class WebDriverProvider {
                     } else {
                         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
                     }
-                    System.setProperty("selenide.browser", currentBrowser);
                     webDriver = new ChromeDriver(chromeOptions);
+
+                    //set selenide web driver
+                    setWebDriver(webDriver);
                 }
                 break;
         }

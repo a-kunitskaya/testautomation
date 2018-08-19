@@ -12,8 +12,8 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.confirm;
 import static com.kunitskaya.pages.selenide.ComposeEmailPopup.ALERT_TEXT;
-import static com.kunitskaya.pages.selenide.LoginPage.USERNAME_VALUE;
 import static com.kunitskaya.pages.selenide.MailDetailsPage.*;
 import static com.kunitskaya.pages.selenide.MailListingPage.DEFAULT_SUBJECT;
 import static com.kunitskaya.pages.selenide.MailPage.ACCOUNT_ICON;
@@ -23,22 +23,18 @@ public class InvalidEmailingTest extends BaseTest {
     @Test
     public void logIn() {
         NavigationOperations.goToLoginPage();
-        UserOperations.enterUsername(user.getUsername());
-
-        //assert that the entered username == user username
-        $(USERNAME_VALUE).shouldHave(text(user.getUsername()));
-
-        UserOperations.enterPassword(user.getPassword());
+        UserOperations.logIn(user);
 
         //assert that account icon is displayed
         $(ACCOUNT_ICON).shouldBe(visible);
     }
 
     @Test(dependsOnMethods = "logIn")
-    public void sendInvalidEmail() {
+    public void sendInvalidEmail() throws InterruptedException {
         Email email = TestDataProvider.getDefaultEmail();
-        EmailOperations.sendEmptyEmail(email.getReceiver());
-        UserOperations.acceptAlert(ALERT_TEXT);
+        EmailOperations.sendEmail(email.getReceiver());
+        $(confirm(ALERT_TEXT));
+
         NavigationOperations.goToSentFolder();
 
         //find email by subject, assert it's visible in the Sent folder

@@ -1,7 +1,11 @@
 package com.kunitskaya.business.operations.pf;
 
+import com.kunitskaya.business.objects.feedback.Feedback;
 import com.kunitskaya.business.objects.user.User;
-import com.kunitskaya.pages.pf.*;
+import com.kunitskaya.pages.pf.FeedbackPopup;
+import com.kunitskaya.pages.pf.HelpPopup;
+import com.kunitskaya.pages.pf.LoginPage;
+import com.kunitskaya.pages.pf.MailPage;
 
 import java.util.List;
 
@@ -9,11 +13,13 @@ public class UserOperations {
     /**
      * Logs in to Gmail
      *
-     * @param user - user with credenials
+     * @param user - user with credentials
      */
     public static void logIn(User user) {
-        enterUsername(user.getUsername());
-        enterPassword(user.getPassword());
+        new LoginPage().fillInUsername(user.getUsername())
+                       .clickUsernameNextButton();
+        new LoginPage().fillInPassword(user.getPassword())
+                       .clickPasswordNextButton();
     }
 
     /**
@@ -23,13 +29,6 @@ public class UserOperations {
         new MailPage()
                 .clickAccountIcon()
                 .clickSignOutButton();
-    }
-
-    /**
-     * Accepts alert
-     */
-    public static void acceptAlert() {
-            new AbstractPage().acceptAlert();
     }
 
     /**
@@ -44,46 +43,23 @@ public class UserOperations {
     }
 
     /**
-     * Clears Search field
-     */
-    public static void clearSearchField() {
-        new HelpPopup().clearSearchField();
-    }
-
-    /**
-     * Take a screenshot in the Feedback popup
+     * Creates and sends feedback
      *
-     * @param xOffset - from offset
-     * @param yOffset - to offset
+     * @param feedback            - Feedback instance
+     * @param isFeedbackCancelled - determines if to cancel or send feedback eventually
      */
-    public static void makeFeedbackScreenshot(int xOffset, int yOffset) {
-        new FeedbackPopup().makeScreenshot(xOffset, yOffset);
-    }
-
-    /**
-     * Dismisses Feedback popup
-     */
-    public static void cancelFeedback() {
-        new FeedbackPopup().clickCancelButton();
-    }
-
-    /**
-     * Enteres username on Login page
-     *
-     * @param username - username to enter
-     */
-    public static void enterUsername(String username) {
-        new LoginPage().fillInUsername(username)
-                       .clickUsernameNextButton();
-    }
-
-    /**
-     * Enteres password on Login page
-     *
-     * @param password - password to enter
-     */
-    public static void enterPassword(String password) {
-        new LoginPage().fillInPassword(password)
-                       .clickPasswordNextButton();
+    public static void leaveFeedback(Feedback feedback, boolean isFeedbackCancelled) {
+        FeedbackPopup feedbackPopup = new FeedbackPopup();
+        feedbackPopup.fillInInputField(feedback.getInput());
+        if (feedbackPopup.getHeader().equals(feedback.getHeader())) {
+            if (feedback.isIncludeScreenshotChecked()) {
+                feedbackPopup = feedbackPopup.makeScreenshot(400, 400);
+            }
+            if (isFeedbackCancelled) {
+                feedbackPopup.clickCancelButton();
+            } else {
+                feedbackPopup.clickSendButton();
+            }
+        }
     }
 }

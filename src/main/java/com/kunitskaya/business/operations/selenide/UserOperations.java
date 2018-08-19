@@ -1,35 +1,17 @@
 package com.kunitskaya.business.operations.selenide;
 
+import com.kunitskaya.business.objects.user.User;
 import com.kunitskaya.pages.selenide.LoginPage;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.confirm;
-
 public class UserOperations {
-    /**
-     * Enters username on Login page
-     *
-     * @param username - username to enter
-     */
-    public static void enterUsername(String username) {
-        LoginPage.enterUsername(username);
-    }
 
     /**
-     * Enters password on Login page
+     * Logs in to Gmail
      *
-     * @param password - password to enter
+     * @param user - user with credentials
      */
-    public static void enterPassword(String password) {
-        LoginPage.enterPassword(password);
-    }
-
-    /**
-     * Finds alert by text, accepts it
-     *
-     * @param alertText - text in the alert
-     */
-    public static void acceptAlert(String alertText) {
-        $(confirm(alertText));
+    public static void logIn(User user) {
+        LoginPage.enterUsername(user.getUsername());
+        LoginPage.enterPassword(user.getPassword());
     }
 }
