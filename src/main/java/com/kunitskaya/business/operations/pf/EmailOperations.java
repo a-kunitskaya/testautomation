@@ -87,14 +87,9 @@ public class EmailOperations {
      * @param to - email receiver
      */
     public static void sendEmptyEmail(String to) {
-        try {
-            new MailPage().clickComposeButton()
-                          .fillInToField(to)
-                          .sendEmailWithHotKeys();
-        } catch (Exception e) {
-            System.out.println("Exection in EmailOperations");
+        new MailPage().clickComposeButton()
+                      .fillInToField(to)
+                      .sendEmailWithHotKeys();
 
-
-        }
     }
 }

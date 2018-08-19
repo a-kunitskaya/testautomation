@@ -1,13 +1,11 @@
 package com.kunitskaya.base.waits;
 
 import com.kunitskaya.test.ConfigProvider;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 
 /**
  * Waits for the specified condition
@@ -71,15 +69,18 @@ public class ExplicitWait {
 
     /**
      * Waits for the page to load
+     * throws exception if alert is displayed
      *
      * @param driver - web driver
      */
     public static void waitForPageLoadComplete(WebDriver driver) {
-        Wait<WebDriver> wait = new WebDriverWait(driver, 30, 10000L);
-        wait.until(driver1 -> String
-                .valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState"))
-                .equals("complete"));
+        try {
+            Wait<WebDriver> wait = new WebDriverWait(driver, 30, 10000L);
+            wait.until(driver1 -> String
+                    .valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState"))
+                    .equals("complete"));
+        } catch (UnhandledAlertException e) {
+            Reporter.log("Skipping unhandled alert exception");
+        }
     }
-
-
 }
