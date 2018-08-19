@@ -36,7 +36,7 @@ public class InvalidEmailingTest extends BaseTest {
 
     @Test(dependsOnMethods = "logIn")
     public void sendInvalidEmail() {
-        Email email = TestDataProvider.getDefaultGmailEmail();
+        Email email = TestDataProvider.getDefaultEmail();
         EmailOperations.sendEmptyEmail(email.getReceiver());
         UserOperations.acceptAlert(ALERT_TEXT);
         NavigationOperations.goToSentFolder();

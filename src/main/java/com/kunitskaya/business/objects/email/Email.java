@@ -1,50 +1,59 @@
 package com.kunitskaya.business.objects.email;
 
+import java.util.Objects;
+
 public class Email {
     private String subject;
     private String receiver;
     private String body;
 
+
     public String getSubject() {
         return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getReceiver() {
         return receiver;
     }
 
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
     public String getBody() {
         return body;
     }
 
-    public Email(Builder builder) {
-        this.subject = builder.subject;
-        this.receiver = builder.receiver;
-        this.body = builder.body;
+    public void setBody(String body) {
+        this.body = body;
     }
 
-    public static class Builder {
-        private String subject;
-        private String receiver;
-        private String body;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Email email = (Email) o;
+        return Objects.equals(subject, email.subject) &&
+                Objects.equals(receiver, email.receiver) &&
+                Objects.equals(body, email.body);
+    }
 
-        public Builder withSubject(String subject) {
-            this.subject = subject;
-            return this;
-        }
+    @Override
+    public int hashCode() {
 
-        public Builder withReceiver(String receiver) {
-            this.receiver = receiver;
-            return this;
-        }
+        return Objects.hash(subject, receiver, body);
+    }
 
-        public Builder withBody(String body) {
-            this.body = body;
-            return this;
-        }
-
-        public Email build() {
-            return new Email(this);
-        }
+    @Override
+    public String toString() {
+        return "Email{" +
+                "subject='" + subject + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", body='" + body + '\'' +
+                '}';
     }
 }

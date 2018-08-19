@@ -2,12 +2,11 @@ package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.BaseTest;
 import com.kunitskaya.business.objects.email.Email;
-import com.kunitskaya.business.objects.email.EmailCreator;
-import com.kunitskaya.business.objects.email.GmailEmailCreator;
 import com.kunitskaya.business.operations.pf.EmailOperations;
 import com.kunitskaya.business.operations.pf.NavigaionOperations;
 import com.kunitskaya.business.operations.pf.UserOperations;
 import com.kunitskaya.test.Folders;
+import com.kunitskaya.test.TestDataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -23,23 +22,22 @@ public class EmailingTest extends BaseTest {
 
     @Test(description = "Create an email, save it as a draft and send", dependsOnMethods = "logIn")
     public void sendDraftEmail() {
-        EmailCreator creator = new GmailEmailCreator();
-        Email email = creator.createEmail();
+        Email expectedEmail = TestDataProvider.getDefaultEmail();
 
-        EmailOperations.createEmail(email);
+        EmailOperations.createEmail(expectedEmail);
         EmailOperations.saveEmailAsDraft();
-        EmailOperations.openDraft(email);
+        EmailOperations.openDraft(expectedEmail);
 
-        String emailContent = EmailOperations.getMailContent(email, Folders.DRAFT);
-        assertEquals(emailContent, email.getReceiver() + " - " + email.getBody());
+        Email actualDraft = EmailOperations.getActualEmail(expectedEmail, Folders.DRAFT);
+        assertEquals(actualDraft, expectedEmail);
 
         EmailOperations.sendEmail();
-        assertFalse(new MailListingPage().isEmailPresentOnPage(email.getSubject()));
+        assertFalse(new MailListingPage().isEmailPresentOnPage(expectedEmail.getSubject()));
 
         NavigaionOperations.goToSentMailFolder();
-        String actualSentEmailContent = EmailOperations.getMailContent(email, Folders.SENT);
-        String expectedEmailContent = email.getSubject() + email.getReceiver() + email.getBody();
-        assertEquals(actualSentEmailContent, expectedEmailContent);
+
+        Email actualEmail = EmailOperations.getActualEmail(expectedEmail, Folders.SENT);
+        assertEquals(actualEmail, expectedEmail);
 
     }
 

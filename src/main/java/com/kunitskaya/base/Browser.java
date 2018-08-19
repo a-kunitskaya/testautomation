@@ -1,9 +1,10 @@
 package com.kunitskaya.base;
 
 import com.google.common.collect.Iterables;
+import com.kunitskaya.base.webdriver.WebDriverProvider;
 import org.openqa.selenium.WebDriver;
 
-import static com.kunitskaya.base.WebDriverProvider.resetDriver;
+import static com.kunitskaya.base.webdriver.WebDriverProvider.resetDriver;
 
 public class Browser {
     private static Browser instance;

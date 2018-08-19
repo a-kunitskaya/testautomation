@@ -1,14 +1,14 @@
 package com.kunitskaya;
 
 import com.kunitskaya.base.Browser;
+import com.kunitskaya.business.objects.user.GmailUserCreator;
 import com.kunitskaya.business.objects.user.User;
-import com.kunitskaya.test.TestDataProvider;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 public class BaseTest {
     protected Browser browser;
-    protected User user = TestDataProvider.getUser();
+    protected User user = new GmailUserCreator().createUser();
 
     @BeforeClass
     public void setUp() {

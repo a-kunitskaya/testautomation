@@ -1,5 +1,6 @@
 package com.kunitskaya.pages.pf;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 
 public class ComposeEmailPopup extends AbstractPage {
     private static final String TO_VALUE_ATTRIBUTE = "email";
+    private static final String SUBJECT_VALUE_ATTRIBUTE = "value";
 
     @FindBy(xpath = "//textarea[@name='to']")
     WebElement toField;
@@ -70,11 +72,15 @@ public class ComposeEmailPopup extends AbstractPage {
     }
 
     public String getBody(String subject) {
-        return webDriver.findElement(By.xpath(String.format(SUBJECT_LOCATOR, subject))).getText();
+        return StringUtils.remove(webDriver.findElement(By.xpath(String.format(SUBJECT_LOCATOR, subject))).getText(), " - ");
     }
 
     public String getTo() {
         return toValue.getAttribute(TO_VALUE_ATTRIBUTE);
+    }
+
+    public String getSubject() {
+        return subjectField.getAttribute(SUBJECT_VALUE_ATTRIBUTE);
     }
 
     public MailListingPage clickSendButton() {

@@ -29,7 +29,7 @@ public class UserOperations {
      * Accepts alert
      */
     public static void acceptAlert() {
-        new ComposeEmailPopup().acceptAlert();
+            new AbstractPage().acceptAlert();
     }
 
     /**

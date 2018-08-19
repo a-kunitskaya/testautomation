@@ -1,10 +1,7 @@
 package com.kunitskaya.pages.pf;
 
-import com.kunitskaya.base.WebDriverProvider;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.kunitskaya.base.webdriver.WebDriverProvider;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForPageLoadComplete;
@@ -34,7 +31,8 @@ public class AbstractPage {
     }
 
     public void acceptAlert() {
-        webDriver.switchTo().alert().accept();
+        Alert alert = webDriver.switchTo().alert();
+        alert.accept();
     }
 
     public void highlightElement(WebElement webElement) {
