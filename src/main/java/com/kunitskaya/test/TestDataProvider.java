@@ -3,6 +3,7 @@ package com.kunitskaya.test;
 import com.kunitskaya.business.objects.email.Email;
 import com.kunitskaya.business.objects.feedback.Feedback;
 import com.kunitskaya.business.objects.user.User;
+import org.apache.commons.lang3.StringUtils;
 
 import static com.kunitskaya.base.utils.DateTimeUtil.SUBJECT_TIMESTAMP_PATTERN;
 import static com.kunitskaya.base.utils.DateTimeUtil.getFormattedTimestamp;
@@ -46,15 +47,14 @@ public class TestDataProvider {
         Email email = new Email();
         email.setSubject(SUBJECT.concat(getFormattedTimestamp(SUBJECT_TIMESTAMP_PATTERN)));
         email.setReceiver(RECEIVER);
+        email.setBody(StringUtils.EMPTY);
         return email;
     }
 
     public static Feedback getDefaultFeedback() {
         Feedback feedback = new Feedback();
-        feedback.setHeader(FEEDBACK_POPUP_HEADER);
-        feedback.setInputFieldPlaceholder(FEEDBACK_POPUP_INPUT_PLACEHOLDER);
-        feedback.setInput("Feedback");
-        feedback.setIncludeScreenshotChecked(true);
+        feedback.setFeedbackText("Feedback");
+        feedback.setWithScreenshot(true);
         return feedback;
     }
 }

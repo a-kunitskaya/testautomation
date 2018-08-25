@@ -28,15 +28,16 @@ public class EmailingTest extends BaseTest {
         EmailOperations.saveEmailAsDraft();
         EmailOperations.openDraft(expectedEmail);
 
-        Email actualDraft = EmailOperations.getActualEmail(expectedEmail, Folders.DRAFT);
+        Email actualDraft = EmailOperations.getActualEmail(Folders.DRAFT);
         assertEquals(actualDraft, expectedEmail);
 
         EmailOperations.sendDraftEmail();
         assertFalse(new MailListingPage().isEmailPresentOnPage(expectedEmail.getSubject()));
 
         NavigationOperations.goToSentMailFolder();
+        NavigationOperations.goToEmail(expectedEmail);
 
-        Email actualEmail = EmailOperations.getActualEmail(expectedEmail, Folders.SENT);
+        Email actualEmail = EmailOperations.getActualEmail(Folders.SENT);
         assertEquals(actualEmail, expectedEmail);
 
     }

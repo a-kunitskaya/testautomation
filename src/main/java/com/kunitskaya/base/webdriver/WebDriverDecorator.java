@@ -23,12 +23,12 @@ public class WebDriverDecorator implements WebDriver {
 
     @Override
     public String getCurrentUrl() {
-        return null;
+        return webDriver.getCurrentUrl();
     }
 
     @Override
     public String getTitle() {
-        return null;
+        return webDriver.getTitle();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class WebDriverDecorator implements WebDriver {
 
     @Override
     public String getPageSource() {
-        return null;
+        return webDriver.getPageSource();
     }
 
     @Override
@@ -62,12 +62,12 @@ public class WebDriverDecorator implements WebDriver {
 
     @Override
     public Set<String> getWindowHandles() {
-        return null;
+        return webDriver.getWindowHandles();
     }
 
     @Override
     public String getWindowHandle() {
-        return null;
+        return webDriver.getWindowHandle();
     }
 
     @Override
@@ -78,11 +78,11 @@ public class WebDriverDecorator implements WebDriver {
 
     @Override
     public Navigation navigate() {
-        return null;
+        return webDriver.navigate();
     }
 
     @Override
     public Options manage() {
-        return null;
+        return webDriver.manage();
     }
 }

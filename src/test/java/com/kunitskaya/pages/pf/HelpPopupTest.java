@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static com.kunitskaya.pages.pf.FeedbackPopup.FEEDBACK_POPUP_HEADER;
+import static com.kunitskaya.pages.pf.FeedbackPopup.FEEDBACK_POPUP_PLACEHOLDER;
 import static com.kunitskaya.pages.pf.GmailHelpForumPage.*;
 import static org.testng.Assert.*;
 
@@ -70,9 +72,9 @@ public class HelpPopupTest extends BaseTest {
         assertTrue(feedbackPopup.isSendFeedbackPopupDisplayed());
         assertTrue(feedbackPopup.isInputFieldDisplayed());
         assertTrue(feedbackPopup.isCancelButtonDisplayed() && feedbackPopup.isSendButtonDisplayed());
-        assertEquals(feedbackPopup.getHeader(), feedback.getHeader());
-        assertEquals(feedbackPopup.getInputFieldPlaceholder(), feedback.getInputFieldPlaceholder());
-        assertEquals(feedbackPopup.isIncludeScreenshotCheckboxChecked(), feedback.isIncludeScreenshotChecked());
+        assertEquals(feedbackPopup.getHeader(), FEEDBACK_POPUP_HEADER);
+        assertEquals(feedbackPopup.getInputFieldPlaceholder(), FEEDBACK_POPUP_PLACEHOLDER);
+        assertEquals(feedbackPopup.isIncludeScreenshotCheckboxChecked(), feedback.isWithScreenshot());
 
         UserOperations.leaveFeedback(feedback, true);
 

@@ -1,9 +1,11 @@
 package com.kunitskaya.business.operations.pf;
 
-import com.kunitskaya.test.Browser;
+import com.kunitskaya.business.objects.email.Email;
 import com.kunitskaya.pages.pf.HelpPopup;
 import com.kunitskaya.pages.pf.LoginPage;
+import com.kunitskaya.pages.pf.MailListingPage;
 import com.kunitskaya.pages.pf.MailPage;
+import com.kunitskaya.test.Browser;
 
 public class NavigationOperations {
 
@@ -52,5 +54,12 @@ public class NavigationOperations {
      */
     public static void goToLoginPage() {
         new LoginPage().open();
+    }
+
+    /**
+     * Opens email based on its subject
+     */
+    public static void goToEmail(Email email) {
+        new MailListingPage().openEmailWithSubject(email.getSubject());
     }
 }

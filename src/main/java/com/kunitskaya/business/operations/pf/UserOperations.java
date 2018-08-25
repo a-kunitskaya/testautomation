@@ -9,6 +9,8 @@ import com.kunitskaya.pages.pf.MailPage;
 
 import java.util.List;
 
+import static com.kunitskaya.pages.pf.FeedbackPopup.FEEDBACK_POPUP_HEADER;
+
 public class UserOperations {
 
     /**
@@ -51,9 +53,9 @@ public class UserOperations {
      */
     public static void leaveFeedback(Feedback feedback, boolean isFeedbackCancelled) {
         FeedbackPopup feedbackPopup = new FeedbackPopup();
-        feedbackPopup.fillInInputField(feedback.getInput());
-        if (feedbackPopup.getHeader().equals(feedback.getHeader())) {
-            if (feedback.isIncludeScreenshotChecked()) {
+        feedbackPopup.fillInInputField(feedback.getFeedbackText());
+        if (feedbackPopup.getHeader().equals(FEEDBACK_POPUP_HEADER)) {
+            if (feedback.isWithScreenshot()) {
                 feedbackPopup = feedbackPopup.makeScreenshot(400, 400);
             }
             if (isFeedbackCancelled) {

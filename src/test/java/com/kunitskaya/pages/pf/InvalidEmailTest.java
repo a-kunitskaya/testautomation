@@ -34,7 +34,8 @@ public class InvalidEmailTest extends BaseTest {
         String noSubject = "(no subject)";
         expectedEmail.setSubject(noSubject);
 
-        Email actualEmail = EmailOperations.getActualEmail(expectedEmail, Folders.SENT);
+        NavigationOperations.goToEmail(expectedEmail);
+        Email actualEmail = EmailOperations.getActualEmail(Folders.SENT);
         assertEquals(actualEmail, expectedEmail);
     }
 }
