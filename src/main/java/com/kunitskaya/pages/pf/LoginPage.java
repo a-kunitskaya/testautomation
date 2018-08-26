@@ -16,7 +16,7 @@ public class LoginPage extends AbstractPage {
     public static final String WRONG_PASSWORD_ERROR_MESSAGE_ENG = "Wrong password. Try again or click Forgot password to reset it.";
     public static final String WRONG_PASSWORD_ERROR_MESSAGE_RUS = "Неверный пароль. Повторите попытку или нажмите на ссылку \"Забыли пароль?\", чтобы сбросить его.";
 
-    private static final String LANGUAGE_VALUE = "data-value";
+    private static final String LANGUAGE_ATTRIBUTE = "data-value";
 
     @FindBy(id = "identifierId")
     WebElement usernameField;
@@ -92,6 +92,6 @@ public class LoginPage extends AbstractPage {
     }
 
     public boolean isLanguageSet(LoginLanguages expectedLanguage) {
-        return selectedLanguage.getAttribute(LANGUAGE_VALUE).equals(expectedLanguage.getLanguageCode());
+        return selectedLanguage.getAttribute(LANGUAGE_ATTRIBUTE).equals(expectedLanguage.getLanguageCode());
     }
 }

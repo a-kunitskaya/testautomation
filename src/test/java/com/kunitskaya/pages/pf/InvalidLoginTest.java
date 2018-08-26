@@ -29,6 +29,5 @@ public class InvalidLoginTest extends BaseTest {
         } else {
             assertTrue(loginPage.isErrorMessageDisplayed(WRONG_PASSWORD_ERROR_MESSAGE_RUS));
         }
-
     }
 }

@@ -12,7 +12,7 @@ import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class FeedbackPopup extends AbstractPage {
     public static final String FEEDBACK_POPUP_HEADER = "Send feedback";
-    public static final String FEEDBACK_POPUP_PLACEHOLDER = "";
+    public static final String FEEDBACK_POPUP_PLACEHOLDER = "Describe your issue or share your ideas";
 
     @FindBy(id = "google-feedback-wizard")
     WebElement feedbackPopupFrame;

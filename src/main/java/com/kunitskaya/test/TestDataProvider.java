@@ -17,8 +17,7 @@ public class TestDataProvider {
     private static final String BODY = "This email is sent with a test script";
     private static final String RECEIVER = "cfiftest@gmail.com";
 
-    private static final String FEEDBACK_POPUP_HEADER = "Send feedback";
-    private static final String FEEDBACK_POPUP_INPUT_PLACEHOLDER = "Describe your issue or share your ideas";
+    private static final String FEEDBACK_TEXT = "Feedback";
 
 
     public static User getGmailUser() {
@@ -53,7 +52,7 @@ public class TestDataProvider {
 
     public static Feedback getDefaultFeedback() {
         Feedback feedback = new Feedback();
-        feedback.setFeedbackText("Feedback");
+        feedback.setFeedbackText(FEEDBACK_TEXT);
         feedback.setWithScreenshot(true);
         return feedback;
     }

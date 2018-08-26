@@ -25,15 +25,14 @@ public class InvalidEmailTest extends BaseTest {
     public void sendInvalidEmail() {
         Email expectedEmail = TestDataProvider.getEmailWithoutSubjectAndBody();
         EmailOperations.createAndSendEmail(expectedEmail);
-
         assertTrue(browser.isAlertDisplayed());
 
         browser.acceptAlert();
-        NavigationOperations.goToSentMailFolder();
 
         String noSubject = "(no subject)";
         expectedEmail.setSubject(noSubject);
 
+        NavigationOperations.goToSentMailFolder();
         NavigationOperations.goToEmail(expectedEmail);
         Email actualEmail = EmailOperations.getActualEmail(Folders.SENT);
         assertEquals(actualEmail, expectedEmail);
