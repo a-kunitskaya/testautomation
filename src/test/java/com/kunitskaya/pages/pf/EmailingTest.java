@@ -1,7 +1,7 @@
 package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.BaseTest;
-import com.kunitskaya.business.objects.email.Email;
+import com.kunitskaya.business.objects.Email;
 import com.kunitskaya.business.operations.pf.EmailOperations;
 import com.kunitskaya.business.operations.pf.NavigationOperations;
 import com.kunitskaya.business.operations.pf.UserOperations;
@@ -31,7 +31,7 @@ public class EmailingTest extends BaseTest {
         Email actualDraft = EmailOperations.getActualEmail(Folders.DRAFT);
         assertEquals(actualDraft, expectedEmail);
 
-        EmailOperations.sendDraftEmail();
+        EmailOperations.sendEmail();
         assertFalse(new MailListingPage().isEmailPresentOnPage(expectedEmail.getSubject()));
 
         NavigationOperations.goToSentMailFolder();

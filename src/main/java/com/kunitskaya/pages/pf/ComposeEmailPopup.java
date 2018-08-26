@@ -56,13 +56,21 @@ public class ComposeEmailPopup extends AbstractPage {
     }
 
     public ComposeEmailPopup fillInSubjectField(String subject) {
-        subjectField.sendKeys(subject);
-        return this;
+        if (subject != StringUtils.EMPTY) {
+            subjectField.sendKeys(subject);
+            return this;
+        } else {
+            return this;
+        }
     }
 
     public ComposeEmailPopup fillInBodyField(String body) {
-        bodyField.sendKeys(body);
-        return this;
+        if (body != StringUtils.EMPTY) {
+            bodyField.sendKeys(body);
+            return this;
+        } else {
+            return this;
+        }
     }
 
     public MailPage clickCloseButton() {

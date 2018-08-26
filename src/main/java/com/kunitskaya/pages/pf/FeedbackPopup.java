@@ -11,9 +11,8 @@ import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
 
 public class FeedbackPopup extends AbstractPage {
-    public static final String FEEDBACK_POPUP_HEADER = "";
+    public static final String FEEDBACK_POPUP_HEADER = "Send feedback";
     public static final String FEEDBACK_POPUP_PLACEHOLDER = "";
-
 
     @FindBy(id = "google-feedback-wizard")
     WebElement feedbackPopupFrame;

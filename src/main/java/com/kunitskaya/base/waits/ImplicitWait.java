@@ -1,6 +1,6 @@
 package com.kunitskaya.base.waits;
 
-import com.kunitskaya.test.ConfigProvider;
+import com.kunitskaya.base.ConfigProvider;
 import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;

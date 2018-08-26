@@ -1,12 +1,22 @@
 package com.kunitskaya.business.operations.pf;
 
-import com.kunitskaya.business.objects.email.Email;
+import com.kunitskaya.business.objects.Email;
 import com.kunitskaya.pages.pf.ComposeEmailPopup;
 import com.kunitskaya.pages.pf.MailDetailsPage;
 import com.kunitskaya.pages.pf.MailPage;
 import com.kunitskaya.test.Folders;
 
 public class EmailOperations {
+
+    /**
+     * Creates and sends email
+     *
+     * @param email - expected email instance
+     */
+    public static void createAndSendEmail(Email email) {
+        createEmail(email);
+        new ComposeEmailPopup().sendEmailWithHotKeys();
+    }
 
     /**
      * Creates email
@@ -40,10 +50,9 @@ public class EmailOperations {
     /**
      * Sends the opened draft email
      */
-    public static void sendDraftEmail() {
+    public static void sendEmail() {
         new ComposeEmailPopup().clickSendButton();
     }
-
 
     /**
      * Receives email details
@@ -71,17 +80,5 @@ public class EmailOperations {
 
         }
         return actualEmail;
-    }
-
-    /**
-     * Creates and sends email with filled in "to"
-     *
-     * @param to - email receiver
-     */
-    public static void sendEmail(String to) {
-        new MailPage().clickComposeButton()
-                      .fillInToField(to)
-                      .sendEmailWithHotKeys();
-
     }
 }

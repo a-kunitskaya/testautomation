@@ -1,7 +1,7 @@
 package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.BaseTest;
-import com.kunitskaya.business.objects.feedback.Feedback;
+import com.kunitskaya.business.objects.Feedback;
 import com.kunitskaya.business.operations.pf.NavigationOperations;
 import com.kunitskaya.business.operations.pf.UserOperations;
 import com.kunitskaya.test.TestDataProvider;

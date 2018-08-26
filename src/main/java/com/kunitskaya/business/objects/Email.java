@@ -1,4 +1,4 @@
-package com.kunitskaya.business.objects.email;
+package com.kunitskaya.business.objects;
 
 import java.util.Objects;
 

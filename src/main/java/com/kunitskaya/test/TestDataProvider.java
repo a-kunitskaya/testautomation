@@ -1,7 +1,7 @@
 package com.kunitskaya.test;
 
-import com.kunitskaya.business.objects.email.Email;
-import com.kunitskaya.business.objects.feedback.Feedback;
+import com.kunitskaya.business.objects.Email;
+import com.kunitskaya.business.objects.Feedback;
 import com.kunitskaya.business.objects.user.User;
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,10 +43,10 @@ public class TestDataProvider {
         return email;
     }
 
-    public static Email getEmailWithoutBody() {
+    public static Email getEmailWithoutSubjectAndBody() {
         Email email = new Email();
-        email.setSubject(SUBJECT.concat(getFormattedTimestamp(SUBJECT_TIMESTAMP_PATTERN)));
         email.setReceiver(RECEIVER);
+        email.setSubject(StringUtils.EMPTY);
         email.setBody(StringUtils.EMPTY);
         return email;
     }

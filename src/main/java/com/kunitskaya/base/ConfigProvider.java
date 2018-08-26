@@ -1,4 +1,4 @@
-package com.kunitskaya.test;
+package com.kunitskaya.base;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package com.kunitskaya.business.objects.feedback;
+package com.kunitskaya.business.objects;
 
 import java.util.Objects;
 

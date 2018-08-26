@@ -1,6 +1,6 @@
 package com.kunitskaya.business.operations.pf;
 
-import com.kunitskaya.business.objects.feedback.Feedback;
+import com.kunitskaya.business.objects.Feedback;
 import com.kunitskaya.business.objects.user.User;
 import com.kunitskaya.pages.pf.FeedbackPopup;
 import com.kunitskaya.pages.pf.HelpPopup;
@@ -8,8 +8,6 @@ import com.kunitskaya.pages.pf.LoginPage;
 import com.kunitskaya.pages.pf.MailPage;
 
 import java.util.List;
-
-import static com.kunitskaya.pages.pf.FeedbackPopup.FEEDBACK_POPUP_HEADER;
 
 public class UserOperations {
 
@@ -54,15 +52,13 @@ public class UserOperations {
     public static void leaveFeedback(Feedback feedback, boolean isFeedbackCancelled) {
         FeedbackPopup feedbackPopup = new FeedbackPopup();
         feedbackPopup.fillInInputField(feedback.getFeedbackText());
-        if (feedbackPopup.getHeader().equals(FEEDBACK_POPUP_HEADER)) {
-            if (feedback.isWithScreenshot()) {
-                feedbackPopup = feedbackPopup.makeScreenshot(400, 400);
-            }
-            if (isFeedbackCancelled) {
-                feedbackPopup.clickCancelButton();
-            } else {
-                feedbackPopup.clickSendButton();
-            }
+        if (feedback.isWithScreenshot()) {
+            feedbackPopup = feedbackPopup.makeScreenshot(400, 400);
+        }
+        if (isFeedbackCancelled) {
+            feedbackPopup.clickCancelButton();
+        } else {
+            feedbackPopup.clickSendButton();
         }
     }
 }

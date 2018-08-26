@@ -1,6 +1,6 @@
 package com.kunitskaya;
 
-import com.kunitskaya.test.Browser;
+import com.kunitskaya.base.Browser;
 import com.kunitskaya.business.objects.user.GmailUserCreator;
 import com.kunitskaya.business.objects.user.User;
 import org.testng.annotations.AfterClass;

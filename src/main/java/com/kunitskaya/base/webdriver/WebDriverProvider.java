@@ -1,13 +1,12 @@
 package com.kunitskaya.base.webdriver;
 
-import com.kunitskaya.test.Browsers;
+import com.kunitskaya.base.Browsers;
+import com.kunitskaya.base.ConfigProvider;
 import com.kunitskaya.test.Platforms;
-import com.kunitskaya.test.ConfigProvider;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -15,10 +14,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
-import static com.kunitskaya.test.Browsers.getBrowser;
-import static com.kunitskaya.test.Platforms.MAC;
-import static com.kunitskaya.test.Platforms.getPlatform;
+import static com.kunitskaya.base.Browsers.getBrowser;
 import static com.kunitskaya.base.waits.ImplicitWait.waitImplicitly;
+import static com.kunitskaya.test.Platforms.MAC;
 
 public class WebDriverProvider {
 
@@ -44,7 +42,7 @@ public class WebDriverProvider {
         String currentPlatform = configProvider.getPlatform();
         boolean isRemoteDriver = configProvider.isRemoteDriver();
         Browsers browser = getBrowser(currentBrowser);
-        Platforms platform = getPlatform(currentPlatform);
+        Platforms platform = Platforms.valueOf(currentPlatform);
 
         //getting the url from properties file since it changes every time I start the grid
         URL hubUrl = null;
@@ -57,7 +55,7 @@ public class WebDriverProvider {
             case CHROME:
                 chromeOptions = platform.equals(MAC) ? chromeOptions.addArguments("--kiosk") : chromeOptions.addArguments("--start-maximized");
                 chromeOptions.addArguments("--lang=en");
-                capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
+                chromeOptions.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.IGNORE);
                 if (isRemoteDriver) {
                     capabilities = DesiredCapabilities.chrome().merge(chromeOptions);
                     webDriver = new RemoteWebDriver(hubUrl, capabilities);
