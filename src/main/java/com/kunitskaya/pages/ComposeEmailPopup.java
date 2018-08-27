@@ -1,4 +1,4 @@
-package com.kunitskaya.pages.pf;
+package com.kunitskaya.pages;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
-import static com.kunitskaya.pages.pf.MailListingPage.SUBJECT_LOCATOR;
+import static com.kunitskaya.pages.MailListingPage.SUBJECT_LOCATOR;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 
 public class ComposeEmailPopup extends AbstractPage {

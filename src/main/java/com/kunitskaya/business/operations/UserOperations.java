@@ -1,11 +1,11 @@
-package com.kunitskaya.business.operations.pf;
+package com.kunitskaya.business.operations;
 
 import com.kunitskaya.business.objects.Feedback;
 import com.kunitskaya.business.objects.user.User;
-import com.kunitskaya.pages.pf.FeedbackPopup;
-import com.kunitskaya.pages.pf.HelpPopup;
-import com.kunitskaya.pages.pf.LoginPage;
-import com.kunitskaya.pages.pf.MailPage;
+import com.kunitskaya.pages.FeedbackPopup;
+import com.kunitskaya.pages.HelpPopup;
+import com.kunitskaya.pages.LoginPage;
+import com.kunitskaya.pages.MailPage;
 
 import java.util.List;
 

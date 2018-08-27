@@ -1,6 +1,5 @@
-package com.kunitskaya.pages.pf;
+package com.kunitskaya.pages;
 
-import com.kunitskaya.base.waits.ExplicitWait;
 import com.kunitskaya.test.LoginLanguages;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.ElementNotVisibleException;
@@ -49,7 +48,7 @@ public class LoginPage extends AbstractPage {
 
     public LoginPage clickUsernameNextButton() {
         new Actions(webDriver).click(usernameNextButton).build().perform();
-        ExplicitWait.waitForElementVisibility(webDriver, passwordField);
+        waitForElementVisibility(webDriver, passwordField);
         return this;
     }
 

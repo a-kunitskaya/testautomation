@@ -1,4 +1,4 @@
-package com.kunitskaya.pages.pf;
+package com.kunitskaya.pages;
 
 import com.kunitskaya.base.webdriver.WebDriverProvider;
 import org.openqa.selenium.JavascriptExecutor;

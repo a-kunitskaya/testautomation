@@ -1,14 +1,12 @@
-package com.kunitskaya.pages.pf;
+package com.kunitskaya.pages;
 
 import com.kunitskaya.BaseTest;
-import com.kunitskaya.business.operations.pf.NavigationOperations;
-import com.kunitskaya.business.operations.pf.UserOperations;
+import com.kunitskaya.business.operations.NavigationOperations;
+import com.kunitskaya.business.operations.UserOperations;
 import com.kunitskaya.test.LoginLanguages;
 import com.kunitskaya.test.TestDataProvider;
 import org.testng.annotations.Test;
 
-import static com.kunitskaya.pages.pf.LoginPage.WRONG_PASSWORD_ERROR_MESSAGE_ENG;
-import static com.kunitskaya.pages.pf.LoginPage.WRONG_PASSWORD_ERROR_MESSAGE_RUS;
 import static com.kunitskaya.test.LoginLanguages.ENGLISH;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -25,9 +23,9 @@ public class InvalidLoginTest extends BaseTest {
         LoginLanguages english = LoginLanguages.getLanguage(ENGLISH.getLanguageCode());
 
         if (loginPage.isLanguageSet(english)) {
-            assertTrue(loginPage.isErrorMessageDisplayed(WRONG_PASSWORD_ERROR_MESSAGE_ENG));
+            assertTrue(loginPage.isErrorMessageDisplayed(LoginPage.WRONG_PASSWORD_ERROR_MESSAGE_ENG));
         } else {
-            assertTrue(loginPage.isErrorMessageDisplayed(WRONG_PASSWORD_ERROR_MESSAGE_RUS));
+            assertTrue(loginPage.isErrorMessageDisplayed(LoginPage.WRONG_PASSWORD_ERROR_MESSAGE_RUS));
         }
     }
 }

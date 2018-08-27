@@ -1,4 +1,4 @@
-package com.kunitskaya.pages.pf;
+package com.kunitskaya.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

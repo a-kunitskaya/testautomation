@@ -1,9 +1,9 @@
-package com.kunitskaya.pages.pf;
+package com.kunitskaya.pages;
 
 import com.kunitskaya.BaseTest;
 import com.kunitskaya.business.objects.Feedback;
-import com.kunitskaya.business.operations.pf.NavigationOperations;
-import com.kunitskaya.business.operations.pf.UserOperations;
+import com.kunitskaya.business.operations.NavigationOperations;
+import com.kunitskaya.business.operations.UserOperations;
 import com.kunitskaya.test.TestDataProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.BeforeClass;
@@ -11,9 +11,9 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.kunitskaya.pages.pf.FeedbackPopup.FEEDBACK_POPUP_HEADER;
-import static com.kunitskaya.pages.pf.FeedbackPopup.FEEDBACK_POPUP_PLACEHOLDER;
-import static com.kunitskaya.pages.pf.GmailHelpForumPage.*;
+import static com.kunitskaya.pages.FeedbackPopup.FEEDBACK_POPUP_HEADER;
+import static com.kunitskaya.pages.FeedbackPopup.FEEDBACK_POPUP_PLACEHOLDER;
+import static com.kunitskaya.pages.GmailHelpForumPage.*;
 import static org.testng.Assert.*;
 
 public class HelpPopupTest extends BaseTest {
