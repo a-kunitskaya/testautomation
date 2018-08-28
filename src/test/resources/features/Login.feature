@@ -10,4 +10,3 @@ Feature: Gmail login
     Examples:
       | username                   | password |
       | aktestautomation@gmail.com | pwddd    |
-

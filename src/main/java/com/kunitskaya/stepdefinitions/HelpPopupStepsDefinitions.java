@@ -33,7 +33,7 @@ public class HelpPopupStepsDefinitions {
     }
 
     @When("^I search for ([\\w]+)$")
-    public void iSearchFor(String searchInput) {
+    public void iSearchForInput(String searchInput) {
         searchResults = UserOperations.searchFor(searchInput);
         this.searchInput = searchInput;
     }
@@ -41,10 +41,9 @@ public class HelpPopupStepsDefinitions {
     @Then("^I get corresponding search results$")
     public void iGetCorrespondingSearchResults() {
         for (String searchResult : searchResults) {
-            if (StringUtils.containsNone(searchResult, searchInput)) {
-                continue;
+            if (searchResult.contains(searchInput)) {
+                assertTrue(StringUtils.containsIgnoreCase(searchResult, searchInput));
             }
-            assertTrue(StringUtils.containsIgnoreCase(searchResult, searchInput));
         }
     }
 

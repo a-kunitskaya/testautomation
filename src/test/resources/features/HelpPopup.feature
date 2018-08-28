@@ -3,10 +3,10 @@ Feature: Gmail Help popup
   Background:
     Given I logged in to Gmail
 
-  Scenario: CDP-0003 Gmail: Help pop-up
+  Scenario Outline: CDP-0003 Gmail: Help pop-up
     When I open help popup
     Then Help popup is opened
-    When I search for Change
+    When I search for <input>
     Then I get corresponding search results
     When I clear search field
     And I go to help page
@@ -23,4 +23,9 @@ Feature: Gmail Help popup
     Then Feedback popup is displayed
     When I leave feedback and cancel it
     Then Feedback popup is not displayed
-    And Mail page is displayed
+    Then Mail page is displayed
+
+    Examples:
+      | input  |
+      | Change |
+      | how    |
