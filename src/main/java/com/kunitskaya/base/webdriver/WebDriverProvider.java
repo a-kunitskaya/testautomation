@@ -2,7 +2,7 @@ package com.kunitskaya.base.webdriver;
 
 import com.kunitskaya.base.Browsers;
 import com.kunitskaya.base.ConfigProvider;
-import com.kunitskaya.test.Platforms;
+import com.kunitskaya.base.Platforms;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +16,7 @@ import java.net.URL;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 import static com.kunitskaya.base.Browsers.getBrowser;
 import static com.kunitskaya.base.waits.ImplicitWait.waitImplicitly;
-import static com.kunitskaya.test.Platforms.MAC;
+import static com.kunitskaya.base.Platforms.MAC;
 
 public class WebDriverProvider {
 

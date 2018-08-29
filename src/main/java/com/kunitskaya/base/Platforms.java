@@ -1,4 +1,4 @@
-package com.kunitskaya.test;
+package com.kunitskaya.base;
 
 public enum Platforms {
     MAC,

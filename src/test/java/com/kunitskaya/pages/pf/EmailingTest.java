@@ -1,10 +1,10 @@
-package com.kunitskaya.pages;
+package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.BaseTest;
 import com.kunitskaya.business.objects.Email;
-import com.kunitskaya.business.operations.EmailOperations;
-import com.kunitskaya.business.operations.NavigationOperations;
-import com.kunitskaya.business.operations.UserOperations;
+import com.kunitskaya.business.operations.pf.EmailOperations;
+import com.kunitskaya.business.operations.pf.NavigationOperations;
+import com.kunitskaya.business.operations.pf.UserOperations;
 import com.kunitskaya.test.Folders;
 import com.kunitskaya.test.TestDataProvider;
 import org.testng.annotations.Test;

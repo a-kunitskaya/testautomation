@@ -1,4 +1,4 @@
-package com.kunitskaya.pages;
+package com.kunitskaya.pages.pf;
 
 import com.kunitskaya.test.LoginLanguages;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +29,7 @@ public class LoginPage extends AbstractPage {
     @FindBy(id = "passwordNext")
     WebElement passwordNextButton;
 
-    @FindBy(xpath = "//div[@id='password']/div[2]/div[2][@aria-live='assertive']")
+    @FindBy(xpath = "//div[@id='password']//div[@aria-live='assertive']")
     WebElement errorMessage;
 
     @FindBy(xpath = "//div[@aria-selected='true']")

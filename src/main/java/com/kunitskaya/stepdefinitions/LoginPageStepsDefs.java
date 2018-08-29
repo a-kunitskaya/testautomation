@@ -1,10 +1,13 @@
 package com.kunitskaya.stepdefinitions;
 
+import com.kunitskaya.base.Browser;
 import com.kunitskaya.business.objects.user.User;
-import com.kunitskaya.business.operations.NavigationOperations;
-import com.kunitskaya.business.operations.UserOperations;
-import com.kunitskaya.pages.LoginPage;
+import com.kunitskaya.business.operations.pf.NavigationOperations;
+import com.kunitskaya.business.operations.pf.UserOperations;
+import com.kunitskaya.pages.pf.LoginPage;
 import com.kunitskaya.test.LoginLanguages;
+import com.kunitskaya.test.TestDataProvider;
+import com.kunitskaya.test.Users;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -12,21 +15,26 @@ import cucumber.api.java.en.When;
 import static com.kunitskaya.test.LoginLanguages.ENGLISH;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class InvalidLoginTestStepDefinitions {
+public class LoginPageStepsDefs {
 
     @Given("I opened Login page")
     public void iOpenLoginPage() {
         NavigationOperations.goToLoginPage();
     }
 
-    @When("^I login to Gmail with a valid username ([\\w]+@[\\w]+.[\\w]+) and invalid password (.+)$")
-    public void iLoginToGmailWithAValidUsernameUsernameAndInvalidPasswordPassword(String username, String password) {
-        User user = new User.Builder()
-                .withUsername(username)
-                .withPassword(password)
-                .build();
-
+    @When("^I login as \"([^\"]*)\" user$")
+    public void iLoginAsUser(String type) throws Throwable {
+        User user = null;
+        switch (Users.valueOf(type)) {
+            case VALID:
+                user = TestDataProvider.getGmailUser();
+                break;
+            case INVALID_PASSWORD:
+                user = TestDataProvider.getInvalidPasswordGmailUser();
+                break;
+        }
         UserOperations.logIn(user);
+        MailPageStepsDefs.mailPageWinHandle = Browser.getInstance().getCurrentWindowHandle();
     }
 
     @Then("^Error message should be displayed$")
@@ -39,4 +47,5 @@ public class InvalidLoginTestStepDefinitions {
             assertTrue(loginPage.isErrorMessageDisplayed(LoginPage.WRONG_PASSWORD_ERROR_MESSAGE_RUS));
         }
     }
+
 }

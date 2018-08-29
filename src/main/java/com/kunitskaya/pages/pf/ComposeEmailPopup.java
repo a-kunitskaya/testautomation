@@ -1,15 +1,17 @@
-package com.kunitskaya.pages;
+package com.kunitskaya.pages.pf;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Reporter;
 
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementToBeClickable;
 import static com.kunitskaya.base.waits.ExplicitWait.waitForElementVisibility;
-import static com.kunitskaya.pages.MailListingPage.SUBJECT_LOCATOR;
+import static com.kunitskaya.pages.pf.MailListingPage.SUBJECT_LOCATOR;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 
 public class ComposeEmailPopup extends AbstractPage {
@@ -48,10 +50,14 @@ public class ComposeEmailPopup extends AbstractPage {
     }
 
     public ComposeEmailPopup sendEmailWithHotKeys() {
-        new Actions(webDriver).click(subjectField)
-                              .sendKeys(Keys.chord(IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL, Keys.ENTER))
-                              .build()
-                              .perform();
+        try {
+            new Actions(webDriver).click(subjectField)
+                                  .sendKeys(Keys.chord(IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL, Keys.ENTER))
+                                  .build()
+                                  .perform();
+        } catch (UnhandledAlertException e) {
+            Reporter.log("Alert is displayed " + e.getAlertText());
+        }
         return this;
     }
 

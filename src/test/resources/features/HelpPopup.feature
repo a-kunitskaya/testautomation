@@ -1,7 +1,8 @@
 Feature: Gmail Help popup
 
   Background:
-    Given I logged in to Gmail
+    Given I opened Login page
+    And I login as "VALID" user
 
   Scenario Outline: CDP-0003 Gmail: Help pop-up
     When I open help popup

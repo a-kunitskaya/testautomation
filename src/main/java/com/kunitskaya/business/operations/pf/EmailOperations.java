@@ -1,9 +1,9 @@
-package com.kunitskaya.business.operations;
+package com.kunitskaya.business.operations.pf;
 
 import com.kunitskaya.business.objects.Email;
-import com.kunitskaya.pages.ComposeEmailPopup;
-import com.kunitskaya.pages.MailDetailsPage;
-import com.kunitskaya.pages.MailPage;
+import com.kunitskaya.pages.pf.ComposeEmailPopup;
+import com.kunitskaya.pages.pf.MailDetailsPage;
+import com.kunitskaya.pages.pf.MailPage;
 import com.kunitskaya.test.Folders;
 
 public class EmailOperations {
@@ -50,9 +50,17 @@ public class EmailOperations {
     /**
      * Sends the opened draft email
      */
-    public static void sendEmail() {
+    public static void sendEmail(Folders folder) {
         new ComposeEmailPopup().clickSendButton();
     }
+
+    /**
+     * Sends the opened email
+     */
+    public static void sendEmail() {
+        new ComposeEmailPopup().sendEmailWithHotKeys();
+    }
+
 
     /**
      * Receives email details

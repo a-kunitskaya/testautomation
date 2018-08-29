@@ -1,11 +1,11 @@
-package com.kunitskaya.business.operations;
+package com.kunitskaya.business.operations.pf;
 
 import com.kunitskaya.base.Browser;
 import com.kunitskaya.business.objects.Email;
-import com.kunitskaya.pages.HelpPopup;
-import com.kunitskaya.pages.LoginPage;
-import com.kunitskaya.pages.MailListingPage;
-import com.kunitskaya.pages.MailPage;
+import com.kunitskaya.pages.pf.HelpPopup;
+import com.kunitskaya.pages.pf.LoginPage;
+import com.kunitskaya.pages.pf.MailListingPage;
+import com.kunitskaya.pages.pf.MailPage;
 
 public class NavigationOperations {
 
