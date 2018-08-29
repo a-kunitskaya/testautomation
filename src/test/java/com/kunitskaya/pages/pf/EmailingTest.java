@@ -31,7 +31,7 @@ public class EmailingTest extends BaseTest {
         Email actualDraft = EmailOperations.getActualEmail(Folders.DRAFT);
         assertEquals(actualDraft, expectedEmail);
 
-        EmailOperations.sendEmail();
+        EmailOperations.sendEmail(Folders.DRAFT);
         assertFalse(new MailListingPage().isEmailPresentOnPage(expectedEmail.getSubject()));
 
         NavigationOperations.goToSentMailFolder();
