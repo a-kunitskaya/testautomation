@@ -17,4 +17,10 @@
             <class name="com.kunitskaya.test.TestRunner"/>
         </classes>
     </test>
+
+    <test name="OtherTests">
+        <classes>
+            <class name="com.kunitskaya.RegexTest"/>
+        </classes>
+    </test>
 </suite>

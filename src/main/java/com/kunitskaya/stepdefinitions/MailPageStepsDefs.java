@@ -60,7 +60,7 @@ public class MailPageStepsDefs {
     }
 
     @Then("^sent \"([^\"]*)\" email is displayed$")
-    public void sentEmailIsDisplayed(String validity) throws Throwable {
+    public void sentEmailIsDisplayed(String validity) {
         if (validity.equals("EMPTY")) {
             String noSubject = "(no subject)";
             expectedEmail.setSubject(noSubject);
@@ -71,7 +71,7 @@ public class MailPageStepsDefs {
     }
 
     @When("^I send \"([^\"]*)\" email$")
-    public void iSendEmail(String state) throws Throwable {
+    public void iSendEmail(String state) {
         if (state.equals("DRAFT")) {
             EmailOperations.sendEmail(Folders.DRAFT);
         } else {

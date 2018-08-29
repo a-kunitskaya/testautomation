@@ -23,7 +23,7 @@ public class LoginPageStepsDefs {
     }
 
     @When("^I login as \"([^\"]*)\" user$")
-    public void iLoginAsUser(String type) throws Throwable {
+    public void iLoginAsUser(String type) {
         User user = null;
         switch (Users.valueOf(type)) {
             case VALID:
@@ -47,5 +47,4 @@ public class LoginPageStepsDefs {
             assertTrue(loginPage.isErrorMessageDisplayed(LoginPage.WRONG_PASSWORD_ERROR_MESSAGE_RUS));
         }
     }
-
 }
