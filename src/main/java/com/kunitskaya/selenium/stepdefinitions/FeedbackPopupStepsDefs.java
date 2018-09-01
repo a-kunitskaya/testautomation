@@ -10,9 +10,7 @@ import cucumber.api.java.en.When;
 
 import static com.kunitskaya.selenium.pages.pf.FeedbackPopup.FEEDBACK_POPUP_HEADER;
 import static com.kunitskaya.selenium.pages.pf.FeedbackPopup.FEEDBACK_POPUP_PLACEHOLDER;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class FeedbackPopupStepsDefs {
 

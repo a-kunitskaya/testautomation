@@ -1,7 +1,7 @@
 package com.kunitskaya.base.selenium.webdriver;
 
-import com.kunitskaya.base.selenium.Browsers;
 import com.kunitskaya.base.ConfigProvider;
+import com.kunitskaya.base.selenium.Browsers;
 import com.kunitskaya.base.selenium.Platforms;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;

@@ -6,8 +6,8 @@ public class Geo {
     private String lat;
     private String lng;
 
-    public String getLat() {
-        return lat;
+    public Double getLat() {
+        return Double.parseDouble(lat);
     }
 
     public void setLat(String lat) {
