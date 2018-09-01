@@ -18,6 +18,12 @@
         </classes>
     </test>
 
+    <test name="WebServicesTests">
+        <classes>
+            <class name="com.kunitskaya.webservices.WebservicesTest"/>
+        </classes>
+    </test>
+
     <test name="OtherTests">
         <classes>
             <class name="com.kunitskaya.RegexTest"/>
