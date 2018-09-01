@@ -55,4 +55,12 @@ public class ConfigProvider {
     public String getHubUrl() {
         return getProperty("selenium.grid.hub.url");
     }
+
+    public String getBaseWsTestUrl() {
+        return getProperty("base.ws.test.url");
+    }
+
+    public String getWsUsersUri() {
+        return getProperty("ws.users.uri");
+    }
 }

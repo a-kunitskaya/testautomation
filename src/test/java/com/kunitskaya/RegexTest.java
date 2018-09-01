@@ -37,7 +37,6 @@ public class RegexTest {
                 {"+375 29 223 45 67", false},
                 {"+375(29)523-45-67", false},
                 {"+375297234567", false}
-
         };
     }
 }

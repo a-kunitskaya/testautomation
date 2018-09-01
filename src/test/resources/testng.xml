@@ -4,17 +4,17 @@
 
     <test name="AllTests">
         <classes>
-            <class name="com.kunitskaya.pages.pf.HelpPopupTest"/>
-            <class name="com.kunitskaya.pages.pf.InvalidEmailTest"/>
-            <class name="com.kunitskaya.pages.pf.InvalidLoginTest"/>
-            <class name="com.kunitskaya.pages.pf.EmailingTest"/>
-            <class name="com.kunitskaya.pages.selenide.InvalidEmailingTest"/>
+            <class name="com.kunitskaya.selenium.pages.pf.HelpPopupTestSelenium"/>
+            <class name="com.kunitskaya.selenium.pages.pf.InvalidEmailTestSelenium"/>
+            <class name="com.kunitskaya.selenium.pages.pf.InvalidLoginTestSelenium"/>
+            <class name="com.kunitskaya.selenium.pages.pf.EmailingTestSelenium"/>
+            <class name="com.kunitskaya.selenium.pages.selenide.InvalidEmailingTestSelenium"/>
         </classes>
     </test>
 
     <test name="BddTests">
         <classes>
-            <class name="com.kunitskaya.test.TestRunner"/>
+            <class name="com.kunitskaya.test.selenium.TestRunner"/>
         </classes>
     </test>
 
