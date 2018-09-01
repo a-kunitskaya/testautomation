@@ -5,14 +5,14 @@ import com.kunitskaya.business.objects.user.User;
 import com.kunitskaya.business.operations.pf.NavigationOperations;
 import com.kunitskaya.business.operations.pf.UserOperations;
 import com.kunitskaya.pages.pf.LoginPage;
-import com.kunitskaya.test.LoginLanguages;
+import com.kunitskaya.test.Languages;
 import com.kunitskaya.test.TestDataProvider;
 import com.kunitskaya.test.Users;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import static com.kunitskaya.test.LoginLanguages.ENGLISH;
+import static com.kunitskaya.test.Languages.ENGLISH;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class LoginPageStepsDefs {
@@ -40,7 +40,7 @@ public class LoginPageStepsDefs {
     @Then("^Error message should be displayed$")
     public void errorMessageShouldBeDisplayed() {
         LoginPage loginPage = new LoginPage();
-        LoginLanguages english = LoginLanguages.getLanguage(ENGLISH.getLanguageCode());
+        Languages english = Languages.getLanguage(ENGLISH.getLanguageCode());
         if (loginPage.isLanguageSet(english)) {
             assertTrue(loginPage.isErrorMessageDisplayed(LoginPage.WRONG_PASSWORD_ERROR_MESSAGE_ENG));
         } else {

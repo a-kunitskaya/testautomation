@@ -2,13 +2,13 @@ package com.kunitskaya.test;
 
 import java.util.stream.Stream;
 
-public enum LoginLanguages {
+public enum Languages {
     ENGLISH("en"),
     RUSSIAN("ru");
 
     String languageCode;
 
-    LoginLanguages(String languageCode) {
+    Languages(String languageCode) {
         this.languageCode = languageCode;
     }
 
@@ -16,7 +16,7 @@ public enum LoginLanguages {
         return languageCode;
     }
 
-    public static LoginLanguages getLanguage(String languageCode) {
+    public static Languages getLanguage(String languageCode) {
         return Stream.of(values())
                      .filter(lang -> lang.getLanguageCode().equals(languageCode))
                      .findFirst()

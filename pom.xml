@@ -90,6 +90,12 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- Apache Commons CSV -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.5</version>
+        </dependency>
 
     </dependencies>
 

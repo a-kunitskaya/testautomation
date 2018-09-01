@@ -1,6 +1,6 @@
 package com.kunitskaya.pages.pf;
 
-import com.kunitskaya.test.LoginLanguages;
+import com.kunitskaya.test.Languages;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebElement;
@@ -90,7 +90,7 @@ public class LoginPage extends AbstractPage {
         return passwordField.isDisplayed();
     }
 
-    public boolean isLanguageSet(LoginLanguages expectedLanguage) {
+    public boolean isLanguageSet(Languages expectedLanguage) {
         return selectedLanguage.getAttribute(LANGUAGE_ATTRIBUTE).equals(expectedLanguage.getLanguageCode());
     }
 }
