@@ -1,18 +1,20 @@
 package com.kunitskaya.stepdefinitions;
 
 import com.kunitskaya.base.Browser;
+import com.kunitskaya.base.utils.files.CsvFileReader;
 import com.kunitskaya.business.objects.user.User;
 import com.kunitskaya.business.operations.pf.NavigationOperations;
 import com.kunitskaya.business.operations.pf.UserOperations;
 import com.kunitskaya.pages.pf.LoginPage;
 import com.kunitskaya.test.Languages;
 import com.kunitskaya.test.TestDataProvider;
+import com.kunitskaya.test.TranslationsElements;
 import com.kunitskaya.test.Users;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.StringUtils;
 
-import static com.kunitskaya.test.Languages.ENGLISH;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class LoginPageStepsDefs {
@@ -40,11 +42,17 @@ public class LoginPageStepsDefs {
     @Then("^Error message should be displayed$")
     public void errorMessageShouldBeDisplayed() {
         LoginPage loginPage = new LoginPage();
-        Languages english = Languages.getLanguage(ENGLISH.getLanguageCode());
-        if (loginPage.isLanguageSet(english)) {
-            assertTrue(loginPage.isErrorMessageDisplayed(LoginPage.WRONG_PASSWORD_ERROR_MESSAGE_ENG));
-        } else {
-            assertTrue(loginPage.isErrorMessageDisplayed(LoginPage.WRONG_PASSWORD_ERROR_MESSAGE_RUS));
+        Languages actualLanguage = loginPage.getDisplayedLanguage();
+        CsvFileReader fileReader = new CsvFileReader();
+        String expectedTranslation = StringUtils.EMPTY;
+        switch (actualLanguage) {
+            case ENGLISH:
+                expectedTranslation = fileReader.getTranslationForElement(Languages.ENGLISH, TranslationsElements.LOGIN_ERROR);
+                break;
+            case RUSSIAN:
+                expectedTranslation = fileReader.getTranslationForElement(Languages.RUSSIAN, TranslationsElements.LOGIN_ERROR);
+                break;
         }
+        assertTrue(loginPage.isErrorMessageDisplayed(expectedTranslation));
     }
 }

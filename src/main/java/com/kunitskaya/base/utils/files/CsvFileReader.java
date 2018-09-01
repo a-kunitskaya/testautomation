@@ -17,17 +17,28 @@ import static com.kunitskaya.test.Languages.ENGLISH;
 import static com.kunitskaya.test.Languages.RUSSIAN;
 import static com.kunitskaya.test.TranslationsElements.ELEMENT;
 
+/**
+ * Reads from .csv files
+ */
 public class CsvFileReader implements FileReader {
     private static final String TRANSLATIONS_CSV = "src/main/resources/files/translations.csv";
 
+    /**
+     * Reads content from the specified file
+     * "\" is used to escape a comma in a string from file
+     *
+     * @param language - language to get translation for
+     * @return - map with element : translation
+     */
     @Override
     public Map<String, String> readFileContent(Languages language) {
         Map translations = new HashMap();
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(TRANSLATIONS_CSV));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
-                        .withHeader(ELEMENT.name(), RUSSIAN.name(), ENGLISH.name())
+                        .withHeader(ELEMENT.name(), ENGLISH.name(), RUSSIAN.name())
                         .withIgnoreHeaderCase()
+                        .withEscape('\\')
                         .withTrim())
         ) {
             for (CSVRecord record : csvParser) {
@@ -39,9 +50,15 @@ public class CsvFileReader implements FileReader {
         return translations;
     }
 
+    /**
+     * Retrieves a single translation for the specified element
+     *
+     * @param language - language to get translation to
+     * @param element  - element to get translation for
+     * @return - element translation
+     */
     public String getTranslationForElement(Languages language, TranslationsElements element) {
         Map translations = readFileContent(language);
         return (String) translations.get(element.name());
-
     }
 }
