@@ -22,12 +22,7 @@ public class InvalidEmailTestSelenium extends SeleniumBaseTest {
     }
 
     @Test(description = "CDP-0001 Gmail: Sending invalid email")
-    public void sendInvalidEmail() throws InterruptedException {
-        Thread.sleep(2000);
-
-        UserOperations.deleteAllEmails();
-
-        Thread.sleep(2000);
+    public void sendInvalidEmail() {
         Email expectedEmail = TestDataProvider.getEmailWithoutSubjectAndBody();
         EmailOperations.createAndSendEmail(expectedEmail);
         assertTrue(browser.isAlertDisplayed());
