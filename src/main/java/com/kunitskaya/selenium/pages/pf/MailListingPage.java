@@ -56,9 +56,10 @@ public class MailListingPage extends MailPage {
 
     public MailListingPage deleteAllEmails() {
         new Actions(webDriver).keyDown(Keys.SHIFT)
-                              .sendKeys(Keys.NUMPAD8, "a")
+                              .sendKeys("*")
+                              .sendKeys("a")
                               .keyUp(Keys.SHIFT)
-                              .sendKeys(Keys.chord(Keys.SHIFT, Keys.NUMPAD3))
+                              .sendKeys(Keys.chord(Keys.SHIFT, "#"))
                               .build()
                               .perform();
         return this;
