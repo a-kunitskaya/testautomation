@@ -2,10 +2,7 @@ package com.kunitskaya.selenium.business.operations.pf;
 
 import com.kunitskaya.selenium.business.objects.Feedback;
 import com.kunitskaya.selenium.business.objects.user.User;
-import com.kunitskaya.selenium.pages.pf.FeedbackPopup;
-import com.kunitskaya.selenium.pages.pf.HelpPopup;
-import com.kunitskaya.selenium.pages.pf.LoginPage;
-import com.kunitskaya.selenium.pages.pf.MailPage;
+import com.kunitskaya.selenium.pages.pf.*;
 
 import java.util.List;
 
@@ -60,5 +57,9 @@ public class UserOperations {
         } else {
             feedbackPopup.clickSendButton();
         }
+    }
+
+    public static void deleteAllEmails(){
+        new MailListingPage().deleteAllEmails();
     }
 }

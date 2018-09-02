@@ -32,7 +32,7 @@ public class InvalidEmailTestSelenium extends SeleniumBaseTest {
         String noSubject = "(no subject)";
         expectedEmail.setSubject(noSubject);
 
-        NavigationOperations.goToSentMailFolder();
+        NavigationOperations.goToFolder(Folders.SENT);
         NavigationOperations.goToEmail(expectedEmail);
         Email actualEmail = EmailOperations.getActualEmail(Folders.SENT);
         assertEquals(actualEmail, expectedEmail);

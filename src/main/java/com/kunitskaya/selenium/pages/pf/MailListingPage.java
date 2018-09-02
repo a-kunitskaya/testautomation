@@ -1,9 +1,7 @@
 package com.kunitskaya.selenium.pages.pf;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotVisibleException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
@@ -54,5 +52,15 @@ public class MailListingPage extends MailPage {
         webDriver.navigate().refresh();
         waitForPageLoadComplete(webDriver);
         return !findEmailsBySubject(webDriver, subject).isEmpty();
+    }
+
+    public MailListingPage deleteAllEmails() {
+        new Actions(webDriver).keyDown(Keys.SHIFT)
+                              .sendKeys(Keys.NUMPAD8, "a")
+                              .keyUp(Keys.SHIFT)
+                              .sendKeys(Keys.chord(Keys.SHIFT, Keys.NUMPAD3))
+                              .build()
+                              .perform();
+        return this;
     }
 }

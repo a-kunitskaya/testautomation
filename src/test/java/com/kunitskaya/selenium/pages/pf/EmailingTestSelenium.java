@@ -34,7 +34,7 @@ public class EmailingTestSelenium extends SeleniumBaseTest {
         EmailOperations.sendEmail(Folders.DRAFT);
         assertFalse(new MailListingPage().isEmailPresentOnPage(expectedEmail.getSubject()));
 
-        NavigationOperations.goToSentMailFolder();
+        NavigationOperations.goToFolder(Folders.SENT);
         NavigationOperations.goToEmail(expectedEmail);
 
         Email actualEmail = EmailOperations.getActualEmail(Folders.SENT);

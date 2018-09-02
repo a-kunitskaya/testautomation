@@ -30,7 +30,7 @@ public class MailPageStepsDefs {
 
     @And("^I go to sent folder$")
     public void iGoToSentFolder() {
-        NavigationOperations.goToSentMailFolder();
+        NavigationOperations.goToFolder(Folders.SENT);
     }
 
     @And("^save email as draft$")
