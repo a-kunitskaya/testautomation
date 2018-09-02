@@ -1,5 +1,6 @@
 package com.kunitskaya.selenium.pages.pf;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -34,7 +35,11 @@ public class MailPage extends AbstractPage {
     }
 
     public boolean isAccountIconVisible() {
-        return accountIcon.isDisplayed();
+        try {
+            return accountIcon.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public MailPage clickSettingsButton() {

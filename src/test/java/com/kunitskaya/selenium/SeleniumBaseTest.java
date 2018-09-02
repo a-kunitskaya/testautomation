@@ -5,6 +5,7 @@ import com.kunitskaya.selenium.business.objects.user.GmailUserCreator;
 import com.kunitskaya.selenium.business.objects.user.User;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;
+import com.kunitskaya.selenium.pages.pf.MailPage;
 import com.kunitskaya.test.selenium.Folders;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -24,8 +25,10 @@ public class SeleniumBaseTest {
 
     @AfterClass
     public void tearDown() {
-        NavigationOperations.goToFolder(Folders.SENT);
-        UserOperations.deleteAllEmails();
+        if (new MailPage().isAccountIconVisible()) {
+            NavigationOperations.goToFolder(Folders.SENT);
+            UserOperations.deleteAllEmails();
+        }
         browser.quit();
         softAssert.assertAll();
     }
