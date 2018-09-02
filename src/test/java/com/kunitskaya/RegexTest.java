@@ -3,20 +3,14 @@ package com.kunitskaya;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
 
 public class RegexTest {
+    private static final String VELCOM_NUMBER_PATTERN = "((\\+375)|8)[(\\s\\-]?((44[)\\s\\-]?[1-9])|(029|29)[)\\s\\-]?[1369])\\d{1,2}[\\s\\-]?\\d{2,3}[\\s\\-]?\\d{2,3}";
 
     @Test(dataProvider = "regexDataProvider")
     public void validateRegexMatching(String phoneNumber, boolean isMatching) {
-        String velcomPattern = "((\\+375)|8)[(\\s\\-]?((44[)\\s\\-]?[1-9])|(029|29)[)\\s\\-]?[1369])\\d{1,2}[\\s\\-]?\\d{2,3}[\\s\\-]?\\d{2,3}";
-
-        if (isMatching) {
-            assertTrue(phoneNumber.matches(velcomPattern));
-        } else {
-            assertFalse(phoneNumber.matches(velcomPattern));
-        }
+        assertEquals(phoneNumber.matches(VELCOM_NUMBER_PATTERN), isMatching);
     }
 
     @DataProvider

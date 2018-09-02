@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="BDD tests" verbose="10">
+    <test name="BddTests">
+        <classes>
+            <class name="com.kunitskaya.test.selenium.TestRunner"/>
+        </classes>
+    </test>
+</suite>

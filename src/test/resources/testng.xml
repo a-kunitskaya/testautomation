@@ -1,32 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Selenium" verbose="10">
-
-    <test name="AllTests">
-        <classes>
-            <class name="com.kunitskaya.selenium.pages.pf.HelpPopupTestSelenium"/>
-            <class name="com.kunitskaya.selenium.pages.pf.InvalidEmailTestSelenium"/>
-            <class name="com.kunitskaya.selenium.pages.pf.InvalidLoginTestSelenium"/>
-            <class name="com.kunitskaya.selenium.pages.pf.EmailingTestSelenium"/>
-            <class name="com.kunitskaya.selenium.pages.selenide.InvalidEmailingTestSelenium"/>
-        </classes>
-    </test>
-
-    <test name="BddTests">
-        <classes>
-            <class name="com.kunitskaya.test.selenium.TestRunner"/>
-        </classes>
-    </test>
-
-    <test name="WebServicesTests">
-        <classes>
-            <class name="com.kunitskaya.webservices.WebservicesTest"/>
-        </classes>
-    </test>
-
-    <test name="OtherTests">
-        <classes>
-            <class name="com.kunitskaya.RegexTest"/>
-        </classes>
-    </test>
+<suite name="All CDP suites">
+    <suite-files>
+        <suite-file path="testngs/seleniumtestng.xml"/>
+        <suite-file path="testngs/wstestng.xml"/>
+        <suite-file path="testngs/bddtestng.xml"/>
+        <suite-file path="testngs/othertestng.xml"/>
+    </suite-files>
 </suite>

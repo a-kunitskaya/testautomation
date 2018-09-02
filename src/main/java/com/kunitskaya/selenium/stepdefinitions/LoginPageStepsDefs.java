@@ -26,14 +26,18 @@ public class LoginPageStepsDefs {
 
     @When("^I login as \"([^\"]*)\" user$")
     public void iLoginAsUser(String type) {
-        User user = null;
-        switch (Users.valueOf(type)) {
+        User user;
+        Users userType = Users.valueOf(type);
+
+        switch (userType) {
             case VALID:
                 user = TestDataProvider.getGmailUser();
                 break;
             case INVALID_PASSWORD:
                 user = TestDataProvider.getInvalidPasswordGmailUser();
                 break;
+            default:
+                throw new IllegalArgumentException("No such used is found " + type);
         }
         UserOperations.logIn(user);
         MailPageStepsDefs.mailPageWinHandle = Browser.getInstance().getCurrentWindowHandle();
