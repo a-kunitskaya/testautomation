@@ -10,7 +10,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static com.kunitskaya.test.webservices.Headers.CONTENT_TYPE;
-import static org.testng.AssertJUnit.*;
 
 public class WebservicesTest extends WsBaseTest {
     private static final String EMAIL_PATTERN = "[\\w.]+@\\w+\\.\\w{2,4}";
@@ -24,11 +23,11 @@ public class WebservicesTest extends WsBaseTest {
         switch (framework) {
             case REST_ASSURED:
                 Response response = wsFacade.get(configProvider.getWsUsersUri());
-                assertEquals(response.getStatusCode(), 200);
+                softAssert.assertEquals(response.getStatusCode(), 200);
                 break;
             case REST_TEMPLATE:
                 ResponseEntity responseEntity = wsFacade.get(configProvider.getBaseWsTestUrl(), configProvider.getWsUsersUri(), users);
-                assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
+                softAssert.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
         }
 
     }
@@ -43,14 +42,14 @@ public class WebservicesTest extends WsBaseTest {
             case REST_ASSURED:
                 Response response = wsFacade.get(configProvider.getWsUsersUri());
                 Headers responseHeaders = response.getHeaders();
-                assertTrue(responseHeaders.hasHeaderWithName(CONTENT_TYPE.getHeader()));
-                assertEquals(responseHeaders.get(CONTENT_TYPE.getHeader()).getValue(), expectedHeaderValue);
+                softAssert.assertTrue(responseHeaders.hasHeaderWithName(CONTENT_TYPE.getHeader()));
+                softAssert.assertEquals(responseHeaders.get(CONTENT_TYPE.getHeader()).getValue(), expectedHeaderValue);
                 break;
             case REST_TEMPLATE:
                 ResponseEntity responseEntity = wsFacade.get(configProvider.getBaseWsTestUrl(), configProvider.getWsUsersUri(), users);
                 HttpHeaders headers = responseEntity.getHeaders();
-                assertTrue(headers.containsKey(CONTENT_TYPE.getHeader()));
-                assertEquals(headers.getFirst(CONTENT_TYPE.getHeader()), expectedHeaderValue);
+                softAssert.assertTrue(headers.containsKey(CONTENT_TYPE.getHeader()));
+                softAssert.assertEquals(headers.getFirst(CONTENT_TYPE.getHeader()), expectedHeaderValue);
                 break;
         }
     }
@@ -70,13 +69,13 @@ public class WebservicesTest extends WsBaseTest {
                 users = (User[]) responseEntity.getBody();
                 break;
         }
-        assertEquals(users.length, 10);
+       softAssert.assertEquals(users.length, 10);
 
         for (User user : users) {
-            assertNotNull(user.getEmail());
-            assertTrue(user.getEmail().matches(EMAIL_PATTERN));
-            assertNotNull(user.getName());
-            assertNotNull(user.getAddress().getZipcode());
+            softAssert.assertNotNull(user.getEmail());
+            softAssert.assertTrue(user.getEmail().matches(EMAIL_PATTERN));
+            softAssert.assertNotNull(user.getName());
+            softAssert.assertNotNull(user.getAddress().getZipcode());
         }
     }
 

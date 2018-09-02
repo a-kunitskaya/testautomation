@@ -7,15 +7,15 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.commons.lang3.StringUtils;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-
-import static org.testng.Assert.assertTrue;
 
 public class HelpPopupStepsDefs {
 
     private List<String> searchResults;
     private String searchInput;
+    private SoftAssert softAssert = new SoftAssert();
 
     @When("I open help popup")
     public void iOpenHelpPopup() {
@@ -24,7 +24,7 @@ public class HelpPopupStepsDefs {
 
     @Then("^Help popup is opened$")
     public void helpPopupIsOpened() {
-        assertTrue(new HelpPopup().isDisplayed());
+        softAssert.assertTrue(new HelpPopup().isDisplayed());
     }
 
     @When("^I search for ([\\w]+)$")
@@ -36,9 +36,7 @@ public class HelpPopupStepsDefs {
     @Then("^I get corresponding search results$")
     public void iGetCorrespondingSearchResults() {
         for (String searchResult : searchResults) {
-            if (searchResult.contains(searchInput)) {
-                assertTrue(StringUtils.containsIgnoreCase(searchResult, searchInput));
-            }
+            softAssert.assertTrue(StringUtils.containsIgnoreCase(searchResult, searchInput));
         }
     }
 
