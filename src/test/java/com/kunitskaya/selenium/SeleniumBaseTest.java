@@ -26,10 +26,6 @@ public class SeleniumBaseTest {
     public void tearDown() {
         NavigationOperations.goToFolder(Folders.SENT);
         UserOperations.deleteAllEmails();
-
-        NavigationOperations.goToFolder(Folders.DRAFT);
-        UserOperations.deleteAllEmails();
-
         browser.quit();
         softAssert.assertAll();
     }

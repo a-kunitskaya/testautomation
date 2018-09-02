@@ -55,13 +55,16 @@ public class MailListingPage extends MailPage {
     }
 
     public MailListingPage deleteAllEmails() {
+
         new Actions(webDriver).keyDown(Keys.SHIFT)
-                              .sendKeys("*")
-                              .sendKeys("a")
+                              .sendKeys("*", "a")
                               .keyUp(Keys.SHIFT)
                               .sendKeys(Keys.chord(Keys.SHIFT, "#"))
+                              .sendKeys(Keys.ENTER)
                               .build()
                               .perform();
+
+        new Actions(webDriver).sendKeys(Keys.ENTER).build().perform();
         return this;
     }
 }

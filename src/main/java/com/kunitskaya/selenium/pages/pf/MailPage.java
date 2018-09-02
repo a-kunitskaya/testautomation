@@ -29,12 +29,6 @@ public class MailPage extends AbstractPage {
     @FindBy(linkText = "Sign out")
     WebElement signOutButton;
 
-    @FindBy(xpath = "//div[@data-tooltip='Select']//span[@role='checkbox']")
-    WebElement selectAllEmailsCheckbox;
-
-    @FindBy(xpath = "//div[@data-tooltip='Delete']")
-    WebElement deleteButton;
-
     public MailPage() {
         super();
     }
@@ -79,16 +73,6 @@ public class MailPage extends AbstractPage {
     public MailListingPage clickDraftsFolderLink() {
         draftsFolderLink.click();
         return new MailListingPage();
-    }
-
-    public MailPage checkSelectAllEmailsCheckbox(){
-        selectAllEmailsCheckbox.click();
-        return this;
-    }
-
-    public MailPage clickDeleteButton(){
-        deleteButton.click();
-        return this;
     }
 
 }
