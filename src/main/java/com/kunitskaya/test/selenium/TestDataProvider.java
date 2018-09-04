@@ -1,5 +1,6 @@
 package com.kunitskaya.test.selenium;
 
+import com.kunitskaya.base.utils.files.CsvFileReader;
 import com.kunitskaya.selenium.business.objects.Email;
 import com.kunitskaya.selenium.business.objects.Feedback;
 import com.kunitskaya.selenium.business.objects.user.User;
@@ -55,5 +56,9 @@ public class TestDataProvider {
         feedback.setFeedbackText(FEEDBACK_TEXT);
         feedback.setWithScreenshot(true);
         return feedback;
+    }
+
+    public static String getLoginErrorMessage(Languages language) {
+        return new CsvFileReader().getTranslationForElement(language, TranslationsElements.LOGIN_ERROR);
     }
 }

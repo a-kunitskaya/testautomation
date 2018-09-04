@@ -5,16 +5,16 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class RegexTest {
+public class PhoneNumberMatchingTest {
     private static final String VELCOM_NUMBER_PATTERN = "((\\+375)|8)[(\\s\\-]?((44[)\\s\\-]?[1-9])|(029|29)[)\\s\\-]?[1369])\\d{1,2}[\\s\\-]?\\d{2,3}[\\s\\-]?\\d{2,3}";
 
-    @Test(dataProvider = "regexDataProvider")
-    public void validateRegexMatching(String phoneNumber, boolean isMatching) {
+    @Test(dataProvider = "phoneNumbersDataProvider")
+    public void validateRegexMatchingVelcomNumbers(String phoneNumber, boolean isMatching) {
         assertEquals(phoneNumber.matches(VELCOM_NUMBER_PATTERN), isMatching);
     }
 
     @DataProvider
-    public Object[][] regexDataProvider() {
+    public Object[][] phoneNumbersDataProvider() {
         return new Object[][]{
                 {"+375(29)123 45 67", true},
                 {"+375(29)323 45 67", true},

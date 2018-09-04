@@ -1,4 +1,4 @@
-package com.kunitskaya.test.selenium;
+package com.kunitskaya.selenium;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;

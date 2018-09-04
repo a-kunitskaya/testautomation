@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class EmailingTestSelenium extends SeleniumBaseTest {
+public class EmailingTest extends SeleniumBaseTest {
 
     @Test(description = "Log in to Gmail")
     public void logIn() {

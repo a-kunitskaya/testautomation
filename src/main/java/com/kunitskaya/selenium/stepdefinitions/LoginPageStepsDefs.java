@@ -1,19 +1,15 @@
 package com.kunitskaya.selenium.stepdefinitions;
 
 import com.kunitskaya.base.selenium.Browser;
-import com.kunitskaya.base.utils.files.CsvFileReader;
 import com.kunitskaya.selenium.business.objects.user.User;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;
 import com.kunitskaya.selenium.pages.pf.LoginPage;
-import com.kunitskaya.test.selenium.Languages;
 import com.kunitskaya.test.selenium.TestDataProvider;
-import com.kunitskaya.test.selenium.TranslationsElements;
 import com.kunitskaya.test.selenium.Users;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.apache.commons.lang3.StringUtils;
 
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -46,17 +42,7 @@ public class LoginPageStepsDefs {
     @Then("^Error message should be displayed$")
     public void errorMessageShouldBeDisplayed() {
         LoginPage loginPage = new LoginPage();
-        Languages actualLanguage = loginPage.getDisplayedLanguage();
-        CsvFileReader fileReader = new CsvFileReader();
-        String expectedTranslation = StringUtils.EMPTY;
-        switch (actualLanguage) {
-            case ENGLISH:
-                expectedTranslation = fileReader.getTranslationForElement(Languages.ENGLISH, TranslationsElements.LOGIN_ERROR);
-                break;
-            case RUSSIAN:
-                expectedTranslation = fileReader.getTranslationForElement(Languages.RUSSIAN, TranslationsElements.LOGIN_ERROR);
-                break;
-        }
+        String expectedTranslation = TestDataProvider.getLoginErrorMessage(loginPage.getDisplayedLanguage());
         assertTrue(loginPage.isErrorMessageDisplayed(expectedTranslation));
     }
 }

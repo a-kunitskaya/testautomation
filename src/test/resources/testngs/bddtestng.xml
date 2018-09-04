@@ -3,7 +3,7 @@
 <suite name="BDD tests" verbose="10">
     <test name="BddTests">
         <classes>
-            <class name="com.kunitskaya.test.selenium.TestRunner"/>
+            <class name="com.kunitskaya.selenium.TestRunner"/>
         </classes>
     </test>
 </suite>

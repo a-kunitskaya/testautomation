@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class InvalidEmailTestSelenium extends SeleniumBaseTest {
+public class InvalidEmailTest extends SeleniumBaseTest {
 
     @BeforeClass
     public void logIn() {

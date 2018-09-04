@@ -4,10 +4,10 @@
 
     <test name="Selenium tests">
         <classes>
-            <class name="com.kunitskaya.selenium.pages.pf.HelpPopupTestSelenium"/>
-            <class name="com.kunitskaya.selenium.pages.pf.InvalidEmailTestSelenium"/>
-            <class name="com.kunitskaya.selenium.pages.pf.InvalidLoginTestSelenium"/>
-            <class name="com.kunitskaya.selenium.pages.pf.EmailingTestSelenium"/>
+            <class name="com.kunitskaya.selenium.pages.pf.HelpPopupTest"/>
+            <class name="com.kunitskaya.selenium.pages.pf.InvalidEmailTest"/>
+            <class name="com.kunitskaya.selenium.pages.pf.InvalidLoginTest"/>
+            <class name="com.kunitskaya.selenium.pages.pf.EmailingTest"/>
             <class name="com.kunitskaya.selenium.pages.selenide.InvalidEmailingTestSelenium"/>
         </classes>
     </test>

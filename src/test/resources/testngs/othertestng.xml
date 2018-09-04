@@ -4,7 +4,7 @@
 
     <test name="Regex">
         <classes>
-            <class name="com.kunitskaya.RegexTest"/>
+            <class name="com.kunitskaya.PhoneNumberMatchingTest"/>
         </classes>
     </test>
 </suite>

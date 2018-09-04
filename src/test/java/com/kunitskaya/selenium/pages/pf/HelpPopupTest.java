@@ -16,7 +16,7 @@ import static com.kunitskaya.selenium.pages.pf.FeedbackPopup.FEEDBACK_POPUP_PLAC
 import static com.kunitskaya.selenium.pages.pf.GmailHelpForumPage.*;
 import static org.testng.Assert.*;
 
-public class HelpPopupTestSelenium extends SeleniumBaseTest {
+public class HelpPopupTest extends SeleniumBaseTest {
 
     @BeforeClass
     public void logIn() {
