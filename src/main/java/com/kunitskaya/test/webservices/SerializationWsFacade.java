@@ -9,7 +9,7 @@ public class SerializationWsFacade extends AbstractWsFacade {
      *
      * @param model - model instance to serialize from
      */
-    public <T> String serializeToJson(Class<T> model){
+    public String serializeToJson(Object model) {
         Gson gson = new Gson();
         return gson.toJson(model);
     }

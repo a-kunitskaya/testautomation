@@ -3,6 +3,8 @@ package com.kunitskaya.selenium.business.operations.pf;
 import com.kunitskaya.selenium.business.objects.Feedback;
 import com.kunitskaya.selenium.business.objects.user.User;
 import com.kunitskaya.selenium.pages.pf.*;
+import com.kunitskaya.test.selenium.TestDataProvider;
+import com.kunitskaya.test.selenium.Users;
 
 import java.util.List;
 
@@ -18,6 +20,26 @@ public class UserOperations {
                        .clickUsernameNextButton();
         new LoginPage().fillInPassword(user.getPassword())
                        .clickPasswordNextButton();
+    }
+
+    /**
+     * Logs in to Gmail
+     *
+     * @param userType - user type to log in as
+     */
+    public static void logIn(Users userType) {
+        User user;
+        switch (userType) {
+            case VALID:
+                user = TestDataProvider.getGmailUser();
+                break;
+            case INVALID_PASSWORD:
+                user = TestDataProvider.getInvalidPasswordGmailUser();
+                break;
+            default:
+                throw new IllegalArgumentException("No such used is found " + userType);
+        }
+        logIn(user);
     }
 
     /**
@@ -59,7 +81,10 @@ public class UserOperations {
         }
     }
 
-    public static void deleteAllEmails(){
+    /**
+     * Deletes all emails from the current folder
+     */
+    public static void deleteAllEmails() {
         new MailListingPage().deleteAllEmails();
     }
 }
