@@ -3,7 +3,7 @@
 <suite name="Webservices tests" verbose="10">
     <test name="WebServicesTests">
         <classes>
-            <class name="com.kunitskaya.webservices.WebservicesTest"/>
+            <class name="com.kunitskaya.webservices.UsersWsTest"/>
         </classes>
     </test>
 </suite>

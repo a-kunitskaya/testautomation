@@ -9,44 +9,41 @@ import org.springframework.http.ResponseEntity;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static com.kunitskaya.test.webservices.Frameworks.REST_ASSURED;
+import static com.kunitskaya.test.webservices.Frameworks.REST_TEMPLATE;
 import static com.kunitskaya.test.webservices.Headers.CONTENT_TYPE;
 
-public class WebservicesTest extends WsBaseTest {
+public class UsersWsTest extends WsBaseTest {
     private static final String EMAIL_PATTERN = "[\\w.]+@\\w+\\.\\w{2,4}";
-    private static final int MAX_NUMBER_OF_USERS = 50;
 
     @Test(dataProvider = "frameworkDataProvider")
-    public void validateResponseCode(String wsFramework) {
-        Frameworks framework = Frameworks.valueOf(wsFramework);
-        User[] users = new User[MAX_NUMBER_OF_USERS];
-
+    public void validateResponseCode(Frameworks framework) {
         switch (framework) {
             case REST_ASSURED:
-                Response response = wsFacade.get(configProvider.getWsUsersUri());
-                softAssert.assertEquals(response.getStatusCode(), 200);
+                Response response = usersWsFacade.get();
+                int expectedCode = 200;
+                softAssert.assertEquals(response.getStatusCode(), expectedCode);
                 break;
             case REST_TEMPLATE:
-                ResponseEntity responseEntity = wsFacade.get(configProvider.getBaseWsTestUrl(), configProvider.getWsUsersUri(), users);
+                ResponseEntity responseEntity = usersWsFacade.get(User[].class);
                 softAssert.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
         }
 
     }
 
     @Test(dataProvider = "frameworkDataProvider")
-    public void validateResponseHeader(String wsFramework) {
-        Frameworks framework = Frameworks.valueOf(wsFramework);
-        User[] users = new User[MAX_NUMBER_OF_USERS];
+    public void validateResponseHeader(Frameworks framework) {
         String expectedHeaderValue = "application/json; charset=utf-8";
 
         switch (framework) {
             case REST_ASSURED:
-                Response response = wsFacade.get(configProvider.getWsUsersUri());
+                Response response = usersWsFacade.get();
                 Headers responseHeaders = response.getHeaders();
                 softAssert.assertTrue(responseHeaders.hasHeaderWithName(CONTENT_TYPE.getHeader()));
                 softAssert.assertEquals(responseHeaders.get(CONTENT_TYPE.getHeader()).getValue(), expectedHeaderValue);
                 break;
             case REST_TEMPLATE:
-                ResponseEntity responseEntity = wsFacade.get(configProvider.getBaseWsTestUrl(), configProvider.getWsUsersUri(), users);
+                ResponseEntity responseEntity = usersWsFacade.get(User[].class);
                 HttpHeaders headers = responseEntity.getHeaders();
                 softAssert.assertTrue(headers.containsKey(CONTENT_TYPE.getHeader()));
                 softAssert.assertEquals(headers.getFirst(CONTENT_TYPE.getHeader()), expectedHeaderValue);
@@ -55,21 +52,21 @@ public class WebservicesTest extends WsBaseTest {
     }
 
     @Test(dataProvider = "frameworkDataProvider")
-    public void validateResponseBody(String wsFramework) {
-        User[] users = new User[MAX_NUMBER_OF_USERS];
-        Frameworks framework = Frameworks.valueOf(wsFramework);
-
+    public void validateResponseBody(Frameworks framework) {
+        User[] users = null;
         switch (framework) {
             case REST_ASSURED:
-                Response response = wsFacade.get(configProvider.getWsUsersUri());
+                Response response = usersWsFacade.get();
                 users = response.getBody().as(User[].class);
                 break;
             case REST_TEMPLATE:
-                ResponseEntity responseEntity = wsFacade.get(configProvider.getBaseWsTestUrl(), configProvider.getWsUsersUri(), users);
-                users = (User[]) responseEntity.getBody();
+                ResponseEntity responseEntity = usersWsFacade.get(User[].class);
+                users = (User[])responseEntity.getBody();
                 break;
         }
-       softAssert.assertEquals(users.length, 10);
+
+        int expectedNumberOfUsers = 10;
+        softAssert.assertEquals(users.length, expectedNumberOfUsers);
 
         for (User user : users) {
             softAssert.assertNotNull(user.getEmail());
@@ -82,8 +79,8 @@ public class WebservicesTest extends WsBaseTest {
     @DataProvider
     public Object[][] frameworkDataProvider() {
         return new Object[][]{
-                {"REST_ASSURED"},
-                {"REST_TEMPLATE"}
+                {REST_ASSURED},
+                {REST_TEMPLATE}
         };
     }
 }
