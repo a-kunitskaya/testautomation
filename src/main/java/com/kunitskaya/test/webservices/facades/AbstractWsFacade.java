@@ -1,4 +1,4 @@
-package com.kunitskaya.test.webservices;
+package com.kunitskaya.test.webservices.facades;
 
 import com.kunitskaya.base.ConfigProvider;
 

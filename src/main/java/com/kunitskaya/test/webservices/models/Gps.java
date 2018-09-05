@@ -1,8 +1,8 @@
-package com.kunitskaya.webservices.models;
+package com.kunitskaya.test.webservices.models;
 
 public class Gps {
-    double longitude;
-    double latitude;
+    private double longitude;
+    private double latitude;
 
     public Gps(double longitude, double latitude) {
         this.longitude = longitude;

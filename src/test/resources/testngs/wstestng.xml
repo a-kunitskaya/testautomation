@@ -4,6 +4,7 @@
     <test name="WebServicesTests">
         <classes>
             <class name="com.kunitskaya.webservices.UsersWsTest"/>
+            <class name="com.kunitskaya.webservices.ToDoTest"/>
         </classes>
     </test>
 </suite>

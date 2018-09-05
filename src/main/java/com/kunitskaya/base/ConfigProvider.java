@@ -63,4 +63,8 @@ public class ConfigProvider {
     public String getWsUsersUri() {
         return getProperty("ws.users.uri");
     }
+
+    public String getToWsDoUri(){
+        return getProperty("ws.todo.uri");
+    }
 }

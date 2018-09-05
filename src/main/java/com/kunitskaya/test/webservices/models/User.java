@@ -1,4 +1,4 @@
-package com.kunitskaya.webservices.models;
+package com.kunitskaya.test.webservices.models;
 
 import java.util.Objects;
 

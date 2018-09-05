@@ -1,7 +1,7 @@
 package com.kunitskaya.webservices;
 
 import com.kunitskaya.test.webservices.Frameworks;
-import com.kunitskaya.webservices.models.User;
+import com.kunitskaya.test.webservices.models.User;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.springframework.http.HttpHeaders;
@@ -61,7 +61,7 @@ public class UsersWsTest extends WsBaseTest {
                 break;
             case REST_TEMPLATE:
                 ResponseEntity responseEntity = usersWsFacade.get(User[].class);
-                users = (User[])responseEntity.getBody();
+                users = (User[]) responseEntity.getBody();
                 break;
         }
 
@@ -74,6 +74,14 @@ public class UsersWsTest extends WsBaseTest {
             softAssert.assertNotNull(user.getName());
             softAssert.assertNotNull(user.getAddress().getZipcode());
         }
+    }
+
+    @Test
+    public void deleteUser() {
+        String userId = "1";
+        Response response = usersWsFacade.delete(userId);
+        int expectedCode = 200;
+        softAssert.assertEquals(response.getStatusCode(), expectedCode);
     }
 
     @DataProvider

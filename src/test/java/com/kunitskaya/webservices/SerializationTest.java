@@ -1,7 +1,7 @@
 package com.kunitskaya.webservices;
 
-import com.kunitskaya.test.webservices.SerializationWsFacade;
-import com.kunitskaya.webservices.models.Gps;
+import com.kunitskaya.test.webservices.facades.SerializationWsFacade;
+import com.kunitskaya.test.webservices.models.Gps;
 import org.springframework.context.annotation.Description;
 import org.testng.annotations.Test;
 
