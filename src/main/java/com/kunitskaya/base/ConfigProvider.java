@@ -64,7 +64,11 @@ public class ConfigProvider {
         return getProperty("ws.users.uri");
     }
 
-    public String getToWsDoUri(){
+    public String getToWsDoUri() {
         return getProperty("ws.todo.uri");
+    }
+
+    public String getAppiumServerUrl() {
+        return getProperty("appium.server.url");
     }
 }
