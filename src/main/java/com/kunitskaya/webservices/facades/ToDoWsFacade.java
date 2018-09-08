@@ -25,7 +25,6 @@ public class ToDoWsFacade extends AbstractWsFacade {
         body.put("completed", toDo.getCompleted());
 
         return post(uri, body, ContentType.JSON);
-
     }
 
     /**

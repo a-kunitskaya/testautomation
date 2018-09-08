@@ -1,12 +1,12 @@
 package com.kunitskaya.selenium.business.operations.pf;
 
 import com.kunitskaya.base.selenium.Browser;
+import com.kunitskaya.base.test.Folders;
 import com.kunitskaya.selenium.business.objects.Email;
 import com.kunitskaya.selenium.pages.pf.HelpPopup;
 import com.kunitskaya.selenium.pages.pf.LoginPage;
 import com.kunitskaya.selenium.pages.pf.MailListingPage;
 import com.kunitskaya.selenium.pages.pf.MailPage;
-import com.kunitskaya.base.test.Folders;
 
 public class NavigationOperations {
 

@@ -53,7 +53,6 @@ public class AbstractWsFacade {
                           .andReturn();
     }
 
-
     /**
      * Makes PUT request
      * Uses RestAssured framework

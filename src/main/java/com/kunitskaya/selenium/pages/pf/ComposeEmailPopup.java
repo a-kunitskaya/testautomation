@@ -71,7 +71,7 @@ public class ComposeEmailPopup extends AbstractPage {
     }
 
     public ComposeEmailPopup fillInBodyField(String body) {
-        if (body != StringUtils.EMPTY) {
+        if (!body.equals(StringUtils.EMPTY)) {
             bodyField.sendKeys(body);
             return this;
         } else {
