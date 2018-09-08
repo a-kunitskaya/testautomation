@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Other tests" verbose="10">
+
+    <test name="Mobile">
+        <classes>
+            <class name="com.kunitskaya.AndroidTest"/>
+        </classes>
+    </test>
+</suite>
