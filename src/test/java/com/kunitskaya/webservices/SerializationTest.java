@@ -23,7 +23,5 @@ public class SerializationTest extends WsBaseTest {
         Gps actualGps = new Gps(actualLongitude, actualLatitude);
 
         assertEquals(actualGps, expectedGps);
-
-
     }
 }

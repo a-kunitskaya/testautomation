@@ -16,7 +16,6 @@ public class ToDoWsTest extends WsBaseTest {
     @Test
     public void updateToDo() {
         ToDo expectedToDo = TestDataProvider.getDefaultTodo();
-
         int numberOfRecords = toDoWsFacade.getToDos().as(ToDo[].class).length;
 
         //setting id of existing record

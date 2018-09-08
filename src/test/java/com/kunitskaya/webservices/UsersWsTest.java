@@ -30,7 +30,6 @@ public class UsersWsTest extends WsBaseTest {
                 ResponseEntity responseEntity = usersWsFacade.getUsersRT();
                 assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
                 break;
-
         }
 
     }
