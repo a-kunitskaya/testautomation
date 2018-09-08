@@ -12,5 +12,5 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
                 "html:target/cucumber-report"
         }
 )
-public class TestRunner extends AbstractTestNGCucumberTests {
+public class BDDTestRunner extends AbstractTestNGCucumberTests {
 }

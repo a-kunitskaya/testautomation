@@ -1,9 +1,11 @@
 package com.kunitskaya.webservices;
 
+import com.kunitskaya.webservices.deserialization.JsonDataDeserializer;
 import com.kunitskaya.webservices.models.User;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -20,8 +22,7 @@ public class UsersWsTest extends WsBaseTest {
         switch (framework) {
             case REST_ASSURED:
                 Response response = usersWsFacade.getUsersRA();
-                int expectedCode = 200;
-                softAssert.assertEquals(response.getStatusCode(), expectedCode);
+                softAssert.assertEquals(response.getStatusCode(), HttpStatus.OK.value());
                 break;
             case REST_TEMPLATE:
                 ResponseEntity responseEntity = usersWsFacade.getUsersRT();
@@ -56,7 +57,7 @@ public class UsersWsTest extends WsBaseTest {
         switch (framework) {
             case REST_ASSURED:
                 Response response = usersWsFacade.getUsersRA();
-                users = response.getBody().as(User[].class);
+                users = (User[]) JsonDataDeserializer.deserializeFromJson(response, User[].class);
                 break;
             case REST_TEMPLATE:
                 ResponseEntity responseEntity = usersWsFacade.getUsersRT();
@@ -81,8 +82,7 @@ public class UsersWsTest extends WsBaseTest {
         user.setId(1);
 
         Response response = usersWsFacade.deleteUser(user);
-        int expectedCode = 200;
-        softAssert.assertEquals(response.getStatusCode(), expectedCode);
+        softAssert.assertEquals(response.getStatusCode(), HttpStatus.OK.value());
     }
 
     @DataProvider
