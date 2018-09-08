@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static com.kunitskaya.base.utils.NumbersUtil.getRandomInt;
 import static com.kunitskaya.webservices.Frameworks.REST_ASSURED;
 import static com.kunitskaya.webservices.Frameworks.REST_TEMPLATE;
 import static com.kunitskaya.webservices.Headers.CONTENT_TYPE;
@@ -79,7 +80,11 @@ public class UsersWsTest extends WsBaseTest {
     @Test
     public void deleteUser() {
         User user = new User();
-        user.setId(1);
+
+        int numberOfRecords = usersWsFacade.getUsersRA().as(User[].class).length;
+
+        //setting id of existing record
+        user.setId(getRandomInt(1, numberOfRecords));
 
         Response response = usersWsFacade.deleteUser(user);
         softAssert.assertEquals(response.getStatusCode(), HttpStatus.OK.value());
