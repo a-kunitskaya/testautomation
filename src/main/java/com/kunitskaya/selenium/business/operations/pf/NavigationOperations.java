@@ -6,7 +6,7 @@ import com.kunitskaya.selenium.pages.pf.HelpPopup;
 import com.kunitskaya.selenium.pages.pf.LoginPage;
 import com.kunitskaya.selenium.pages.pf.MailListingPage;
 import com.kunitskaya.selenium.pages.pf.MailPage;
-import com.kunitskaya.test.selenium.Folders;
+import com.kunitskaya.base.test.Folders;
 
 public class NavigationOperations {
 

@@ -1,7 +1,6 @@
 package com.kunitskaya.webservices;
 
-import com.kunitskaya.test.webservices.Frameworks;
-import com.kunitskaya.test.webservices.models.User;
+import com.kunitskaya.webservices.models.User;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.springframework.http.HttpHeaders;
@@ -9,9 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static com.kunitskaya.test.webservices.Frameworks.REST_ASSURED;
-import static com.kunitskaya.test.webservices.Frameworks.REST_TEMPLATE;
-import static com.kunitskaya.test.webservices.Headers.CONTENT_TYPE;
+import static com.kunitskaya.webservices.Frameworks.REST_ASSURED;
+import static com.kunitskaya.webservices.Frameworks.REST_TEMPLATE;
+import static com.kunitskaya.webservices.Headers.CONTENT_TYPE;
 
 public class UsersWsTest extends WsBaseTest {
     private static final String EMAIL_PATTERN = "[\\w.]+@\\w+\\.\\w{2,4}";
@@ -20,12 +19,12 @@ public class UsersWsTest extends WsBaseTest {
     public void validateResponseCode(Frameworks framework) {
         switch (framework) {
             case REST_ASSURED:
-                Response response = usersWsFacade.get();
+                Response response = usersWsFacade.getUsersRA();
                 int expectedCode = 200;
                 softAssert.assertEquals(response.getStatusCode(), expectedCode);
                 break;
             case REST_TEMPLATE:
-                ResponseEntity responseEntity = usersWsFacade.get(User[].class);
+                ResponseEntity responseEntity = usersWsFacade.getUsersRT();
                 softAssert.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
         }
 
@@ -37,13 +36,13 @@ public class UsersWsTest extends WsBaseTest {
 
         switch (framework) {
             case REST_ASSURED:
-                Response response = usersWsFacade.get();
+                Response response = usersWsFacade.getUsersRA();
                 Headers responseHeaders = response.getHeaders();
                 softAssert.assertTrue(responseHeaders.hasHeaderWithName(CONTENT_TYPE.getHeader()));
                 softAssert.assertEquals(responseHeaders.get(CONTENT_TYPE.getHeader()).getValue(), expectedHeaderValue);
                 break;
             case REST_TEMPLATE:
-                ResponseEntity responseEntity = usersWsFacade.get(User[].class);
+                ResponseEntity responseEntity = usersWsFacade.getUsersRT();
                 HttpHeaders headers = responseEntity.getHeaders();
                 softAssert.assertTrue(headers.containsKey(CONTENT_TYPE.getHeader()));
                 softAssert.assertEquals(headers.getFirst(CONTENT_TYPE.getHeader()), expectedHeaderValue);
@@ -56,11 +55,11 @@ public class UsersWsTest extends WsBaseTest {
         User[] users = null;
         switch (framework) {
             case REST_ASSURED:
-                Response response = usersWsFacade.get();
+                Response response = usersWsFacade.getUsersRA();
                 users = response.getBody().as(User[].class);
                 break;
             case REST_TEMPLATE:
-                ResponseEntity responseEntity = usersWsFacade.get(User[].class);
+                ResponseEntity responseEntity = usersWsFacade.getUsersRT();
                 users = (User[]) responseEntity.getBody();
                 break;
         }
@@ -78,8 +77,10 @@ public class UsersWsTest extends WsBaseTest {
 
     @Test
     public void deleteUser() {
-        String userId = "1";
-        Response response = usersWsFacade.delete(userId);
+        User user = new User();
+        user.setId(1);
+
+        Response response = usersWsFacade.deleteUser(user);
         int expectedCode = 200;
         softAssert.assertEquals(response.getStatusCode(), expectedCode);
     }

@@ -1,6 +1,6 @@
 package com.kunitskaya;
 
-import com.kunitskaya.base.mobile.MobileDriverProvider;
+import com.kunitskaya.mobile.MobileDriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;

@@ -5,8 +5,8 @@ import com.kunitskaya.selenium.business.objects.Email;
 import com.kunitskaya.selenium.business.operations.pf.EmailOperations;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;
-import com.kunitskaya.test.selenium.Folders;
-import com.kunitskaya.test.selenium.TestDataProvider;
+import com.kunitskaya.base.test.Folders;
+import com.kunitskaya.base.test.TestDataProvider;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

@@ -3,7 +3,7 @@ package com.kunitskaya.selenium.pages.pf;
 import com.kunitskaya.selenium.SeleniumBaseTest;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;
-import com.kunitskaya.test.selenium.TestDataProvider;
+import com.kunitskaya.base.test.TestDataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertTrue;

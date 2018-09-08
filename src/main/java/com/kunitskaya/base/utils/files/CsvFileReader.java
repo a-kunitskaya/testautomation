@@ -1,7 +1,7 @@
 package com.kunitskaya.base.utils.files;
 
-import com.kunitskaya.test.selenium.Languages;
-import com.kunitskaya.test.selenium.TranslationsElements;
+import com.kunitskaya.base.test.Languages;
+import com.kunitskaya.base.test.TranslationsElements;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -13,9 +13,9 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.kunitskaya.test.selenium.Languages.ENGLISH;
-import static com.kunitskaya.test.selenium.Languages.RUSSIAN;
-import static com.kunitskaya.test.selenium.TranslationsElements.ELEMENT;
+import static com.kunitskaya.base.test.Languages.ENGLISH;
+import static com.kunitskaya.base.test.Languages.RUSSIAN;
+import static com.kunitskaya.base.test.TranslationsElements.ELEMENT;
 
 /**
  * Reads from .csv files

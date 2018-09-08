@@ -3,8 +3,8 @@ package com.kunitskaya.selenium.business.operations.pf;
 import com.kunitskaya.selenium.business.objects.Feedback;
 import com.kunitskaya.selenium.business.objects.user.User;
 import com.kunitskaya.selenium.pages.pf.*;
-import com.kunitskaya.test.selenium.TestDataProvider;
-import com.kunitskaya.test.selenium.Users;
+import com.kunitskaya.base.test.TestDataProvider;
+import com.kunitskaya.base.test.Users;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class UserOperations {
                 user = TestDataProvider.getInvalidPasswordGmailUser();
                 break;
             default:
-                throw new IllegalArgumentException("No such used is found " + userType);
+                throw new IllegalArgumentException("No such user is found " + userType);
         }
         logIn(user);
     }

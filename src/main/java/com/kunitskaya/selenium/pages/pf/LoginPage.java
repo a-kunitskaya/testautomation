@@ -1,6 +1,6 @@
 package com.kunitskaya.selenium.pages.pf;
 
-import com.kunitskaya.test.selenium.Languages;
+import com.kunitskaya.base.test.Languages;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebElement;

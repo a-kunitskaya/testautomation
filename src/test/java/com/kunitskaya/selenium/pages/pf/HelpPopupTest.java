@@ -4,7 +4,7 @@ import com.kunitskaya.selenium.SeleniumBaseTest;
 import com.kunitskaya.selenium.business.objects.Feedback;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;
-import com.kunitskaya.test.selenium.TestDataProvider;
+import com.kunitskaya.base.test.TestDataProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;

@@ -6,7 +6,7 @@ import com.kunitskaya.selenium.business.objects.user.User;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;
 import com.kunitskaya.selenium.pages.pf.MailPage;
-import com.kunitskaya.test.selenium.Folders;
+import com.kunitskaya.base.test.Folders;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.asserts.SoftAssert;

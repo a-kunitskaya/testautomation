@@ -1,6 +1,6 @@
 package com.kunitskaya.base.utils.files;
 
-import com.kunitskaya.test.selenium.Languages;
+import com.kunitskaya.base.test.Languages;
 
 import java.util.Map;
 

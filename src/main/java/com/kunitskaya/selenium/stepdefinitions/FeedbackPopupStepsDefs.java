@@ -3,7 +3,7 @@ package com.kunitskaya.selenium.stepdefinitions;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;
 import com.kunitskaya.selenium.pages.pf.FeedbackPopup;
-import com.kunitskaya.test.selenium.TestDataProvider;
+import com.kunitskaya.base.test.TestDataProvider;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

@@ -1,8 +1,8 @@
 package com.kunitskaya.webservices;
 
 import com.kunitskaya.base.ConfigProvider;
-import com.kunitskaya.test.webservices.facades.ToDoWsFacade;
-import com.kunitskaya.test.webservices.facades.UsersWsFacade;
+import com.kunitskaya.webservices.facades.ToDoWsFacade;
+import com.kunitskaya.webservices.facades.UsersWsFacade;
 import io.restassured.RestAssured;
 import org.springframework.web.client.RestTemplate;
 import org.testng.annotations.AfterClass;
