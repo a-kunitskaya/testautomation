@@ -6,5 +6,6 @@
         <suite-file path="testngs/wstestng.xml"/>
         <suite-file path="testngs/bddtestng.xml"/>
         <suite-file path="testngs/othertestng.xml"/>
+        <suite-file path="testngs/mobiletestng.xml"/>
     </suite-files>
 </suite>
