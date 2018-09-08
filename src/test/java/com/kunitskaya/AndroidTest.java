@@ -10,11 +10,11 @@ import static org.testng.AssertJUnit.assertEquals;
 public class AndroidTest {
     protected WebDriver driver;
     private static final String GOOGLE_HOME_URL = "https://www.google.com/";
-
+    MobileDriverProvider mobileDriverProvider = MobileDriverProvider.getInstance();
 
     @BeforeClass
     protected void setUp() {
-        driver = MobileDriverProvider.getAndroidDriver();
+        driver = mobileDriverProvider.getAndroidDriver();
     }
 
     @Test

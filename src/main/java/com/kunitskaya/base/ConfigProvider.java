@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
+
 public class ConfigProvider {
     private static ConfigProvider instance;
 
@@ -70,5 +72,9 @@ public class ConfigProvider {
 
     public String getAppiumServerUrl() {
         return getProperty("appium.server.url");
+    }
+
+    public String getChromeDriverPath() {
+        return IS_OS_MAC ? getProperty("chrome.driver.path.mac") : getProperty("chrome.driver.path.win");
     }
 }
