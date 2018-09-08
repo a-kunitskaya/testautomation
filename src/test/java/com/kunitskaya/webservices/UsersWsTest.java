@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 import static com.kunitskaya.base.utils.NumbersUtil.getRandomInt;
 import static com.kunitskaya.webservices.Frameworks.REST_ASSURED;
 import static com.kunitskaya.webservices.Frameworks.REST_TEMPLATE;
-import static com.kunitskaya.webservices.Headers.CONTENT_TYPE;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
@@ -44,14 +43,15 @@ public class UsersWsTest extends WsBaseTest {
             case REST_ASSURED:
                 Response response = usersWsFacade.getUsersRA();
                 Headers responseHeaders = response.getHeaders();
-                assertTrue(responseHeaders.hasHeaderWithName(CONTENT_TYPE.getHeader()));
-                assertEquals(responseHeaders.get(CONTENT_TYPE.getHeader()).getValue(), expectedHeaderValue);
+
+                assertTrue(responseHeaders.hasHeaderWithName(HttpHeaders.CONTENT_TYPE));
+                assertEquals(responseHeaders.get(HttpHeaders.CONTENT_TYPE).getValue(), expectedHeaderValue);
                 break;
             case REST_TEMPLATE:
                 ResponseEntity responseEntity = usersWsFacade.getUsersRT();
                 HttpHeaders headers = responseEntity.getHeaders();
-                assertTrue(headers.containsKey(CONTENT_TYPE.getHeader()));
-                assertEquals(headers.getFirst(CONTENT_TYPE.getHeader()), expectedHeaderValue);
+                assertTrue(headers.containsKey(HttpHeaders.CONTENT_TYPE));
+                assertEquals(headers.getFirst(HttpHeaders.CONTENT_TYPE), expectedHeaderValue);
                 break;
         }
     }
