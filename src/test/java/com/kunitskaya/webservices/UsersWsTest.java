@@ -1,6 +1,5 @@
 package com.kunitskaya.webservices;
 
-import com.kunitskaya.webservices.deserialization.JsonDataDeserializer;
 import com.kunitskaya.webservices.models.User;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
@@ -14,6 +13,9 @@ import static com.kunitskaya.base.utils.NumbersUtil.getRandomInt;
 import static com.kunitskaya.webservices.Frameworks.REST_ASSURED;
 import static com.kunitskaya.webservices.Frameworks.REST_TEMPLATE;
 import static com.kunitskaya.webservices.Headers.CONTENT_TYPE;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class UsersWsTest extends WsBaseTest {
     private static final String EMAIL_PATTERN = "[\\w.]+@\\w+\\.\\w{2,4}";
@@ -23,11 +25,13 @@ public class UsersWsTest extends WsBaseTest {
         switch (framework) {
             case REST_ASSURED:
                 Response response = usersWsFacade.getUsersRA();
-                softAssert.assertEquals(response.getStatusCode(), HttpStatus.OK.value());
+                assertEquals(response.getStatusCode(), HttpStatus.OK.value());
                 break;
             case REST_TEMPLATE:
                 ResponseEntity responseEntity = usersWsFacade.getUsersRT();
-                softAssert.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
+                assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
+                break;
+
         }
 
     }
@@ -40,14 +44,14 @@ public class UsersWsTest extends WsBaseTest {
             case REST_ASSURED:
                 Response response = usersWsFacade.getUsersRA();
                 Headers responseHeaders = response.getHeaders();
-                softAssert.assertTrue(responseHeaders.hasHeaderWithName(CONTENT_TYPE.getHeader()));
-                softAssert.assertEquals(responseHeaders.get(CONTENT_TYPE.getHeader()).getValue(), expectedHeaderValue);
+                assertTrue(responseHeaders.hasHeaderWithName(CONTENT_TYPE.getHeader()));
+                assertEquals(responseHeaders.get(CONTENT_TYPE.getHeader()).getValue(), expectedHeaderValue);
                 break;
             case REST_TEMPLATE:
                 ResponseEntity responseEntity = usersWsFacade.getUsersRT();
                 HttpHeaders headers = responseEntity.getHeaders();
-                softAssert.assertTrue(headers.containsKey(CONTENT_TYPE.getHeader()));
-                softAssert.assertEquals(headers.getFirst(CONTENT_TYPE.getHeader()), expectedHeaderValue);
+                assertTrue(headers.containsKey(CONTENT_TYPE.getHeader()));
+                assertEquals(headers.getFirst(CONTENT_TYPE.getHeader()), expectedHeaderValue);
                 break;
         }
     }
@@ -58,7 +62,7 @@ public class UsersWsTest extends WsBaseTest {
         switch (framework) {
             case REST_ASSURED:
                 Response response = usersWsFacade.getUsersRA();
-                users = (User[]) JsonDataDeserializer.deserializeFromJson(response, User[].class);
+                users = response.as(User[].class);
                 break;
             case REST_TEMPLATE:
                 ResponseEntity responseEntity = usersWsFacade.getUsersRT();
@@ -67,13 +71,13 @@ public class UsersWsTest extends WsBaseTest {
         }
 
         int expectedNumberOfUsers = 10;
-        softAssert.assertEquals(users.length, expectedNumberOfUsers);
+        assertEquals(users.length, expectedNumberOfUsers);
 
         for (User user : users) {
-            softAssert.assertNotNull(user.getEmail());
-            softAssert.assertTrue(user.getEmail().matches(EMAIL_PATTERN));
-            softAssert.assertNotNull(user.getName());
-            softAssert.assertNotNull(user.getAddress().getZipcode());
+            assertNotNull(user.getEmail());
+            assertTrue(user.getEmail().matches(EMAIL_PATTERN));
+            assertNotNull(user.getName());
+            assertNotNull(user.getAddress().getZipcode());
         }
     }
 
@@ -87,7 +91,7 @@ public class UsersWsTest extends WsBaseTest {
         user.setId(getRandomInt(1, numberOfRecords));
 
         Response response = usersWsFacade.deleteUser(user);
-        softAssert.assertEquals(response.getStatusCode(), HttpStatus.OK.value());
+        assertEquals(response.getStatusCode(), HttpStatus.OK.value());
     }
 
     @DataProvider

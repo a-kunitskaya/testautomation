@@ -5,16 +5,13 @@ import com.kunitskaya.webservices.facades.ToDoWsFacade;
 import com.kunitskaya.webservices.facades.UsersWsFacade;
 import io.restassured.RestAssured;
 import org.springframework.web.client.RestTemplate;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.asserts.SoftAssert;
 
 public class WsBaseTest {
     protected ConfigProvider configProvider;
     protected UsersWsFacade usersWsFacade;
     protected ToDoWsFacade toDoWsFacade;
     protected RestTemplate restTemplate;
-    protected SoftAssert softAssert;
 
     @BeforeClass
     public void setUp() {
@@ -22,12 +19,6 @@ public class WsBaseTest {
         usersWsFacade = new UsersWsFacade();
         toDoWsFacade = new ToDoWsFacade();
         restTemplate = new RestTemplate();
-        softAssert = new SoftAssert();
         RestAssured.baseURI = configProvider.getBaseWsTestUrl();
-    }
-
-    @AfterClass
-    public void tearDown() {
-        softAssert.assertAll();
     }
 }

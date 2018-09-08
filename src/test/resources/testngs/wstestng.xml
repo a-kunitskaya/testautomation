@@ -5,6 +5,7 @@
         <classes>
             <class name="com.kunitskaya.webservices.UsersWsTest"/>
             <class name="com.kunitskaya.webservices.ToDoWsTest"/>
+            <class name="com.kunitskaya.webservices.SerializationTest"/>
         </classes>
     </test>
 </suite>

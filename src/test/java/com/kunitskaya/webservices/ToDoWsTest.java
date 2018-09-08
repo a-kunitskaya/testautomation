@@ -1,7 +1,6 @@
 package com.kunitskaya.webservices;
 
 import com.kunitskaya.base.test.TestDataProvider;
-import com.kunitskaya.webservices.deserialization.JsonDataDeserializer;
 import com.kunitskaya.webservices.models.ToDo;
 import io.restassured.response.Response;
 import org.springframework.http.HttpStatus;
@@ -22,16 +21,15 @@ public class ToDoWsTest extends WsBaseTest {
 
         //setting id of existing record
         expectedToDo.setId(valueOf(getRandomInt(1, numberOfRecords)));
-
         expectedToDo.setUserId(valueOf(getRandomInt(0, 10000)));
         expectedToDo.setTitle(randomAlphanumeric(1, 50));
 
         Response response = toDoWsFacade.updateToDo(expectedToDo);
-        ToDo actualToDo = (ToDo) JsonDataDeserializer.deserializeFromJson(response, ToDo.class);
+        ToDo actualToDo = response.as(ToDo.class);
         System.out.println(actualToDo);
 
-        softAssert.assertEquals(response.getStatusCode(), HttpStatus.OK.value());
-        softAssert.assertEquals(actualToDo, expectedToDo);
+        assertEquals(response.getStatusCode(), HttpStatus.OK.value());
+        assertEquals(actualToDo, expectedToDo);
     }
 
     @Test
@@ -44,7 +42,7 @@ public class ToDoWsTest extends WsBaseTest {
         expectedToDo.setId(valueOf(getRandomInt(numberOfRecords, numberOfRecords + 1)));
 
         Response response = toDoWsFacade.createToDo(expectedToDo);
-        ToDo actualTodo = (ToDo) JsonDataDeserializer.deserializeFromJson(response, ToDo.class);
+        ToDo actualTodo = response.as(ToDo.class);
 
         assertEquals(response.getStatusCode(), HttpStatus.CREATED.value());
         assertEquals(actualTodo, expectedToDo);
