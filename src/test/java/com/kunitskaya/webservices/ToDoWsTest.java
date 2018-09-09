@@ -42,7 +42,7 @@ public class ToDoWsTest extends WsBaseTest {
         int numberOfRecords = toDoWsFacade.getToDos().as(ToDo[].class).length;
 
         //setting id of a nonexistent record
-        expectedToDo.setId(valueOf(getRandomInt(numberOfRecords, numberOfRecords + 10)));
+        expectedToDo.setId(valueOf(getRandomInt(numberOfRecords, numberOfRecords + 1)));
 
         Response response = toDoWsFacade.createToDo(expectedToDo);
 
