@@ -1,10 +1,14 @@
 package com.kunitskaya.webservices;
 
 import com.kunitskaya.base.test.TestDataProvider;
+import com.kunitskaya.webservices.deserialization.ToDoResponseMapper;
+import com.kunitskaya.webservices.deserialization.ToDoResponseParser;
 import com.kunitskaya.webservices.models.ToDo;
 import io.restassured.response.Response;
 import org.springframework.http.HttpStatus;
 import org.testng.annotations.Test;
+
+import java.util.Map;
 
 import static com.kunitskaya.base.utils.NumbersUtil.getRandomInt;
 import static java.lang.String.valueOf;
@@ -38,10 +42,13 @@ public class ToDoWsTest extends WsBaseTest {
         int numberOfRecords = toDoWsFacade.getToDos().as(ToDo[].class).length;
 
         //setting id of a nonexistent record
-        expectedToDo.setId(valueOf(getRandomInt(numberOfRecords, numberOfRecords + 1)));
+        expectedToDo.setId(valueOf(getRandomInt(numberOfRecords, numberOfRecords + 10)));
 
         Response response = toDoWsFacade.createToDo(expectedToDo);
-        ToDo actualTodo = response.as(ToDo.class);
+
+        //using custom parser & mapper since response does not always has header known to RestAssured
+        Map<String, String> body = new ToDoResponseParser().parseResponse(response);
+        ToDo actualTodo = new ToDoResponseMapper().map(body);
 
         assertEquals(response.getStatusCode(), HttpStatus.CREATED.value());
         assertEquals(actualTodo, expectedToDo);

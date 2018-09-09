@@ -8,6 +8,16 @@ public class ToDo {
     private String title;
     private String completed;
 
+    public ToDo() {
+    }
+
+    public ToDo(String userId, String id, String title, String completed) {
+        this.userId = userId;
+        this.id = id;
+        this.title = title;
+        this.completed = completed;
+    }
+
     public String getUserId() {
         return userId;
     }
