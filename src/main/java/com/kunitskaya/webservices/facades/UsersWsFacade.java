@@ -38,4 +38,5 @@ public class UsersWsFacade extends AbstractWsFacade {
         String id = String.valueOf(user.getId());
         return delete(uri + SEPARATOR + id);
     }
+
 }
