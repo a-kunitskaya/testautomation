@@ -8,6 +8,8 @@ import org.testng.Reporter;
 import java.util.List;
 import java.util.Set;
 
+import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
+
 public class WebDriverDecorator implements WebDriver {
     protected WebDriver webDriver;
 
@@ -17,7 +19,7 @@ public class WebDriverDecorator implements WebDriver {
 
     @Override
     public void get(String s) {
-        Reporter.log("Getting URL " + s);
+        TEST_LOGGER.info("Getting URL " + s);
         webDriver.get(s);
     }
 
