@@ -3,7 +3,6 @@ package com.kunitskaya.base.selenium.webdriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Reporter;
 
 import java.util.List;
 import java.util.Set;
@@ -25,23 +24,25 @@ public class WebDriverDecorator implements WebDriver {
 
     @Override
     public String getCurrentUrl() {
+        TEST_LOGGER.info("Getting current URL");
         return webDriver.getCurrentUrl();
     }
 
     @Override
     public String getTitle() {
+        TEST_LOGGER.info("Getting page title");
         return webDriver.getTitle();
     }
 
     @Override
     public List<WebElement> findElements(By by) {
-        Reporter.log("Finding elements " + by.toString());
+        TEST_LOGGER.info("Finding elements " + by.toString());
         return webDriver.findElements(by);
     }
 
     @Override
     public WebElement findElement(By by) {
-        Reporter.log("Finding elements " + by.toString());
+        TEST_LOGGER.info("Finding elements " + by.toString());
         return webDriver.findElement(by);
     }
 
@@ -52,13 +53,13 @@ public class WebDriverDecorator implements WebDriver {
 
     @Override
     public void close() {
-        Reporter.log("Closing the browser...");
+        TEST_LOGGER.info("Closing the browser...");
         webDriver.close();
     }
 
     @Override
     public void quit() {
-        Reporter.log("Qutting webdriver... ");
+        TEST_LOGGER.info("Quiting webdriver... ");
         webDriver.quit();
     }
 
@@ -74,7 +75,7 @@ public class WebDriverDecorator implements WebDriver {
 
     @Override
     public TargetLocator switchTo() {
-        Reporter.log("Switching now...");
+        TEST_LOGGER.info("Switching now...");
         return webDriver.switchTo();
     }
 

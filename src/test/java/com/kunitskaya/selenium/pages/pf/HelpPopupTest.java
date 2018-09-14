@@ -34,7 +34,6 @@ public class HelpPopupTest extends SeleniumBaseTest {
         List<String> searchResults = UserOperations.searchFor(searchInput);
 
         for (String searchResult : searchResults) {
-            System.out.println(searchResult);
             assertTrue(StringUtils.containsIgnoreCase(searchResult, searchInput));
         }
 

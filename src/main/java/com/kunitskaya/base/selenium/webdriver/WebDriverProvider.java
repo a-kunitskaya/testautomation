@@ -37,7 +37,6 @@ public class WebDriverProvider {
     private static void initializeDriver() {
         DesiredCapabilities capabilities;
         ChromeOptions chromeOptions = new ChromeOptions();
-        webDriver = new WebDriverDecorator(webDriver);
         String currentBrowser = configProvider.getBrowser();
         String currentPlatform = configProvider.getPlatform();
         boolean isRemoteDriver = configProvider.isRemoteDriver();
@@ -60,11 +59,7 @@ public class WebDriverProvider {
                     capabilities = DesiredCapabilities.chrome().merge(chromeOptions);
                     webDriver = new RemoteWebDriver(hubUrl, capabilities);
                 } else {
-                    if (platform.equals(MAC)) {
-                        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
-                    } else {
-                        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-                    }
+                    System.setProperty("webdriver.chrome.driver", configProvider.getChromeDriverPath());
                     webDriver = new ChromeDriver(chromeOptions);
 
                     //set selenide web driver

@@ -13,7 +13,6 @@ public class InvalidLoginTest extends SeleniumBaseTest {
     @Test(description = "CDP-0002 Logging in with invalid password")
     public void logInWithInvalidPassword() {
         NavigationOperations.goToLoginPage();
-
         user = TestDataProvider.getInvalidPasswordGmailUser();
         UserOperations.logIn(user);
 
@@ -21,5 +20,15 @@ public class InvalidLoginTest extends SeleniumBaseTest {
         String expectedTranslation = TestDataProvider.getLoginErrorMessage(loginPage.getDisplayedLanguage());
 
         assertTrue(loginPage.isErrorMessageDisplayed(expectedTranslation));
+    }
+
+    @Test(description = "CDP-005: Login with invalid password and fail")
+    public void logInFailureTest(){
+        NavigationOperations.goToLoginPage();
+        user = TestDataProvider.getInvalidPasswordGmailUser();
+        UserOperations.logIn(user);
+
+        //test should fail here
+        assertTrue(new MailPage().isAccountIconVisible());
     }
 }
