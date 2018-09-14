@@ -1,15 +1,15 @@
 package com.kunitskaya.base.selenium.webdriver;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Keyboard;
+import org.openqa.selenium.interactions.Mouse;
+import org.testng.Reporter;
 
 import java.util.List;
 import java.util.Set;
 
-import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
-
-public class WebDriverDecorator implements WebDriver {
+public class WebDriverDecorator implements WebDriver, JavascriptExecutor, HasInputDevices, TakesScreenshot {
     protected WebDriver webDriver;
 
     public WebDriverDecorator(WebDriver webDriver) {
@@ -18,31 +18,29 @@ public class WebDriverDecorator implements WebDriver {
 
     @Override
     public void get(String s) {
-        TEST_LOGGER.info("Getting URL " + s);
+        Reporter.log("Getting URL " + s);
         webDriver.get(s);
     }
 
     @Override
     public String getCurrentUrl() {
-        TEST_LOGGER.info("Getting current URL");
         return webDriver.getCurrentUrl();
     }
 
     @Override
     public String getTitle() {
-        TEST_LOGGER.info("Getting page title");
         return webDriver.getTitle();
     }
 
     @Override
     public List<WebElement> findElements(By by) {
-        TEST_LOGGER.info("Finding elements " + by.toString());
+        Reporter.log("Finding elements " + by.toString());
         return webDriver.findElements(by);
     }
 
     @Override
     public WebElement findElement(By by) {
-        TEST_LOGGER.info("Finding elements " + by.toString());
+        Reporter.log("Finding elements " + by.toString());
         return webDriver.findElement(by);
     }
 
@@ -53,13 +51,13 @@ public class WebDriverDecorator implements WebDriver {
 
     @Override
     public void close() {
-        TEST_LOGGER.info("Closing the browser...");
+        Reporter.log("Closing the browser...");
         webDriver.close();
     }
 
     @Override
     public void quit() {
-        TEST_LOGGER.info("Quiting webdriver... ");
+        Reporter.log("Qutting webdriver... ");
         webDriver.quit();
     }
 
@@ -75,7 +73,7 @@ public class WebDriverDecorator implements WebDriver {
 
     @Override
     public TargetLocator switchTo() {
-        TEST_LOGGER.info("Switching now...");
+        Reporter.log("Switching now...");
         return webDriver.switchTo();
     }
 
@@ -87,5 +85,30 @@ public class WebDriverDecorator implements WebDriver {
     @Override
     public Options manage() {
         return webDriver.manage();
+    }
+
+    @Override
+    public Object executeScript(String s, Object... objects) {
+        return ((JavascriptExecutor)webDriver).executeScript(s, objects);
+    }
+
+    @Override
+    public Object executeAsyncScript(String s, Object... objects) {
+        return ((JavascriptExecutor)webDriver).executeAsyncScript(s, objects);
+    }
+
+    @Override
+    public Keyboard getKeyboard() {
+        return ((HasInputDevices)webDriver).getKeyboard();
+    }
+
+    @Override
+    public Mouse getMouse() {
+        return ((HasInputDevices)webDriver).getMouse();
+    }
+
+    @Override
+    public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
+        return ((TakesScreenshot) webDriver).getScreenshotAs(outputType);
     }
 }

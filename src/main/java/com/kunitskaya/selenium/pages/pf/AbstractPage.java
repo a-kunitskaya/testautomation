@@ -1,5 +1,6 @@
 package com.kunitskaya.selenium.pages.pf;
 
+import com.kunitskaya.base.selenium.webdriver.WebDriverDecorator;
 import com.kunitskaya.base.selenium.webdriver.WebDriverProvider;
 import org.apache.maven.surefire.shade.org.apache.maven.shared.utils.io.FileUtils;
 import org.openqa.selenium.*;
@@ -20,12 +21,14 @@ public class AbstractPage {
         this.webDriver = WebDriverProvider.getInstance();
         waitForPageLoadComplete(webDriver);
         PageFactory.initElements(webDriver, this);
+        webDriver = new WebDriverDecorator(webDriver);
     }
 
     public String getTitle() {
         waitForPageLoadComplete(webDriver);
         return webDriver.getTitle();
     }
+
 
     public void highlightElement(WebElement webElement) {
         TEST_LOGGER.info("Highlighting element");

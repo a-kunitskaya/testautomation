@@ -67,6 +67,7 @@ public class WebDriverProvider {
                 }
                 break;
         }
+        webDriver = new WebDriverDecorator(webDriver);
     }
 
     public static void resetDriver() {
