@@ -31,12 +31,10 @@ public class AbstractPage {
 
 
     public void highlightElement(WebElement webElement) {
-        TEST_LOGGER.info("Highlighting element");
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].style.border='5px solid purple'", webElement);
     }
 
     public void unHighlightElement(WebElement webElement) {
-        TEST_LOGGER.info("Unhighlighting element");
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].style.border='0px'", webElement);
     }
 

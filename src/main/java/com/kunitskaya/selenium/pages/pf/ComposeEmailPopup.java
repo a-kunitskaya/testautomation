@@ -7,10 +7,10 @@ import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Reporter;
 
 import static com.kunitskaya.base.selenium.waits.ExplicitWait.waitForElementToBeClickable;
 import static com.kunitskaya.base.selenium.waits.ExplicitWait.waitForElementVisibility;
+import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
 import static com.kunitskaya.selenium.pages.pf.MailListingPage.SUBJECT_LOCATOR;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 
@@ -45,7 +45,9 @@ public class ComposeEmailPopup extends AbstractPage {
 
     public ComposeEmailPopup fillInToField(String to) {
         waitForElementVisibility(webDriver, toField);
+        highlightElement(toField);
         new Actions(webDriver).click(toField).sendKeys(to).sendKeys(Keys.TAB).build().perform();
+        unHighlightElement(toField);
         return this;
     }
 
@@ -56,14 +58,16 @@ public class ComposeEmailPopup extends AbstractPage {
                                   .build()
                                   .perform();
         } catch (UnhandledAlertException e) {
-            Reporter.log("Alert is displayed " + e.getAlertText());
+            TEST_LOGGER.warn("Alert is displayed " + e.getAlertText());
         }
         return this;
     }
 
     public ComposeEmailPopup fillInSubjectField(String subject) {
         if (!subject.equals(StringUtils.EMPTY)) {
+            highlightElement(subjectField);
             subjectField.sendKeys(subject);
+            unHighlightElement(subjectField);
             return this;
         } else {
             return this;
@@ -72,7 +76,9 @@ public class ComposeEmailPopup extends AbstractPage {
 
     public ComposeEmailPopup fillInBodyField(String body) {
         if (!body.equals(StringUtils.EMPTY)) {
+            highlightElement(bodyField);
             bodyField.sendKeys(body);
+            unHighlightElement(bodyField);
             return this;
         } else {
             return this;
@@ -80,6 +86,7 @@ public class ComposeEmailPopup extends AbstractPage {
     }
 
     public MailPage clickCloseButton() {
+        highlightElement(closeButton);
         closeButton.click();
         return new MailPage();
     }
@@ -98,6 +105,7 @@ public class ComposeEmailPopup extends AbstractPage {
 
     public MailListingPage clickSendButton() {
         waitForElementToBeClickable(webDriver, sendButton);
+        highlightElement(sendButton);
         sendButton.click();
         waitForElementVisibility(webDriver, messageSentLink);
         return new MailListingPage();

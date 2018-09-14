@@ -19,15 +19,23 @@ public class MailDetailsPage extends MailPage {
     }
 
     public String getTo() {
-        return to.getAttribute("email");
+        highlightElement(to);
+        String result = to.getAttribute("email");
+        unHighlightElement(to);
+        return result;
     }
 
     public String getSubject() {
-        return subject.getText();
+        highlightElement(subject);
+        String result = subject.getText();
+        unHighlightElement(subject);
+        return result;
     }
 
     public String getBody() {
-        return body.getText();
-
+        highlightElement(body);
+        String result = body.getText();
+        unHighlightElement(body);
+        return result;
     }
 }

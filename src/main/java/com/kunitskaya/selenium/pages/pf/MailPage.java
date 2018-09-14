@@ -44,38 +44,45 @@ public class MailPage extends AbstractPage {
 
     public MailPage clickSettingsButton() {
         waitForElementToBeClickable(webDriver, settingsButton);
+        highlightElement(settingsButton);
         settingsButton.click();
         return this;
     }
 
     public HelpPopup clickHelpSettingsOption() {
         waitForElementToBeClickable(webDriver, settingsButton);
+        highlightElement(helpSettingsOption);
         helpSettingsOption.click();
         return new HelpPopup();
     }
 
     public ComposeEmailPopup clickComposeButton() {
+        highlightElement(composeButton);
         new Actions(webDriver).click(composeButton).build().perform();
         return new ComposeEmailPopup();
     }
 
     public MailListingPage clickSentMailLink() {
+        highlightElement(sentMailFolder);
         new Actions(webDriver).click(sentMailFolder).build().perform();
         return new MailListingPage();
     }
 
     public MailPage clickAccountIcon() {
+        highlightElement(accountIcon);
         accountIcon.click();
         waitForElementToBeClickable(webDriver, signOutButton);
         return this;
     }
 
     public LoginPage clickSignOutButton() {
+        highlightElement(signOutButton);
         signOutButton.click();
         return new LoginPage();
     }
 
     public MailListingPage clickDraftsFolderLink() {
+        highlightElement(draftsFolderLink);
         draftsFolderLink.click();
         return new MailListingPage();
     }
