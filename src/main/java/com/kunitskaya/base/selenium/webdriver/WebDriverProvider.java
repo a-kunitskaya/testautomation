@@ -75,7 +75,7 @@ public class WebDriverProvider {
         if (configProvider.isRemoteDriver()) {
             return getRemoteDriver(chromeOptions);
         } else {
-            System.setProperty("webdriver.chrome.driver", configProvider.getChromeDriverPath());
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + configProvider.getChromeDriverPath());
             return new ChromeDriver(chromeOptions);
         }
 
@@ -109,7 +109,7 @@ public class WebDriverProvider {
         capabilities.setCapability("deviceName", deviceName);
         capabilities.setCapability("platformName", mobilePlatform);
         capabilities.setCapability("browserName", StringUtils.capitalize(browser));
-        capabilities.setCapability("chromedriverExecutable", System.getProperty("user.dir")+configProvider.getChromeDriverPath());
+        capabilities.setCapability("chromedriverExecutable", System.getProperty("user.dir") + configProvider.getChromeDriverPath());
 
         try {
             webDriver = new RemoteWebDriver(new URL(configProvider.getAppiumServerUrl()), capabilities);
