@@ -4,7 +4,7 @@
 
     <test name="Mobile">
         <classes>
-            <class name="com.kunitskaya.mobile.AndroidTest"/>
+            <class name="com.kunitskaya.selenium.mobile.AndroidTest"/>
         </classes>
     </test>
 </suite>

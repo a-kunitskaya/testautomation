@@ -12,20 +12,17 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.asserts.SoftAssert;
 
 import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
 
 public class SeleniumBaseTest {
     protected Browser browser;
     protected User user = new GmailUserCreator().createUser();
-    protected SoftAssert softAssert;
 
     @BeforeClass
     public void setUp() {
         browser = Browser.getInstance();
         browser.clearCookies();
-        softAssert = new SoftAssert();
     }
 
     @AfterMethod
@@ -43,6 +40,5 @@ public class SeleniumBaseTest {
             UserOperations.deleteAllEmails();
         }
         browser.quit();
-        softAssert.assertAll();
     }
 }
