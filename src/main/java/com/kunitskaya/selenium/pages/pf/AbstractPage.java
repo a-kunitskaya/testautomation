@@ -15,7 +15,7 @@ import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
 public class AbstractPage {
     private static final String SCREENSHOT_NAME = "Screenshot_" + System.nanoTime();
 
-    WebDriver webDriver;
+    protected WebDriver webDriver;
 
     public AbstractPage() {
         this.webDriver = WebDriverProvider.getInstance();
