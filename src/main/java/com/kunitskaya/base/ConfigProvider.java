@@ -77,4 +77,16 @@ public class ConfigProvider {
     public String getChromeDriverPath() {
         return IS_OS_MAC ? getProperty("chrome.driver.path.mac") : getProperty("chrome.driver.path.win");
     }
+
+    public boolean isMobile(){
+        return Boolean.parseBoolean(getProperty("is.mobile"));
+    }
+
+    public String getDeviceName(){
+        return getProperty("mobile.device.name");
+    }
+
+    public String getMobilePlatform(){
+        return getProperty("mobile.platform.name");
+    }
 }
