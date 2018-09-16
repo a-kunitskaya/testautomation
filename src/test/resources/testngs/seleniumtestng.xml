@@ -2,6 +2,10 @@
 
 <suite name="Selenium" verbose="10">
 
+    <listeners>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener" />
+    </listeners>
+
     <test name="Selenium tests">
         <classes>
             <class name="com.kunitskaya.selenium.pages.pf.HelpPopupTest"/>

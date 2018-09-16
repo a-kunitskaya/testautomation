@@ -25,15 +25,22 @@ public class GmailHelpForumPage extends AbstractPage {
 
     public String getSearchFieldPlaceholder() {
         waitForElementVisibility(webDriver, searchField);
-        return searchField.getAttribute("placeholder");
+        highlightElement(searchField);
+        String result = searchField.getAttribute("placeholder");
+        unHighlightElement(searchField);
+        return result;
     }
 
     public String getWelcomeText() {
         waitForElementVisibility(webDriver, welcomeText);
-        return welcomeText.getText();
+        highlightElement(welcomeText);
+        String result = welcomeText.getText();
+        unHighlightElement(welcomeText);
+        return result;
     }
 
     public boolean isNewTopicButtonVisible() {
+        highlightElement(newTopicButton);
         return newTopicButton.isDisplayed();
     }
 }

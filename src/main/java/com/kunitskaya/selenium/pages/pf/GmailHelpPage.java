@@ -19,10 +19,16 @@ public class GmailHelpPage extends AbstractPage {
     }
 
     public String getHeader() {
-        return header.getText();
+        highlightElement(header);
+        String result = header.getText();
+        unHighlightElement(header);
+        return result;
     }
 
     public String getSearchFieldPlaceholder() {
-        return searchField.getAttribute("placeholder");
+        highlightElement(searchField);
+        String result = searchField.getAttribute("placeholder");
+        unHighlightElement(searchField);
+        return result;
     }
 }

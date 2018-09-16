@@ -57,7 +57,10 @@ public class FeedbackPopup extends AbstractPage {
 
     public String getInputFieldPlaceholder() {
         waitForElementVisibility(webDriver, inputFieldPlaceholder);
-        return inputFieldPlaceholder.getText();
+        highlightElement(inputFieldPlaceholder);
+        String result = inputFieldPlaceholder.getText();
+        unHighlightElement(inputFieldPlaceholder);
+        return result;
     }
 
     public boolean isIncludeScreenshotCheckboxChecked() {
@@ -83,12 +86,14 @@ public class FeedbackPopup extends AbstractPage {
 
     public MailPage clickCancelButton() {
         waitForElementToBeClickable(webDriver, cancelButton);
+        highlightElement(cancelButton);
         cancelButton.click();
         return new MailPage();
     }
 
     public MailPage clickSendButton() {
         waitForElementToBeClickable(webDriver, sendButton);
+        highlightElement(sendButton);
         sendButton.click();
         return new MailPage();
     }
@@ -110,7 +115,9 @@ public class FeedbackPopup extends AbstractPage {
     }
 
     public FeedbackPopup fillInInputField(String input) {
+        highlightElement(inputField);
         inputField.sendKeys(input);
+        unHighlightElement(inputField);
         return this;
     }
 }

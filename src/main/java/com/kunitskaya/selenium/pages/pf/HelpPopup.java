@@ -57,8 +57,10 @@ public class HelpPopup extends AbstractPage {
 
     public HelpPopup enterSearchCriteria(String input) {
         waitForElementVisibility(webDriver, helpSearchField);
+        highlightElement(helpSearchField);
         helpSearchField.sendKeys(input);
         helpSearchField.submit();
+        unHighlightElement(helpSearchField);
         waitForElementVisibility(webDriver, searchResults.get(0));
         return this;
     }
@@ -67,34 +69,41 @@ public class HelpPopup extends AbstractPage {
         List<String> results = new ArrayList<>();
         for (WebElement result : searchResults) {
             waitForElementVisibility(webDriver, result);
+            highlightElement(result);
             results.add(result.getText());
+            unHighlightElement(result);
         }
         return results;
     }
 
     public HelpPopup clearSearchField() {
+        highlightElement(helpSearchField);
         new Actions(webDriver).click(helpSearchField)
                               .sendKeys(Keys.chord(IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL, "a", Keys.DELETE), Keys.ENTER)
                               .build()
                               .perform();
+        unHighlightElement(helpSearchField);
         waitForElementVisibility(webDriver, browseAllArticlesLink);
         return this;
     }
 
     public GmailHelpPage clickBrowseAllArticlesLink() {
         waitForElementToBeClickable(webDriver, browseAllArticlesLink);
+        highlightElement(browseAllArticlesLink);
         browseAllArticlesLink.click();
         return new GmailHelpPage();
     }
 
     public GmailHelpForumPage clickVisitHelpForumLink() {
         waitForElementToBeClickable(webDriver, visitHelpForumLink);
+        highlightElement(visitHelpForumLink);
         visitHelpForumLink.click();
         return new GmailHelpForumPage();
     }
 
     public FeedbackPopup clickSendFeedBackButton() {
         waitForElementToBeClickable(webDriver, sendFeedbackButton);
+        highlightElement(sendFeedbackButton);
         sendFeedbackButton.click();
         return new FeedbackPopup();
     }

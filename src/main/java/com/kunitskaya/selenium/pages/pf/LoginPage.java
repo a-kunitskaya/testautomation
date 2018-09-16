@@ -60,6 +60,7 @@ public class LoginPage extends AbstractPage {
 
     public MailPage clickPasswordNextButton() {
         waitForElementToBeClickable(webDriver, passwordNextButton);
+        highlightElement(passwordNextButton);
         passwordNextButton.click();
         return new MailPage();
     }
@@ -80,6 +81,7 @@ public class LoginPage extends AbstractPage {
 
     public String getErrorMessage() {
         waitForElementVisibility(webDriver, errorMessage);
+        highlightElement(errorMessage);
         return errorMessage.getText();
     }
 
