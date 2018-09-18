@@ -1,7 +1,6 @@
 package com.kunitskaya.webservices;
 
 import com.kunitskaya.base.test.TestDataProvider;
-import com.kunitskaya.webservices.deserialization.ToDoResponseMapper;
 import com.kunitskaya.webservices.deserialization.ToDoResponseParser;
 import com.kunitskaya.webservices.models.ToDo;
 import io.restassured.response.Response;
@@ -47,8 +46,9 @@ public class ToDoWsTest extends WsBaseTest {
         Response response = toDoWsFacade.createToDo(expectedToDo);
 
         //using custom parser & mapper since response does not always has header known to RestAssured
-        Map<String, String> body = new ToDoResponseParser().parseResponse(response);
-        ToDo actualTodo = new ToDoResponseMapper().map(body);
+        ToDo actualTodo = new ToDoResponseParser().parseResponse(response);
+
+        System.out.println(actualTodo.toString());
 
         assertEquals(response.getStatusCode(), HttpStatus.CREATED.value());
         assertEquals(actualTodo, expectedToDo);

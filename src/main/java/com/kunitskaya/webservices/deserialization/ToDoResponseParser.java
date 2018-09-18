@@ -1,26 +1,40 @@
 package com.kunitskaya.webservices.deserialization;
 
+import com.kunitskaya.webservices.models.ToDo;
+import cucumber.deps.com.thoughtworks.xstream.core.util.Fields;
 import io.restassured.response.Response;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.reflect.Field;
+import java.util.*;
 
-public class ToDoResponseParser implements CustomResponseParser {
-    @Override
-    public Map<String, String> parseResponse(Response response) {
-        String body = response.getBody().asString();
+import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
 
-        String id = StringUtils.substringBetween(body, "\"id\": \"", "\"");
-        String completed = StringUtils.substringBetween(body, "\"completed\": \"", "\"");
-        String title = StringUtils.substringBetween(body, "\"title\": \"", "\"");
-        String userId = StringUtils.substringBetween(body, "\"userId\": \"", "\"");
+public class ToDoResponseParser implements CustomResponseParser
+{
+	@Override
+	public ToDo parseResponse(Response response)
+	{
+		String body = response.getBody().asString();
 
-        Map values = new HashMap();
-        values.put("userId", userId);
-        values.put("id", id);
-        values.put("title", title);
-        values.put("completed", completed);
-        return values;
-    }
+		ToDo toDo = new ToDo();
+		Field[] fields = toDo.getClass().getDeclaredFields();
+		List<String> values = new ArrayList<>();
+
+		for (Field field : fields)
+		{
+			field.setAccessible(true);
+			String value = StringUtils.substringBetween(body, "\"" + field.getName() + "\": \"", "\"");
+			values.add(value);
+			try
+			{
+				field.set(toDo, value);
+			}
+			catch (IllegalAccessException e)
+			{
+				TEST_LOGGER.error("Could not set value " + value + " to field " + field.getName() + e.getMessage());
+			}
+		}
+		return toDo;
+	}
 }

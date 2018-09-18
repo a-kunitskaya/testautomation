@@ -5,5 +5,5 @@ import io.restassured.response.Response;
 import java.util.Map;
 
 public interface CustomResponseParser {
-    Map<String, String> parseResponse(Response response);
+    Object parseResponse(Response response);
 }

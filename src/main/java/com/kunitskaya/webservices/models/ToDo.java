@@ -3,10 +3,10 @@ package com.kunitskaya.webservices.models;
 import java.util.Objects;
 
 public class ToDo {
-    private String userId;
     private String id;
-    private String title;
     private String completed;
+    private String title;
+    private String userId;
 
     public ToDo() {
     }
