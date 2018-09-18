@@ -7,8 +7,6 @@ import io.restassured.response.Response;
 import org.springframework.http.HttpStatus;
 import org.testng.annotations.Test;
 
-import java.util.Map;
-
 import static com.kunitskaya.base.utils.NumbersUtil.getRandomInt;
 import static java.lang.String.valueOf;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;

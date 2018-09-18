@@ -1,12 +1,12 @@
 package com.kunitskaya.webservices.deserialization;
 
 import com.kunitskaya.webservices.models.ToDo;
-import cucumber.deps.com.thoughtworks.xstream.core.util.Fields;
 import io.restassured.response.Response;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
 
