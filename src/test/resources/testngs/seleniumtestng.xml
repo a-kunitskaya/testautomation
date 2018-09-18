@@ -4,7 +4,7 @@
     <test name="Selenium tests">
         <classes>
             <class name="com.kunitskaya.selenium.pages.pf.HelpPopupTest"/>
-            <class name="com.kunitskaya.selenium.pages.pf.InvalidEmailTest"/>
+            <class name="com.kunitskaya.selenium.pages.pf.InvalidEmailingTest"/>
             <class name="com.kunitskaya.selenium.pages.pf.InvalidLoginTest"/>
             <class name="com.kunitskaya.selenium.pages.pf.EmailingTest"/>
             <class name="com.kunitskaya.selenium.pages.selenide.InvalidEmailingTest"/>
