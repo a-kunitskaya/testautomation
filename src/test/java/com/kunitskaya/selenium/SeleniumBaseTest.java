@@ -44,11 +44,10 @@ public class SeleniumBaseTest
 			TEST_LOGGER.error("Failed test: " + result.getMethod().getMethodName());
 			File attachment = new AbstractPage().takeScreenshot();
 
-			Allure.addAttachment("My attachment", "My attachment content");
 			Path content = Paths.get(attachment.getAbsolutePath());
 			try (InputStream is = Files.newInputStream(content))
 			{
-				Allure.addAttachment("My attachment", is);
+				Allure.addAttachment(SCREENSHOT_NAME, is);
 			}
 			catch (IOException e)
 			{
