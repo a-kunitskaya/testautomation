@@ -13,12 +13,7 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class InvalidLoginTest extends SeleniumBaseTest {
 
-    @BeforeMethod
-    public void restartDriver() {
-        browser = Browser.getInstance();
-    }
-
-    @Test(description = "CDP-0002 Logging in with invalid password")
+    @Test(description = "CDP-0002 Logging in with invalid password, the test's supposed to fail")
     public void logInWithInvalidPassword() {
         NavigationOperations.goToLoginPage();
         user = TestDataProvider.getInvalidPasswordGmailUser();
@@ -28,21 +23,8 @@ public class InvalidLoginTest extends SeleniumBaseTest {
         String expectedTranslation = TestDataProvider.getLoginErrorMessage(loginPage.getDisplayedLanguage());
 
         assertTrue(loginPage.isErrorMessageDisplayed(expectedTranslation));
-    }
-
-    @Test(description = "CDP-005: Login with invalid password and fail")
-    public void logInFailureTest() {
-        NavigationOperations.goToLoginPage();
-        user = TestDataProvider.getInvalidPasswordGmailUser();
-        UserOperations.logIn(user);
 
         //test should fail here
         assertTrue(new MailPage().isAccountIconVisible());
     }
-
-    @AfterMethod
-    public void quitDriver() {
-        browser.quit();
-    }
-
 }
