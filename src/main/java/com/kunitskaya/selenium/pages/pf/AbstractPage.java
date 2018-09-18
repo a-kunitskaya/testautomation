@@ -13,7 +13,7 @@ import static com.kunitskaya.base.selenium.waits.ExplicitWait.waitForPageLoadCom
 import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
 
 public class AbstractPage {
-    private static final String SCREENSHOT_NAME = "Screenshot_" + System.nanoTime();
+    public static final String SCREENSHOT_NAME = "Screenshot_" + System.nanoTime();
 
     protected WebDriver webDriver;
 
@@ -38,7 +38,7 @@ public class AbstractPage {
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].style.border='0px'", webElement);
     }
 
-    public void takeScreenshot() {
+    public File takeScreenshot() {
         File screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
         String screenshotName = SCREENSHOT_NAME;
         String path = "./target/screenshots/" + SCREENSHOT_NAME + ".png";
@@ -48,5 +48,6 @@ public class AbstractPage {
         } catch (IOException e) {
             TEST_LOGGER.error("Failed to take screenshot: " + e.getMessage());
         }
+        return screenshot;
     }
 }
