@@ -1,12 +1,13 @@
 package com.kunitskaya.selenium;
 
 import com.kunitskaya.base.selenium.Browser;
+import com.kunitskaya.base.selenium.webdriver.WebDriverProvider;
 import com.kunitskaya.base.test.Folders;
+import com.kunitskaya.base.utils.Screenshoter;
 import com.kunitskaya.selenium.business.objects.user.GmailUserCreator;
 import com.kunitskaya.selenium.business.objects.user.User;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;
-import com.kunitskaya.selenium.pages.pf.AbstractPage;
 import com.kunitskaya.selenium.pages.pf.MailPage;
 import io.qameta.allure.Allure;
 import org.testng.ITestResult;
@@ -21,8 +22,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static com.kunitskaya.base.utils.Screenshoter.SCREENSHOT_NAME;
 import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
-import static com.kunitskaya.selenium.pages.pf.AbstractPage.SCREENSHOT_NAME;
+
 
 public class SeleniumBaseTest
 {
@@ -42,7 +44,7 @@ public class SeleniumBaseTest
 		if (result.getStatus() == ITestResult.FAILURE)
 		{
 			TEST_LOGGER.error("Failed test: " + result.getMethod().getMethodName());
-			File attachment = new AbstractPage().takeScreenshot();
+			File attachment = Screenshoter.takeScreenshot(WebDriverProvider.getInstance());
 
 			Path content = Paths.get(attachment.getAbsolutePath());
 			try (InputStream is = Files.newInputStream(content))
@@ -54,7 +56,6 @@ public class SeleniumBaseTest
 				TEST_LOGGER.error("Could not add attachment to Allure report");
 			}
 		}
-
 	}
 
 	@AfterClass
