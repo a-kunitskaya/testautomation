@@ -2,7 +2,9 @@ package com.kunitskaya.selenium.pages.pf;
 
 import com.kunitskaya.base.selenium.webdriver.WebDriverDecorator;
 import com.kunitskaya.base.selenium.webdriver.WebDriverProvider;
-import org.openqa.selenium.*;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import static com.kunitskaya.base.selenium.waits.ExplicitWait.waitForPageLoadComplete;

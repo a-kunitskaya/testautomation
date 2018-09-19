@@ -13,8 +13,7 @@ import static com.kunitskaya.logging.TestLogger.ROOT_LOGGER;
 /**
  * Created by Alexandra Kunitskaya
  */
-public class Screenshoter
-{
+public class Screenshoter {
 	public static final String SCREENSHOT_NAME = "Screenshot_" + System.nanoTime();
 
 	/**

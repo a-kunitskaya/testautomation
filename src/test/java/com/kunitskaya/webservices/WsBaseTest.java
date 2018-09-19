@@ -7,8 +7,6 @@ import io.restassured.RestAssured;
 import org.springframework.web.client.RestTemplate;
 import org.testng.annotations.BeforeClass;
 
-import static com.kunitskaya.logging.TestLogger.WS_LOGGER;
-
 public class WsBaseTest {
     protected ConfigProvider configProvider;
     protected UsersWsFacade usersWsFacade;
