@@ -8,7 +8,7 @@ import org.openqa.selenium.interactions.Mouse;
 import java.util.List;
 import java.util.Set;
 
-import static com.kunitskaya.logging.TestLogger.ROOT_LOGGER;
+import static com.kunitskaya.logging.TestLogger.LOGGER;
 
 public class WebDriverDecorator implements WebDriver, JavascriptExecutor, HasInputDevices, TakesScreenshot {
     protected WebDriver webDriver;
@@ -19,31 +19,31 @@ public class WebDriverDecorator implements WebDriver, JavascriptExecutor, HasInp
 
     @Override
     public void get(String s) {
-        ROOT_LOGGER.info("Getting URL " + s);
+        LOGGER.info("Getting URL " + s);
         webDriver.get(s);
     }
 
     @Override
     public String getCurrentUrl() {
-        ROOT_LOGGER.info("Getting current URL");
+        LOGGER.info("Getting current URL");
         return webDriver.getCurrentUrl();
     }
 
     @Override
     public String getTitle() {
-        ROOT_LOGGER.info("Getting page title");
+        LOGGER.info("Getting page title");
         return webDriver.getTitle();
     }
 
     @Override
     public List<WebElement> findElements(By by) {
-        ROOT_LOGGER.info("Finding elements " + by.toString());
+        LOGGER.info("Finding elements " + by.toString());
         return webDriver.findElements(by);
     }
 
     @Override
     public WebElement findElement(By by) {
-        ROOT_LOGGER.info("Finding element " + by.toString());
+        LOGGER.info("Finding element " + by.toString());
         return webDriver.findElement(by);
     }
 
@@ -54,13 +54,13 @@ public class WebDriverDecorator implements WebDriver, JavascriptExecutor, HasInp
 
     @Override
     public void close() {
-        ROOT_LOGGER.info("Closing the browser...");
+        LOGGER.info("Closing the browser...");
         webDriver.close();
     }
 
     @Override
     public void quit() {
-        ROOT_LOGGER.info("Qutting webdriver... ");
+        LOGGER.info("Qutting webdriver... ");
         webDriver.quit();
     }
 
@@ -76,7 +76,7 @@ public class WebDriverDecorator implements WebDriver, JavascriptExecutor, HasInp
 
     @Override
     public TargetLocator switchTo() {
-        ROOT_LOGGER.info("Switching now...");
+        LOGGER.info("Switching now...");
         return webDriver.switchTo();
     }
 
@@ -112,7 +112,7 @@ public class WebDriverDecorator implements WebDriver, JavascriptExecutor, HasInp
 
     @Override
     public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
-        ROOT_LOGGER.info("Taking screenshot... ");
+        LOGGER.info("Taking screenshot... ");
         return ((TakesScreenshot) webDriver).getScreenshotAs(outputType);
     }
 }

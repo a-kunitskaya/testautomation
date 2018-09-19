@@ -18,7 +18,7 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 import static com.kunitskaya.base.selenium.Browsers.getBrowser;
 import static com.kunitskaya.base.selenium.Platforms.MAC;
 import static com.kunitskaya.base.selenium.waits.ImplicitWait.waitImplicitly;
-import static com.kunitskaya.logging.TestLogger.ROOT_LOGGER;
+import static com.kunitskaya.logging.TestLogger.LOGGER;
 
 public class WebDriverProvider
 {
@@ -57,7 +57,7 @@ public class WebDriverProvider
 				}
 				catch (MalformedURLException e)
 				{
-					ROOT_LOGGER.fatal("Selenium hub url is not found " + e.getMessage());
+					LOGGER.fatal("Selenium hub url is not found " + e.getMessage());
 				}
 			}
 			else
@@ -82,7 +82,7 @@ public class WebDriverProvider
 
 	private static WebDriver getChromeDriver()
 	{
-		ROOT_LOGGER.info("Initializing chrome driver");
+		LOGGER.info("Initializing chrome driver");
 
 		String currentPlatform = configProvider.getPlatform();
 		Platforms platform = Platforms.valueOf(currentPlatform);
@@ -100,7 +100,7 @@ public class WebDriverProvider
 			}
 			catch (MalformedURLException e)
 			{
-				ROOT_LOGGER.fatal("Could not initialize mobile driver " + e.getMessage());
+				LOGGER.fatal("Could not initialize mobile driver " + e.getMessage());
 			}
 		}
 		else
@@ -113,7 +113,7 @@ public class WebDriverProvider
 
 	private static WebDriver getRemoteDriver(ChromeOptions chromeOptions) throws MalformedURLException
 	{
-		ROOT_LOGGER.info("Initializing remote chrome driver");
+		LOGGER.info("Initializing remote chrome driver");
 		URL hubUrl;
 		hubUrl = new URL(configProvider.getHubUrl());
 		DesiredCapabilities capabilities = DesiredCapabilities.chrome().merge(chromeOptions);
@@ -122,7 +122,7 @@ public class WebDriverProvider
 
 	private static void setSelenideDriver(WebDriver webDriver)
 	{
-		ROOT_LOGGER.info("Setting selenide driver");
+		LOGGER.info("Setting selenide driver");
 		setWebDriver(webDriver);
 	}
 
@@ -133,7 +133,7 @@ public class WebDriverProvider
 		String mobilePlatform = configProvider.getMobilePlatform();
 		String browser = configProvider.getBrowser();
 
-		ROOT_LOGGER.info("Initializing mobile driver for " + deviceName + " on " + mobilePlatform);
+		LOGGER.info("Initializing mobile driver for " + deviceName + " on " + mobilePlatform);
 
 		capabilities.setCapability("deviceName", deviceName);
 		capabilities.setCapability("platformName", mobilePlatform);

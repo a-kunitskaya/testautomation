@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import java.io.File;
 import java.io.IOException;
 
-import static com.kunitskaya.logging.TestLogger.ROOT_LOGGER;
+import static com.kunitskaya.logging.TestLogger.LOGGER;
 
 /**
  * Created by Alexandra Kunitskaya
@@ -27,9 +27,9 @@ public class Screenshoter {
 		String path = "./target/screenshots/" + SCREENSHOT_NAME + ".png";
 		try {
 			FileUtils.copyFile(screenshot, new File(path));
-			ROOT_LOGGER.info("Saved screenshot: " + SCREENSHOT_NAME);
+			LOGGER.info("Saved screenshot: " + SCREENSHOT_NAME);
 		} catch (IOException e) {
-			ROOT_LOGGER.error("Failed to take screenshot: " + e.getMessage());
+			LOGGER.error("Failed to take screenshot: " + e.getMessage());
 		}
 		return screenshot;
 	}

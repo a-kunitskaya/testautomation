@@ -7,7 +7,7 @@ import java.util.List;
 
 import static com.kunitskaya.base.selenium.waits.ExplicitWait.waitForElementVisibility;
 import static com.kunitskaya.base.selenium.waits.ExplicitWait.waitForPageLoadComplete;
-import static com.kunitskaya.logging.TestLogger.ROOT_LOGGER;
+import static com.kunitskaya.logging.TestLogger.LOGGER;
 
 public class MailListingPage extends MailPage {
     public static final String MESSAGE_ROW_LOCATOR = "//span[contains(text(),'%s')]";
@@ -56,7 +56,7 @@ public class MailListingPage extends MailPage {
     }
 
     public MailListingPage deleteAllEmails() {
-        ROOT_LOGGER.info("Deleting all emails");
+        LOGGER.info("Deleting all emails");
         new Actions(webDriver).keyDown(Keys.SHIFT)
                               .sendKeys("*", "a")
                               .keyUp(Keys.SHIFT)

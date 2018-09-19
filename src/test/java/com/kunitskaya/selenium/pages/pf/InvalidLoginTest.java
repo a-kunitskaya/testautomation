@@ -6,6 +6,7 @@ import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;
 import org.testng.annotations.Test;
 
+import static com.kunitskaya.logging.TestLogger.LOGGER;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class InvalidLoginTest extends SeleniumBaseTest {
@@ -21,7 +22,7 @@ public class InvalidLoginTest extends SeleniumBaseTest {
 
         assertTrue(loginPage.isErrorMessageDisplayed(expectedTranslation));
 
-        //test should fail here
+        LOGGER.info("This test should fail here");
         assertTrue(new MailPage().isAccountIconVisible());
     }
 }

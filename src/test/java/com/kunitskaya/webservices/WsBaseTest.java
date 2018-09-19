@@ -7,11 +7,15 @@ import io.restassured.RestAssured;
 import org.springframework.web.client.RestTemplate;
 import org.testng.annotations.BeforeClass;
 
+import static com.kunitskaya.logging.TestLogger.LOGGER;
+import static com.kunitskaya.logging.TestLogger.WS_LOGGER;
+
 public class WsBaseTest {
     protected ConfigProvider configProvider;
     protected UsersWsFacade usersWsFacade;
     protected ToDoWsFacade toDoWsFacade;
     protected RestTemplate restTemplate;
+
 
     @BeforeClass
     public void setUp() {
@@ -20,5 +24,6 @@ public class WsBaseTest {
         toDoWsFacade = new ToDoWsFacade();
         restTemplate = new RestTemplate();
         RestAssured.baseURI = configProvider.getBaseWsTestUrl();
+        LOGGER = WS_LOGGER;
     }
 }

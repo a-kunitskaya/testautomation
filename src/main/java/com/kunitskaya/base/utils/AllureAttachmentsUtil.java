@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static com.kunitskaya.base.utils.Screenshoter.SCREENSHOT_NAME;
-import static com.kunitskaya.logging.TestLogger.ROOT_LOGGER;
+import static com.kunitskaya.logging.TestLogger.LOGGER;
 
 /**
  * Created by Alexandra Kunitskaya
@@ -28,7 +28,7 @@ public class AllureAttachmentsUtil
 			Allure.addAttachment(SCREENSHOT_NAME, is);
 		}
 		catch (IOException e) {
-			ROOT_LOGGER.error("Could not add attachment to Allure report" + e.getMessage());
+			LOGGER.error("Could not add attachment to Allure report" + e.getMessage());
 		}
 	}
 }

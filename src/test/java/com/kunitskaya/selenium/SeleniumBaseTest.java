@@ -17,7 +17,8 @@ import org.testng.annotations.BeforeClass;
 
 import java.io.File;
 
-import static com.kunitskaya.logging.TestLogger.ROOT_LOGGER;
+import static com.kunitskaya.logging.TestLogger.LOGGER;
+import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
 
 
 public class SeleniumBaseTest
@@ -29,12 +30,13 @@ public class SeleniumBaseTest
 	public void setUp() {
 		browser = Browser.getInstance();
 		browser.clearCookies();
+		LOGGER = TEST_LOGGER;
 	}
 
 	@AfterMethod
 	public void makeScreenshotOnFailure(ITestResult result) {
 		if (result.getStatus() == ITestResult.FAILURE) {
-			ROOT_LOGGER.error("Failed test: " + result.getMethod().getMethodName());
+			LOGGER.error("Failed test: " + result.getMethod().getMethodName());
 			File attachment = Screenshoter.takeScreenshot(WebDriverProvider.getInstance());
 			AllureAttachmentsUtil.addScreenshotToReport(attachment);
 		}
