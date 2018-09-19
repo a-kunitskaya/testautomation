@@ -1,8 +1,8 @@
 package com.kunitskaya.selenium.stepdefinitions;
 
 import com.kunitskaya.base.selenium.Browser;
-import com.kunitskaya.base.test.Folders;
-import com.kunitskaya.base.test.TestDataProvider;
+import com.kunitskaya.test.Folders;
+import com.kunitskaya.test.TestDataProvider;
 import com.kunitskaya.selenium.business.objects.Email;
 import com.kunitskaya.selenium.business.operations.pf.EmailOperations;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;

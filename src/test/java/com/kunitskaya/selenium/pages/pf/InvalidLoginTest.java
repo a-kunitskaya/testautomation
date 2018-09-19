@@ -1,6 +1,6 @@
 package com.kunitskaya.selenium.pages.pf;
 
-import com.kunitskaya.base.test.TestDataProvider;
+import com.kunitskaya.test.TestDataProvider;
 import com.kunitskaya.selenium.SeleniumBaseTest;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;

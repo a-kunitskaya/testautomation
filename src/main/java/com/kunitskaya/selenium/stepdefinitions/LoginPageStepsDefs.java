@@ -1,8 +1,8 @@
 package com.kunitskaya.selenium.stepdefinitions;
 
 import com.kunitskaya.base.selenium.Browser;
-import com.kunitskaya.base.test.TestDataProvider;
-import com.kunitskaya.base.test.Users;
+import com.kunitskaya.test.TestDataProvider;
+import com.kunitskaya.test.Users;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;
 import com.kunitskaya.selenium.pages.pf.LoginPage;

@@ -2,7 +2,7 @@ package com.kunitskaya.selenium;
 
 import com.kunitskaya.base.selenium.Browser;
 import com.kunitskaya.base.selenium.webdriver.WebDriverProvider;
-import com.kunitskaya.base.test.Folders;
+import com.kunitskaya.test.Folders;
 import com.kunitskaya.base.utils.AllureAttachmentsUtil;
 import com.kunitskaya.base.utils.Screenshoter;
 import com.kunitskaya.selenium.business.objects.user.GmailUserCreator;

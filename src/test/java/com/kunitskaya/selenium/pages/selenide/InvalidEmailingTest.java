@@ -1,6 +1,6 @@
 package com.kunitskaya.selenium.pages.selenide;
 
-import com.kunitskaya.base.test.TestDataProvider;
+import com.kunitskaya.test.TestDataProvider;
 import com.kunitskaya.selenium.SeleniumBaseTest;
 import com.kunitskaya.selenium.business.objects.Email;
 import com.kunitskaya.selenium.business.operations.selenide.EmailOperations;

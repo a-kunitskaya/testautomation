@@ -1,7 +1,7 @@
 package com.kunitskaya.selenium.pages.pf;
 
-import com.kunitskaya.base.test.Folders;
-import com.kunitskaya.base.test.TestDataProvider;
+import com.kunitskaya.test.Folders;
+import com.kunitskaya.test.TestDataProvider;
 import com.kunitskaya.selenium.SeleniumBaseTest;
 import com.kunitskaya.selenium.business.objects.Email;
 import com.kunitskaya.selenium.business.operations.pf.EmailOperations;

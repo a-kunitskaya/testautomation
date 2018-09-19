@@ -1,6 +1,6 @@
 package com.kunitskaya.webservices;
 
-import com.kunitskaya.base.test.TestDataProvider;
+import com.kunitskaya.test.TestDataProvider;
 import com.kunitskaya.webservices.deserialization.CustomResponseParser;
 import com.kunitskaya.webservices.models.ToDo;
 import io.restassured.response.Response;

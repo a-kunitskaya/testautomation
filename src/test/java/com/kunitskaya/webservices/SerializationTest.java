@@ -1,6 +1,6 @@
 package com.kunitskaya.webservices;
 
-import com.kunitskaya.base.test.TestDataProvider;
+import com.kunitskaya.test.TestDataProvider;
 import com.kunitskaya.webservices.models.Gps;
 import com.kunitskaya.webservices.serialization.JsonDataSerializer;
 import org.springframework.context.annotation.Description;
