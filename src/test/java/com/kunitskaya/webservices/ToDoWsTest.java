@@ -1,7 +1,7 @@
 package com.kunitskaya.webservices;
 
 import com.kunitskaya.base.test.TestDataProvider;
-import com.kunitskaya.webservices.deserialization.ToDoResponseParser;
+import com.kunitskaya.webservices.deserialization.CustomResponseParser;
 import com.kunitskaya.webservices.models.ToDo;
 import io.restassured.response.Response;
 import org.springframework.http.HttpStatus;
@@ -33,7 +33,8 @@ public class ToDoWsTest extends WsBaseTest {
     }
 
     @Test
-    public void createToDo() {
+    public void createToDo() throws InstantiationException, IllegalAccessException
+    {
         ToDo expectedToDo = TestDataProvider.getDefaultTodo();
 
         int numberOfRecords = toDoWsFacade.getToDos().as(ToDo[].class).length;
@@ -44,7 +45,7 @@ public class ToDoWsTest extends WsBaseTest {
         Response response = toDoWsFacade.createToDo(expectedToDo);
 
         //using custom parser & mapper since response does not always has header known to RestAssured
-        ToDo actualTodo = new ToDoResponseParser().parseResponse(response);
+        ToDo actualTodo = new CustomResponseParser().parseResponse(response, ToDo.class);
 
         System.out.println(actualTodo.toString());
 

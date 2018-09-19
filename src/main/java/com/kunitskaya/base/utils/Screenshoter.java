@@ -25,11 +25,10 @@ public class Screenshoter
 	 */
 	public static File takeScreenshot(WebDriver webDriver) {
 		File screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String screenshotName = SCREENSHOT_NAME;
 		String path = "./target/screenshots/" + SCREENSHOT_NAME + ".png";
 		try {
 			FileUtils.copyFile(screenshot, new File(path));
-			TEST_LOGGER.info("Saved screenshot: " + screenshotName);
+			TEST_LOGGER.info("Saved screenshot: " + SCREENSHOT_NAME);
 		} catch (IOException e) {
 			TEST_LOGGER.error("Failed to take screenshot: " + e.getMessage());
 		}

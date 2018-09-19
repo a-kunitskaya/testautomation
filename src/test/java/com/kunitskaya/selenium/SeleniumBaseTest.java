@@ -3,6 +3,7 @@ package com.kunitskaya.selenium;
 import com.kunitskaya.base.selenium.Browser;
 import com.kunitskaya.base.selenium.webdriver.WebDriverProvider;
 import com.kunitskaya.base.test.Folders;
+import com.kunitskaya.base.utils.AllureAttachmentsUtil;
 import com.kunitskaya.base.utils.Screenshoter;
 import com.kunitskaya.selenium.business.objects.user.GmailUserCreator;
 import com.kunitskaya.selenium.business.objects.user.User;
@@ -32,37 +33,23 @@ public class SeleniumBaseTest
 	protected User user = new GmailUserCreator().createUser();
 
 	@BeforeClass
-	public void setUp()
-	{
+	public void setUp() {
 		browser = Browser.getInstance();
 		browser.clearCookies();
 	}
 
 	@AfterMethod
-	public void makeScreenshotOnFailure(ITestResult result)
-	{
-		if (result.getStatus() == ITestResult.FAILURE)
-		{
+	public void makeScreenshotOnFailure(ITestResult result) {
+		if (result.getStatus() == ITestResult.FAILURE) {
 			TEST_LOGGER.error("Failed test: " + result.getMethod().getMethodName());
 			File attachment = Screenshoter.takeScreenshot(WebDriverProvider.getInstance());
-
-			Path content = Paths.get(attachment.getAbsolutePath());
-			try (InputStream is = Files.newInputStream(content))
-			{
-				Allure.addAttachment(SCREENSHOT_NAME, is);
-			}
-			catch (IOException e)
-			{
-				TEST_LOGGER.error("Could not add attachment to Allure report");
-			}
+			AllureAttachmentsUtil.addScreenshotToReport(attachment);
 		}
 	}
 
 	@AfterClass
-	public void tearDown()
-	{
-		if (new MailPage().isAccountIconVisible())
-		{
+	public void tearDown() {
+		if (new MailPage().isAccountIconVisible()) {
 			NavigationOperations.goToFolder(Folders.SENT);
 			UserOperations.deleteAllEmails();
 		}
