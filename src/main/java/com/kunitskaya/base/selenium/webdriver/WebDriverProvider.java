@@ -18,11 +18,10 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 import static com.kunitskaya.base.selenium.Browsers.getBrowser;
 import static com.kunitskaya.base.selenium.Platforms.MAC;
 import static com.kunitskaya.base.selenium.waits.ImplicitWait.waitImplicitly;
-import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
+import static com.kunitskaya.logging.TestLogger.ROOT_LOGGER;
 
 public class WebDriverProvider
 {
-
 	private static WebDriver webDriver;
 	private static ConfigProvider configProvider = ConfigProvider.getInstance();
 
@@ -58,7 +57,7 @@ public class WebDriverProvider
 				}
 				catch (MalformedURLException e)
 				{
-					TEST_LOGGER.fatal("Selenium hub url is not found " + e.getMessage());
+					ROOT_LOGGER.fatal("Selenium hub url is not found " + e.getMessage());
 				}
 			}
 			else
@@ -83,7 +82,7 @@ public class WebDriverProvider
 
 	private static WebDriver getChromeDriver()
 	{
-		TEST_LOGGER.info("Initializing chrome driver");
+		ROOT_LOGGER.info("Initializing chrome driver");
 
 		String currentPlatform = configProvider.getPlatform();
 		Platforms platform = Platforms.valueOf(currentPlatform);
@@ -101,7 +100,7 @@ public class WebDriverProvider
 			}
 			catch (MalformedURLException e)
 			{
-				TEST_LOGGER.fatal("Could not initialize mobile driver " + e.getMessage());
+				ROOT_LOGGER.fatal("Could not initialize mobile driver " + e.getMessage());
 			}
 		}
 		else
@@ -114,7 +113,7 @@ public class WebDriverProvider
 
 	private static WebDriver getRemoteDriver(ChromeOptions chromeOptions) throws MalformedURLException
 	{
-		TEST_LOGGER.info("Initializing remote chrome driver");
+		ROOT_LOGGER.info("Initializing remote chrome driver");
 		URL hubUrl;
 		hubUrl = new URL(configProvider.getHubUrl());
 		DesiredCapabilities capabilities = DesiredCapabilities.chrome().merge(chromeOptions);
@@ -123,7 +122,7 @@ public class WebDriverProvider
 
 	private static void setSelenideDriver(WebDriver webDriver)
 	{
-		TEST_LOGGER.info("Setting selenide driver");
+		ROOT_LOGGER.info("Setting selenide driver");
 		setWebDriver(webDriver);
 	}
 
@@ -134,7 +133,7 @@ public class WebDriverProvider
 		String mobilePlatform = configProvider.getMobilePlatform();
 		String browser = configProvider.getBrowser();
 
-		TEST_LOGGER.info("Initializing mobile driver for " + deviceName + " on " + mobilePlatform);
+		ROOT_LOGGER.info("Initializing mobile driver for " + deviceName + " on " + mobilePlatform);
 
 		capabilities.setCapability("deviceName", deviceName);
 		capabilities.setCapability("platformName", mobilePlatform);

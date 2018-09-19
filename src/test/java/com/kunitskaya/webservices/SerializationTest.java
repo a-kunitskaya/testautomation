@@ -6,6 +6,7 @@ import com.kunitskaya.webservices.serialization.JsonDataSerializer;
 import org.springframework.context.annotation.Description;
 import org.testng.annotations.Test;
 
+import static com.kunitskaya.logging.TestLogger.WS_LOGGER;
 import static java.lang.Double.parseDouble;
 import static org.apache.commons.lang3.StringUtils.substringBetween;
 import static org.testng.AssertJUnit.assertEquals;

@@ -10,21 +10,14 @@ import com.kunitskaya.selenium.business.objects.user.User;
 import com.kunitskaya.selenium.business.operations.pf.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.pf.UserOperations;
 import com.kunitskaya.selenium.pages.pf.MailPage;
-import io.qameta.allure.Allure;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
-import static com.kunitskaya.base.utils.Screenshoter.SCREENSHOT_NAME;
-import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
+import static com.kunitskaya.logging.TestLogger.ROOT_LOGGER;
 
 
 public class SeleniumBaseTest
@@ -41,7 +34,7 @@ public class SeleniumBaseTest
 	@AfterMethod
 	public void makeScreenshotOnFailure(ITestResult result) {
 		if (result.getStatus() == ITestResult.FAILURE) {
-			TEST_LOGGER.error("Failed test: " + result.getMethod().getMethodName());
+			ROOT_LOGGER.error("Failed test: " + result.getMethod().getMethodName());
 			File attachment = Screenshoter.takeScreenshot(WebDriverProvider.getInstance());
 			AllureAttachmentsUtil.addScreenshotToReport(attachment);
 		}

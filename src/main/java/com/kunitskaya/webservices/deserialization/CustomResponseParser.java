@@ -5,7 +5,7 @@ import org.apache.commons.lang.StringUtils;
 
 import java.lang.reflect.Field;
 
-import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
+import static com.kunitskaya.logging.TestLogger.ROOT_LOGGER;
 
 /**
  * Created by Alexandra Kunitskaya
@@ -37,7 +37,7 @@ public class CustomResponseParser
 			}
 			catch (IllegalAccessException e)
 			{
-				TEST_LOGGER.error("Could not set value " + value + " to field " + field.getName() + e.getMessage());
+				ROOT_LOGGER.error("Could not set value " + value + " to field " + field.getName() + e.getMessage());
 			}
 		}
 		return instance;

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 
 import static com.kunitskaya.base.selenium.waits.ExplicitWait.waitForElementToBeClickable;
 import static com.kunitskaya.base.selenium.waits.ExplicitWait.waitForElementVisibility;
-import static com.kunitskaya.logging.TestLogger.TEST_LOGGER;
+import static com.kunitskaya.logging.TestLogger.ROOT_LOGGER;
 import static com.kunitskaya.selenium.pages.pf.MailListingPage.SUBJECT_LOCATOR;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 
@@ -58,7 +58,7 @@ public class ComposeEmailPopup extends AbstractPage {
                                   .build()
                                   .perform();
         } catch (UnhandledAlertException e) {
-            TEST_LOGGER.warn("Alert is displayed " + e.getAlertText());
+            ROOT_LOGGER.warn("Alert is displayed " + e.getAlertText());
         }
         return this;
     }
