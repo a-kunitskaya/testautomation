@@ -15,20 +15,18 @@ import static com.kunitskaya.logging.TestLogger.LOGGER;
 /**
  * Created by Alexandra Kunitskaya
  */
-public class AllureAttachmentsUtil
-{
-	/**
-	 * Adds screenshot to Allure report
-	 *
-	 * @param attachment - file to attach
-	 */
-	public static void addScreenshotToReport(File attachment) {
-		Path content = Paths.get(attachment.getAbsolutePath());
-		try (InputStream is = Files.newInputStream(content)) {
-			Allure.addAttachment(SCREENSHOT_NAME, is);
-		}
-		catch (IOException e) {
-			LOGGER.error("Could not add attachment to Allure report" + e.getMessage());
-		}
-	}
+public class AllureAttachmentsUtil {
+    /**
+     * Adds screenshot to Allure report
+     *
+     * @param attachment - file to attach
+     */
+    public static void addScreenshotToReport(File attachment) {
+        Path content = Paths.get(attachment.getAbsolutePath());
+        try (InputStream is = Files.newInputStream(content)) {
+            Allure.addAttachment(SCREENSHOT_NAME, is);
+        } catch (IOException e) {
+            LOGGER.error("Could not add attachment to Allure report" + e.getMessage());
+        }
+    }
 }

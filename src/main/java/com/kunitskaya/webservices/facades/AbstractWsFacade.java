@@ -10,9 +10,9 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 
 public class AbstractWsFacade {
+    protected static final String SEPARATOR = "/";
     protected static ConfigProvider configProvider = ConfigProvider.getInstance();
     protected static final String BASE_URL = configProvider.getBaseWsTestUrl();
-    protected static final String SEPARATOR = "/";
 
     /**
      * Makes GET request

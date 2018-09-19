@@ -1,10 +1,10 @@
 package com.kunitskaya.selenium.business.operations.pf;
 
-import com.kunitskaya.test.Folders;
 import com.kunitskaya.selenium.business.objects.Email;
 import com.kunitskaya.selenium.pages.pf.ComposeEmailPopup;
 import com.kunitskaya.selenium.pages.pf.MailDetailsPage;
 import com.kunitskaya.selenium.pages.pf.MailPage;
+import com.kunitskaya.test.Folders;
 
 public class EmailOperations {
 

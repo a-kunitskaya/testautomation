@@ -1,11 +1,11 @@
 package com.kunitskaya.selenium.pages.selenide;
 
-import com.kunitskaya.test.TestDataProvider;
 import com.kunitskaya.selenium.SeleniumBaseTest;
 import com.kunitskaya.selenium.business.objects.Email;
 import com.kunitskaya.selenium.business.operations.selenide.EmailOperations;
 import com.kunitskaya.selenium.business.operations.selenide.NavigationOperations;
 import com.kunitskaya.selenium.business.operations.selenide.UserOperations;
+import com.kunitskaya.test.TestDataProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 

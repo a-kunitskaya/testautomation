@@ -33,8 +33,7 @@ public class ToDoWsTest extends WsBaseTest {
     }
 
     @Test
-    public void createToDo() throws InstantiationException, IllegalAccessException
-    {
+    public void createToDo() throws InstantiationException, IllegalAccessException {
         ToDo expectedToDo = TestDataProvider.getDefaultTodo();
 
         int numberOfRecords = toDoWsFacade.getToDos().as(ToDo[].class).length;

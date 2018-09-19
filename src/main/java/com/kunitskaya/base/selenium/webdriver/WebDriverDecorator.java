@@ -92,22 +92,22 @@ public class WebDriverDecorator implements WebDriver, JavascriptExecutor, HasInp
 
     @Override
     public Object executeScript(String s, Object... objects) {
-        return ((JavascriptExecutor)webDriver).executeScript(s, objects);
+        return ((JavascriptExecutor) webDriver).executeScript(s, objects);
     }
 
     @Override
     public Object executeAsyncScript(String s, Object... objects) {
-        return ((JavascriptExecutor)webDriver).executeAsyncScript(s, objects);
+        return ((JavascriptExecutor) webDriver).executeAsyncScript(s, objects);
     }
 
     @Override
     public Keyboard getKeyboard() {
-        return ((HasInputDevices)webDriver).getKeyboard();
+        return ((HasInputDevices) webDriver).getKeyboard();
     }
 
     @Override
     public Mouse getMouse() {
-        return ((HasInputDevices)webDriver).getMouse();
+        return ((HasInputDevices) webDriver).getMouse();
     }
 
     @Override

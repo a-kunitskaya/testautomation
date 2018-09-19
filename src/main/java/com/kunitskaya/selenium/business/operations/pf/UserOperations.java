@@ -1,10 +1,10 @@
 package com.kunitskaya.selenium.business.operations.pf;
 
-import com.kunitskaya.test.TestDataProvider;
-import com.kunitskaya.test.Users;
 import com.kunitskaya.selenium.business.objects.Feedback;
 import com.kunitskaya.selenium.business.objects.user.User;
 import com.kunitskaya.selenium.pages.pf.*;
+import com.kunitskaya.test.TestDataProvider;
+import com.kunitskaya.test.Users;
 
 import java.util.List;
 

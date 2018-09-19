@@ -14,23 +14,23 @@ import static com.kunitskaya.logging.TestLogger.LOGGER;
  * Created by Alexandra Kunitskaya
  */
 public class Screenshoter {
-	public static final String SCREENSHOT_NAME = "Screenshot_" + System.nanoTime();
+    public static final String SCREENSHOT_NAME = "Screenshot_" + System.nanoTime();
 
-	/**
-	 * Takes scheenshot and puts it in ./target/screenshots/
-	 *
-	 * @param webDriver - the used webDriver
-	 * @return screenshot file
-	 */
-	public static File takeScreenshot(WebDriver webDriver) {
-		File screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String path = "./target/screenshots/" + SCREENSHOT_NAME + ".png";
-		try {
-			FileUtils.copyFile(screenshot, new File(path));
-			LOGGER.info("Saved screenshot: " + SCREENSHOT_NAME);
-		} catch (IOException e) {
-			LOGGER.error("Failed to take screenshot: " + e.getMessage());
-		}
-		return screenshot;
-	}
+    /**
+     * Takes scheenshot and puts it in ./target/screenshots/
+     *
+     * @param webDriver - the used webDriver
+     * @return screenshot file
+     */
+    public static File takeScreenshot(WebDriver webDriver) {
+        File screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+        String path = "./target/screenshots/" + SCREENSHOT_NAME + ".png";
+        try {
+            FileUtils.copyFile(screenshot, new File(path));
+            LOGGER.info("Saved screenshot: " + SCREENSHOT_NAME);
+        } catch (IOException e) {
+            LOGGER.error("Failed to take screenshot: " + e.getMessage());
+        }
+        return screenshot;
+    }
 }

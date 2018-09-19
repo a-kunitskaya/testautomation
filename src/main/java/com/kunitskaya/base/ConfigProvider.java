@@ -7,9 +7,8 @@ import java.util.Properties;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 
 public class ConfigProvider {
-    private static ConfigProvider instance;
-
     private static final String TEST_PROPERTIES_FILE = "test.properties";
+    private static ConfigProvider instance;
     private Properties properties = new Properties();
 
     private ConfigProvider() {
@@ -78,15 +77,15 @@ public class ConfigProvider {
         return IS_OS_MAC ? getProperty("chrome.driver.path.mac") : getProperty("chrome.driver.path.win");
     }
 
-    public boolean isMobile(){
+    public boolean isMobile() {
         return Boolean.parseBoolean(getProperty("is.mobile"));
     }
 
-    public String getDeviceName(){
+    public String getDeviceName() {
         return getProperty("mobile.device.name");
     }
 
-    public String getMobilePlatform(){
+    public String getMobilePlatform() {
         return getProperty("mobile.platform.name");
     }
 }

@@ -36,7 +36,6 @@ public class WebDriverProvider {
     }
 
     private static void initializeDriver() {
-
         String currentBrowser = configProvider.getBrowser();
         Browsers browser = getBrowser(currentBrowser);
         boolean isMobile = configProvider.isMobile();

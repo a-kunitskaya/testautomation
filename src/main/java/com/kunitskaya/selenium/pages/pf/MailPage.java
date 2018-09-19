@@ -9,18 +9,14 @@ import static com.kunitskaya.base.selenium.waits.ExplicitWait.waitForElementToBe
 
 public class MailPage extends AbstractPage {
 
-    @FindBy(css = ".gb_b.gb_eb.gb_R")
-    WebElement accountIcon;
-
-    @FindBy(xpath = "//div[@data-tooltip='Settings' or @title='Settings']")
-    WebElement settingsButton;
-
-    @FindBy(xpath = "//div[@role='menuitem' and .='Help']")
-    WebElement helpSettingsOption;
-
     @FindBy(xpath = "//div[@gh='cm']")
     public WebElement composeButton;
-
+    @FindBy(css = ".gb_b.gb_eb.gb_R")
+    WebElement accountIcon;
+    @FindBy(xpath = "//div[@data-tooltip='Settings' or @title='Settings']")
+    WebElement settingsButton;
+    @FindBy(xpath = "//div[@role='menuitem' and .='Help']")
+    WebElement helpSettingsOption;
     @FindBy(linkText = "Sent Mail")
     WebElement sentMailFolder;
 
